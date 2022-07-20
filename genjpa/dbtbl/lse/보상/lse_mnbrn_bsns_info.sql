@@ -1,0 +1,55 @@
+--
+-- Table structure for table `lse_mnbrn_bsns_info`
+--
+
+DROP TABLE IF EXISTS `lse_mnbrn_bsns_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_mnbrn_bsns_info` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `dm_seqno` decimal(5,0) NOT NULL COMMENT '청구순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `mnbrn_dcu_tpcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '본지점문서유형코드',
+  `requ_seq` decimal(3,0) NOT NULL COMMENT '의뢰회차',
+  `wrtdt` date NOT NULL COMMENT '작성일자',
+  `wrter_stfno` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '작성자직원번호',
+  `rcv_1_orgcd` varchar(7) COLLATE utf8mb4_bin NOT NULL COMMENT '수신1기관코드',
+  `doc_dcu_kndcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '공문문서종류코드',
+  `dcu_grdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '문서등급코드',
+  `dcu_cons_trm` decimal(2,0) DEFAULT NULL COMMENT '문서보존기간',
+  `prv_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '결재상태코드',
+  `snddt` date DEFAULT NULL COMMENT '발송일자',
+  `hdof_chrps_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '본사담당자직원번호',
+  `hdof_cnfdt` date DEFAULT NULL COMMENT '본사확인일자',
+  `cnfm_ctn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '확인자의견',
+  `hdof_ap_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '본사승인여부',
+  `titl` varchar(100) COLLATE utf8mb4_bin NOT NULL COMMENT '제목',
+  `dcuno` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '문서번호',
+  `clm_titl` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고제목',
+  `clmdt` date NOT NULL COMMENT '사고일자',
+  `clm_hhmm` varchar(4) COLLATE utf8mb4_bin NOT NULL COMMENT '사고시분',
+  `dgnnm` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '진단명',
+  `clm_plc` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고장소',
+  `clm_cn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고내용',
+  `issu_titl` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '문제제목',
+  `issu_cn` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '문제내용',
+  `rq_titl` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청제목',
+  `rq_cn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청내용',
+  `et_titl` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '기타제목',
+  `et_cn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '기타내용',
+  `sms_rcvpt_id` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SMS수신자ID',
+  `snd_msg` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '발송메시지',
+  `snd_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '발송구분코드',
+  `prv_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '결재구분코드',
+  `cmp_ky_yr` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '보상키년도',
+  `cmp_ky_seqno` decimal(10,0) DEFAULT NULL COMMENT '보상키순번',
+  `prvdt` date DEFAULT NULL COMMENT '결재일자',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_lse_mnbrn_bsns_info_00` (`rcp_yymm`,`rcp_nv_seqno`,`dm_seqno`,`clmps_seqno`,`mnbrn_dcu_tpcd`,`requ_seq`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='본지점업무정보';

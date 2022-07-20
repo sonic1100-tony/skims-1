@@ -1,0 +1,57 @@
+--
+-- Table structure for table `lse_clm_nv_spc`
+--
+
+DROP TABLE IF EXISTS `lse_clm_nv_spc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_clm_nv_spc` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `clm_nv_seqno` decimal(3,0) NOT NULL COMMENT '사고조사순번',
+  `plyno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '증권번호',
+  `tr_tol_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '운송용구유형코드',
+  `tr_tolcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '운송용구코드',
+  `tr_tolnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '운송용구명',
+  `lad_plyno` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '선하증권번호',
+  `trps_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '운송자구분코드',
+  `trspr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '운송인',
+  `idm_xtn_prsdt` date DEFAULT NULL COMMENT '구상소멸시효일자',
+  `shpdt` date DEFAULT NULL COMMENT '선적일자',
+  `dm_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '손해유형코드',
+  `pack_mtdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '포장방법코드',
+  `xp_dm_mncd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '예상손해화폐코드',
+  `xp_dmamt` decimal(17,5) NOT NULL DEFAULT '0.00000' COMMENT '예상손해액',
+  `cs_dm_mncd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비용손해화폐코드',
+  `cs_dmamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '비용손해액',
+  `lb_rpamt_mncd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배상책임금액화폐코드',
+  `lb_rpamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '배상책임금액',
+  `xp_xiamt_mncd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '예상추산금액화폐코드',
+  `xp_xiamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '예상추산금액',
+  `dmspc` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '손해내역',
+  `clm_nv_requ_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고조사의뢰여부',
+  `xc_requ_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '정산의뢰여부',
+  `cvap_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '민원여부',
+  `lw_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '소송여부',
+  `idm_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '구상여부',
+  `ctmno` varchar(13) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '고객번호',
+  `cprt_entp_seqno` decimal(3,0) DEFAULT NULL COMMENT '협력업체순번',
+  `vslnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '선박명',
+  `ibnf_rcrgp_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '보험금수령권자성명',
+  `idm_rqudt` date DEFAULT NULL COMMENT '구상의뢰일자',
+  `idm_end_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '구상종결여부',
+  `idm_end_rscd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '구상종결사유코드',
+  `idm_prg_spc` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '구상진행내역',
+  `gd_dmamt_mncd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '물손해액화폐코드',
+  `gd_dmamt` decimal(17,2) DEFAULT NULL COMMENT '물손해액',
+  `man_dmamt_mncd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '인손해액화폐코드',
+  `man_dmamt` decimal(17,2) DEFAULT NULL COMMENT '인손해액',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_lse_clm_nv_spc_00` (`rcp_yymm`,`rcp_nv_seqno`,`clmps_seqno`,`clm_nv_seqno`,`plyno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='사고조사내역';

@@ -1,0 +1,56 @@
+--
+-- Table structure for table `lse_auto_xi_rtx`
+--
+
+DROP TABLE IF EXISTS `lse_auto_xi_rtx`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_auto_xi_rtx` (
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `clm_nv_seqno` decimal(3,0) NOT NULL COMMENT '사고조사순번',
+  `auto_cc_seq` decimal(5,0) NOT NULL COMMENT '자동산출회차',
+  `plyno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '증권번호',
+  `cvrcd` varchar(8) COLLATE utf8mb4_bin NOT NULL COMMENT '담보코드',
+  `clm_cvrcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '사고담보코드',
+  `trmt_seqno` decimal(20,0) NOT NULL COMMENT '진료순번',
+  `nrdps_ctmno` varchar(13) COLLATE utf8mb4_bin NOT NULL COMMENT '피보험자고객번호',
+  `relpc_ctmno` varchar(13) COLLATE utf8mb4_bin NOT NULL COMMENT '관계자고객번호',
+  `trmt_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '진료구분코드',
+  `rcpr_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '요양구분코드',
+  `hspcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '병원코드',
+  `spcf_hsp_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '특정병원구분코드',
+  `trmt_sbjcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '진료과목코드',
+  `trmt_strdt` date NOT NULL COMMENT '진료시작일자',
+  `trmt_nddt` date NOT NULL COMMENT '진료종료일자',
+  `dgncd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '진단코드',
+  `slr_self_chamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '급여자기부담금액',
+  `slr_pbco_chamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '급여공단부담금액',
+  `slr_tamt_self_chamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '급여전액본인부담금액',
+  `nsly_slc_trmt_amt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '비급여선택진료금액',
+  `nsly_slc_out_trmt_amt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '비급여선택외진료금액',
+  `upr_wramt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '상급병실료',
+  `upr_wramt_diamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '상급병실료차액',
+  `nsly_mtetmt_amt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '비급여도체증금액',
+  `nsly_mtetmt_ct` decimal(4,0) NOT NULL DEFAULT '0' COMMENT '비급여도체증횟수',
+  `nsly_injc_amt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '비급여주사금액',
+  `nsly_injc_ct` decimal(4,0) NOT NULL DEFAULT '0' COMMENT '비급여주사횟수',
+  `nsly_mri_amt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '비급여MRI금액',
+  `nsly_baamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '비급여기본금액',
+  `md_smamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '조정합계액',
+  `mx_spls_amt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '상한초과금액',
+  `mx_xcamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '상한제외금액',
+  `annu_dc_lm_ap_str_yr` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '연간공제한도적용시작년도',
+  `annu_dc_lm_ap_nd_yr` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '연간공제한도적용종료년도',
+  `annu_dc_lm_spls_amt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '연간공제한도초과액',
+  `dm_dmamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '청구손해액',
+  `cc_dmamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '산출손해액',
+  `cc_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '산출여부',
+  `vald_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '유효여부',
+  `xcpt_dl_cn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '예외처리내용',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `inp_dthms` datetime NOT NULL COMMENT '입력일시',
+  `mdf_dthms` datetime NOT NULL COMMENT '수정일시',
+  PRIMARY KEY (`rcp_yymm`,`rcp_nv_seqno`,`clmps_seqno`,`clm_nv_seqno`,`auto_cc_seq`,`plyno`,`cvrcd`,`clm_cvrcd`,`trmt_seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='자동추산영수증';

@@ -1,0 +1,56 @@
+--
+-- Table structure for table `lse_laps_dv_crr`
+--
+
+DROP TABLE IF EXISTS `lse_laps_dv_crr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_laps_dv_crr` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `clm_nv_seqno` decimal(3,0) NOT NULL COMMENT '사고조사순번',
+  `dm_seqno` decimal(5,0) NOT NULL COMMENT '청구순번',
+  `plyno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '증권번호',
+  `dv_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당유형코드',
+  `dv_stamt` decimal(15,0) DEFAULT NULL COMMENT '배당기준금액',
+  `rlpmi_cvr_db_isyn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실손담보중복가입여부',
+  `actno_er_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계좌번호오류여부',
+  `dv_cnd_1_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건1여부',
+  `dv_cnd_2_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건2여부',
+  `dv_cnd_3_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건3여부',
+  `dv_cnd_4_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건4여부',
+  `dv_cnd_5_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건5여부',
+  `dv_cnd_6_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건6여부',
+  `dv_cnd_7_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건7여부',
+  `dv_cnd_8_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건8여부',
+  `dv_cnd_9_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건9여부',
+  `dv_cnd_10_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건10여부',
+  `dv_cnd_11_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건11여부',
+  `dv_cnd_12_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건12여부',
+  `dv_cnd_13_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건13여부',
+  `dv_cnd_14_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건14여부',
+  `dv_cnd_15_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건15여부',
+  `dv_cnd_16_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건16여부',
+  `dv_cnd_17_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건17여부',
+  `dv_cnd_18_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건18여부',
+  `dv_cnd_19_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건19여부',
+  `dv_cnd_20_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건20여부',
+  `dv_cnd_21_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건21여부',
+  `dv_cnd_22_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건22여부',
+  `dv_cnd_23_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건23여부',
+  `dv_cnd_24_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건24여부',
+  `dv_cnd_25_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건25여부',
+  `dv_cnd_26_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건26여부',
+  `dv_cnd_27_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건27여부',
+  `dv_cnd_28_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건28여부',
+  `dv_cnd_29_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건29여부',
+  `dv_cnd_30_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배당조건30여부',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_lse_laps_dv_crr_00` (`rcp_yymm`,`rcp_nv_seqno`,`clmps_seqno`,`clm_nv_seqno`,`dm_seqno`,`plyno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='LAPS배당이력';

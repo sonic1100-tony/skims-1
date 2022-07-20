@@ -1,0 +1,57 @@
+--
+-- Table structure for table `ccm_sel_obs_nv`
+--
+
+DROP TABLE IF EXISTS `ccm_sel_obs_nv`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ccm_sel_obs_nv` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clm_cvrcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '사고담보코드',
+  `dmge_rank` varchar(3) COLLATE utf8mb4_bin NOT NULL COMMENT '피해서열',
+  `optdc_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '임의확정구분코드',
+  `sel_obs_nv_seqno` decimal(3,0) NOT NULL COMMENT '후유장해조사순번',
+  `cc_st_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '산출기준구분코드',
+  `ap_nd_dthms` datetime NOT NULL COMMENT '적용종료일시',
+  `ap_str_dthms` datetime NOT NULL COMMENT '적용시작일시',
+  `obs_stdt` date DEFAULT NULL COMMENT '장해기준일자',
+  `actvt_nddt` date DEFAULT NULL COMMENT '가동종료일자',
+  `mlsvc_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '병역구분코드',
+  `mlsvc_strdt` date DEFAULT NULL COMMENT '병역시작일자',
+  `mlsvc_nddt` date DEFAULT NULL COMMENT '병역종료일자',
+  `mlsvc_mntct` decimal(3,0) DEFAULT NULL COMMENT '병역개월수',
+  `hl_cfc_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'HL계수구분코드',
+  `obs_gri` varchar(4) COLLATE utf8mb4_bin NOT NULL COMMENT '장해급항',
+  `los_pfamt_sm` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '상실수익금액합계',
+  `fr_xi_yn` varchar(1) COLLATE utf8mb4_bin NOT NULL COMMENT '최초추산여부',
+  `livg_rt` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '생계비율',
+  `sel_obs_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '후유장해구분코드',
+  `aglm` decimal(3,0) NOT NULL DEFAULT '0' COMMENT '정년',
+  `aglm_mndy` date DEFAULT NULL COMMENT '정년월일',
+  `epmt_av_yyprd` decimal(3,0) DEFAULT NULL COMMENT '취업가능년한',
+  `epmt_av_mc` decimal(3,0) DEFAULT NULL COMMENT '취업가능월수',
+  `ctmno` varchar(13) COLLATE utf8mb4_bin NOT NULL COMMENT '고객번호',
+  `cprt_entp_seqno` decimal(3,0) NOT NULL COMMENT '협력업체순번',
+  `agdt` date DEFAULT NULL COMMENT '합의일자',
+  `dgn_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '진단구분코드',
+  `obs_ap_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '장해적용구분코드',
+  `hspnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '병원명',
+  `drnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의사명',
+  `intns_licno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의사면허번호',
+  `dgndt` date DEFAULT NULL COMMENT '진단일자',
+  `sum_obsrt` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '합산장해율',
+  `cv_obsrt` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '환산장해율',
+  `nml_rol` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '정상여명',
+  `exp_rol` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '기대여명',
+  `sht_rol` decimal(5,2) NOT NULL DEFAULT '0.00' COMMENT '단축여명',
+  `rol_nddt` date DEFAULT NULL COMMENT '여명종료일자',
+  `de_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사망구분코드',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_ccm_sel_obs_nv_00` (`rcp_yymm`,`rcp_nv_seqno`,`clm_cvrcd`,`dmge_rank`,`optdc_flgcd`,`sel_obs_nv_seqno`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='후유장해조사';

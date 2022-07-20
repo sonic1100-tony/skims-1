@@ -1,0 +1,56 @@
+--
+-- Table structure for table `ins_rtamt_cc_spc`
+--
+
+DROP TABLE IF EXISTS `ins_rtamt_cc_spc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_rtamt_cc_spc` (
+  `py_bjno` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '지급대상번호',
+  `plyno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '증권번호',
+  `cvrcd` varchar(8) COLLATE utf8mb4_bin NOT NULL COMMENT '담보코드',
+  `cvr_seqno` decimal(5,0) NOT NULL COMMENT '담보순번',
+  `ap_strdt` date NOT NULL COMMENT '적용시작일자',
+  `ap_nddt` date NOT NULL COMMENT '적용종료일자',
+  `ndsno` varchar(4) COLLATE utf8mb4_bin NOT NULL COMMENT '배서번호',
+  `relpc_oj_seqno` decimal(10,0) NOT NULL COMMENT '관계자목적물순번',
+  `cvr_ba_trt_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '담보기본특약구분코드',
+  `cvr_fnl_pym_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '담보최종납입년월',
+  `cvr_fnl_pym_seq` decimal(5,0) NOT NULL COMMENT '담보최종납입회차',
+  `pym_cyccd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '납입주기코드',
+  `isamt` decimal(17,2) NOT NULL COMMENT '가입금액',
+  `st_isamt` decimal(17,2) NOT NULL COMMENT '기준가입금액',
+  `cc_stdt` date NOT NULL COMMENT '산출기준일자',
+  `rt_key_assmb_cd` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요율KEY조립코드',
+  `rnd_trm_yyct` decimal(5,2) DEFAULT NULL COMMENT '경과기간년수',
+  `rndtm_mc` decimal(5,0) DEFAULT NULL COMMENT '경과기간월수',
+  `dp_mc` decimal(5,0) DEFAULT NULL COMMENT '상각월수',
+  `ap_prm` decimal(17,2) DEFAULT NULL COMMENT '적용보험료',
+  `beye_prm_cuamt` decimal(15,0) DEFAULT NULL COMMENT '연초보험료적립금액',
+  `yend_prm_cuamt` decimal(15,0) DEFAULT NULL COMMENT '연말보험료적립금액',
+  `nprm` decimal(17,7) DEFAULT NULL COMMENT '순보험료',
+  `std_cn_uiamt` decimal(21,6) DEFAULT NULL COMMENT '표준해약공제금액',
+  `netp_prm_cuamt` decimal(15,0) DEFAULT NULL COMMENT '순보식보험료적립금액',
+  `nelp_prm_cuamt` decimal(17,2) DEFAULT NULL COMMENT '미경과보험료적립금액',
+  `nelp_rk_prm` decimal(15,0) DEFAULT NULL COMMENT '미경과위험보험료',
+  `cnarx_rfd` decimal(17,2) DEFAULT NULL COMMENT '해지식준비금',
+  `cn_amt` decimal(15,0) DEFAULT NULL COMMENT '해지금액',
+  `nwcrt_fsyr_bzprm_rt` decimal(12,6) DEFAULT NULL COMMENT '신계약비초년도영업보험료비율',
+  `nwcrt_isamt_rt` decimal(12,6) DEFAULT NULL COMMENT '신계약비가입금액비율',
+  `nwcrt_anul_bzprm_rt` decimal(12,6) DEFAULT NULL COMMENT '신계약비매년영업보험료비율',
+  `bcpay_mncs_bzprm_rt` decimal(12,6) DEFAULT NULL COMMENT '완납전유지비영업보험료비율',
+  `acpay_mncs_bzprm_rt` decimal(12,6) DEFAULT NULL COMMENT '완납후유지비영업보험료비율',
+  `nrpym_trm_mc` decimal(5,0) DEFAULT NULL COMMENT '미상각기간월수',
+  `fsyr_prm` decimal(17,2) DEFAULT NULL COMMENT '초년도보험료',
+  `pr_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '예정신계약비',
+  `py_rm_cfc` decimal(5,0) DEFAULT NULL COMMENT '납방계수',
+  `pvpy_prm` decimal(15,0) DEFAULT NULL COMMENT '기납입보험료',
+  `pr_mncs` decimal(17,2) DEFAULT NULL COMMENT '예정유지비',
+  `pr_cmlcs` decimal(17,2) DEFAULT NULL COMMENT '예정수금비',
+  `pr_dm_nvcs` decimal(15,0) DEFAULT NULL COMMENT '예정손해조사비',
+  `nrpym_nwcrt` decimal(17,2) DEFAULT NULL COMMENT '미상각신계약비',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `inp_dthms` datetime NOT NULL COMMENT '입력일시',
+  `mdf_dthms` datetime NOT NULL COMMENT '수정일시',
+  PRIMARY KEY (`py_bjno`,`plyno`,`cvrcd`,`cvr_seqno`,`ap_strdt`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='환급금산출내역';

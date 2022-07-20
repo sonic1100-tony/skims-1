@@ -1,0 +1,22 @@
+--
+-- Table structure for table `ins_acm_tp`
+--
+
+DROP TABLE IF EXISTS `ins_acm_tp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_acm_tp` (
+  `acm_tpcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '누적유형코드',
+  `ap_strdt` date NOT NULL COMMENT '적용시작일자',
+  `ap_nddt` date NOT NULL COMMENT '적용종료일자',
+  `acm_tpnm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '누적유형명',
+  `acm_tp_dt_cn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '누적유형상세내용',
+  `acm_db_chek_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '누적중복체크구분코드',
+  `acm_lmchk_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '누적한도체크구분코드',
+  `db_chek_stamt` decimal(15,0) DEFAULT NULL COMMENT '중복체크기준금액',
+  `gn_grpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '보장군코드',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `inp_dthms` datetime NOT NULL COMMENT '입력일시',
+  `mdf_dthms` datetime NOT NULL COMMENT '수정일시',
+  PRIMARY KEY (`acm_tpcd`,`ap_strdt`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='누적유형';

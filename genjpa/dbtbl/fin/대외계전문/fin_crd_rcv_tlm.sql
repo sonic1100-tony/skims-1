@@ -1,0 +1,57 @@
+--
+-- Table structure for table `fin_crd_rcv_tlm`
+--
+
+DROP TABLE IF EXISTS `fin_crd_rcv_tlm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fin_crd_rcv_tlm` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `tlm_crno` varchar(15) COLLATE utf8mb4_bin NOT NULL COMMENT '전문발생번호',
+  `wrtdt` date NOT NULL COMMENT '작성일자',
+  `tlm_cop_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '전문구성구분코드',
+  `rec_seqno` decimal(5,0) NOT NULL COMMENT '레코드순번',
+  `mncd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '화폐코드',
+  `rec_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '레코드구분코드',
+  `jnsno` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '가맹점번호',
+  `crd_cmpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '카드회사코드',
+  `crd_cmp_bzmno` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '카드회사사업자번호',
+  `rcp_strdt` date DEFAULT NULL COMMENT '접수시작일자',
+  `rcp_nddt` date DEFAULT NULL COMMENT '접수종료일자',
+  `pydt` date DEFAULT NULL COMMENT '지급일자',
+  `slstr_dt` date DEFAULT NULL COMMENT '매출시작일자',
+  `slnd_dt` date DEFAULT NULL COMMENT '매출종료일자',
+  `dmdt` date DEFAULT NULL COMMENT '청구일자',
+  `sl_or_ccldt` date DEFAULT NULL COMMENT '매출/취소일자',
+  `rcpdt` date DEFAULT NULL COMMENT '접수일자',
+  `crdno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '카드번호',
+  `at_mnt` decimal(3,0) DEFAULT NULL COMMENT '할부개월',
+  `crd_slamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '신용판매금액',
+  `rt_rscd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '반송사유코드',
+  `rsno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주민번호',
+  `hngl_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '한글성명',
+  `eng_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '영문성명',
+  `wpc_tlno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '직장전화번호',
+  `home_tlno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '자택전화번호',
+  `crd_apno` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '카드승인번호',
+  `rcpct` decimal(7,0) DEFAULT NULL COMMENT '접수건수',
+  `rcp_amt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '접수금액',
+  `rt_tct` decimal(7,0) DEFAULT NULL COMMENT '반송총건수',
+  `rt_tamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '반송총금액',
+  `rs_tct` decimal(7,0) DEFAULT NULL COMMENT '보류총건수',
+  `rs_tamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '보류총금액',
+  `rs_cnc_tct` decimal(7,0) DEFAULT NULL COMMENT '보류해제총건수',
+  `rs_cnc_tamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '보류해제총금액',
+  `smct` decimal(7,0) DEFAULT NULL COMMENT '합계건수',
+  `smamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '합계금액',
+  `cm_sm` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '수수료합계',
+  `dpamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '입금금액',
+  `stm_actno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '결제계좌번호',
+  `vnccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'VAN사코드',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_fin_crd_rcv_tlm_00` (`tlm_crno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='카드수신전문';

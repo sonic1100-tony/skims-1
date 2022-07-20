@@ -1,0 +1,56 @@
+--
+-- Table structure for table `ins_auto_trfrq`
+--
+
+DROP TABLE IF EXISTS `ins_auto_trfrq`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_auto_trfrq` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `prs_plyno_or_lnno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '대표증권번호/대출번호',
+  `auto_tf_cg_kndcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '자동이체요금종류코드',
+  `auto_tfdt` date NOT NULL COMMENT '자동이체일자',
+  `prs_ply_rqpym_seq` decimal(5,0) NOT NULL COMMENT '대표증권의뢰납입회차',
+  `ndsno` varchar(4) COLLATE utf8mb4_bin NOT NULL COMMENT '배서번호',
+  `olcrr_seqno` decimal(5,0) NOT NULL DEFAULT '0' COMMENT '구이력순번',
+  `oldbl_seqno` decimal(5,0) NOT NULL DEFAULT '0' COMMENT '구중복순번',
+  `bdl_wdrc_bj_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '일괄출금대상여부',
+  `tf_rq_wrk_dthms` datetime NOT NULL COMMENT '이체요청작업일시',
+  `tf_requ_dl_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체의뢰처리상태코드',
+  `tf_rst_rcpdt` date DEFAULT NULL COMMENT '이체결과접수일자',
+  `tf_dl_metcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체처리방식코드',
+  `tf_bj_yymm` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체대상년월',
+  `tf_bjdt_cd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체대상일코드',
+  `wdrc_lm_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출금한도구분코드',
+  `bdl_wdrc_bj_crct` decimal(7,0) DEFAULT NULL COMMENT '일괄출금대상계약건수',
+  `rq_tfamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '요청이체금액',
+  `dm_pcamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '청구원금',
+  `tf_requ_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체의뢰구분코드',
+  `fr_tf_rqudt` date DEFAULT NULL COMMENT '최초이체의뢰일자',
+  `epay_stm_no` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '페이결제번호',
+  `crd_apno` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '카드승인번호',
+  `crd_apdt` date DEFAULT NULL COMMENT '카드승인일자',
+  `crd_ap_hms` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '카드승인시간',
+  `jnsno` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '가맹점번호',
+  `tf_dm_vnc_ercd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체청구VAN사오류코드',
+  `tf_dm_wdcmp_ercd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체청구출금사오류코드',
+  `tf_er_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이체오류구분코드',
+  `pvl_prdt` date DEFAULT NULL COMMENT '계상예정일자',
+  `acct_wrte_cn` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '통장기재내용',
+  `dh_cmpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT 'N03' COMMENT '취급회사코드',
+  `bk_or_crd_cmpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '은행/카드회사코드',
+  `actno_or_crdno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계좌번호/카드번호',
+  `epay_peri_stm_no` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '페이정기결제번호',
+  `bk_brcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '은행지점코드',
+  `crd_vald_trm` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '카드유효기간',
+  `ctm_dscno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '고객식별번호',
+  `pyr_no` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '납부자번호',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_ins_auto_trfrq_00` (`prs_plyno_or_lnno`,`auto_tf_cg_kndcd`,`auto_tfdt`,`prs_ply_rqpym_seq`,`ndsno`,`olcrr_seqno`,`oldbl_seqno`),
+  KEY `idx_ins_auto_trfrq_10` (`actno_or_crdno`),
+  KEY `idx_ins_auto_trfrq_11` (`ctm_dscno`)
+) ENGINE=InnoDB AUTO_INCREMENT=433 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='자동이체의뢰';

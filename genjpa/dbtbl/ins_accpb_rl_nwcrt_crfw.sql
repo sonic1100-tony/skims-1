@@ -1,0 +1,56 @@
+--
+-- Table structure for table `ins_accpb_rl_nwcrt_crfw`
+--
+
+DROP TABLE IF EXISTS `ins_accpb_rl_nwcrt_crfw`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_accpb_rl_nwcrt_crfw` (
+  `cls_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '마감년월',
+  `plyno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '증권번호',
+  `crfw_nwcrt_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '이연신계약비구분코드',
+  `spc_acc_fndcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '특별계정펀드코드',
+  `cr_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약상태코드',
+  `cr_dt_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약세부상태코드',
+  `rl_pym_trm` decimal(3,0) DEFAULT NULL COMMENT '실납입기간',
+  `rl_nd_trm` decimal(3,0) DEFAULT NULL COMMENT '실만기기간',
+  `ins_st` date DEFAULT NULL COMMENT '보험시기',
+  `ins_clstr` date DEFAULT NULL COMMENT '보험종기',
+  `remn_dp_trm` decimal(3,0) DEFAULT NULL COMMENT '잔여상각기간',
+  `rl_bfmm_nrpym_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '실제전월미상각신계약비',
+  `rl_crfw_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '실제이연신계약비',
+  `rl_nwcrt_dpcs` decimal(17,2) DEFAULT NULL COMMENT '실제신계약비상각비',
+  `rl_cm_nrpym_nwcrt` decimal(17,2) DEFAULT NULL COMMENT '실제당월미상각신계약비',
+  `pr_bfmm_nrpym_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '예정전월미상각신계약비',
+  `pr_crfw_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '예정이연신계약비',
+  `pr_nwcrt_dpcs` decimal(15,0) DEFAULT NULL COMMENT '예정신계약비상각비',
+  `pr_cm_nrpym_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '예정당월미상각신계약비',
+  `lmchk_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '한도체크여부',
+  `lmchk_bf_nwcrt_dpcs` decimal(15,0) DEFAULT NULL COMMENT '한도체크전신계약비상각비',
+  `lmchk_cm_nrpym_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '한도체크당월미상각신계약비',
+  `rnd_yyct` decimal(5,0) DEFAULT NULL COMMENT '경과년수',
+  `rnd_mc` decimal(5,0) DEFAULT NULL COMMENT '경과월수',
+  `rl_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '실제신계약비',
+  `bfmm_acm_crfw_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '전월누적이연신계약비',
+  `acm_crfw_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '누적이연신계약비',
+  `std_cn_uiamt` decimal(21,6) DEFAULT NULL COMMENT '표준해약공제금액',
+  `dh_orgcd` varchar(7) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '취급기관코드',
+  `sl_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '판매유형코드',
+  `ins_imcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '보험종목코드',
+  `lckbf_cm_nrpym_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '한도체크전당월미상각신계약비',
+  `pvpy_prm` decimal(15,0) DEFAULT NULL COMMENT '기납입보험료',
+  `crfw_lmamt` decimal(15,0) DEFAULT NULL COMMENT '이연한도금액',
+  `pr_nwcrt_tamt` decimal(15,0) DEFAULT NULL COMMENT '예정신계약비총액',
+  `bfmm_acm_nwcrt_dpcs` decimal(15,0) DEFAULT NULL COMMENT '전월누적신계약비상각비',
+  `acm_nwcrt_dpcs` decimal(15,0) DEFAULT NULL COMMENT '누적신계약비상각비',
+  `bfmm_acm_rl_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '전월누적실제신계약비',
+  `acm_rl_nwcrt` decimal(15,0) DEFAULT NULL COMMENT '누적실제신계약비',
+  `fntb_rflt_ad_dpcs` decimal(17,2) DEFAULT NULL COMMENT '재무제표반영추가상각비',
+  `rl_bfmm_acm_ad_dpcs` decimal(17,2) DEFAULT NULL COMMENT '실제전월누적추가상각비',
+  `rl_cm_acm_ad_dpcs` decimal(17,2) DEFAULT NULL COMMENT '실제당월누적추가상각비',
+  `spls_amt` decimal(15,0) DEFAULT NULL COMMENT '초과금액',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `inp_dthms` datetime NOT NULL COMMENT '입력일시',
+  `mdf_dthms` datetime NOT NULL COMMENT '수정일시',
+  PRIMARY KEY (`cls_yymm`,`plyno`,`crfw_nwcrt_flgcd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='계리실제신계약비이연';

@@ -1,0 +1,58 @@
+--
+-- Table structure for table `lse_clmps`
+--
+
+DROP TABLE IF EXISTS `lse_clmps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_clmps` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `clmps_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '사고자구분코드',
+  `ctmno` varchar(13) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '고객번호',
+  `clmnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고자명',
+  `imu_yn` varchar(1) COLLATE utf8mb4_bin NOT NULL COMMENT '면책여부',
+  `end_yn` varchar(1) COLLATE utf8mb4_bin NOT NULL COMMENT '종결여부',
+  `enddt` date DEFAULT NULL COMMENT '종결일자',
+  `clm_nv_kndcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고조사종류코드',
+  `clmps_mdf_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고자수정여부',
+  `ctm_dscno_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '고객식별번호구분코드',
+  `ctm_dscno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '고객식별번호',
+  `plyno` varchar(16) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '증권번호',
+  `dcn_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '확정여부',
+  `cntad_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '연락처구분코드',
+  `tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '전화지역번호',
+  `tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '전화국번',
+  `tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '전화일련번호',
+  `clm_bj_rcp_yymm` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고대상접수년월',
+  `clm_bj_rcpnv_seqno` varchar(5) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고대상접수조사순번',
+  `clm_bj_clmps_seqno` decimal(3,0) DEFAULT NULL COMMENT '사고대상사고자순번',
+  `jbnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '직업명',
+  `dmgnm` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '피해물명',
+  `arecd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지역코드',
+  `sd` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '시도',
+  `sgng` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '시군구',
+  `crdif_utl_agre_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '신용정보활용동의여부',
+  `mrl_grdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'MRL등급코드',
+  `mrl_grd_cc_cn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'MRL등급산출내용',
+  `fsvs_cvap_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '금감원민원여부',
+  `mrl_grd_rank` decimal(10,0) DEFAULT NULL COMMENT 'MRL등급순위',
+  `mdcs_tlm_opndt` date DEFAULT NULL COMMENT '의료비전문개시일자',
+  `mdcs_tlm_admno` varchar(7) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료비전문관리번호',
+  `mdcs_tlm_ts_seqno` decimal(5,0) DEFAULT NULL COMMENT '의료비전문전송순번',
+  `prpn_cmp_bjpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비례보상대상코드',
+  `icps_scrg_ct` decimal(15,0) DEFAULT NULL COMMENT 'ICPS스코어링건수',
+  `icps_scrg_amt` decimal(17,2) DEFAULT NULL COMMENT 'ICPS스코어링금액',
+  `xstf_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '임직원여부',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_lse_clmps_00` (`rcp_yymm`,`rcp_nv_seqno`,`clmps_seqno`),
+  KEY `idx_lse_clmps_10` (`ctm_dscno`),
+  KEY `idx_lse_clmps_11` (`ctmno`),
+  KEY `idx_lse_clmps_12` (`clm_bj_rcp_yymm`,`clm_bj_rcpnv_seqno`,`clm_bj_clmps_seqno`)
+) ENGINE=InnoDB AUTO_INCREMENT=866 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='사고자';

@@ -1,0 +1,56 @@
+--
+-- Table structure for table `lse_clmnv_mch_hshgd_hgd_ivamt`
+--
+
+DROP TABLE IF EXISTS `lse_clmnv_mch_hshgd_hgd_ivamt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_clmnv_mch_hshgd_hgd_ivamt` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `clm_nv_seqno` decimal(3,0) NOT NULL COMMENT '사고조사순번',
+  `clm_nvgd_seqno` decimal(3,0) NOT NULL COMMENT '사고조사물순번',
+  `seqno` decimal(5,0) NOT NULL COMMENT '순번',
+  `prdt_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '제품명',
+  `qant` decimal(5,0) DEFAULT NULL COMMENT '수량',
+  `re_sply_cnd_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재조달조건여부',
+  `cqdt` date DEFAULT NULL COMMENT '취득일자',
+  `rnd_mc` decimal(5,0) DEFAULT NULL COMMENT '경과월수',
+  `rnd_yy_rdt_dprt` decimal(12,6) DEFAULT NULL COMMENT '경과년감가상각율',
+  `sramt_rt` decimal(12,6) DEFAULT NULL COMMENT '잔존가액율',
+  `t_rdt_dprt` decimal(12,6) DEFAULT NULL COMMENT '총감가상각율',
+  `cq_vlamt` decimal(15,0) DEFAULT NULL COMMENT '취득가액',
+  `cq_pntm_vlamt` decimal(15,0) DEFAULT NULL COMMENT '취득시점가액',
+  `clm_pntm_vlamt` decimal(15,0) DEFAULT NULL COMMENT '사고시점가액',
+  `gdprc_ndx_rt` decimal(12,6) DEFAULT NULL COMMENT '물가지수율',
+  `gdprc_ndx_ap_vlamt` decimal(15,0) DEFAULT NULL COMMENT '물가지수적용가액',
+  `nw_item_unprc` decimal(15,0) DEFAULT NULL COMMENT '신품단가',
+  `re_sply_vlamt` decimal(17,5) DEFAULT NULL COMMENT '재조달가액',
+  `rdt_dp_ap_vlamt` decimal(15,0) DEFAULT NULL COMMENT '감가상각적용가액',
+  `ivamt_unprc` decimal(15,0) DEFAULT NULL COMMENT '보험가액단가',
+  `ivamt` decimal(17,2) DEFAULT NULL COMMENT '보험가액',
+  `totls_qant` decimal(5,0) DEFAULT NULL COMMENT '전손수량',
+  `rpair_qant` decimal(5,0) DEFAULT NULL COMMENT '수리수량',
+  `non_dm_qant` decimal(5,0) DEFAULT NULL COMMENT '무손해수량',
+  `qant_stot_amt` decimal(15,0) DEFAULT NULL COMMENT '수량소계금액',
+  `totls_amt` decimal(15,0) DEFAULT NULL COMMENT '전손금액',
+  `rpair_eamt` decimal(15,0) DEFAULT NULL COMMENT '수리견적금액',
+  `rpair_exc_amt` decimal(15,0) DEFAULT NULL COMMENT '수리실행금액',
+  `rpair_rdt_bj_vlamt` decimal(15,0) DEFAULT NULL COMMENT '수리감가대상평가금액',
+  `rpair_rdt_nbj_vlamt` decimal(15,0) DEFAULT NULL COMMENT '수리감가비대상평가금액',
+  `vlamt_stot_amt` decimal(15,0) DEFAULT NULL COMMENT '평가금액소계금액',
+  `pt20_lmit_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '20퍼센트제한여부',
+  `rpcrg_sm` decimal(15,0) DEFAULT NULL COMMENT '수리비합계',
+  `pt20_ivamt` decimal(15,0) DEFAULT NULL COMMENT '20퍼센트보험가액',
+  `rdt_dpaf_rpcrg` decimal(15,0) DEFAULT NULL COMMENT '감가상각후수리비',
+  `dmamt` decimal(17,2) DEFAULT NULL COMMENT '손해액',
+  `note` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비고',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_lse_clmnv_mch_hshgd_hgd_ivamt_00` (`rcp_yymm`,`rcp_nv_seqno`,`clmps_seqno`,`clm_nv_seqno`,`clm_nvgd_seqno`,`seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='사고조사기계집기가재보험가액';

@@ -1,0 +1,56 @@
+--
+-- Table structure for table `ins_re_dl_ba_mtt`
+--
+
+DROP TABLE IF EXISTS `ins_re_dl_ba_mtt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_re_dl_ba_mtt` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `reno` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '출재번호',
+  `ins_imcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '보험종목코드',
+  `plyno` varchar(16) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '증권번호',
+  `ndsno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배서번호',
+  `incm_prm_cr_seqno` decimal(5,0) DEFAULT NULL COMMENT '수입보험료발생순번',
+  `re_ndsno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출재배서번호',
+  `rk_tpcd` varchar(8) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위험유형코드',
+  `lctcd` varchar(8) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '소재지코드',
+  `rtro_ppno` varchar(11) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수재계상번호',
+  `ps_cstno` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '보유품의번호',
+  `reamt_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT '0' COMMENT '출재금액유형코드',
+  `re_unt_cr_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출재단위발생유형코드',
+  `rkgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위험군코드',
+  `rk_rnkcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위험급수코드',
+  `rt_ap_btpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요율적용업종코드',
+  `my_lctn_bdlre_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '다수소재지일괄출재여부',
+  `lctct` decimal(3,0) DEFAULT NULL COMMENT '소재지수',
+  `vl_mx_dmgrt` decimal(12,6) NOT NULL DEFAULT '0.000000' COMMENT '평가최대손해율',
+  `vl_mx_dmgcc_bsc` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '평가최대손해율산출근거',
+  `nprp_re_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비비례출재여부',
+  `avg_rert` decimal(12,6) NOT NULL DEFAULT '0.000000' COMMENT '평균출재율',
+  `avg_re_cmrt` decimal(12,6) NOT NULL DEFAULT '0.000000' COMMENT '평균출재수수료율',
+  `rn_ppdt` date DEFAULT NULL COMMENT '원수계상일자',
+  `rn_rtro_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원수수재구분코드',
+  `rins_trt_yymm` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보험특약년월',
+  `rert_stno` varchar(8) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출재율기준번호',
+  `rert_st_ch_seqno` decimal(5,0) DEFAULT NULL COMMENT '출재율기준변경순번',
+  `re_wrdg` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출재WORDING',
+  `pym_cyccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '납입주기코드',
+  `re_ins_st` date DEFAULT NULL COMMENT '출재보험시기',
+  `re_ins_clstr` date DEFAULT NULL COMMENT '출재보험종기',
+  `re_obj_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출재물건구분코드',
+  `injr_re_stncd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '상해출재기준코드',
+  `auto_re_yn` varchar(1) COLLATE utf8mb4_bin NOT NULL DEFAULT '0' COMMENT '자동출재여부',
+  `lctn_acm_isamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '소재지누적가입금액',
+  `rt_ap_csfcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요율적용분류코드',
+  `re_flg_cmpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출재구분회사코드',
+  `pvl_trt_yymm` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계상특약년월',
+  `gu_fire_dat_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '구화재데이터여부',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_ins_re_dl_ba_mtt_00` (`reno`),
+  KEY `idx_ins_re_dl_ba_mtt_01` (`plyno`,`ndsno`,`incm_prm_cr_seqno`,`avg_rert`)
+) ENGINE=InnoDB AUTO_INCREMENT=26084 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='출재처리기본사항';

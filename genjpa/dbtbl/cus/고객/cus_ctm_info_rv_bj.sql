@@ -1,0 +1,55 @@
+--
+-- Table structure for table `cus_ctm_info_rv_bj`
+--
+
+DROP TABLE IF EXISTS `cus_ctm_info_rv_bj`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cus_ctm_info_rv_bj` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `st_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '기준년월',
+  `ctmno` varchar(13) COLLATE utf8mb4_bin NOT NULL COMMENT '고객번호',
+  `plyno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '증권번호',
+  `adr_wr_1_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주소불량1여부',
+  `adr_wr_2_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주소불량2여부',
+  `adr_wr_3_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주소불량3여부',
+  `adr_wr_4_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주소불량4여부',
+  `mail_wr_1_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이메일불량1여부',
+  `mail_wr_2_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이메일불량2여부',
+  `hp_wr_1_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '휴대폰불량1여부',
+  `hp_wr_2_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '휴대폰불량2여부',
+  `hp_wr_3_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '휴대폰불량3여부',
+  `hp_wr_4_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '휴대폰불량4여부',
+  `home_tl_wr_1_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '자택전화불량1여부',
+  `home_tl_wr_2_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '자택전화불량2여부',
+  `home_tl_wr_3_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '자택전화불량3여부',
+  `wpc_tl_wr_1_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '직장전화불량1여부',
+  `wpc_tl_wr_2_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '직장전화불량2여부',
+  `wpc_tl_wr_3_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '직장전화불량3여부',
+  `stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '직원번호',
+  `us_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사용직원번호',
+  `orgcd` varchar(7) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '기관코드',
+  `nhgst_orgcd` varchar(7) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '차상위기관코드',
+  `dnhgt_orncd` varchar(7) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '차차상위조직코드',
+  `mdf_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수정여부',
+  `mdf_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수정직원번호',
+  `mdfdt` date DEFAULT NULL COMMENT '수정일자',
+  `cnf_impr_rscd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '확인불가사유코드',
+  `cnf_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '확인직원번호',
+  `cnf_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '확인여부',
+  `cnfdt` date DEFAULT NULL COMMENT '확인일자',
+  `adr_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주소구분코드',
+  `adr_seqno` decimal(10,0) DEFAULT NULL COMMENT '주소순번',
+  `adr_ap_str_dthms` datetime DEFAULT NULL COMMENT '주소적용시작일시',
+  `home_ap_str_dthms` datetime DEFAULT NULL COMMENT '자택적용시작일시',
+  `wpc_ap_str_dthms` datetime DEFAULT NULL COMMENT '직장적용시작일시',
+  `hp_ap_str_dthms` datetime DEFAULT NULL COMMENT '휴대폰적용시작일시',
+  `mail_ap_str_dthms` datetime DEFAULT NULL COMMENT '이메일적용시작일시',
+  `relpc_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '관계자유형코드',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_cus_ctm_info_rv_bj_00` (`st_yymm`,`ctmno`,`plyno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='고객정보보정대상';

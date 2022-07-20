@@ -1,0 +1,55 @@
+--
+-- Table structure for table `ins_pln_rcn_adm_crr`
+--
+
+DROP TABLE IF EXISTS `ins_pln_rcn_adm_crr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_pln_rcn_adm_crr` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `plno` varchar(17) COLLATE utf8mb4_bin NOT NULL COMMENT '설계번호',
+  `fnl_nds_seq` decimal(3,0) NOT NULL COMMENT '최종배서회차',
+  `pln_rcn_ch_rscd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '현장실사변경사유코드',
+  `rcn_ccl_rscd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실사취소사유코드',
+  `et_ccl_rs_cn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '기타취소사유내용',
+  `rcn_rq_xc_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실사요청정산여부',
+  `relcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '관계코드',
+  `dmdnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자명',
+  `dmd_1_cntad_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자1연락처구분코드',
+  `dmd_1_tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자1전화지역번호',
+  `dmd_1_tlof_no` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자1전화국번호',
+  `dmd_1_tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자1전화일련번호',
+  `dmd_2_cntad_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자2연락처구분코드',
+  `dmd_2_tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자2전화지역번호',
+  `dmd_2_tlof_no` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자2전화국번호',
+  `dmd_2_tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자2전화일련번호',
+  `rcn_plc_pstno` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실사장소우편번호',
+  `rcn_plc_baadr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실사장소기본주소',
+  `rcn_plc_et_adr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실사장소기타주소',
+  `rcn_ctn` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실사의견',
+  `mvo_entnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출동업체명',
+  `mvo_engnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출동기사명',
+  `mvo_engnr_cntad_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출동기사연락처구분코드',
+  `mvo_engnr_tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출동기사전화지역번호',
+  `mvo_engnr_tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출동기사전화국번',
+  `mvo_engnr_tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출동기사전화일련번호',
+  `rcpdt` date DEFAULT NULL COMMENT '접수일자',
+  `rcp_hms` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '접수시간',
+  `rsv_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '예약구분코드',
+  `rsvdt` date DEFAULT NULL COMMENT '예약일자',
+  `rsv_hms` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '예약시각',
+  `mvo_cpldt` date DEFAULT NULL COMMENT '출동완료일자',
+  `mvo_cplt_hms` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출동완료시간',
+  `photo_pht_cpldt` date DEFAULT NULL COMMENT '사진촬영완료일자',
+  `photo_pht_cplt_hms` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사진촬영완료시간',
+  `rcn_rst_pout_mtt` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '실사결과특이사항',
+  `afc_rcpno` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '제휴사접수번호',
+  `rcv_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수신여부',
+  `pln_rcn_ipps_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '현장실사입력자구분코드',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  KEY `pix_ins_pln_rcn_adm_crr_00` (`plno`,`fnl_nds_seq`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='현장실사관리이력';

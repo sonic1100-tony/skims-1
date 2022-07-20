@@ -1,0 +1,57 @@
+--
+-- Table structure for table `ccm_siu_rcp`
+--
+
+DROP TABLE IF EXISTS `ccm_siu_rcp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ccm_siu_rcp` (
+  `siu_admno_yr` varchar(4) COLLATE utf8mb4_bin NOT NULL COMMENT 'SIU관리번호년도',
+  `siu_admno_seqno` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT 'SIU관리번호순번',
+  `siu_adm_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT 'SIU관리구분코드',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '접수조사순번',
+  `ins_imcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '보험종목코드',
+  `siu_acdnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU사건명',
+  `siu_nv_rstcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU조사결과코드',
+  `siu_nv_rst_dtcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU조사결과세부코드',
+  `siu_nv_rst_dtcn` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU조사결과세부내용',
+  `siu_enddt` date DEFAULT NULL COMMENT 'SIU종결일자',
+  `siu_end_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU종결상태코드',
+  `nv1ps_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '1조사자직원번호',
+  `siu_nv_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU조사유형코드',
+  `sp_rowcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '인지경위코드',
+  `dmd_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자직원번호',
+  `tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '전화지역번호',
+  `tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '전화국번',
+  `tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '전화일련번호',
+  `rq_nv_mtdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청조사방법코드',
+  `reqdt` date DEFAULT NULL COMMENT '요청일자',
+  `rq_ccldt` date DEFAULT NULL COMMENT '요청취소일자',
+  `pln_nv_rq_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '현장조사요청유무',
+  `xp_dmamt` decimal(17,5) NOT NULL DEFAULT '0.00000' COMMENT '예상손해액',
+  `rq_dt_spc` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청세부내역',
+  `siu_dv_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU배당여부',
+  `prnt_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '제보자성명',
+  `prnt_rsno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '제보자주민번호',
+  `prnt_tl_areno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '제보자전화지역번호',
+  `prnt_tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '제보자전화국번',
+  `prnt_tl_sno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '제보자전화일련번호',
+  `prnt_rwamt` decimal(15,0) NOT NULL DEFAULT '0' COMMENT '제보자포상금액',
+  `prnt_rwdt` date DEFAULT NULL COMMENT '제보자포상일자',
+  `prsdt` date DEFAULT NULL COMMENT '제출일자',
+  `dmd_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '요청자성명',
+  `da_rq_org_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '자료요청기관구분코드',
+  `da_rq_orgnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '자료요청기관명',
+  `mg_cmpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '간사회사코드',
+  `mgcmp_stf_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '간사회사직원성명',
+  `nv_end_main_cn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '조사종결주요내용',
+  `siu_clmcn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU사고내용',
+  `siu_dl_rstcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SIU처리결과코드',
+  `detc_rq_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수사요청여부',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`siu_admno_yr`,`siu_admno_seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='SIU접수';

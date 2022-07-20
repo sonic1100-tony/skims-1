@@ -1,0 +1,57 @@
+--
+-- Table structure for table `ccm_victm_rpt`
+--
+
+DROP TABLE IF EXISTS `ccm_victm_rpt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ccm_victm_rpt` (
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clm_cvrcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '사고담보코드',
+  `dmge_rank` varchar(3) COLLATE utf8mb4_bin NOT NULL COMMENT '피해서열',
+  `st_rptg_seqno` decimal(3,0) NOT NULL COMMENT '상태보고서순번',
+  `st_cnfdt` date NOT NULL COMMENT '상태확인일자',
+  `st_cnf_plccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '상태확인장소코드',
+  `cnscn_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의식상태코드',
+  `gcs_poct` decimal(3,0) DEFAULT NULL COMMENT 'GCS점수',
+  `rspr_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '호흡상태코드',
+  `xrc_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '운동상태코드',
+  `dfc_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배변상태코드',
+  `urn_stcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '배뇨상태코드',
+  `injsl_ct` decimal(3,0) DEFAULT NULL COMMENT '주사제횟수',
+  `ifslt_ct` decimal(3,0) DEFAULT NULL COMMENT '수액제횟수',
+  `mdcnm_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '경구약여부',
+  `melcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '식사코드',
+  `phchr_rqudt` date DEFAULT NULL COMMENT '주치의의뢰일자',
+  `phchr_asrdt` date DEFAULT NULL COMMENT '주치의회신일자',
+  `phchr_hsp_ctmno` varchar(13) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주치의병원고객번호',
+  `phchr_hsp_cpent_seqno` decimal(3,0) DEFAULT NULL COMMENT '주치의병원협력업체순번',
+  `phchr_chr_dptcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주치의담당과코드',
+  `phchr_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주치의성명',
+  `phchr_opn` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주치의소견',
+  `shtcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '단축코드',
+  `sht_lngth` decimal(3,0) DEFAULT NULL COMMENT '단축길이',
+  `scngr_pht_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'SCANOGRAM촬영여부',
+  `scar_lngth` decimal(3,0) DEFAULT NULL COMMENT '반흔길이',
+  `sptm` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '증상',
+  `xp_hsp_days` decimal(5,0) DEFAULT NULL COMMENT '예상입원일수',
+  `xp_otp_days` decimal(5,0) DEFAULT NULL COMMENT '예상통원일수',
+  `xp_nspct` decimal(2,0) DEFAULT NULL COMMENT '예상개호인수',
+  `scar_plst_need_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '반흔성형필요여부',
+  `mng_mtt` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '조치사항',
+  `md_ud_revs_ctn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료심사역의견',
+  `chrps_ctn` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '담당자의견',
+  `tmnd_ctn` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '팀장의견',
+  `cmplt_spc` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '합병증내역',
+  `pvsp_spc` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '기왕증내역',
+  `main_rmdy_crs_cn` varchar(3000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주요치료과정내용',
+  `hira_da_prst_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '심평원자료제출여부',
+  `cv_obsrt` decimal(5,2) DEFAULT NULL COMMENT '환산장해율',
+  `obs_stdt` date DEFAULT NULL COMMENT '장해기준일자',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`rcp_yymm`,`rcp_nv_seqno`,`clm_cvrcd`,`dmge_rank`,`st_rptg_seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='피해자상태보고';

@@ -1,0 +1,58 @@
+--
+-- Table structure for table `ins_dvpns_dtycr_summ_rcv`
+--
+
+DROP TABLE IF EXISTS `ins_dvpns_dtycr_summ_rcv`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_dvpns_dtycr_summ_rcv` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `dvpns_dtyns_bsns_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '개발원의무보험업무구분코드',
+  `da_stdt` date NOT NULL COMMENT '자료기준일자',
+  `oldbl_seqno` decimal(5,0) NOT NULL COMMENT '구중복순번',
+  `rcv_dact` decimal(7,0) DEFAULT NULL COMMENT '수신자료건수',
+  `psn_ri_tsct` decimal(7,0) DEFAULT NULL COMMENT '개인승용전송건수',
+  `bsnpp_tsct` decimal(7,0) DEFAULT NULL COMMENT '업무용전송건수',
+  `bzus_tsct` decimal(7,0) DEFAULT NULL COMMENT '영업용전송건수',
+  `plus_psn_tsct` decimal(7,0) DEFAULT NULL COMMENT '플러스개인전송건수',
+  `plus_bsns_tsct` decimal(7,0) DEFAULT NULL COMMENT '플러스업무전송건수',
+  `twhvc_tsct` decimal(7,0) DEFAULT NULL COMMENT '이륜차전송건수',
+  `et_dt_ikd_tsct` decimal(7,0) DEFAULT NULL COMMENT '기타세부보종전송건수',
+  `nwct` decimal(9,0) DEFAULT NULL COMMENT '신규건수',
+  `adct` decimal(7,0) DEFAULT NULL COMMENT '추가건수',
+  `sepct` decimal(7,0) DEFAULT NULL COMMENT '분할건수',
+  `chct` decimal(7,0) DEFAULT NULL COMMENT '변경건수',
+  `rvsct` decimal(9,0) DEFAULT NULL COMMENT '정정건수',
+  `cnct` decimal(9,0) DEFAULT NULL COMMENT '해약건수',
+  `rvict` decimal(7,0) DEFAULT NULL COMMENT '부활건수',
+  `ersct` decimal(7,0) DEFAULT NULL COMMENT '삭제건수',
+  `cr_sbbct` decimal(7,0) DEFAULT NULL COMMENT '차량대체전건수',
+  `cr_sbact` decimal(7,0) DEFAULT NULL COMMENT '차량대체후건수',
+  `etct` decimal(7,0) DEFAULT NULL COMMENT '기타건수',
+  `er_dact` decimal(7,0) DEFAULT NULL COMMENT '오류자료건수',
+  `psn_ri_ts_erct` decimal(7,0) DEFAULT NULL COMMENT '개인승용전송오류건수',
+  `bsnpp_ts_erct` decimal(7,0) DEFAULT NULL COMMENT '업무용전송오류건수',
+  `bzus_ts_erct` decimal(7,0) DEFAULT NULL COMMENT '영업용전송오류건수',
+  `plus_psn_ts_erct` decimal(7,0) DEFAULT NULL COMMENT '플러스개인전송오류건수',
+  `plus_bsns_ts_erct` decimal(7,0) DEFAULT NULL COMMENT '플러스업무전송오류건수',
+  `twhvc_ts_erct` decimal(7,0) DEFAULT NULL COMMENT '이륜차전송오류건수',
+  `et_ts_erct` decimal(7,0) DEFAULT NULL COMMENT '기타전송오류건수',
+  `nw_erct` decimal(7,0) DEFAULT NULL COMMENT '신규오류건수',
+  `ad_erct` decimal(7,0) DEFAULT NULL COMMENT '추가오류건수',
+  `sep_erct` decimal(7,0) DEFAULT NULL COMMENT '분할오류건수',
+  `ch_erct` decimal(7,0) DEFAULT NULL COMMENT '변경오류건수',
+  `rvsn_erct` decimal(7,0) DEFAULT NULL COMMENT '정정오류건수',
+  `cn_erct` decimal(7,0) DEFAULT NULL COMMENT '해약오류건수',
+  `rvi_erct` decimal(7,0) DEFAULT NULL COMMENT '부활오류건수',
+  `ers_erct` decimal(7,0) DEFAULT NULL COMMENT '삭제오류건수',
+  `cr_sbbf_erct` decimal(7,0) DEFAULT NULL COMMENT '차량대체전오류건수',
+  `cr_sbact_erct` decimal(7,0) DEFAULT NULL COMMENT '차량대체후오류건수',
+  `et_erct` decimal(7,0) DEFAULT NULL COMMENT '기타오류건수',
+  `rcv_dthms` datetime NOT NULL COMMENT '수신일시',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  KEY `pix_ins_dvpns_dtycr_summ_rcv_00` (`dvpns_dtyns_bsns_flgcd`,`da_stdt`,`oldbl_seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='개발원의무계약요약수신';

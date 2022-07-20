@@ -1,0 +1,92 @@
+server:
+  port: 8082
+  servlet:
+    contextPath: /cnr
+  tomcat:
+    accesslog:
+       enabled: true
+
+#database: h2
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  sql:
+    init: 
+      mode: embedded    # ALWAYS: 모든 데이터베이스에 sql 스크립트를 동작시킨다. / EMBDEDED: embedded 데이터베이스만 sql 스크립트를 동작시킨다. / NEVER: 모든 데이터베이스에 sql 스크립트를 동작시키지 않는다.
+      schema-locations: classpath*:db/schema.sql
+      data-locations: classpath*:db/data.sql
+      #classpath*:db/${database}/schema.sql 
+      #classpath*:db/${database}/data.sql
+  datasource:
+     #---- MySQL
+     #driver-class-name: com.mysql.cj.jdbc.Driver
+     #url: jdbc:mysql://localhost:3306/InnoDB?serverTimezone=Asia/Seoul
+     #---- HDDB
+     #driver-class-name: org.h2.Driver
+     #url: jdbc:h2:tcp://localhost/~/skims
+     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+     url: jdbc:log4jdbc:h2:tcp://localhost/~/skimscnr
+     username: sa
+     password:   
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        ddl-auto: create     # create, create-drop, validate, update, none
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+          # SpringPhysicalNamingStrategy(Default)  =>  camel case를 underscore 형태로 변경
+          # PhysicalNamingStrategyStandardImpl     =>  변수 이름을 그대로 사용
+        use-new-id-generator-mappings: true
+        format_sql: true
+        use_sql_comments: true
+    generate-ddl: true
+    show_sql: true   # console sql 
+  h2:
+    console: 
+      enabled: true
+      path: /h2
+      
+logging:
+  level:
+    root: error   # trace, debug, info, warn, error, fatal
+    org.springframework: info
+    org.springframework.jdbc: info
+    org.hibernate.type: off
+    com.skims: debug
+    
+    jdbc: 
+      connection: off
+      sqlonly: off
+      sqltiming: info
+      audit: off
+      result: off
+      resultsettable: info
+
+# springdoc:
+#  api-docs.path: api-docs
+#  swagger-ui:
+#    path: swagger-ui.html
+#    operationsSorter: method
+
+management:
+  server:
+#    port: 9001
+#    address: 127.0.0.1
+  endpoints:
+    web:
+#      base-path: /management
+      exposure:
+        include: "*"
+
+#mybatis:  # type을 쉽게 쓰기 위해서 dto 패키지를 type-aliaes에 설정
+#  type-aliases-package: com.sample.dto
+#  mapper-locations: classpath:mapper/**/*.xml
+#  # type-handlers-package: com.example.typehandler
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    default-fetch-size: 100
+#    default-statement-timeout: 30

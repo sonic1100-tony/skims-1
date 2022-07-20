@@ -1,0 +1,55 @@
+--
+-- Table structure for table `sec_trst_entp`
+--
+
+DROP TABLE IF EXISTS `sec_trst_entp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sec_trst_entp` (
+  `trst_entp_no` varchar(7) COLLATE utf8mb4_bin NOT NULL COMMENT '수탁업체번호',
+  `bsns_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '업무구분코드',
+  `ap_nd_dthms` datetime NOT NULL COMMENT '적용종료일시',
+  `ap_str_dthms` datetime NOT NULL COMMENT '적용시작일시',
+  `trst_cr_strdt` date DEFAULT NULL COMMENT '위탁계약시작일자',
+  `trst_cr_nddt` date DEFAULT NULL COMMENT '위탁계약종료일자',
+  `trst_cr_cnldt` date DEFAULT NULL COMMENT '위탁계약해지일자',
+  `trst_cr_cyccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위탁계약주기코드',
+  `trst_cr_auto_xt_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위탁계약자동연장여부',
+  `trst_crdm_kndcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위탁계약서종류코드',
+  `trst_bsns_chrps_orgcd` varchar(7) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위탁업무담당자기관코드',
+  `trst_bsns_chrps_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위탁업무담당자직원번호',
+  `psinf_of_ojccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보제공목적코드',
+  `prp_dscno_of_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '고유식별번호제공여부',
+  `sesin_of_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '민감정보제공여부',
+  `psinf_itnm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보항목명',
+  `psinf_of_metcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보제공방식코드',
+  `psinf_of_cyccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보제공주기코드',
+  `psinf_drut_cyccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보파기주기코드',
+  `psinf_chk_cyccd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보점검주기코드',
+  `mave_psinf_of_qnty` decimal(10,0) DEFAULT NULL COMMENT '월평균개인정보제공량',
+  `psinf_extr_clct_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보별도수집여부',
+  `psinf_extr_clct_itnm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보별도수집항목명',
+  `re_trst_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재위탁여부',
+  `re_trst_entnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재위탁업체명',
+  `re_trst_psinf_itnm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재위탁개인정보항목명',
+  `trst_entnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체명',
+  `trst_entp_stfct` decimal(7,0) DEFAULT NULL COMMENT '수탁업체직원수',
+  `trst_entp_pdtnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체대표자명',
+  `trst_entp_chrnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체담당자명',
+  `trst_entp_baadr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체기본주소',
+  `trst_entp_dtadr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체상세주소',
+  `trst_entp_chrps_cntad` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체담당자연락처',
+  `trst_entp_hmpag_adr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체홈페이지주소',
+  `trst_entp_psinf_admnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체개인정보관리자명',
+  `trst_entp_psinf_chrnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체개인정보담당자명',
+  `trst_entp_scrt_grdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체보안등급코드',
+  `psinf_dl_sys_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인정보처리시스템여부',
+  `note` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비고',
+  `bsns_file_key` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '업무파일KEY',
+  `trst_entp_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수탁업체직원번호',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`trst_entp_no`,`bsns_flgcd`,`ap_nd_dthms`,`ap_str_dthms`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='수탁업체';

@@ -1,0 +1,55 @@
+--
+-- Table structure for table `ins_safe_dgn_rptg`
+--
+
+DROP TABLE IF EXISTS `ins_safe_dgn_rptg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_safe_dgn_rptg` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `safe_dgn_rptg_no` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '안전진단보고서번호',
+  `psn_crp_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개인법인구분코드',
+  `ctmno` varchar(13) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '고객번호',
+  `crrnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약자명',
+  `crt_pstno` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약자우편번호',
+  `crt_et_adr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약자기타주소',
+  `bzwpl_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사업장명',
+  `lctn_pstno` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '소재지우편번호',
+  `lctn_adr` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '소재지주소',
+  `bsns_chrps_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '업무담당자직원번호',
+  `vldt` date DEFAULT NULL COMMENT '평가일자',
+  `isflg_cd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '가입구분코드',
+  `gn_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '일반여부',
+  `bld_isamt` decimal(17,2) DEFAULT NULL COMMENT '건물가입금액',
+  `mcheq_isamt` decimal(17,2) DEFAULT NULL COMMENT '기계장치가입금액',
+  `et_isamt` decimal(17,2) DEFAULT NULL COMMENT '기타가입금액',
+  `mvpr_isamt` decimal(17,2) DEFAULT NULL COMMENT '동산가입금액',
+  `isamt_sm` decimal(15,0) DEFAULT NULL COMMENT '가입금액합계',
+  `fldst_mvpr_xstn_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '야적동산존재여부',
+  `fldst_mvpr_rt` decimal(3,0) DEFAULT NULL COMMENT '야적동산비율',
+  `eml_rt` decimal(12,6) DEFAULT NULL COMMENT 'EML율',
+  `udrtk_ctn` varchar(500) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '인수의견',
+  `img_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이미지유무',
+  `img_pth` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '이미지경로',
+  `rk_nv_rqno` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '위험조사의뢰번호',
+  `brc_admno` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지사관리번호',
+  `spcl_bldno` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '특수건물번호',
+  `spcl_bld_safe_grdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '특수건물안전등급코드',
+  `prs_btpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대표업종코드',
+  `invps_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '면담자명',
+  `img_rgtdt` date DEFAULT NULL COMMENT '이미지등록일자',
+  `stru_isamt` decimal(17,2) DEFAULT NULL COMMENT '구축물가입금액',
+  `tls_isamt` decimal(17,2) DEFAULT NULL COMMENT '공구가입금액',
+  `nw_adr_onw_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '신주소신구구분코드',
+  `radnm_dsc_kyvl` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '도로명식별키값',
+  `radnm_baadr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '도로명기본주소',
+  `radnm_dtadr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '도로명상세주소',
+  `btpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '업종코드',
+  `bnnm` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '업종명',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  KEY `pix_ins_safe_dgn_rptg_00` (`safe_dgn_rptg_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='안전진단보고서';

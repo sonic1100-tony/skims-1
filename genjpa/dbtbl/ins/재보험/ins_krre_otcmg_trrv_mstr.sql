@@ -1,0 +1,57 @@
+--
+-- Table structure for table `ins_krre_otcmg_trrv_mstr`
+--
+
+DROP TABLE IF EXISTS `ins_krre_otcmg_trrv_mstr`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_krre_otcmg_trrv_mstr` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `krre_co_ins_seqno` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '코리안리공동보험순번',
+  `krre_rcvdt` date NOT NULL COMMENT '코리안리수신일자',
+  `rn_inscd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원수보험사코드',
+  `rinsc_rcpno` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보사접수번호',
+  `rn_inscp_pno` varchar(40) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원수보험사고유번호',
+  `rinsc_ins_imcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보사보험종목코드',
+  `prm_ibnf_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '보험료보험금구분코드',
+  `rtro_re_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수재출재구분코드',
+  `cscl_tot_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '건별집계구분코드',
+  `rinsc_trt_optn_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보사특약임의구분코드',
+  `cls_apdt` date NOT NULL COMMENT '마감적용일자',
+  `oinsc_gdnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원보사상품명',
+  `rinsc_gdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보사상품코드',
+  `rinsc_gdnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보사상품명',
+  `mgcmp_cd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '간사사코드',
+  `mgcmp_plyno` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '간사사증권번호',
+  `mgcmp_ply_seqno` decimal(5,0) DEFAULT NULL COMMENT '간사사증권순번',
+  `mgcmp_ndsno` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '간사사배서번호',
+  `mgcmp_re_seqno` decimal(5,0) DEFAULT NULL COMMENT '간사사출재순번',
+  `co_udcct` decimal(5,0) DEFAULT NULL COMMENT '공동인수사수',
+  `trt_yymm` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '특약년월',
+  `rinsc_dl_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보사처리구분코드',
+  `redt` date DEFAULT NULL COMMENT '출재일자',
+  `crrnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약자명',
+  `crpno` varchar(13) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '법인번호',
+  `rs_bzmno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주민사업자번호',
+  `cvr_ojnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '담보목적물명',
+  `cvr_oj_adr` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '담보목적물주소',
+  `ins_st` date DEFAULT NULL COMMENT '보험시기',
+  `ins_clstr` date DEFAULT NULL COMMENT '보험종기',
+  `pyp_seq` decimal(5,0) DEFAULT NULL COMMENT '분납회차',
+  `rncmp_cr_pno` varchar(40) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원수사계약고유번호',
+  `rncmp_clm_pno` varchar(40) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원수사사고고유번호',
+  `rncmp_clm_cstno` varchar(40) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원수사사고품의번호',
+  `rinsc_clmno` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '재보사사고번호',
+  `clmdt` date DEFAULT NULL COMMENT '사고일자',
+  `clm_plc` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고장소',
+  `clm_cn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고내용',
+  `clm_cas_nm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고원인명',
+  `clm_rstnm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고결과명',
+  `clm_mtt` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고사항',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_ins_krre_otcmg_trrv_mstr_00` (`krre_co_ins_seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='코리안리타사간사송수신마스타';

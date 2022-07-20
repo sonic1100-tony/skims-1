@@ -1,0 +1,58 @@
+--
+-- Table structure for table `cmp_intl_crut_spcn_dl`
+--
+
+DROP TABLE IF EXISTS `cmp_intl_crut_spcn_dl`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cmp_intl_crut_spcn_dl` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcpdt` date NOT NULL COMMENT '접수일자',
+  `rcp_seqno` decimal(5,0) NOT NULL COMMENT '접수순번',
+  `rgt_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '등록직원번호',
+  `dler_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자성명',
+  `dler_rsno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자주민번호',
+  `dler_jbnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자직업명',
+  `pstno` varchar(6) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '우편번호',
+  `dler_adr` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자주소',
+  `dler_tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자전화지역번호',
+  `dler_tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자전화국번',
+  `dler_tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자전화일련번호',
+  `dler_hp_tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자휴대폰전화지역번호',
+  `dler_hp_tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자휴대폰전화국번',
+  `dler_hp_tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자휴대폰전화일련번호',
+  `dler_ntl_kornm` varchar(150) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래자국적한글명',
+  `agnt_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인성명',
+  `agnt_rsno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인주민번호',
+  `agnt_adr` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인주소',
+  `agnt_tlano` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인전화지역번호',
+  `agnt_tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인전화국번',
+  `agnt_tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인전화일련번호',
+  `agnt_hp_tlano` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인휴대폰전화지역번호',
+  `agnt_hp_tltno` varchar(4) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인휴대폰전화국번',
+  `agnt_hp_tlsno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인휴대폰전화일련번호',
+  `agnt_relnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대리인관계명',
+  `brnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지점명',
+  `dl_strdt` date DEFAULT NULL COMMENT '거래시작일자',
+  `dl_nddt` date DEFAULT NULL COMMENT '거래종료일자',
+  `dl_ct` decimal(15,0) DEFAULT NULL COMMENT '거래건수',
+  `dnamt` decimal(15,0) DEFAULT NULL COMMENT '거래금액',
+  `dl_flgnm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '거래구분명',
+  `crnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약명',
+  `crrnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계약자명',
+  `act_kndnm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '계좌종류명',
+  `nrdnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '피보험자명',
+  `pfbnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '수익자명',
+  `stb_orgnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '개설기관명',
+  `cnrdt` date DEFAULT NULL COMMENT '계약일자',
+  `dubt_bsc_cn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의심근거내용',
+  `rst_rgt_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '결과등록직원번호',
+  `rst_cn` varchar(4000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '결과내용',
+  `intnl_spcn_dl_dl_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '내부혐의거래처리구분코드',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_cmp_intl_crut_spcn_dl_00` (`rcpdt`,`rcp_seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='내부비리혐의거래';

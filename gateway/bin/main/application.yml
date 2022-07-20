@@ -1,0 +1,94 @@
+server:
+  port: 8081
+
+---
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: cnr
+          uri: http://localhost:8082
+          predicates:
+            - Path=/cnr/**
+        - id: cus
+          uri: http://localhost:8083
+          predicates:
+            - Path=/cus/**
+        - id: fin
+          uri: http://localhost:8084
+          predicates:
+            - Path=/fin/**
+        - id: igd
+          uri: http://localhost:8085
+          predicates:
+            - Path=/igd/**
+        - id: pay
+          uri: http://localhost:8086
+          predicates:
+            - Path=/pay/**
+        - id: pln
+          uri: http://localhost:8087
+          predicates:
+            - Path=/pln/**
+        - id: udw
+          uri: http://localhost:8088
+          predicates:
+            - Path=/udw/**
+server:
+  port: 8081
+
+logging:
+  level:
+    root: error   # trace, debug, info, warn, error, fatal
+    org:
+      springframework:
+        cloud: debug
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: cnr
+          uri: http://skimscnr:8080
+          predicates:
+            - Path=/cnr/**
+        - id: cus
+          uri: http://skimscus:8080
+          predicates:
+            - Path=/cus/**
+        - id: fin
+          uri: http://skimsfin:8080
+          predicates:
+            - Path=/fin/**
+        - id: igd
+          uri: http://skimsigd:8080
+          predicates:
+            - Path=/igd/**
+        - id: pay
+          uri: http://skimspay:8080
+          predicates:
+            - Path=/pay/**
+        - id: pln
+          uri: http://skimspln:8080
+          predicates:
+            - Path=/pln/**
+        - id: udw
+          uri: http://skimsudw:8080
+          predicates:
+            - Path=/udw/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8081

@@ -1,0 +1,57 @@
+--
+-- Table structure for table `lse_xi_py_spc_ccbsc`
+--
+
+DROP TABLE IF EXISTS `lse_xi_py_spc_ccbsc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_xi_py_spc_ccbsc` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `plyno` varchar(16) COLLATE utf8mb4_bin NOT NULL COMMENT '증권번호',
+  `cc_seq` decimal(3,0) NOT NULL COMMENT '산출회차',
+  `xi_py_spc_seqno` decimal(3,0) NOT NULL COMMENT '추산지급내역순번',
+  `ccmtd_seqno` decimal(3,0) NOT NULL COMMENT '산출식순번',
+  `gdcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '상품코드',
+  `cvrcd` varchar(8) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '담보코드',
+  `clm_cvrcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고담보코드',
+  `sep_t_py_ct` decimal(3,0) NOT NULL DEFAULT '0' COMMENT '분할총지급횟수',
+  `sep_remn_ct` decimal(3,0) NOT NULL DEFAULT '0' COMMENT '분할잔여횟수',
+  `sep_amt_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '분할금구분코드',
+  `cuttm_py_ct` decimal(3,0) NOT NULL DEFAULT '0' COMMENT '당회지급횟수',
+  `isamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '가입금액',
+  `cc_it_1_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '산출항목1구분코드',
+  `cc_dtit_1_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '산출세부항목1구분코드',
+  `it_1_inpvl` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '항목1입력값',
+  `cc_it_1_untcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '산출항목1단위코드',
+  `cc_it_2_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '산출항목2구분코드',
+  `cc_dtit_2_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '산출세부항목2구분코드',
+  `it_2_inpvl` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '항목2입력값',
+  `cc_it_2_untcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '산출항목2단위코드',
+  `pyamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '지급금액',
+  `pout_mtt` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '특이사항',
+  `cuttm_ccmtd_cn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '당회산출식내용',
+  `amt_mdf_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '금액수정여부',
+  `mx_py_avamt` decimal(17,2) NOT NULL DEFAULT '0.00' COMMENT '최대지급가능금액',
+  `prpn_cmp_py_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비례보상지급여부',
+  `prpn_cmp_dt_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비례보상상세구분코드',
+  `cnbd` decimal(5,2) NOT NULL COMMENT '기여도',
+  `trpa_dtspc_bj_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '진료비세부내역대상여부',
+  `trpa_dtspc_prst_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '진료비세부내역제출여부',
+  `mdcs_qck_pybj_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료비신속지급대상여부',
+  `mdcs_py_bjps_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료비지급대상자구분코드',
+  `ogcy_clrq_bj_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원본징구대상여부',
+  `ogcy_dcu_prst_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '원본서류제출여부',
+  `amt_mdf_rscd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '금액수정사유코드',
+  `prpn_tpcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비례유형코드',
+  `cdamt` decimal(17,2) DEFAULT NULL COMMENT '발생손해금액',
+  `dm_dmamt` decimal(17,2) DEFAULT NULL COMMENT '청구손해액',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_lse_xi_py_spc_ccbsc_00` (`rcp_yymm`,`rcp_nv_seqno`,`clmps_seqno`,`plyno`,`cc_seq`,`xi_py_spc_seqno`,`ccmtd_seqno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='추산지급내역산출근거';

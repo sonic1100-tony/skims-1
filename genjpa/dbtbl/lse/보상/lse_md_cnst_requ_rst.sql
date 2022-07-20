@@ -1,0 +1,55 @@
+--
+-- Table structure for table `lse_md_cnst_requ_rst`
+--
+
+DROP TABLE IF EXISTS `lse_md_cnst_requ_rst`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lse_md_cnst_requ_rst` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `rcp_yymm` varchar(6) COLLATE utf8mb4_bin NOT NULL COMMENT '접수년월',
+  `rcp_nv_seqno` varchar(9) COLLATE utf8mb4_bin NOT NULL COMMENT '접수조사순번',
+  `dm_seqno` decimal(5,0) NOT NULL COMMENT '청구순번',
+  `clmps_seqno` decimal(3,0) NOT NULL COMMENT '사고자순번',
+  `clm_nv_seqno` decimal(3,0) NOT NULL COMMENT '사고조사순번',
+  `mdud_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '의료심사구분코드',
+  `requ_seq` decimal(3,0) NOT NULL COMMENT '의뢰회차',
+  `prg_seq` decimal(5,0) NOT NULL COMMENT '진행회차',
+  `mdud_dtcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '의료심사상세코드',
+  `md_cnst_dcuno` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료자문문서번호',
+  `md_cnst_dcu_rcvad_nm` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료자문문서수신처명',
+  `md_cnst_nrdnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료자문피보험자명',
+  `md_cnst_nrdps_dscno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료자문피보험자식별번호',
+  `md_cnst_nrdps_sexcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료자문피보험자성별코드',
+  `md_cnst_nrdps_age` decimal(3,0) DEFAULT NULL COMMENT '의료자문피보험자연령',
+  `clmdt` date DEFAULT NULL COMMENT '사고일자',
+  `dgn_spc` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '진단내역',
+  `clm_cn` varchar(1000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '사고내용',
+  `main_rmdy_crs_cn` varchar(3000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주요치료과정내용',
+  `ud_xmn_cn` varchar(3000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '심사검토내용',
+  `hspcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '병원코드',
+  `trmt_sbjcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '진료과목코드',
+  `drnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의사명',
+  `intns_licno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의사면허번호',
+  `md_cnst_cspy_yn` varchar(1) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '의료자문비용지급여부',
+  `cs_flgcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '비용구분코드',
+  `pylno` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지급처번호',
+  `pylnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지급처명',
+  `pypl_ctmno` varchar(13) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지급처고객번호',
+  `pypl_bkcd` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지급처은행코드',
+  `dpsnm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '예금주명',
+  `pypl_actno` varchar(48) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지급처계좌번호',
+  `cs_uramt` decimal(15,0) DEFAULT NULL COMMENT '비용발생금액',
+  `cs_pcamt` decimal(15,0) DEFAULT NULL COMMENT '비용원금',
+  `cs_ixamt` decimal(15,0) DEFAULT NULL COMMENT '비용소득세액',
+  `cs_rxamt` decimal(15,0) DEFAULT NULL COMMENT '비용주민세액',
+  `pydt` date DEFAULT NULL COMMENT '지급일자',
+  `rqudt` date DEFAULT NULL COMMENT '의뢰일자',
+  `asrdt` date DEFAULT NULL COMMENT '회신일자',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_lse_md_cnst_requ_rst_00` (`rcp_yymm`,`rcp_nv_seqno`,`dm_seqno`,`clmps_seqno`,`clm_nv_seqno`,`mdud_flgcd`,`requ_seq`,`prg_seq`,`mdud_dtcd`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='의료자문의뢰결과';

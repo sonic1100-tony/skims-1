@@ -1,0 +1,58 @@
+--
+-- Table structure for table `ins_snstn_ldgr_inq_tlm`
+--
+
+DROP TABLE IF EXISTS `ins_snstn_ldgr_inq_tlm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ins_snstn_ldgr_inq_tlm` (
+  `aid` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'AID',
+  `tlm_seqno` varchar(14) COLLATE utf8mb4_bin NOT NULL COMMENT '전문순번',
+  `rgbd_admno` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '건축물대장관리번호',
+  `rgbd_pno` varchar(30) COLLATE utf8mb4_bin NOT NULL COMMENT '건축물대장고유번호',
+  `snstn_lintn_flgcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '건축물대장구분코드',
+  `snstn_lintn_kndcd` varchar(10) COLLATE utf8mb4_bin NOT NULL COMMENT '건축물대장종류코드',
+  `land_pst_adr` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '대지위치주소',
+  `dt_pst` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '세부위치',
+  `dngnm` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '동명',
+  `house_nm` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '호명',
+  `radnm_adr` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '도로명주소',
+  `snstn_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '건축물명',
+  `land_are` decimal(17,2) DEFAULT NULL COMMENT '대지면적',
+  `ttare` decimal(17,2) DEFAULT NULL COMMENT '연면적',
+  `are_1` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지역1',
+  `are_2` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지역2',
+  `are_3` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지역3',
+  `sns_are` decimal(17,2) DEFAULT NULL COMMENT '건축면적',
+  `flar_rate_clc_use_ttare` decimal(17,2) DEFAULT NULL COMMENT '용적률산정용연면적',
+  `mn_snstn_num` decimal(7,0) DEFAULT NULL COMMENT '주건축물수',
+  `mn_str_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주구조명',
+  `mn_use_nm` varchar(100) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '주용도명',
+  `t_sico` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '총호수',
+  `bld_hght` varchar(30) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '건물높이',
+  `rof_nm` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '지붕명',
+  `pk_ct` decimal(7,0) DEFAULT NULL COMMENT '주차대수',
+  `atch_snstn_blct` decimal(7,0) DEFAULT NULL COMMENT '부속건축물동수',
+  `atch_snstn_are` decimal(17,2) DEFAULT NULL COMMENT '부속건축물면적',
+  `indr_mchme_ct` decimal(7,0) DEFAULT NULL COMMENT '옥내기계식대수',
+  `indr_mchme_are` decimal(17,2) DEFAULT NULL COMMENT '옥내기계식면적',
+  `oudr_mchme_ct` decimal(7,0) DEFAULT NULL COMMENT '옥외기계식대수',
+  `oudr_mchme_are` decimal(17,2) DEFAULT NULL COMMENT '옥외기계식면적',
+  `indr_auto_ct` decimal(7,0) DEFAULT NULL COMMENT '옥내자주식대수',
+  `indr_auto_are` decimal(17,2) DEFAULT NULL COMMENT '옥내자주식면적',
+  `oudr_auto_ct` decimal(7,0) DEFAULT NULL COMMENT '옥외자주식대수',
+  `oudr_auto_are` decimal(17,2) DEFAULT NULL COMMENT '옥외자주식면적',
+  `pasgr_elvct` decimal(3,0) DEFAULT NULL COMMENT '승객용승강기수',
+  `emeus_elvct` decimal(3,0) DEFAULT NULL COMMENT '비상용승강기수',
+  `us_apdt` date DEFAULT NULL COMMENT '사용승인일자',
+  `plno` varchar(17) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '설계번호',
+  `cgaf_ch_seqno` decimal(5,0) DEFAULT NULL COMMENT '발행후변경순번',
+  `out_stfno` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '출력직원번호',
+  `outdt` date DEFAULT NULL COMMENT '출력일자',
+  `inp_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '입력사용자ID',
+  `inp_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '입력일시',
+  `mdf_usr_id` varchar(50) COLLATE utf8mb4_bin NOT NULL COMMENT '수정사용자ID',
+  `mdf_dthms` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일시',
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `pux_ins_snstn_ldgr_inq_tlm_00` (`tlm_seqno`,`rgbd_admno`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='건축물대장조회전문';
