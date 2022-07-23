@@ -24,3 +24,15 @@ hs_err_pid*
 
 # gradle-wrapper.jar
 !*/gradle/wrapper/gradle-wrapper.jar
+
+# gradle
+*/.gradle/
+*/build/
+
+# project setting
+*/.classpath
+*/.project
+*/.settings/
+
+# Generated files
+*/bin/
