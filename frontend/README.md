@@ -1,7 +1,7 @@
 # frontend (아직 작업중)
 
 ## 1. 초기설정
---------------
+
 ### 1.1. vscode 설치
    
 [vscode](https://code.visualstudio.com/)
