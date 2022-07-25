@@ -32,7 +32,9 @@ LTS버전으로 설치진행
 ### 1.4. npm 명령어  
 
 ```
-$ npm install
+$ npm install --global yarn
+
+$ yarn add vuestic-ui
 
 # serve with hot reload at localhost:8080 by default.
 $ npm run serve
