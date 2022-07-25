@@ -30,7 +30,6 @@ import com.skims.domain.entity.InsTfErcd;
 import com.skims.domain.entity.InsTfErcdPK;
 import com.skims.domain.repository.InsTfErcdRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -107,14 +106,11 @@ public class InsTfErcdController {
     ResponseEntity<InsTfErcd> putData(@RequestBody InsTfErcd newData, @PathVariable("tfDlMetcd") String tfDlMetcd, @PathVariable("wdcmpOrVnccd") String wdcmpOrVnccd, @PathVariable("tfRqDmFlgcd") String tfRqDmFlgcd, @PathVariable("tfRqErcd") String tfRqErcd) {
         return repository.findById(new InsTfErcdPK(tfDlMetcd, wdcmpOrVnccd, tfRqDmFlgcd, tfRqErcd)) //
                 .map(oldData -> {
-                    oldData.setErCn(newData.getErCn());
-                    oldData.setActErDlbjYn(newData.getActErDlbjYn());
-                    oldData.setErDtCn(newData.getErDtCn());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setTfDlMetcd(oldData.getTfDlMetcd());
+                    newData.setWdcmpOrVnccd(oldData.getWdcmpOrVnccd());
+                    newData.setTfRqDmFlgcd(oldData.getTfRqDmFlgcd());
+                    newData.setTfRqErcd(oldData.getTfRqErcd());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -133,20 +129,15 @@ public class InsTfErcdController {
         return repository.findById(new InsTfErcdPK(tfDlMetcd, wdcmpOrVnccd, tfRqDmFlgcd, tfRqErcd)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("erCn"))
-                            oldData.setErCn(newData.getErCn());
-                        if (strKey.equals("actErDlbjYn"))
-                            oldData.setActErDlbjYn(newData.getActErDlbjYn());
-                        if (strKey.equals("erDtCn"))
-                            oldData.setErDtCn(newData.getErDtCn());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "erCn" : oldData.setErCn(newData.getErCn()); break;
+						    case "actErDlbjYn" : oldData.setActErDlbjYn(newData.getActErDlbjYn()); break;
+						    case "erDtCn" : oldData.setErDtCn(newData.getErDtCn()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

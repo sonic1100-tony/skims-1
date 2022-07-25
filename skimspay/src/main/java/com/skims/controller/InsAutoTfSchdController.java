@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsAutoTfSchd;
 import com.skims.domain.repository.InsAutoTfSchdRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,17 +105,8 @@ public class InsAutoTfSchdController {
     ResponseEntity<InsAutoTfSchd> putData(@RequestBody InsAutoTfSchd newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setTfYymm(newData.getTfYymm());
-                    oldData.setTfDaycd(newData.getTfDaycd());
-                    oldData.setTfTpcd(newData.getTfTpcd());
-                    oldData.setDmWrkdt(newData.getDmWrkdt());
-                    oldData.setTfdt(newData.getTfdt());
-                    oldData.setDpWrkdt(newData.getDpWrkdt());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -135,26 +125,18 @@ public class InsAutoTfSchdController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("tfYymm"))
-                            oldData.setTfYymm(newData.getTfYymm());
-                        if (strKey.equals("tfDaycd"))
-                            oldData.setTfDaycd(newData.getTfDaycd());
-                        if (strKey.equals("tfTpcd"))
-                            oldData.setTfTpcd(newData.getTfTpcd());
-                        if (strKey.equals("dmWrkdt"))
-                            oldData.setDmWrkdt(newData.getDmWrkdt());
-                        if (strKey.equals("tfdt"))
-                            oldData.setTfdt(newData.getTfdt());
-                        if (strKey.equals("dpWrkdt"))
-                            oldData.setDpWrkdt(newData.getDpWrkdt());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "tfYymm" : oldData.setTfYymm(newData.getTfYymm()); break;
+						    case "tfDaycd" : oldData.setTfDaycd(newData.getTfDaycd()); break;
+						    case "tfTpcd" : oldData.setTfTpcd(newData.getTfTpcd()); break;
+						    case "dmWrkdt" : oldData.setDmWrkdt(newData.getDmWrkdt()); break;
+						    case "tfdt" : oldData.setTfdt(newData.getTfdt()); break;
+						    case "dpWrkdt" : oldData.setDpWrkdt(newData.getDpWrkdt()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

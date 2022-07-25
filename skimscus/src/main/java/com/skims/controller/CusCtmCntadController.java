@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.CusCtmCntad;
 import com.skims.domain.repository.CusCtmCntadRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,29 +105,8 @@ public class CusCtmCntadController {
     ResponseEntity<CusCtmCntad> putData(@RequestBody CusCtmCntad newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setCtmno(newData.getCtmno());
-                    oldData.setCntadSeqno(newData.getCntadSeqno());
-                    oldData.setApNdDthms(newData.getApNdDthms());
-                    oldData.setApStrDthms(newData.getApStrDthms());
-                    oldData.setCntadFlgcd(newData.getCntadFlgcd());
-                    oldData.setTlano(newData.getTlano());
-                    oldData.setTltno(newData.getTltno());
-                    oldData.setStrTlsno(newData.getStrTlsno());
-                    oldData.setEndTlsno(newData.getEndTlsno());
-                    oldData.setNlnno(newData.getNlnno());
-                    oldData.setBrdTlNtnno(newData.getBrdTlNtnno());
-                    oldData.setBrdTlno(newData.getBrdTlno());
-                    oldData.setChDlno(newData.getChDlno());
-                    oldData.setNote(newData.getNote());
-                    oldData.setGuFireCntadFlgcd(newData.getGuFireCntadFlgcd());
-                    oldData.setCntrtFailRscd(newData.getCntrtFailRscd());
-                    oldData.setBsnsFlgcd(newData.getBsnsFlgcd());
-                    oldData.setMnoErnoFlgcd(newData.getMnoErnoFlgcd());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -147,50 +125,30 @@ public class CusCtmCntadController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("ctmno"))
-                            oldData.setCtmno(newData.getCtmno());
-                        if (strKey.equals("cntadSeqno"))
-                            oldData.setCntadSeqno(newData.getCntadSeqno());
-                        if (strKey.equals("apNdDthms"))
-                            oldData.setApNdDthms(newData.getApNdDthms());
-                        if (strKey.equals("apStrDthms"))
-                            oldData.setApStrDthms(newData.getApStrDthms());
-                        if (strKey.equals("cntadFlgcd"))
-                            oldData.setCntadFlgcd(newData.getCntadFlgcd());
-                        if (strKey.equals("tlano"))
-                            oldData.setTlano(newData.getTlano());
-                        if (strKey.equals("tltno"))
-                            oldData.setTltno(newData.getTltno());
-                        if (strKey.equals("strTlsno"))
-                            oldData.setStrTlsno(newData.getStrTlsno());
-                        if (strKey.equals("endTlsno"))
-                            oldData.setEndTlsno(newData.getEndTlsno());
-                        if (strKey.equals("nlnno"))
-                            oldData.setNlnno(newData.getNlnno());
-                        if (strKey.equals("brdTlNtnno"))
-                            oldData.setBrdTlNtnno(newData.getBrdTlNtnno());
-                        if (strKey.equals("brdTlno"))
-                            oldData.setBrdTlno(newData.getBrdTlno());
-                        if (strKey.equals("chDlno"))
-                            oldData.setChDlno(newData.getChDlno());
-                        if (strKey.equals("note"))
-                            oldData.setNote(newData.getNote());
-                        if (strKey.equals("guFireCntadFlgcd"))
-                            oldData.setGuFireCntadFlgcd(newData.getGuFireCntadFlgcd());
-                        if (strKey.equals("cntrtFailRscd"))
-                            oldData.setCntrtFailRscd(newData.getCntrtFailRscd());
-                        if (strKey.equals("bsnsFlgcd"))
-                            oldData.setBsnsFlgcd(newData.getBsnsFlgcd());
-                        if (strKey.equals("mnoErnoFlgcd"))
-                            oldData.setMnoErnoFlgcd(newData.getMnoErnoFlgcd());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "ctmno" : oldData.setCtmno(newData.getCtmno()); break;
+						    case "cntadSeqno" : oldData.setCntadSeqno(newData.getCntadSeqno()); break;
+						    case "apNdDthms" : oldData.setApNdDthms(newData.getApNdDthms()); break;
+						    case "apStrDthms" : oldData.setApStrDthms(newData.getApStrDthms()); break;
+						    case "cntadFlgcd" : oldData.setCntadFlgcd(newData.getCntadFlgcd()); break;
+						    case "tlano" : oldData.setTlano(newData.getTlano()); break;
+						    case "tltno" : oldData.setTltno(newData.getTltno()); break;
+						    case "strTlsno" : oldData.setStrTlsno(newData.getStrTlsno()); break;
+						    case "endTlsno" : oldData.setEndTlsno(newData.getEndTlsno()); break;
+						    case "nlnno" : oldData.setNlnno(newData.getNlnno()); break;
+						    case "brdTlNtnno" : oldData.setBrdTlNtnno(newData.getBrdTlNtnno()); break;
+						    case "brdTlno" : oldData.setBrdTlno(newData.getBrdTlno()); break;
+						    case "chDlno" : oldData.setChDlno(newData.getChDlno()); break;
+						    case "note" : oldData.setNote(newData.getNote()); break;
+						    case "guFireCntadFlgcd" : oldData.setGuFireCntadFlgcd(newData.getGuFireCntadFlgcd()); break;
+						    case "cntrtFailRscd" : oldData.setCntrtFailRscd(newData.getCntrtFailRscd()); break;
+						    case "bsnsFlgcd" : oldData.setBsnsFlgcd(newData.getBsnsFlgcd()); break;
+						    case "mnoErnoFlgcd" : oldData.setMnoErnoFlgcd(newData.getMnoErnoFlgcd()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

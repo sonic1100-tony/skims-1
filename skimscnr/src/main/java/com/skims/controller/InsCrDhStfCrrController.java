@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsCrDhStfCrr;
 import com.skims.domain.repository.InsCrDhStfCrrRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,29 +105,8 @@ public class InsCrDhStfCrrController {
     ResponseEntity<InsCrDhStfCrr> putData(@RequestBody InsCrDhStfCrr newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setPlyno(newData.getPlyno());
-                    oldData.setDhStfTpcd(newData.getDhStfTpcd());
-                    oldData.setDhStfno(newData.getDhStfno());
-                    oldData.setApNddt(newData.getApNddt());
-                    oldData.setApStrdt(newData.getApStrdt());
-                    oldData.setNdsno(newData.getNdsno());
-                    oldData.setValdNdsYn(newData.getValdNdsYn());
-                    oldData.setNdsApStrDthms(newData.getNdsApStrDthms());
-                    oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                    oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                    oldData.setTabfDhStfno(newData.getTabfDhStfno());
-                    oldData.setUsrno(newData.getUsrno());
-                    oldData.setPrsDhStfYn(newData.getPrsDhStfYn());
-                    oldData.setQtrt(newData.getQtrt());
-                    oldData.setTaCrno(newData.getTaCrno());
-                    oldData.setPymSeq(newData.getPymSeq());
-                    oldData.setBzcsQtrt(newData.getBzcsQtrt());
-                    oldData.setCnrdt(newData.getCnrdt());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -147,50 +125,30 @@ public class InsCrDhStfCrrController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("plyno"))
-                            oldData.setPlyno(newData.getPlyno());
-                        if (strKey.equals("dhStfTpcd"))
-                            oldData.setDhStfTpcd(newData.getDhStfTpcd());
-                        if (strKey.equals("dhStfno"))
-                            oldData.setDhStfno(newData.getDhStfno());
-                        if (strKey.equals("apNddt"))
-                            oldData.setApNddt(newData.getApNddt());
-                        if (strKey.equals("apStrdt"))
-                            oldData.setApStrdt(newData.getApStrdt());
-                        if (strKey.equals("ndsno"))
-                            oldData.setNdsno(newData.getNdsno());
-                        if (strKey.equals("valdNdsYn"))
-                            oldData.setValdNdsYn(newData.getValdNdsYn());
-                        if (strKey.equals("ndsApStrDthms"))
-                            oldData.setNdsApStrDthms(newData.getNdsApStrDthms());
-                        if (strKey.equals("ndsApNdDthms"))
-                            oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                        if (strKey.equals("ikdGrpcd"))
-                            oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                        if (strKey.equals("tabfDhStfno"))
-                            oldData.setTabfDhStfno(newData.getTabfDhStfno());
-                        if (strKey.equals("usrno"))
-                            oldData.setUsrno(newData.getUsrno());
-                        if (strKey.equals("prsDhStfYn"))
-                            oldData.setPrsDhStfYn(newData.getPrsDhStfYn());
-                        if (strKey.equals("qtrt"))
-                            oldData.setQtrt(newData.getQtrt());
-                        if (strKey.equals("taCrno"))
-                            oldData.setTaCrno(newData.getTaCrno());
-                        if (strKey.equals("pymSeq"))
-                            oldData.setPymSeq(newData.getPymSeq());
-                        if (strKey.equals("bzcsQtrt"))
-                            oldData.setBzcsQtrt(newData.getBzcsQtrt());
-                        if (strKey.equals("cnrdt"))
-                            oldData.setCnrdt(newData.getCnrdt());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "plyno" : oldData.setPlyno(newData.getPlyno()); break;
+						    case "dhStfTpcd" : oldData.setDhStfTpcd(newData.getDhStfTpcd()); break;
+						    case "dhStfno" : oldData.setDhStfno(newData.getDhStfno()); break;
+						    case "apNddt" : oldData.setApNddt(newData.getApNddt()); break;
+						    case "apStrdt" : oldData.setApStrdt(newData.getApStrdt()); break;
+						    case "ndsno" : oldData.setNdsno(newData.getNdsno()); break;
+						    case "valdNdsYn" : oldData.setValdNdsYn(newData.getValdNdsYn()); break;
+						    case "ndsApStrDthms" : oldData.setNdsApStrDthms(newData.getNdsApStrDthms()); break;
+						    case "ndsApNdDthms" : oldData.setNdsApNdDthms(newData.getNdsApNdDthms()); break;
+						    case "ikdGrpcd" : oldData.setIkdGrpcd(newData.getIkdGrpcd()); break;
+						    case "tabfDhStfno" : oldData.setTabfDhStfno(newData.getTabfDhStfno()); break;
+						    case "usrno" : oldData.setUsrno(newData.getUsrno()); break;
+						    case "prsDhStfYn" : oldData.setPrsDhStfYn(newData.getPrsDhStfYn()); break;
+						    case "qtrt" : oldData.setQtrt(newData.getQtrt()); break;
+						    case "taCrno" : oldData.setTaCrno(newData.getTaCrno()); break;
+						    case "pymSeq" : oldData.setPymSeq(newData.getPymSeq()); break;
+						    case "bzcsQtrt" : oldData.setBzcsQtrt(newData.getBzcsQtrt()); break;
+						    case "cnrdt" : oldData.setCnrdt(newData.getCnrdt()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

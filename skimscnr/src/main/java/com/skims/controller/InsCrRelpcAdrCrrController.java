@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsCrRelpcAdrCrr;
 import com.skims.domain.repository.InsCrRelpcAdrCrrRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,29 +105,8 @@ public class InsCrRelpcAdrCrrController {
     ResponseEntity<InsCrRelpcAdrCrr> putData(@RequestBody InsCrRelpcAdrCrr newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setPlyno(newData.getPlyno());
-                    oldData.setRelpcSeqno(newData.getRelpcSeqno());
-                    oldData.setAdrUsecd(newData.getAdrUsecd());
-                    oldData.setApNddt(newData.getApNddt());
-                    oldData.setApStrdt(newData.getApStrdt());
-                    oldData.setNdsno(newData.getNdsno());
-                    oldData.setValdNdsYn(newData.getValdNdsYn());
-                    oldData.setNdsApStrDthms(newData.getNdsApStrDthms());
-                    oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                    oldData.setAdrFlgcd(newData.getAdrFlgcd());
-                    oldData.setCtmno(newData.getCtmno());
-                    oldData.setAdrSeqno(newData.getAdrSeqno());
-                    oldData.setBfBkBrPstno(newData.getBfBkBrPstno());
-                    oldData.setBkBrBaAdr(newData.getBkBrBaAdr());
-                    oldData.setBkBrEtAdr(newData.getBkBrEtAdr());
-                    oldData.setNwAdrFlgcd(newData.getNwAdrFlgcd());
-                    oldData.setRefIt(newData.getRefIt());
-                    oldData.setBkBrPstno(newData.getBkBrPstno());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -147,50 +125,30 @@ public class InsCrRelpcAdrCrrController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("plyno"))
-                            oldData.setPlyno(newData.getPlyno());
-                        if (strKey.equals("relpcSeqno"))
-                            oldData.setRelpcSeqno(newData.getRelpcSeqno());
-                        if (strKey.equals("adrUsecd"))
-                            oldData.setAdrUsecd(newData.getAdrUsecd());
-                        if (strKey.equals("apNddt"))
-                            oldData.setApNddt(newData.getApNddt());
-                        if (strKey.equals("apStrdt"))
-                            oldData.setApStrdt(newData.getApStrdt());
-                        if (strKey.equals("ndsno"))
-                            oldData.setNdsno(newData.getNdsno());
-                        if (strKey.equals("valdNdsYn"))
-                            oldData.setValdNdsYn(newData.getValdNdsYn());
-                        if (strKey.equals("ndsApStrDthms"))
-                            oldData.setNdsApStrDthms(newData.getNdsApStrDthms());
-                        if (strKey.equals("ndsApNdDthms"))
-                            oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                        if (strKey.equals("adrFlgcd"))
-                            oldData.setAdrFlgcd(newData.getAdrFlgcd());
-                        if (strKey.equals("ctmno"))
-                            oldData.setCtmno(newData.getCtmno());
-                        if (strKey.equals("adrSeqno"))
-                            oldData.setAdrSeqno(newData.getAdrSeqno());
-                        if (strKey.equals("bfBkBrPstno"))
-                            oldData.setBfBkBrPstno(newData.getBfBkBrPstno());
-                        if (strKey.equals("bkBrBaAdr"))
-                            oldData.setBkBrBaAdr(newData.getBkBrBaAdr());
-                        if (strKey.equals("bkBrEtAdr"))
-                            oldData.setBkBrEtAdr(newData.getBkBrEtAdr());
-                        if (strKey.equals("nwAdrFlgcd"))
-                            oldData.setNwAdrFlgcd(newData.getNwAdrFlgcd());
-                        if (strKey.equals("refIt"))
-                            oldData.setRefIt(newData.getRefIt());
-                        if (strKey.equals("bkBrPstno"))
-                            oldData.setBkBrPstno(newData.getBkBrPstno());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "plyno" : oldData.setPlyno(newData.getPlyno()); break;
+						    case "relpcSeqno" : oldData.setRelpcSeqno(newData.getRelpcSeqno()); break;
+						    case "adrUsecd" : oldData.setAdrUsecd(newData.getAdrUsecd()); break;
+						    case "apNddt" : oldData.setApNddt(newData.getApNddt()); break;
+						    case "apStrdt" : oldData.setApStrdt(newData.getApStrdt()); break;
+						    case "ndsno" : oldData.setNdsno(newData.getNdsno()); break;
+						    case "valdNdsYn" : oldData.setValdNdsYn(newData.getValdNdsYn()); break;
+						    case "ndsApStrDthms" : oldData.setNdsApStrDthms(newData.getNdsApStrDthms()); break;
+						    case "ndsApNdDthms" : oldData.setNdsApNdDthms(newData.getNdsApNdDthms()); break;
+						    case "adrFlgcd" : oldData.setAdrFlgcd(newData.getAdrFlgcd()); break;
+						    case "ctmno" : oldData.setCtmno(newData.getCtmno()); break;
+						    case "adrSeqno" : oldData.setAdrSeqno(newData.getAdrSeqno()); break;
+						    case "bfBkBrPstno" : oldData.setBfBkBrPstno(newData.getBfBkBrPstno()); break;
+						    case "bkBrBaAdr" : oldData.setBkBrBaAdr(newData.getBkBrBaAdr()); break;
+						    case "bkBrEtAdr" : oldData.setBkBrEtAdr(newData.getBkBrEtAdr()); break;
+						    case "nwAdrFlgcd" : oldData.setNwAdrFlgcd(newData.getNwAdrFlgcd()); break;
+						    case "refIt" : oldData.setRefIt(newData.getRefIt()); break;
+						    case "bkBrPstno" : oldData.setBkBrPstno(newData.getBkBrPstno()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

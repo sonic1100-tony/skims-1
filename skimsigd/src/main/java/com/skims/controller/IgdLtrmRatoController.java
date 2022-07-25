@@ -31,7 +31,6 @@ import com.skims.domain.entity.IgdLtrmRato;
 import com.skims.domain.entity.IgdLtrmRatoPK;
 import com.skims.domain.repository.IgdLtrmRatoRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -108,57 +107,10 @@ public class IgdLtrmRatoController {
     ResponseEntity<IgdLtrmRato> putData(@RequestBody IgdLtrmRato newData, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") Date apStrdt) {
         return repository.findById(new IgdLtrmRatoPK(ltrmRtTablFlgcd, sno, apStrdt)) //
                 .map(oldData -> {
-                    oldData.setApNddt(newData.getApNddt());
-                    oldData.setCopChrvl1(newData.getCopChrvl1());
-                    oldData.setCopChrvl2(newData.getCopChrvl2());
-                    oldData.setCopChrvl3(newData.getCopChrvl3());
-                    oldData.setCopChrvl4(newData.getCopChrvl4());
-                    oldData.setCopChrvl5(newData.getCopChrvl5());
-                    oldData.setCopChrvl6(newData.getCopChrvl6());
-                    oldData.setCopChrvl7(newData.getCopChrvl7());
-                    oldData.setCopChrvl8(newData.getCopChrvl8());
-                    oldData.setCopChrvl9(newData.getCopChrvl9());
-                    oldData.setCopChrvl10(newData.getCopChrvl10());
-                    oldData.setCopChrvl11(newData.getCopChrvl11());
-                    oldData.setCopChrvl12(newData.getCopChrvl12());
-                    oldData.setCopChrvl13(newData.getCopChrvl13());
-                    oldData.setCopChrvl14(newData.getCopChrvl14());
-                    oldData.setCopChrvl15(newData.getCopChrvl15());
-                    oldData.setCopChrvl16(newData.getCopChrvl16());
-                    oldData.setCopChrvl17(newData.getCopChrvl17());
-                    oldData.setCopChrvl18(newData.getCopChrvl18());
-                    oldData.setCopChrvl19(newData.getCopChrvl19());
-                    oldData.setCopChrvl20(newData.getCopChrvl20());
-                    oldData.setCopChrvl21(newData.getCopChrvl21());
-                    oldData.setOutDatVl1(newData.getOutDatVl1());
-                    oldData.setOutDatVl2(newData.getOutDatVl2());
-                    oldData.setOutDatVl3(newData.getOutDatVl3());
-                    oldData.setOutDatVl4(newData.getOutDatVl4());
-                    oldData.setOutDatVl5(newData.getOutDatVl5());
-                    oldData.setOutDatVl6(newData.getOutDatVl6());
-                    oldData.setOutDatVl7(newData.getOutDatVl7());
-                    oldData.setOutDatVl8(newData.getOutDatVl8());
-                    oldData.setOutDatVl9(newData.getOutDatVl9());
-                    oldData.setOutDatVl10(newData.getOutDatVl10());
-                    oldData.setOutDatVl11(newData.getOutDatVl11());
-                    oldData.setOutDatVl12(newData.getOutDatVl12());
-                    oldData.setOutDatVl13(newData.getOutDatVl13());
-                    oldData.setOutDatVl14(newData.getOutDatVl14());
-                    oldData.setOutDatVl15(newData.getOutDatVl15());
-                    oldData.setOutDatVl16(newData.getOutDatVl16());
-                    oldData.setOutDatVl17(newData.getOutDatVl17());
-                    oldData.setOutDatVl18(newData.getOutDatVl18());
-                    oldData.setOutDatVl19(newData.getOutDatVl19());
-                    oldData.setOutDatVl20(newData.getOutDatVl20());
-                    oldData.setOutDatVl21(newData.getOutDatVl21());
-                    oldData.setOutDatVl22(newData.getOutDatVl22());
-                    oldData.setOutDatVl23(newData.getOutDatVl23());
-                    oldData.setOutDatVl24(newData.getOutDatVl24());
-                    oldData.setOutDatVl25(newData.getOutDatVl25());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setLtrmRtTablFlgcd(oldData.getLtrmRtTablFlgcd());
+                    newData.setSno(oldData.getSno());
+                    newData.setApStrdt(oldData.getApStrdt());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -177,106 +129,58 @@ public class IgdLtrmRatoController {
         return repository.findById(new IgdLtrmRatoPK(ltrmRtTablFlgcd, sno, apStrdt)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("apNddt"))
-                            oldData.setApNddt(newData.getApNddt());
-                        if (strKey.equals("copChrvl1"))
-                            oldData.setCopChrvl1(newData.getCopChrvl1());
-                        if (strKey.equals("copChrvl2"))
-                            oldData.setCopChrvl2(newData.getCopChrvl2());
-                        if (strKey.equals("copChrvl3"))
-                            oldData.setCopChrvl3(newData.getCopChrvl3());
-                        if (strKey.equals("copChrvl4"))
-                            oldData.setCopChrvl4(newData.getCopChrvl4());
-                        if (strKey.equals("copChrvl5"))
-                            oldData.setCopChrvl5(newData.getCopChrvl5());
-                        if (strKey.equals("copChrvl6"))
-                            oldData.setCopChrvl6(newData.getCopChrvl6());
-                        if (strKey.equals("copChrvl7"))
-                            oldData.setCopChrvl7(newData.getCopChrvl7());
-                        if (strKey.equals("copChrvl8"))
-                            oldData.setCopChrvl8(newData.getCopChrvl8());
-                        if (strKey.equals("copChrvl9"))
-                            oldData.setCopChrvl9(newData.getCopChrvl9());
-                        if (strKey.equals("copChrvl10"))
-                            oldData.setCopChrvl10(newData.getCopChrvl10());
-                        if (strKey.equals("copChrvl11"))
-                            oldData.setCopChrvl11(newData.getCopChrvl11());
-                        if (strKey.equals("copChrvl12"))
-                            oldData.setCopChrvl12(newData.getCopChrvl12());
-                        if (strKey.equals("copChrvl13"))
-                            oldData.setCopChrvl13(newData.getCopChrvl13());
-                        if (strKey.equals("copChrvl14"))
-                            oldData.setCopChrvl14(newData.getCopChrvl14());
-                        if (strKey.equals("copChrvl15"))
-                            oldData.setCopChrvl15(newData.getCopChrvl15());
-                        if (strKey.equals("copChrvl16"))
-                            oldData.setCopChrvl16(newData.getCopChrvl16());
-                        if (strKey.equals("copChrvl17"))
-                            oldData.setCopChrvl17(newData.getCopChrvl17());
-                        if (strKey.equals("copChrvl18"))
-                            oldData.setCopChrvl18(newData.getCopChrvl18());
-                        if (strKey.equals("copChrvl19"))
-                            oldData.setCopChrvl19(newData.getCopChrvl19());
-                        if (strKey.equals("copChrvl20"))
-                            oldData.setCopChrvl20(newData.getCopChrvl20());
-                        if (strKey.equals("copChrvl21"))
-                            oldData.setCopChrvl21(newData.getCopChrvl21());
-                        if (strKey.equals("outDatVl1"))
-                            oldData.setOutDatVl1(newData.getOutDatVl1());
-                        if (strKey.equals("outDatVl2"))
-                            oldData.setOutDatVl2(newData.getOutDatVl2());
-                        if (strKey.equals("outDatVl3"))
-                            oldData.setOutDatVl3(newData.getOutDatVl3());
-                        if (strKey.equals("outDatVl4"))
-                            oldData.setOutDatVl4(newData.getOutDatVl4());
-                        if (strKey.equals("outDatVl5"))
-                            oldData.setOutDatVl5(newData.getOutDatVl5());
-                        if (strKey.equals("outDatVl6"))
-                            oldData.setOutDatVl6(newData.getOutDatVl6());
-                        if (strKey.equals("outDatVl7"))
-                            oldData.setOutDatVl7(newData.getOutDatVl7());
-                        if (strKey.equals("outDatVl8"))
-                            oldData.setOutDatVl8(newData.getOutDatVl8());
-                        if (strKey.equals("outDatVl9"))
-                            oldData.setOutDatVl9(newData.getOutDatVl9());
-                        if (strKey.equals("outDatVl10"))
-                            oldData.setOutDatVl10(newData.getOutDatVl10());
-                        if (strKey.equals("outDatVl11"))
-                            oldData.setOutDatVl11(newData.getOutDatVl11());
-                        if (strKey.equals("outDatVl12"))
-                            oldData.setOutDatVl12(newData.getOutDatVl12());
-                        if (strKey.equals("outDatVl13"))
-                            oldData.setOutDatVl13(newData.getOutDatVl13());
-                        if (strKey.equals("outDatVl14"))
-                            oldData.setOutDatVl14(newData.getOutDatVl14());
-                        if (strKey.equals("outDatVl15"))
-                            oldData.setOutDatVl15(newData.getOutDatVl15());
-                        if (strKey.equals("outDatVl16"))
-                            oldData.setOutDatVl16(newData.getOutDatVl16());
-                        if (strKey.equals("outDatVl17"))
-                            oldData.setOutDatVl17(newData.getOutDatVl17());
-                        if (strKey.equals("outDatVl18"))
-                            oldData.setOutDatVl18(newData.getOutDatVl18());
-                        if (strKey.equals("outDatVl19"))
-                            oldData.setOutDatVl19(newData.getOutDatVl19());
-                        if (strKey.equals("outDatVl20"))
-                            oldData.setOutDatVl20(newData.getOutDatVl20());
-                        if (strKey.equals("outDatVl21"))
-                            oldData.setOutDatVl21(newData.getOutDatVl21());
-                        if (strKey.equals("outDatVl22"))
-                            oldData.setOutDatVl22(newData.getOutDatVl22());
-                        if (strKey.equals("outDatVl23"))
-                            oldData.setOutDatVl23(newData.getOutDatVl23());
-                        if (strKey.equals("outDatVl24"))
-                            oldData.setOutDatVl24(newData.getOutDatVl24());
-                        if (strKey.equals("outDatVl25"))
-                            oldData.setOutDatVl25(newData.getOutDatVl25());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "apNddt" : oldData.setApNddt(newData.getApNddt()); break;
+						    case "copChrvl1" : oldData.setCopChrvl1(newData.getCopChrvl1()); break;
+						    case "copChrvl2" : oldData.setCopChrvl2(newData.getCopChrvl2()); break;
+						    case "copChrvl3" : oldData.setCopChrvl3(newData.getCopChrvl3()); break;
+						    case "copChrvl4" : oldData.setCopChrvl4(newData.getCopChrvl4()); break;
+						    case "copChrvl5" : oldData.setCopChrvl5(newData.getCopChrvl5()); break;
+						    case "copChrvl6" : oldData.setCopChrvl6(newData.getCopChrvl6()); break;
+						    case "copChrvl7" : oldData.setCopChrvl7(newData.getCopChrvl7()); break;
+						    case "copChrvl8" : oldData.setCopChrvl8(newData.getCopChrvl8()); break;
+						    case "copChrvl9" : oldData.setCopChrvl9(newData.getCopChrvl9()); break;
+						    case "copChrvl10" : oldData.setCopChrvl10(newData.getCopChrvl10()); break;
+						    case "copChrvl11" : oldData.setCopChrvl11(newData.getCopChrvl11()); break;
+						    case "copChrvl12" : oldData.setCopChrvl12(newData.getCopChrvl12()); break;
+						    case "copChrvl13" : oldData.setCopChrvl13(newData.getCopChrvl13()); break;
+						    case "copChrvl14" : oldData.setCopChrvl14(newData.getCopChrvl14()); break;
+						    case "copChrvl15" : oldData.setCopChrvl15(newData.getCopChrvl15()); break;
+						    case "copChrvl16" : oldData.setCopChrvl16(newData.getCopChrvl16()); break;
+						    case "copChrvl17" : oldData.setCopChrvl17(newData.getCopChrvl17()); break;
+						    case "copChrvl18" : oldData.setCopChrvl18(newData.getCopChrvl18()); break;
+						    case "copChrvl19" : oldData.setCopChrvl19(newData.getCopChrvl19()); break;
+						    case "copChrvl20" : oldData.setCopChrvl20(newData.getCopChrvl20()); break;
+						    case "copChrvl21" : oldData.setCopChrvl21(newData.getCopChrvl21()); break;
+						    case "outDatVl1" : oldData.setOutDatVl1(newData.getOutDatVl1()); break;
+						    case "outDatVl2" : oldData.setOutDatVl2(newData.getOutDatVl2()); break;
+						    case "outDatVl3" : oldData.setOutDatVl3(newData.getOutDatVl3()); break;
+						    case "outDatVl4" : oldData.setOutDatVl4(newData.getOutDatVl4()); break;
+						    case "outDatVl5" : oldData.setOutDatVl5(newData.getOutDatVl5()); break;
+						    case "outDatVl6" : oldData.setOutDatVl6(newData.getOutDatVl6()); break;
+						    case "outDatVl7" : oldData.setOutDatVl7(newData.getOutDatVl7()); break;
+						    case "outDatVl8" : oldData.setOutDatVl8(newData.getOutDatVl8()); break;
+						    case "outDatVl9" : oldData.setOutDatVl9(newData.getOutDatVl9()); break;
+						    case "outDatVl10" : oldData.setOutDatVl10(newData.getOutDatVl10()); break;
+						    case "outDatVl11" : oldData.setOutDatVl11(newData.getOutDatVl11()); break;
+						    case "outDatVl12" : oldData.setOutDatVl12(newData.getOutDatVl12()); break;
+						    case "outDatVl13" : oldData.setOutDatVl13(newData.getOutDatVl13()); break;
+						    case "outDatVl14" : oldData.setOutDatVl14(newData.getOutDatVl14()); break;
+						    case "outDatVl15" : oldData.setOutDatVl15(newData.getOutDatVl15()); break;
+						    case "outDatVl16" : oldData.setOutDatVl16(newData.getOutDatVl16()); break;
+						    case "outDatVl17" : oldData.setOutDatVl17(newData.getOutDatVl17()); break;
+						    case "outDatVl18" : oldData.setOutDatVl18(newData.getOutDatVl18()); break;
+						    case "outDatVl19" : oldData.setOutDatVl19(newData.getOutDatVl19()); break;
+						    case "outDatVl20" : oldData.setOutDatVl20(newData.getOutDatVl20()); break;
+						    case "outDatVl21" : oldData.setOutDatVl21(newData.getOutDatVl21()); break;
+						    case "outDatVl22" : oldData.setOutDatVl22(newData.getOutDatVl22()); break;
+						    case "outDatVl23" : oldData.setOutDatVl23(newData.getOutDatVl23()); break;
+						    case "outDatVl24" : oldData.setOutDatVl24(newData.getOutDatVl24()); break;
+						    case "outDatVl25" : oldData.setOutDatVl25(newData.getOutDatVl25()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

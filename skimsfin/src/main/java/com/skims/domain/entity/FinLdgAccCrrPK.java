@@ -7,7 +7,6 @@
 package com.skims.domain.entity;
 
 import java.io.Serializable;
-
 import java.sql.Date;
 
 import lombok.AccessLevel;

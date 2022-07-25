@@ -30,7 +30,6 @@ import com.skims.domain.entity.IgdLtrmGdRtInfo;
 import com.skims.domain.entity.IgdLtrmGdRtInfoPK;
 import com.skims.domain.repository.IgdLtrmGdRtInfoRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -107,16 +106,9 @@ public class IgdLtrmGdRtInfoController {
     ResponseEntity<IgdLtrmGdRtInfo> putData(@RequestBody IgdLtrmGdRtInfo newData, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("gdcd") String gdcd) {
         return repository.findById(new IgdLtrmGdRtInfoPK(ltrmRtTablFlgcd, gdcd)) //
                 .map(oldData -> {
-                    oldData.setLtrmRtTabnm(newData.getLtrmRtTabnm());
-                    oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                    oldData.setRtApCsfcd(newData.getRtApCsfcd());
-                    oldData.setRtApFlgcd(newData.getRtApFlgcd());
-                    oldData.setRtApUntcd(newData.getRtApUntcd());
-                    oldData.setPrmApUntcd(newData.getPrmApUntcd());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setLtrmRtTablFlgcd(oldData.getLtrmRtTablFlgcd());
+                    newData.setGdcd(oldData.getGdcd());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -135,24 +127,17 @@ public class IgdLtrmGdRtInfoController {
         return repository.findById(new IgdLtrmGdRtInfoPK(ltrmRtTablFlgcd, gdcd)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("ltrmRtTabnm"))
-                            oldData.setLtrmRtTabnm(newData.getLtrmRtTabnm());
-                        if (strKey.equals("ikdGrpcd"))
-                            oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                        if (strKey.equals("rtApCsfcd"))
-                            oldData.setRtApCsfcd(newData.getRtApCsfcd());
-                        if (strKey.equals("rtApFlgcd"))
-                            oldData.setRtApFlgcd(newData.getRtApFlgcd());
-                        if (strKey.equals("rtApUntcd"))
-                            oldData.setRtApUntcd(newData.getRtApUntcd());
-                        if (strKey.equals("prmApUntcd"))
-                            oldData.setPrmApUntcd(newData.getPrmApUntcd());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "ltrmRtTabnm" : oldData.setLtrmRtTabnm(newData.getLtrmRtTabnm()); break;
+						    case "ikdGrpcd" : oldData.setIkdGrpcd(newData.getIkdGrpcd()); break;
+						    case "rtApCsfcd" : oldData.setRtApCsfcd(newData.getRtApCsfcd()); break;
+						    case "rtApFlgcd" : oldData.setRtApFlgcd(newData.getRtApFlgcd()); break;
+						    case "rtApUntcd" : oldData.setRtApUntcd(newData.getRtApUntcd()); break;
+						    case "prmApUntcd" : oldData.setPrmApUntcd(newData.getPrmApUntcd()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

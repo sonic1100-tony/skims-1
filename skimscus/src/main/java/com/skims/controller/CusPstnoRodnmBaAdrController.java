@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.CusPstnoRodnmBaAdr;
 import com.skims.domain.repository.CusPstnoRodnmBaAdrRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,37 +105,8 @@ public class CusPstnoRodnmBaAdrController {
     ResponseEntity<CusPstnoRodnmBaAdr> putData(@RequestBody CusPstnoRodnmBaAdr newData, @PathVariable("pstnoId") String pstnoId) {
         return repository.findById(pstnoId) //
                 .map(oldData -> {
-                    oldData.setPstno(newData.getPstno());
-                    oldData.setPstSno(newData.getPstSno());
-                    oldData.setSd(newData.getSd());
-                    oldData.setSgng(newData.getSgng());
-                    oldData.setTwm(newData.getTwm());
-                    oldData.setRoadNm(newData.getRoadNm());
-                    oldData.setMnBldno(newData.getMnBldno());
-                    oldData.setSubBldno(newData.getSubBldno());
-                    oldData.setBldnm(newData.getBldnm());
-                    oldData.setDtBldnm(newData.getDtBldnm());
-                    oldData.setUndgFlgcd(newData.getUndgFlgcd());
-                    oldData.setRoadNmFlgcd(newData.getRoadNmFlgcd());
-                    oldData.setLacoDongFlgcd(newData.getLacoDongFlgcd());
-                    oldData.setLacoDngnm(newData.getLacoDngnm());
-                    oldData.setAmsDongFlgcd(newData.getAmsDongFlgcd());
-                    oldData.setAmsDngnm(newData.getAmsDngnm());
-                    oldData.setBldAdmno(newData.getBldAdmno());
-                    oldData.setTwmdSno(newData.getTwmdSno());
-                    oldData.setTwmd(newData.getTwmd());
-                    oldData.setCmpxBldnm(newData.getCmpxBldnm());
-                    oldData.setEngRoadNmAdr(newData.getEngRoadNmAdr());
-                    oldData.setEngRoadNm(newData.getEngRoadNm());
-                    oldData.setTotNwAdr(newData.getTotNwAdr());
-                    oldData.setBaAdr(newData.getBaAdr());
-                    oldData.setRefIt(newData.getRefIt());
-                    oldData.setBfPstno(newData.getBfPstno());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setPstnoId(oldData.getPstnoId());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -155,66 +125,38 @@ public class CusPstnoRodnmBaAdrController {
         return repository.findById(pstnoId) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("pstno"))
-                            oldData.setPstno(newData.getPstno());
-                        if (strKey.equals("pstSno"))
-                            oldData.setPstSno(newData.getPstSno());
-                        if (strKey.equals("sd"))
-                            oldData.setSd(newData.getSd());
-                        if (strKey.equals("sgng"))
-                            oldData.setSgng(newData.getSgng());
-                        if (strKey.equals("twm"))
-                            oldData.setTwm(newData.getTwm());
-                        if (strKey.equals("roadNm"))
-                            oldData.setRoadNm(newData.getRoadNm());
-                        if (strKey.equals("mnBldno"))
-                            oldData.setMnBldno(newData.getMnBldno());
-                        if (strKey.equals("subBldno"))
-                            oldData.setSubBldno(newData.getSubBldno());
-                        if (strKey.equals("bldnm"))
-                            oldData.setBldnm(newData.getBldnm());
-                        if (strKey.equals("dtBldnm"))
-                            oldData.setDtBldnm(newData.getDtBldnm());
-                        if (strKey.equals("undgFlgcd"))
-                            oldData.setUndgFlgcd(newData.getUndgFlgcd());
-                        if (strKey.equals("roadNmFlgcd"))
-                            oldData.setRoadNmFlgcd(newData.getRoadNmFlgcd());
-                        if (strKey.equals("lacoDongFlgcd"))
-                            oldData.setLacoDongFlgcd(newData.getLacoDongFlgcd());
-                        if (strKey.equals("lacoDngnm"))
-                            oldData.setLacoDngnm(newData.getLacoDngnm());
-                        if (strKey.equals("amsDongFlgcd"))
-                            oldData.setAmsDongFlgcd(newData.getAmsDongFlgcd());
-                        if (strKey.equals("amsDngnm"))
-                            oldData.setAmsDngnm(newData.getAmsDngnm());
-                        if (strKey.equals("bldAdmno"))
-                            oldData.setBldAdmno(newData.getBldAdmno());
-                        if (strKey.equals("twmdSno"))
-                            oldData.setTwmdSno(newData.getTwmdSno());
-                        if (strKey.equals("twmd"))
-                            oldData.setTwmd(newData.getTwmd());
-                        if (strKey.equals("cmpxBldnm"))
-                            oldData.setCmpxBldnm(newData.getCmpxBldnm());
-                        if (strKey.equals("engRoadNmAdr"))
-                            oldData.setEngRoadNmAdr(newData.getEngRoadNmAdr());
-                        if (strKey.equals("engRoadNm"))
-                            oldData.setEngRoadNm(newData.getEngRoadNm());
-                        if (strKey.equals("totNwAdr"))
-                            oldData.setTotNwAdr(newData.getTotNwAdr());
-                        if (strKey.equals("baAdr"))
-                            oldData.setBaAdr(newData.getBaAdr());
-                        if (strKey.equals("refIt"))
-                            oldData.setRefIt(newData.getRefIt());
-                        if (strKey.equals("bfPstno"))
-                            oldData.setBfPstno(newData.getBfPstno());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "pstno" : oldData.setPstno(newData.getPstno()); break;
+						    case "pstSno" : oldData.setPstSno(newData.getPstSno()); break;
+						    case "sd" : oldData.setSd(newData.getSd()); break;
+						    case "sgng" : oldData.setSgng(newData.getSgng()); break;
+						    case "twm" : oldData.setTwm(newData.getTwm()); break;
+						    case "roadNm" : oldData.setRoadNm(newData.getRoadNm()); break;
+						    case "mnBldno" : oldData.setMnBldno(newData.getMnBldno()); break;
+						    case "subBldno" : oldData.setSubBldno(newData.getSubBldno()); break;
+						    case "bldnm" : oldData.setBldnm(newData.getBldnm()); break;
+						    case "dtBldnm" : oldData.setDtBldnm(newData.getDtBldnm()); break;
+						    case "undgFlgcd" : oldData.setUndgFlgcd(newData.getUndgFlgcd()); break;
+						    case "roadNmFlgcd" : oldData.setRoadNmFlgcd(newData.getRoadNmFlgcd()); break;
+						    case "lacoDongFlgcd" : oldData.setLacoDongFlgcd(newData.getLacoDongFlgcd()); break;
+						    case "lacoDngnm" : oldData.setLacoDngnm(newData.getLacoDngnm()); break;
+						    case "amsDongFlgcd" : oldData.setAmsDongFlgcd(newData.getAmsDongFlgcd()); break;
+						    case "amsDngnm" : oldData.setAmsDngnm(newData.getAmsDngnm()); break;
+						    case "bldAdmno" : oldData.setBldAdmno(newData.getBldAdmno()); break;
+						    case "twmdSno" : oldData.setTwmdSno(newData.getTwmdSno()); break;
+						    case "twmd" : oldData.setTwmd(newData.getTwmd()); break;
+						    case "cmpxBldnm" : oldData.setCmpxBldnm(newData.getCmpxBldnm()); break;
+						    case "engRoadNmAdr" : oldData.setEngRoadNmAdr(newData.getEngRoadNmAdr()); break;
+						    case "engRoadNm" : oldData.setEngRoadNm(newData.getEngRoadNm()); break;
+						    case "totNwAdr" : oldData.setTotNwAdr(newData.getTotNwAdr()); break;
+						    case "baAdr" : oldData.setBaAdr(newData.getBaAdr()); break;
+						    case "refIt" : oldData.setRefIt(newData.getRefIt()); break;
+						    case "bfPstno" : oldData.setBfPstno(newData.getBfPstno()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

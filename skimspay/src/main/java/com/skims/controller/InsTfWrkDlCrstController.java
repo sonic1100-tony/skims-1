@@ -32,7 +32,6 @@ import com.skims.domain.entity.InsTfWrkDlCrst;
 import com.skims.domain.entity.InsTfWrkDlCrstPK;
 import com.skims.domain.repository.InsTfWrkDlCrstRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -109,24 +108,10 @@ public class InsTfWrkDlCrstController {
     ResponseEntity<InsTfWrkDlCrst> putData(@RequestBody InsTfWrkDlCrst newData, @PathVariable("stdt") Date stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
         return repository.findById(new InsTfWrkDlCrstPK(stdt, tfWrkFlgcd, seqno)) //
                 .map(oldData -> {
-                    oldData.setTf1Yymm(newData.getTf1Yymm());
-                    oldData.setTf1Daycd(newData.getTf1Daycd());
-                    oldData.setTf2Yymm(newData.getTf2Yymm());
-                    oldData.setTf2Daycd(newData.getTf2Daycd());
-                    oldData.setTfDlMetcd(newData.getTfDlMetcd());
-                    oldData.setAutoTfCgKndcd(newData.getAutoTfCgKndcd());
-                    oldData.setDhCmpcd(newData.getDhCmpcd());
-                    oldData.setTfWrkRkcd(newData.getTfWrkRkcd());
-                    oldData.setWrkExecRstTpcd(newData.getWrkExecRstTpcd());
-                    oldData.setWrkExecRstCt(newData.getWrkExecRstCt());
-                    oldData.setWrkExecRstAmt(newData.getWrkExecRstAmt());
-                    oldData.setCnfMtdcd(newData.getCnfMtdcd());
-                    oldData.setCnfYn(newData.getCnfYn());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setStdt(oldData.getStdt());
+                    newData.setTfWrkFlgcd(oldData.getTfWrkFlgcd());
+                    newData.setSeqno(oldData.getSeqno());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -145,40 +130,25 @@ public class InsTfWrkDlCrstController {
         return repository.findById(new InsTfWrkDlCrstPK(stdt, tfWrkFlgcd, seqno)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("tf1Yymm"))
-                            oldData.setTf1Yymm(newData.getTf1Yymm());
-                        if (strKey.equals("tf1Daycd"))
-                            oldData.setTf1Daycd(newData.getTf1Daycd());
-                        if (strKey.equals("tf2Yymm"))
-                            oldData.setTf2Yymm(newData.getTf2Yymm());
-                        if (strKey.equals("tf2Daycd"))
-                            oldData.setTf2Daycd(newData.getTf2Daycd());
-                        if (strKey.equals("tfDlMetcd"))
-                            oldData.setTfDlMetcd(newData.getTfDlMetcd());
-                        if (strKey.equals("autoTfCgKndcd"))
-                            oldData.setAutoTfCgKndcd(newData.getAutoTfCgKndcd());
-                        if (strKey.equals("dhCmpcd"))
-                            oldData.setDhCmpcd(newData.getDhCmpcd());
-                        if (strKey.equals("tfWrkRkcd"))
-                            oldData.setTfWrkRkcd(newData.getTfWrkRkcd());
-                        if (strKey.equals("wrkExecRstTpcd"))
-                            oldData.setWrkExecRstTpcd(newData.getWrkExecRstTpcd());
-                        if (strKey.equals("wrkExecRstCt"))
-                            oldData.setWrkExecRstCt(newData.getWrkExecRstCt());
-                        if (strKey.equals("wrkExecRstAmt"))
-                            oldData.setWrkExecRstAmt(newData.getWrkExecRstAmt());
-                        if (strKey.equals("cnfMtdcd"))
-                            oldData.setCnfMtdcd(newData.getCnfMtdcd());
-                        if (strKey.equals("cnfYn"))
-                            oldData.setCnfYn(newData.getCnfYn());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "tf1Yymm" : oldData.setTf1Yymm(newData.getTf1Yymm()); break;
+						    case "tf1Daycd" : oldData.setTf1Daycd(newData.getTf1Daycd()); break;
+						    case "tf2Yymm" : oldData.setTf2Yymm(newData.getTf2Yymm()); break;
+						    case "tf2Daycd" : oldData.setTf2Daycd(newData.getTf2Daycd()); break;
+						    case "tfDlMetcd" : oldData.setTfDlMetcd(newData.getTfDlMetcd()); break;
+						    case "autoTfCgKndcd" : oldData.setAutoTfCgKndcd(newData.getAutoTfCgKndcd()); break;
+						    case "dhCmpcd" : oldData.setDhCmpcd(newData.getDhCmpcd()); break;
+						    case "tfWrkRkcd" : oldData.setTfWrkRkcd(newData.getTfWrkRkcd()); break;
+						    case "wrkExecRstTpcd" : oldData.setWrkExecRstTpcd(newData.getWrkExecRstTpcd()); break;
+						    case "wrkExecRstCt" : oldData.setWrkExecRstCt(newData.getWrkExecRstCt()); break;
+						    case "wrkExecRstAmt" : oldData.setWrkExecRstAmt(newData.getWrkExecRstAmt()); break;
+						    case "cnfMtdcd" : oldData.setCnfMtdcd(newData.getCnfMtdcd()); break;
+						    case "cnfYn" : oldData.setCnfYn(newData.getCnfYn()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

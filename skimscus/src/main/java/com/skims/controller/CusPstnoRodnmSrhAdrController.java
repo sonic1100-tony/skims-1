@@ -30,7 +30,6 @@ import com.skims.domain.entity.CusPstnoRodnmSrhAdr;
 import com.skims.domain.entity.CusPstnoRodnmSrhAdrPK;
 import com.skims.domain.repository.CusPstnoRodnmSrhAdrRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -107,24 +106,9 @@ public class CusPstnoRodnmSrhAdrController {
     ResponseEntity<CusPstnoRodnmSrhAdr> putData(@RequestBody CusPstnoRodnmSrhAdr newData, @PathVariable("roadNmFlgcd") String roadNmFlgcd, @PathVariable("twmdSno") String twmdSno) {
         return repository.findById(new CusPstnoRodnmSrhAdrPK(roadNmFlgcd, twmdSno)) //
                 .map(oldData -> {
-                    oldData.setSd(newData.getSd());
-                    oldData.setSgng(newData.getSgng());
-                    oldData.setTwm(newData.getTwm());
-                    oldData.setTwmd(newData.getTwmd());
-                    oldData.setRoadNm(newData.getRoadNm());
-                    oldData.setBldno(newData.getBldno());
-                    oldData.setBldCt(newData.getBldCt());
-                    oldData.setBaAdr(newData.getBaAdr());
-                    oldData.setEngRoadNmAdr(newData.getEngRoadNmAdr());
-                    oldData.setEngRoadNm(newData.getEngRoadNm());
-                    oldData.setPstno(newData.getPstno());
-                    oldData.setStdt(newData.getStdt());
-                    oldData.setBfPstno(newData.getBfPstno());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setRoadNmFlgcd(oldData.getRoadNmFlgcd());
+                    newData.setTwmdSno(oldData.getTwmdSno());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -143,40 +127,25 @@ public class CusPstnoRodnmSrhAdrController {
         return repository.findById(new CusPstnoRodnmSrhAdrPK(roadNmFlgcd, twmdSno)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("sd"))
-                            oldData.setSd(newData.getSd());
-                        if (strKey.equals("sgng"))
-                            oldData.setSgng(newData.getSgng());
-                        if (strKey.equals("twm"))
-                            oldData.setTwm(newData.getTwm());
-                        if (strKey.equals("twmd"))
-                            oldData.setTwmd(newData.getTwmd());
-                        if (strKey.equals("roadNm"))
-                            oldData.setRoadNm(newData.getRoadNm());
-                        if (strKey.equals("bldno"))
-                            oldData.setBldno(newData.getBldno());
-                        if (strKey.equals("bldCt"))
-                            oldData.setBldCt(newData.getBldCt());
-                        if (strKey.equals("baAdr"))
-                            oldData.setBaAdr(newData.getBaAdr());
-                        if (strKey.equals("engRoadNmAdr"))
-                            oldData.setEngRoadNmAdr(newData.getEngRoadNmAdr());
-                        if (strKey.equals("engRoadNm"))
-                            oldData.setEngRoadNm(newData.getEngRoadNm());
-                        if (strKey.equals("pstno"))
-                            oldData.setPstno(newData.getPstno());
-                        if (strKey.equals("stdt"))
-                            oldData.setStdt(newData.getStdt());
-                        if (strKey.equals("bfPstno"))
-                            oldData.setBfPstno(newData.getBfPstno());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "sd" : oldData.setSd(newData.getSd()); break;
+						    case "sgng" : oldData.setSgng(newData.getSgng()); break;
+						    case "twm" : oldData.setTwm(newData.getTwm()); break;
+						    case "twmd" : oldData.setTwmd(newData.getTwmd()); break;
+						    case "roadNm" : oldData.setRoadNm(newData.getRoadNm()); break;
+						    case "bldno" : oldData.setBldno(newData.getBldno()); break;
+						    case "bldCt" : oldData.setBldCt(newData.getBldCt()); break;
+						    case "baAdr" : oldData.setBaAdr(newData.getBaAdr()); break;
+						    case "engRoadNmAdr" : oldData.setEngRoadNmAdr(newData.getEngRoadNmAdr()); break;
+						    case "engRoadNm" : oldData.setEngRoadNm(newData.getEngRoadNm()); break;
+						    case "pstno" : oldData.setPstno(newData.getPstno()); break;
+						    case "stdt" : oldData.setStdt(newData.getStdt()); break;
+						    case "bfPstno" : oldData.setBfPstno(newData.getBfPstno()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

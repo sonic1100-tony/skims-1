@@ -8,7 +8,6 @@ package com.skims.domain.entity;
 
 import java.io.Serializable;
 
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

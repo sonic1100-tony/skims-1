@@ -6,305 +6,247 @@
 **/
 package com.skims.domain.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 // import javax.persistence.Temporal;
 // import javax.persistence.TemporalType;
-import javax.persistence.PostLoad;
-import javax.persistence.PostPersist;
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Entity
-@Table(name = "igd_ltrm_rato") //--장기이율
-@Schema(description = "장기이율")
+import com.skims.domain.listener.IgdLtrmRatoListener;
+
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
-@Slf4j
+@Entity
+@EntityListeners(IgdLtrmRatoListener.class)
+@Table(name = "igd_ltrm_rato") //--장기이율
+@Schema(description = "장기이율")
 @IdClass(IgdLtrmRatoPK.class)
 public class IgdLtrmRato implements Serializable {
     @Id //  String
     @Column(name = "ltrm_rt_tabl_flgcd", length = 10, nullable = false)
+//    @Schema(description = "", nullable = true , defaultValue = "" , example = ""  , allowableValues = {"", ""})
     @Schema(description = "장기요율테이블구분코드", nullable = false)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String ltrmRtTablFlgcd; //--장기요율테이블구분코드
 
     @Id //  String
     @Column(name = "sno", length = 7, nullable = false)
     @Schema(description = "일련번호", nullable = false)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String sno; //--일련번호
 
     @Id //  Date
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private Date apStrdt; //--적용시작일자
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private Date apNddt; //--적용종료일자
 
     @Column(name = "cop_chrvl1", length = 500, nullable = true)
     @Schema(description = "구성문자값1", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl1; //--구성문자값1
 
     @Column(name = "cop_chrvl2", length = 500, nullable = true)
     @Schema(description = "구성문자값2", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl2; //--구성문자값2
 
     @Column(name = "cop_chrvl3", length = 500, nullable = true)
     @Schema(description = "구성문자값3", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl3; //--구성문자값3
 
     @Column(name = "cop_chrvl4", length = 500, nullable = true)
     @Schema(description = "구성문자값4", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl4; //--구성문자값4
 
     @Column(name = "cop_chrvl5", length = 500, nullable = true)
     @Schema(description = "구성문자값5", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl5; //--구성문자값5
 
     @Column(name = "cop_chrvl6", length = 500, nullable = true)
     @Schema(description = "구성문자값6", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl6; //--구성문자값6
 
     @Column(name = "cop_chrvl7", length = 500, nullable = true)
     @Schema(description = "구성문자값7", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl7; //--구성문자값7
 
     @Column(name = "cop_chrvl8", length = 500, nullable = true)
     @Schema(description = "구성문자값8", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl8; //--구성문자값8
 
     @Column(name = "cop_chrvl9", length = 500, nullable = true)
     @Schema(description = "구성문자값9", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl9; //--구성문자값9
 
     @Column(name = "cop_chrvl10", length = 500, nullable = true)
     @Schema(description = "구성문자값10", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl10; //--구성문자값10
 
     @Column(name = "cop_chrvl11", length = 500, nullable = true)
     @Schema(description = "구성문자값11", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl11; //--구성문자값11
 
     @Column(name = "cop_chrvl12", length = 500, nullable = true)
     @Schema(description = "구성문자값12", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl12; //--구성문자값12
 
     @Column(name = "cop_chrvl13", length = 500, nullable = true)
     @Schema(description = "구성문자값13", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl13; //--구성문자값13
 
     @Column(name = "cop_chrvl14", length = 500, nullable = true)
     @Schema(description = "구성문자값14", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl14; //--구성문자값14
 
     @Column(name = "cop_chrvl15", length = 500, nullable = true)
     @Schema(description = "구성문자값15", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl15; //--구성문자값15
 
     @Column(name = "cop_chrvl16", length = 500, nullable = true)
     @Schema(description = "구성문자값16", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl16; //--구성문자값16
 
     @Column(name = "cop_chrvl17", length = 500, nullable = true)
     @Schema(description = "구성문자값17", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl17; //--구성문자값17
 
     @Column(name = "cop_chrvl18", length = 500, nullable = true)
     @Schema(description = "구성문자값18", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl18; //--구성문자값18
 
     @Column(name = "cop_chrvl19", length = 500, nullable = true)
     @Schema(description = "구성문자값19", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl19; //--구성문자값19
 
     @Column(name = "cop_chrvl20", length = 500, nullable = true)
     @Schema(description = "구성문자값20", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl20; //--구성문자값20
 
     @Column(name = "cop_chrvl21", length = 500, nullable = true)
     @Schema(description = "구성문자값21", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String copChrvl21; //--구성문자값21
 
     @Column(name = "out_dat_vl1", length = 50, nullable = true)
     @Schema(description = "출력데이터값1", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl1; //--출력데이터값1
 
     @Column(name = "out_dat_vl2", length = 50, nullable = true)
     @Schema(description = "출력데이터값2", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl2; //--출력데이터값2
 
     @Column(name = "out_dat_vl3", length = 50, nullable = true)
     @Schema(description = "출력데이터값3", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl3; //--출력데이터값3
 
     @Column(name = "out_dat_vl4", length = 50, nullable = true)
     @Schema(description = "출력데이터값4", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl4; //--출력데이터값4
 
     @Column(name = "out_dat_vl5", length = 50, nullable = true)
     @Schema(description = "출력데이터값5", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl5; //--출력데이터값5
 
     @Column(name = "out_dat_vl6", length = 50, nullable = true)
     @Schema(description = "출력데이터값6", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl6; //--출력데이터값6
 
     @Column(name = "out_dat_vl7", length = 50, nullable = true)
     @Schema(description = "출력데이터값7", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl7; //--출력데이터값7
 
     @Column(name = "out_dat_vl8", length = 50, nullable = true)
     @Schema(description = "출력데이터값8", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl8; //--출력데이터값8
 
     @Column(name = "out_dat_vl9", length = 50, nullable = true)
     @Schema(description = "출력데이터값9", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl9; //--출력데이터값9
 
     @Column(name = "out_dat_vl10", length = 50, nullable = true)
     @Schema(description = "출력데이터값10", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl10; //--출력데이터값10
 
     @Column(name = "out_dat_vl11", length = 50, nullable = true)
     @Schema(description = "출력데이터값11", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl11; //--출력데이터값11
 
     @Column(name = "out_dat_vl12", length = 50, nullable = true)
     @Schema(description = "출력데이터값12", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl12; //--출력데이터값12
 
     @Column(name = "out_dat_vl13", length = 50, nullable = true)
     @Schema(description = "출력데이터값13", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl13; //--출력데이터값13
 
     @Column(name = "out_dat_vl14", length = 50, nullable = true)
     @Schema(description = "출력데이터값14", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl14; //--출력데이터값14
 
     @Column(name = "out_dat_vl15", length = 50, nullable = true)
     @Schema(description = "출력데이터값15", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl15; //--출력데이터값15
 
     @Column(name = "out_dat_vl16", length = 50, nullable = true)
     @Schema(description = "출력데이터값16", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl16; //--출력데이터값16
 
     @Column(name = "out_dat_vl17", length = 50, nullable = true)
     @Schema(description = "출력데이터값17", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl17; //--출력데이터값17
 
     @Column(name = "out_dat_vl18", length = 50, nullable = true)
     @Schema(description = "출력데이터값18", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl18; //--출력데이터값18
 
     @Column(name = "out_dat_vl19", length = 50, nullable = true)
     @Schema(description = "출력데이터값19", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl19; //--출력데이터값19
 
     @Column(name = "out_dat_vl20", length = 50, nullable = true)
     @Schema(description = "출력데이터값20", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl20; //--출력데이터값20
 
     @Column(name = "out_dat_vl21", length = 50, nullable = true)
     @Schema(description = "출력데이터값21", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl21; //--출력데이터값21
 
     @Column(name = "out_dat_vl22", length = 50, nullable = true)
     @Schema(description = "출력데이터값22", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl22; //--출력데이터값22
 
     @Column(name = "out_dat_vl23", length = 50, nullable = true)
     @Schema(description = "출력데이터값23", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl23; //--출력데이터값23
 
     @Column(name = "out_dat_vl24", length = 50, nullable = true)
     @Schema(description = "출력데이터값24", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl24; //--출력데이터값24
 
     @Column(name = "out_dat_vl25", length = 50, nullable = true)
     @Schema(description = "출력데이터값25", nullable = true)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String outDatVl25; //--출력데이터값25
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private String mdfUsrId; //--수정사용자id
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private Date inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    // defaultValue = "1", example = "abc@jiniworld.me", allowableValues = {"1", "2"}
     private Date mdfDthms; //--수정일시
 
     @Builder
@@ -362,45 +304,5 @@ public class IgdLtrmRato implements Serializable {
         this.mdfUsrId = mdfUsrId;
         this.inpDthms = inpDthms;
         this.mdfDthms = mdfDthms;
-    }
-	
-	//----------------------------------------------------
-    // Load/Persist/Update/Remove(조회/신규/수정/삭제)
-    // Entity Pre/Post(이전/이후) 처리에 대한 정의(PreLoad는 없음)
-    // * DB의 Trigger와 비슷한 JPA기능
-    //----------------------------------------------------
-    @PostLoad
-    public void onPostLoad() {
-        log.info("onPostLoad : Select후 호출" );
-    }
-
-    @PrePersist
-    public void onPrePersist() {
-        log.info("onPrePersist : Insert전 호출");
-    }
-    
-    @PostPersist
-    public void onPostPersist() {
-        log.info("onPrePersist : Insert후 호출");
-    }
-    
-    @PreUpdate
-    public void onPreUpdate() {
-        log.info("onPreUpdate : Update전 호출");
-    }
-    
-    @PostUpdate
-    public void onPostUpdate() {
-        log.info("onPostUpdate : Update후 호출"); 
-    }
-    
-    @PreRemove
-    public void onPreRemove() {
-        log.info("onPreRemove  : Delete전 호출");    
-    }
-    
-    @PostRemove
-    public void onPostRemove() {
-        log.info("onPostRemove : Delete후 호출");
     }
 }

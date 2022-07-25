@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsCrRelpc;
 import com.skims.domain.repository.InsCrRelpcRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,102 +105,8 @@ public class InsCrRelpcController {
     ResponseEntity<InsCrRelpc> putData(@RequestBody InsCrRelpc newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setPlyno(newData.getPlyno());
-                    oldData.setRelpcSeqno(newData.getRelpcSeqno());
-                    oldData.setApNddt(newData.getApNddt());
-                    oldData.setApStrdt(newData.getApStrdt());
-                    oldData.setNdsno(newData.getNdsno());
-                    oldData.setValdNdsYn(newData.getValdNdsYn());
-                    oldData.setNdsApStrDthms(newData.getNdsApStrDthms());
-                    oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                    oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                    oldData.setRelpcTpcd(newData.getRelpcTpcd());
-                    oldData.setRelpcStcd(newData.getRelpcStcd());
-                    oldData.setStChdt(newData.getStChdt());
-                    oldData.setHnglRelnm(newData.getHnglRelnm());
-                    oldData.setEngRelnm(newData.getEngRelnm());
-                    oldData.setCtmDscno(newData.getCtmDscno());
-                    oldData.setRelpcDscnoFlgcd(newData.getRelpcDscnoFlgcd());
-                    oldData.setDlncd(newData.getDlncd());
-                    oldData.setPrsRelpcYn(newData.getPrsRelpcYn());
-                    oldData.setCntadSeqno(newData.getCntadSeqno());
-                    oldData.setCntadFlgcd(newData.getCntadFlgcd());
-                    oldData.setRelpcName(newData.getRelpcName());
-                    oldData.setRelpcNamePstcd(newData.getRelpcNamePstcd());
-                    oldData.setRelpcRlecd(newData.getRelpcRlecd());
-                    oldData.setIsrdt(newData.getIsrdt());
-                    oldData.setPprRelpcSeqno(newData.getPprRelpcSeqno());
-                    oldData.setCtmno(newData.getCtmno());
-                    oldData.setSbdGrCtmno(newData.getSbdGrCtmno());
-                    oldData.setGuPlyno(newData.getGuPlyno());
-                    oldData.setGuFireLginId(newData.getGuFireLginId());
-                    oldData.setOrelCd(newData.getOrelCd());
-                    oldData.setSubCtmDscno(newData.getSubCtmDscno());
-                    oldData.setFireMnNrdpsYn(newData.getFireMnNrdpsYn());
-                    oldData.setInjrHspCvrYn(newData.getInjrHspCvrYn());
-                    oldData.setInjrOtpCvrYn(newData.getInjrOtpCvrYn());
-                    oldData.setDsasHspCvrYn(newData.getDsasHspCvrYn());
-                    oldData.setDsasOtpCvrYn(newData.getDsasOtpCvrYn());
-                    oldData.setGnrzHspCvrYn(newData.getGnrzHspCvrYn());
-                    oldData.setGnrzOtpCvrYn(newData.getGnrzOtpCvrYn());
-                    oldData.setSepCrCnYn(newData.getSepCrCnYn());
-                    oldData.setRntcrYn(newData.getRntcrYn());
-                    oldData.setFnOrgcd(newData.getFnOrgcd());
-                    oldData.setPrpsFlgcd(newData.getPrpsFlgcd());
-                    oldData.setPrmPymRt(newData.getPrmPymRt());
-                    oldData.setHndpsYn(newData.getHndpsYn());
-                    oldData.setNtnMrtmnYn(newData.getNtnMrtmnYn());
-                    oldData.setBaSadpsYn(newData.getBaSadpsYn());
-                    oldData.setCrtFlgcd(newData.getCrtFlgcd());
-                    oldData.setDmosFlgcd(newData.getDmosFlgcd());
-                    oldData.setIndpdMrtmnYn(newData.getIndpdMrtmnYn());
-                    oldData.setDfltPtYn(newData.getDfltPtYn());
-                    oldData.setDmrcy518InjdYn(newData.getDmrcy518InjdYn());
-                    oldData.setNdtmRisAgreYn(newData.getNdtmRisAgreYn());
-                    oldData.setPfbFlgcd(newData.getPfbFlgcd());
-                    oldData.setNrdpsAgreYn(newData.getNrdpsAgreYn());
-                    oldData.setUtRt(newData.getUtRt());
-                    oldData.setMdCfcapEntpYn(newData.getMdCfcapEntpYn());
-                    oldData.setSexcd(newData.getSexcd());
-                    oldData.setJbcd(newData.getJbcd());
-                    oldData.setJbChSeqno(newData.getJbChSeqno());
-                    oldData.setAge(newData.getAge());
-                    oldData.setWdgYn(newData.getWdgYn());
-                    oldData.setLicSpecd(newData.getLicSpecd());
-                    oldData.setLicno(newData.getLicno());
-                    oldData.setLicCqdt(newData.getLicCqdt());
-                    oldData.setClmCrrYn(newData.getClmCrrYn());
-                    oldData.setDrveCrrYyct(newData.getDrveCrrYyct());
-                    oldData.setDrveCrrMntct(newData.getDrveCrrMntct());
-                    oldData.setDrvFlgcd(newData.getDrvFlgcd());
-                    oldData.setHotStdt(newData.getHotStdt());
-                    oldData.setHotClsdt(newData.getHotClsdt());
-                    oldData.setHotOj(newData.getHotOj());
-                    oldData.setRelpcScrInpYn(newData.getRelpcScrInpYn());
-                    oldData.setIdntyCnfcKndcd(newData.getIdntyCnfcKndcd());
-                    oldData.setIdntyCnfcEtInfo(newData.getIdntyCnfcEtInfo());
-                    oldData.setIdntyCnfcNo(newData.getIdntyCnfcNo());
-                    oldData.setIdntyCnfcIsdt(newData.getIdntyCnfcIsdt());
-                    oldData.setIdntyCnfcIsOrgnm(newData.getIdntyCnfcIsOrgnm());
-                    oldData.setIdntyCnfPdtnm(newData.getIdntyCnfPdtnm());
-                    oldData.setIdntyCnfBnnm(newData.getIdntyCnfBnnm());
-                    oldData.setRdchCrTpcd(newData.getRdchCrTpcd());
-                    oldData.setCrUdrtkArecd(newData.getCrUdrtkArecd());
-                    oldData.setPectSlMntrChncd(newData.getPectSlMntrChncd());
-                    oldData.setCmMnUsCnAgryn(newData.getCmMnUsCnAgryn());
-                    oldData.setPfbAstchAgrYn(newData.getPfbAstchAgrYn());
-                    oldData.setPfbAstchRscd(newData.getPfbAstchRscd());
-                    oldData.setIsCrrApprStrdt(newData.getIsCrrApprStrdt());
-                    oldData.setIsCrrApprNddt(newData.getIsCrrApprNddt());
-                    oldData.setMdSlrSadpsYn(newData.getMdSlrSadpsYn());
-                    oldData.setFdWshBjGrdcd(newData.getFdWshBjGrdcd());
-                    oldData.setOvsePytxDtyTpcd(newData.getOvsePytxDtyTpcd());
-                    oldData.setMailRcvYn(newData.getMailRcvYn());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -220,196 +125,103 @@ public class InsCrRelpcController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("plyno"))
-                            oldData.setPlyno(newData.getPlyno());
-                        if (strKey.equals("relpcSeqno"))
-                            oldData.setRelpcSeqno(newData.getRelpcSeqno());
-                        if (strKey.equals("apNddt"))
-                            oldData.setApNddt(newData.getApNddt());
-                        if (strKey.equals("apStrdt"))
-                            oldData.setApStrdt(newData.getApStrdt());
-                        if (strKey.equals("ndsno"))
-                            oldData.setNdsno(newData.getNdsno());
-                        if (strKey.equals("valdNdsYn"))
-                            oldData.setValdNdsYn(newData.getValdNdsYn());
-                        if (strKey.equals("ndsApStrDthms"))
-                            oldData.setNdsApStrDthms(newData.getNdsApStrDthms());
-                        if (strKey.equals("ndsApNdDthms"))
-                            oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                        if (strKey.equals("ikdGrpcd"))
-                            oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                        if (strKey.equals("relpcTpcd"))
-                            oldData.setRelpcTpcd(newData.getRelpcTpcd());
-                        if (strKey.equals("relpcStcd"))
-                            oldData.setRelpcStcd(newData.getRelpcStcd());
-                        if (strKey.equals("stChdt"))
-                            oldData.setStChdt(newData.getStChdt());
-                        if (strKey.equals("hnglRelnm"))
-                            oldData.setHnglRelnm(newData.getHnglRelnm());
-                        if (strKey.equals("engRelnm"))
-                            oldData.setEngRelnm(newData.getEngRelnm());
-                        if (strKey.equals("ctmDscno"))
-                            oldData.setCtmDscno(newData.getCtmDscno());
-                        if (strKey.equals("relpcDscnoFlgcd"))
-                            oldData.setRelpcDscnoFlgcd(newData.getRelpcDscnoFlgcd());
-                        if (strKey.equals("dlncd"))
-                            oldData.setDlncd(newData.getDlncd());
-                        if (strKey.equals("prsRelpcYn"))
-                            oldData.setPrsRelpcYn(newData.getPrsRelpcYn());
-                        if (strKey.equals("cntadSeqno"))
-                            oldData.setCntadSeqno(newData.getCntadSeqno());
-                        if (strKey.equals("cntadFlgcd"))
-                            oldData.setCntadFlgcd(newData.getCntadFlgcd());
-                        if (strKey.equals("relpcName"))
-                            oldData.setRelpcName(newData.getRelpcName());
-                        if (strKey.equals("relpcNamePstcd"))
-                            oldData.setRelpcNamePstcd(newData.getRelpcNamePstcd());
-                        if (strKey.equals("relpcRlecd"))
-                            oldData.setRelpcRlecd(newData.getRelpcRlecd());
-                        if (strKey.equals("isrdt"))
-                            oldData.setIsrdt(newData.getIsrdt());
-                        if (strKey.equals("pprRelpcSeqno"))
-                            oldData.setPprRelpcSeqno(newData.getPprRelpcSeqno());
-                        if (strKey.equals("ctmno"))
-                            oldData.setCtmno(newData.getCtmno());
-                        if (strKey.equals("sbdGrCtmno"))
-                            oldData.setSbdGrCtmno(newData.getSbdGrCtmno());
-                        if (strKey.equals("guPlyno"))
-                            oldData.setGuPlyno(newData.getGuPlyno());
-                        if (strKey.equals("guFireLginId"))
-                            oldData.setGuFireLginId(newData.getGuFireLginId());
-                        if (strKey.equals("orelCd"))
-                            oldData.setOrelCd(newData.getOrelCd());
-                        if (strKey.equals("subCtmDscno"))
-                            oldData.setSubCtmDscno(newData.getSubCtmDscno());
-                        if (strKey.equals("fireMnNrdpsYn"))
-                            oldData.setFireMnNrdpsYn(newData.getFireMnNrdpsYn());
-                        if (strKey.equals("injrHspCvrYn"))
-                            oldData.setInjrHspCvrYn(newData.getInjrHspCvrYn());
-                        if (strKey.equals("injrOtpCvrYn"))
-                            oldData.setInjrOtpCvrYn(newData.getInjrOtpCvrYn());
-                        if (strKey.equals("dsasHspCvrYn"))
-                            oldData.setDsasHspCvrYn(newData.getDsasHspCvrYn());
-                        if (strKey.equals("dsasOtpCvrYn"))
-                            oldData.setDsasOtpCvrYn(newData.getDsasOtpCvrYn());
-                        if (strKey.equals("gnrzHspCvrYn"))
-                            oldData.setGnrzHspCvrYn(newData.getGnrzHspCvrYn());
-                        if (strKey.equals("gnrzOtpCvrYn"))
-                            oldData.setGnrzOtpCvrYn(newData.getGnrzOtpCvrYn());
-                        if (strKey.equals("sepCrCnYn"))
-                            oldData.setSepCrCnYn(newData.getSepCrCnYn());
-                        if (strKey.equals("rntcrYn"))
-                            oldData.setRntcrYn(newData.getRntcrYn());
-                        if (strKey.equals("fnOrgcd"))
-                            oldData.setFnOrgcd(newData.getFnOrgcd());
-                        if (strKey.equals("prpsFlgcd"))
-                            oldData.setPrpsFlgcd(newData.getPrpsFlgcd());
-                        if (strKey.equals("prmPymRt"))
-                            oldData.setPrmPymRt(newData.getPrmPymRt());
-                        if (strKey.equals("hndpsYn"))
-                            oldData.setHndpsYn(newData.getHndpsYn());
-                        if (strKey.equals("ntnMrtmnYn"))
-                            oldData.setNtnMrtmnYn(newData.getNtnMrtmnYn());
-                        if (strKey.equals("baSadpsYn"))
-                            oldData.setBaSadpsYn(newData.getBaSadpsYn());
-                        if (strKey.equals("crtFlgcd"))
-                            oldData.setCrtFlgcd(newData.getCrtFlgcd());
-                        if (strKey.equals("dmosFlgcd"))
-                            oldData.setDmosFlgcd(newData.getDmosFlgcd());
-                        if (strKey.equals("indpdMrtmnYn"))
-                            oldData.setIndpdMrtmnYn(newData.getIndpdMrtmnYn());
-                        if (strKey.equals("dfltPtYn"))
-                            oldData.setDfltPtYn(newData.getDfltPtYn());
-                        if (strKey.equals("dmrcy518InjdYn"))
-                            oldData.setDmrcy518InjdYn(newData.getDmrcy518InjdYn());
-                        if (strKey.equals("ndtmRisAgreYn"))
-                            oldData.setNdtmRisAgreYn(newData.getNdtmRisAgreYn());
-                        if (strKey.equals("pfbFlgcd"))
-                            oldData.setPfbFlgcd(newData.getPfbFlgcd());
-                        if (strKey.equals("nrdpsAgreYn"))
-                            oldData.setNrdpsAgreYn(newData.getNrdpsAgreYn());
-                        if (strKey.equals("utRt"))
-                            oldData.setUtRt(newData.getUtRt());
-                        if (strKey.equals("mdCfcapEntpYn"))
-                            oldData.setMdCfcapEntpYn(newData.getMdCfcapEntpYn());
-                        if (strKey.equals("sexcd"))
-                            oldData.setSexcd(newData.getSexcd());
-                        if (strKey.equals("jbcd"))
-                            oldData.setJbcd(newData.getJbcd());
-                        if (strKey.equals("jbChSeqno"))
-                            oldData.setJbChSeqno(newData.getJbChSeqno());
-                        if (strKey.equals("age"))
-                            oldData.setAge(newData.getAge());
-                        if (strKey.equals("wdgYn"))
-                            oldData.setWdgYn(newData.getWdgYn());
-                        if (strKey.equals("licSpecd"))
-                            oldData.setLicSpecd(newData.getLicSpecd());
-                        if (strKey.equals("licno"))
-                            oldData.setLicno(newData.getLicno());
-                        if (strKey.equals("licCqdt"))
-                            oldData.setLicCqdt(newData.getLicCqdt());
-                        if (strKey.equals("clmCrrYn"))
-                            oldData.setClmCrrYn(newData.getClmCrrYn());
-                        if (strKey.equals("drveCrrYyct"))
-                            oldData.setDrveCrrYyct(newData.getDrveCrrYyct());
-                        if (strKey.equals("drveCrrMntct"))
-                            oldData.setDrveCrrMntct(newData.getDrveCrrMntct());
-                        if (strKey.equals("drvFlgcd"))
-                            oldData.setDrvFlgcd(newData.getDrvFlgcd());
-                        if (strKey.equals("hotStdt"))
-                            oldData.setHotStdt(newData.getHotStdt());
-                        if (strKey.equals("hotClsdt"))
-                            oldData.setHotClsdt(newData.getHotClsdt());
-                        if (strKey.equals("hotOj"))
-                            oldData.setHotOj(newData.getHotOj());
-                        if (strKey.equals("relpcScrInpYn"))
-                            oldData.setRelpcScrInpYn(newData.getRelpcScrInpYn());
-                        if (strKey.equals("idntyCnfcKndcd"))
-                            oldData.setIdntyCnfcKndcd(newData.getIdntyCnfcKndcd());
-                        if (strKey.equals("idntyCnfcEtInfo"))
-                            oldData.setIdntyCnfcEtInfo(newData.getIdntyCnfcEtInfo());
-                        if (strKey.equals("idntyCnfcNo"))
-                            oldData.setIdntyCnfcNo(newData.getIdntyCnfcNo());
-                        if (strKey.equals("idntyCnfcIsdt"))
-                            oldData.setIdntyCnfcIsdt(newData.getIdntyCnfcIsdt());
-                        if (strKey.equals("idntyCnfcIsOrgnm"))
-                            oldData.setIdntyCnfcIsOrgnm(newData.getIdntyCnfcIsOrgnm());
-                        if (strKey.equals("idntyCnfPdtnm"))
-                            oldData.setIdntyCnfPdtnm(newData.getIdntyCnfPdtnm());
-                        if (strKey.equals("idntyCnfBnnm"))
-                            oldData.setIdntyCnfBnnm(newData.getIdntyCnfBnnm());
-                        if (strKey.equals("rdchCrTpcd"))
-                            oldData.setRdchCrTpcd(newData.getRdchCrTpcd());
-                        if (strKey.equals("crUdrtkArecd"))
-                            oldData.setCrUdrtkArecd(newData.getCrUdrtkArecd());
-                        if (strKey.equals("pectSlMntrChncd"))
-                            oldData.setPectSlMntrChncd(newData.getPectSlMntrChncd());
-                        if (strKey.equals("cmMnUsCnAgryn"))
-                            oldData.setCmMnUsCnAgryn(newData.getCmMnUsCnAgryn());
-                        if (strKey.equals("pfbAstchAgrYn"))
-                            oldData.setPfbAstchAgrYn(newData.getPfbAstchAgrYn());
-                        if (strKey.equals("pfbAstchRscd"))
-                            oldData.setPfbAstchRscd(newData.getPfbAstchRscd());
-                        if (strKey.equals("isCrrApprStrdt"))
-                            oldData.setIsCrrApprStrdt(newData.getIsCrrApprStrdt());
-                        if (strKey.equals("isCrrApprNddt"))
-                            oldData.setIsCrrApprNddt(newData.getIsCrrApprNddt());
-                        if (strKey.equals("mdSlrSadpsYn"))
-                            oldData.setMdSlrSadpsYn(newData.getMdSlrSadpsYn());
-                        if (strKey.equals("fdWshBjGrdcd"))
-                            oldData.setFdWshBjGrdcd(newData.getFdWshBjGrdcd());
-                        if (strKey.equals("ovsePytxDtyTpcd"))
-                            oldData.setOvsePytxDtyTpcd(newData.getOvsePytxDtyTpcd());
-                        if (strKey.equals("mailRcvYn"))
-                            oldData.setMailRcvYn(newData.getMailRcvYn());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "plyno" : oldData.setPlyno(newData.getPlyno()); break;
+						    case "relpcSeqno" : oldData.setRelpcSeqno(newData.getRelpcSeqno()); break;
+						    case "apNddt" : oldData.setApNddt(newData.getApNddt()); break;
+						    case "apStrdt" : oldData.setApStrdt(newData.getApStrdt()); break;
+						    case "ndsno" : oldData.setNdsno(newData.getNdsno()); break;
+						    case "valdNdsYn" : oldData.setValdNdsYn(newData.getValdNdsYn()); break;
+						    case "ndsApStrDthms" : oldData.setNdsApStrDthms(newData.getNdsApStrDthms()); break;
+						    case "ndsApNdDthms" : oldData.setNdsApNdDthms(newData.getNdsApNdDthms()); break;
+						    case "ikdGrpcd" : oldData.setIkdGrpcd(newData.getIkdGrpcd()); break;
+						    case "relpcTpcd" : oldData.setRelpcTpcd(newData.getRelpcTpcd()); break;
+						    case "relpcStcd" : oldData.setRelpcStcd(newData.getRelpcStcd()); break;
+						    case "stChdt" : oldData.setStChdt(newData.getStChdt()); break;
+						    case "hnglRelnm" : oldData.setHnglRelnm(newData.getHnglRelnm()); break;
+						    case "engRelnm" : oldData.setEngRelnm(newData.getEngRelnm()); break;
+						    case "ctmDscno" : oldData.setCtmDscno(newData.getCtmDscno()); break;
+						    case "relpcDscnoFlgcd" : oldData.setRelpcDscnoFlgcd(newData.getRelpcDscnoFlgcd()); break;
+						    case "dlncd" : oldData.setDlncd(newData.getDlncd()); break;
+						    case "prsRelpcYn" : oldData.setPrsRelpcYn(newData.getPrsRelpcYn()); break;
+						    case "cntadSeqno" : oldData.setCntadSeqno(newData.getCntadSeqno()); break;
+						    case "cntadFlgcd" : oldData.setCntadFlgcd(newData.getCntadFlgcd()); break;
+						    case "relpcName" : oldData.setRelpcName(newData.getRelpcName()); break;
+						    case "relpcNamePstcd" : oldData.setRelpcNamePstcd(newData.getRelpcNamePstcd()); break;
+						    case "relpcRlecd" : oldData.setRelpcRlecd(newData.getRelpcRlecd()); break;
+						    case "isrdt" : oldData.setIsrdt(newData.getIsrdt()); break;
+						    case "pprRelpcSeqno" : oldData.setPprRelpcSeqno(newData.getPprRelpcSeqno()); break;
+						    case "ctmno" : oldData.setCtmno(newData.getCtmno()); break;
+						    case "sbdGrCtmno" : oldData.setSbdGrCtmno(newData.getSbdGrCtmno()); break;
+						    case "guPlyno" : oldData.setGuPlyno(newData.getGuPlyno()); break;
+						    case "guFireLginId" : oldData.setGuFireLginId(newData.getGuFireLginId()); break;
+						    case "orelCd" : oldData.setOrelCd(newData.getOrelCd()); break;
+						    case "subCtmDscno" : oldData.setSubCtmDscno(newData.getSubCtmDscno()); break;
+						    case "fireMnNrdpsYn" : oldData.setFireMnNrdpsYn(newData.getFireMnNrdpsYn()); break;
+						    case "injrHspCvrYn" : oldData.setInjrHspCvrYn(newData.getInjrHspCvrYn()); break;
+						    case "injrOtpCvrYn" : oldData.setInjrOtpCvrYn(newData.getInjrOtpCvrYn()); break;
+						    case "dsasHspCvrYn" : oldData.setDsasHspCvrYn(newData.getDsasHspCvrYn()); break;
+						    case "dsasOtpCvrYn" : oldData.setDsasOtpCvrYn(newData.getDsasOtpCvrYn()); break;
+						    case "gnrzHspCvrYn" : oldData.setGnrzHspCvrYn(newData.getGnrzHspCvrYn()); break;
+						    case "gnrzOtpCvrYn" : oldData.setGnrzOtpCvrYn(newData.getGnrzOtpCvrYn()); break;
+						    case "sepCrCnYn" : oldData.setSepCrCnYn(newData.getSepCrCnYn()); break;
+						    case "rntcrYn" : oldData.setRntcrYn(newData.getRntcrYn()); break;
+						    case "fnOrgcd" : oldData.setFnOrgcd(newData.getFnOrgcd()); break;
+						    case "prpsFlgcd" : oldData.setPrpsFlgcd(newData.getPrpsFlgcd()); break;
+						    case "prmPymRt" : oldData.setPrmPymRt(newData.getPrmPymRt()); break;
+						    case "hndpsYn" : oldData.setHndpsYn(newData.getHndpsYn()); break;
+						    case "ntnMrtmnYn" : oldData.setNtnMrtmnYn(newData.getNtnMrtmnYn()); break;
+						    case "baSadpsYn" : oldData.setBaSadpsYn(newData.getBaSadpsYn()); break;
+						    case "crtFlgcd" : oldData.setCrtFlgcd(newData.getCrtFlgcd()); break;
+						    case "dmosFlgcd" : oldData.setDmosFlgcd(newData.getDmosFlgcd()); break;
+						    case "indpdMrtmnYn" : oldData.setIndpdMrtmnYn(newData.getIndpdMrtmnYn()); break;
+						    case "dfltPtYn" : oldData.setDfltPtYn(newData.getDfltPtYn()); break;
+						    case "dmrcy518InjdYn" : oldData.setDmrcy518InjdYn(newData.getDmrcy518InjdYn()); break;
+						    case "ndtmRisAgreYn" : oldData.setNdtmRisAgreYn(newData.getNdtmRisAgreYn()); break;
+						    case "pfbFlgcd" : oldData.setPfbFlgcd(newData.getPfbFlgcd()); break;
+						    case "nrdpsAgreYn" : oldData.setNrdpsAgreYn(newData.getNrdpsAgreYn()); break;
+						    case "utRt" : oldData.setUtRt(newData.getUtRt()); break;
+						    case "mdCfcapEntpYn" : oldData.setMdCfcapEntpYn(newData.getMdCfcapEntpYn()); break;
+						    case "sexcd" : oldData.setSexcd(newData.getSexcd()); break;
+						    case "jbcd" : oldData.setJbcd(newData.getJbcd()); break;
+						    case "jbChSeqno" : oldData.setJbChSeqno(newData.getJbChSeqno()); break;
+						    case "age" : oldData.setAge(newData.getAge()); break;
+						    case "wdgYn" : oldData.setWdgYn(newData.getWdgYn()); break;
+						    case "licSpecd" : oldData.setLicSpecd(newData.getLicSpecd()); break;
+						    case "licno" : oldData.setLicno(newData.getLicno()); break;
+						    case "licCqdt" : oldData.setLicCqdt(newData.getLicCqdt()); break;
+						    case "clmCrrYn" : oldData.setClmCrrYn(newData.getClmCrrYn()); break;
+						    case "drveCrrYyct" : oldData.setDrveCrrYyct(newData.getDrveCrrYyct()); break;
+						    case "drveCrrMntct" : oldData.setDrveCrrMntct(newData.getDrveCrrMntct()); break;
+						    case "drvFlgcd" : oldData.setDrvFlgcd(newData.getDrvFlgcd()); break;
+						    case "hotStdt" : oldData.setHotStdt(newData.getHotStdt()); break;
+						    case "hotClsdt" : oldData.setHotClsdt(newData.getHotClsdt()); break;
+						    case "hotOj" : oldData.setHotOj(newData.getHotOj()); break;
+						    case "relpcScrInpYn" : oldData.setRelpcScrInpYn(newData.getRelpcScrInpYn()); break;
+						    case "idntyCnfcKndcd" : oldData.setIdntyCnfcKndcd(newData.getIdntyCnfcKndcd()); break;
+						    case "idntyCnfcEtInfo" : oldData.setIdntyCnfcEtInfo(newData.getIdntyCnfcEtInfo()); break;
+						    case "idntyCnfcNo" : oldData.setIdntyCnfcNo(newData.getIdntyCnfcNo()); break;
+						    case "idntyCnfcIsdt" : oldData.setIdntyCnfcIsdt(newData.getIdntyCnfcIsdt()); break;
+						    case "idntyCnfcIsOrgnm" : oldData.setIdntyCnfcIsOrgnm(newData.getIdntyCnfcIsOrgnm()); break;
+						    case "idntyCnfPdtnm" : oldData.setIdntyCnfPdtnm(newData.getIdntyCnfPdtnm()); break;
+						    case "idntyCnfBnnm" : oldData.setIdntyCnfBnnm(newData.getIdntyCnfBnnm()); break;
+						    case "rdchCrTpcd" : oldData.setRdchCrTpcd(newData.getRdchCrTpcd()); break;
+						    case "crUdrtkArecd" : oldData.setCrUdrtkArecd(newData.getCrUdrtkArecd()); break;
+						    case "pectSlMntrChncd" : oldData.setPectSlMntrChncd(newData.getPectSlMntrChncd()); break;
+						    case "cmMnUsCnAgryn" : oldData.setCmMnUsCnAgryn(newData.getCmMnUsCnAgryn()); break;
+						    case "pfbAstchAgrYn" : oldData.setPfbAstchAgrYn(newData.getPfbAstchAgrYn()); break;
+						    case "pfbAstchRscd" : oldData.setPfbAstchRscd(newData.getPfbAstchRscd()); break;
+						    case "isCrrApprStrdt" : oldData.setIsCrrApprStrdt(newData.getIsCrrApprStrdt()); break;
+						    case "isCrrApprNddt" : oldData.setIsCrrApprNddt(newData.getIsCrrApprNddt()); break;
+						    case "mdSlrSadpsYn" : oldData.setMdSlrSadpsYn(newData.getMdSlrSadpsYn()); break;
+						    case "fdWshBjGrdcd" : oldData.setFdWshBjGrdcd(newData.getFdWshBjGrdcd()); break;
+						    case "ovsePytxDtyTpcd" : oldData.setOvsePytxDtyTpcd(newData.getOvsePytxDtyTpcd()); break;
+						    case "mailRcvYn" : oldData.setMailRcvYn(newData.getMailRcvYn()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

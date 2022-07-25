@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.CusPstpoRcpl;
 import com.skims.domain.repository.CusPstpoRcplRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,16 +105,8 @@ public class CusPstpoRcplController {
     ResponseEntity<CusPstpoRcpl> putData(@RequestBody CusPstpoRcpl newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setCtmno(newData.getCtmno());
-                    oldData.setApNdDthms(newData.getApNdDthms());
-                    oldData.setApStrDthms(newData.getApStrDthms());
-                    oldData.setPstpoRcplFlgcd(newData.getPstpoRcplFlgcd());
-                    oldData.setChDlno(newData.getChDlno());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -134,24 +125,17 @@ public class CusPstpoRcplController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("ctmno"))
-                            oldData.setCtmno(newData.getCtmno());
-                        if (strKey.equals("apNdDthms"))
-                            oldData.setApNdDthms(newData.getApNdDthms());
-                        if (strKey.equals("apStrDthms"))
-                            oldData.setApStrDthms(newData.getApStrDthms());
-                        if (strKey.equals("pstpoRcplFlgcd"))
-                            oldData.setPstpoRcplFlgcd(newData.getPstpoRcplFlgcd());
-                        if (strKey.equals("chDlno"))
-                            oldData.setChDlno(newData.getChDlno());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "ctmno" : oldData.setCtmno(newData.getCtmno()); break;
+						    case "apNdDthms" : oldData.setApNdDthms(newData.getApNdDthms()); break;
+						    case "apStrDthms" : oldData.setApStrDthms(newData.getApStrDthms()); break;
+						    case "pstpoRcplFlgcd" : oldData.setPstpoRcplFlgcd(newData.getPstpoRcplFlgcd()); break;
+						    case "chDlno" : oldData.setChDlno(newData.getChDlno()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

@@ -7,7 +7,6 @@
 package com.skims.domain.entity;
 
 import java.io.Serializable;
-
 import java.math.BigDecimal;
 import java.sql.Date;
 

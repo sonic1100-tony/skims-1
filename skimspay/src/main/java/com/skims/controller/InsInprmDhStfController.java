@@ -31,7 +31,6 @@ import com.skims.domain.entity.InsInprmDhStf;
 import com.skims.domain.entity.InsInprmDhStfPK;
 import com.skims.domain.repository.InsInprmDhStfRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -108,15 +107,11 @@ public class InsInprmDhStfController {
     ResponseEntity<InsInprmDhStf> putData(@RequestBody InsInprmDhStf newData, @PathVariable("plyno") String plyno, @PathVariable("incmPrmCrSeqno") BigDecimal incmPrmCrSeqno, @PathVariable("dhStfTpcd") String dhStfTpcd, @PathVariable("dhStfno") String dhStfno) {
         return repository.findById(new InsInprmDhStfPK(plyno, incmPrmCrSeqno, dhStfTpcd, dhStfno)) //
                 .map(oldData -> {
-                    oldData.setUsrno(newData.getUsrno());
-                    oldData.setBzcsQtrt(newData.getBzcsQtrt());
-                    oldData.setQtrt(newData.getQtrt());
-                    oldData.setPrsDhStfYn(newData.getPrsDhStfYn());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setPlyno(oldData.getPlyno());
+                    newData.setIncmPrmCrSeqno(oldData.getIncmPrmCrSeqno());
+                    newData.setDhStfTpcd(oldData.getDhStfTpcd());
+                    newData.setDhStfno(oldData.getDhStfno());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -135,22 +130,16 @@ public class InsInprmDhStfController {
         return repository.findById(new InsInprmDhStfPK(plyno, incmPrmCrSeqno, dhStfTpcd, dhStfno)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("usrno"))
-                            oldData.setUsrno(newData.getUsrno());
-                        if (strKey.equals("bzcsQtrt"))
-                            oldData.setBzcsQtrt(newData.getBzcsQtrt());
-                        if (strKey.equals("qtrt"))
-                            oldData.setQtrt(newData.getQtrt());
-                        if (strKey.equals("prsDhStfYn"))
-                            oldData.setPrsDhStfYn(newData.getPrsDhStfYn());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "usrno" : oldData.setUsrno(newData.getUsrno()); break;
+						    case "bzcsQtrt" : oldData.setBzcsQtrt(newData.getBzcsQtrt()); break;
+						    case "qtrt" : oldData.setQtrt(newData.getQtrt()); break;
+						    case "prsDhStfYn" : oldData.setPrsDhStfYn(newData.getPrsDhStfYn()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.CusCtmCntrtCrr;
 import com.skims.domain.repository.CusCtmCntrtCrrRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,24 +105,8 @@ public class CusCtmCntrtCrrController {
     ResponseEntity<CusCtmCntrtCrr> putData(@RequestBody CusCtmCntrtCrr newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setCntrtDthms(newData.getCntrtDthms());
-                    oldData.setCtmno(newData.getCtmno());
-                    oldData.setCntrtMncd(newData.getCntrtMncd());
-                    oldData.setCntpsId(newData.getCntpsId());
-                    oldData.setPlyno(newData.getPlyno());
-                    oldData.setWholBsnsDlTpnm(newData.getWholBsnsDlTpnm());
-                    oldData.setWholBsnsDlTpDtnm(newData.getWholBsnsDlTpDtnm());
-                    oldData.setNtcBjpsFlgcd(newData.getNtcBjpsFlgcd());
-                    oldData.setCntrtDlFlgcd(newData.getCntrtDlFlgcd());
-                    oldData.setIsno(newData.getIsno());
-                    oldData.setRqdt(newData.getRqdt());
-                    oldData.setCtmCntrtRcvCn(newData.getCtmCntrtRcvCn());
-                    oldData.setDocId(newData.getDocId());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -142,40 +125,25 @@ public class CusCtmCntrtCrrController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("cntrtDthms"))
-                            oldData.setCntrtDthms(newData.getCntrtDthms());
-                        if (strKey.equals("ctmno"))
-                            oldData.setCtmno(newData.getCtmno());
-                        if (strKey.equals("cntrtMncd"))
-                            oldData.setCntrtMncd(newData.getCntrtMncd());
-                        if (strKey.equals("cntpsId"))
-                            oldData.setCntpsId(newData.getCntpsId());
-                        if (strKey.equals("plyno"))
-                            oldData.setPlyno(newData.getPlyno());
-                        if (strKey.equals("wholBsnsDlTpnm"))
-                            oldData.setWholBsnsDlTpnm(newData.getWholBsnsDlTpnm());
-                        if (strKey.equals("wholBsnsDlTpDtnm"))
-                            oldData.setWholBsnsDlTpDtnm(newData.getWholBsnsDlTpDtnm());
-                        if (strKey.equals("ntcBjpsFlgcd"))
-                            oldData.setNtcBjpsFlgcd(newData.getNtcBjpsFlgcd());
-                        if (strKey.equals("cntrtDlFlgcd"))
-                            oldData.setCntrtDlFlgcd(newData.getCntrtDlFlgcd());
-                        if (strKey.equals("isno"))
-                            oldData.setIsno(newData.getIsno());
-                        if (strKey.equals("rqdt"))
-                            oldData.setRqdt(newData.getRqdt());
-                        if (strKey.equals("ctmCntrtRcvCn"))
-                            oldData.setCtmCntrtRcvCn(newData.getCtmCntrtRcvCn());
-                        if (strKey.equals("docId"))
-                            oldData.setDocId(newData.getDocId());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "cntrtDthms" : oldData.setCntrtDthms(newData.getCntrtDthms()); break;
+						    case "ctmno" : oldData.setCtmno(newData.getCtmno()); break;
+						    case "cntrtMncd" : oldData.setCntrtMncd(newData.getCntrtMncd()); break;
+						    case "cntpsId" : oldData.setCntpsId(newData.getCntpsId()); break;
+						    case "plyno" : oldData.setPlyno(newData.getPlyno()); break;
+						    case "wholBsnsDlTpnm" : oldData.setWholBsnsDlTpnm(newData.getWholBsnsDlTpnm()); break;
+						    case "wholBsnsDlTpDtnm" : oldData.setWholBsnsDlTpDtnm(newData.getWholBsnsDlTpDtnm()); break;
+						    case "ntcBjpsFlgcd" : oldData.setNtcBjpsFlgcd(newData.getNtcBjpsFlgcd()); break;
+						    case "cntrtDlFlgcd" : oldData.setCntrtDlFlgcd(newData.getCntrtDlFlgcd()); break;
+						    case "isno" : oldData.setIsno(newData.getIsno()); break;
+						    case "rqdt" : oldData.setRqdt(newData.getRqdt()); break;
+						    case "ctmCntrtRcvCn" : oldData.setCtmCntrtRcvCn(newData.getCtmCntrtRcvCn()); break;
+						    case "docId" : oldData.setDocId(newData.getDocId()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

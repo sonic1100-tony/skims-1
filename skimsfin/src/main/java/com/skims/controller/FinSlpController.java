@@ -30,7 +30,6 @@ import com.skims.domain.entity.FinSlp;
 import com.skims.domain.entity.FinSlpPK;
 import com.skims.domain.repository.FinSlpRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -107,37 +106,9 @@ public class FinSlpController {
     ResponseEntity<FinSlp> putData(@RequestBody FinSlp newData, @PathVariable("aid") Long aid, @PathVariable("stYymm") String stYymm) {
         return repository.findById(new FinSlpPK(aid, stYymm)) //
                 .map(oldData -> {
-                    oldData.setSlpdt(newData.getSlpdt());
-                    oldData.setSlpno(newData.getSlpno());
-                    oldData.setGnSpcFlgcd(newData.getGnSpcFlgcd());
-                    oldData.setCrSyscd(newData.getCrSyscd());
-                    oldData.setDlTpO1Csfcd(newData.getDlTpO1Csfcd());
-                    oldData.setDlTpO2Csfcd(newData.getDlTpO2Csfcd());
-                    oldData.setSlpPrvStcd(newData.getSlpPrvStcd());
-                    oldData.setSlpPrvDthms(newData.getSlpPrvDthms());
-                    oldData.setSlpPrvStfno(newData.getSlpPrvStfno());
-                    oldData.setCrDlOrgcd(newData.getCrDlOrgcd());
-                    oldData.setCrDeldt(newData.getCrDeldt());
-                    oldData.setCrDlno(newData.getCrDlno());
-                    oldData.setSlpStcd(newData.getSlpStcd());
-                    oldData.setErsDthms(newData.getErsDthms());
-                    oldData.setActAtrcd(newData.getActAtrcd());
-                    oldData.setHdcftSlpPrvStcd(newData.getHdcftSlpPrvStcd());
-                    oldData.setElecEvdImgBsnno(newData.getElecEvdImgBsnno());
-                    oldData.setElecPrvDcuId(newData.getElecPrvDcuId());
-                    oldData.setTaccLdgCrtFlgcd(newData.getTaccLdgCrtFlgcd());
-                    oldData.setIfrsSlpdt(newData.getIfrsSlpdt());
-                    oldData.setIfrsSlpno(newData.getIfrsSlpno());
-                    oldData.setActLdgFlgcd(newData.getActLdgFlgcd());
-                    oldData.setErpTsYn(newData.getErpTsYn());
-                    oldData.setErpTsdt(newData.getErpTsdt());
-                    oldData.setErpSyncTaYn(newData.getErpSyncTaYn());
-                    oldData.setErpSlpno(newData.getErpSlpno());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    newData.setStYymm(oldData.getStYymm());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -156,66 +127,38 @@ public class FinSlpController {
         return repository.findById(new FinSlpPK(aid, stYymm)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("slpdt"))
-                            oldData.setSlpdt(newData.getSlpdt());
-                        if (strKey.equals("slpno"))
-                            oldData.setSlpno(newData.getSlpno());
-                        if (strKey.equals("gnSpcFlgcd"))
-                            oldData.setGnSpcFlgcd(newData.getGnSpcFlgcd());
-                        if (strKey.equals("crSyscd"))
-                            oldData.setCrSyscd(newData.getCrSyscd());
-                        if (strKey.equals("dlTpO1Csfcd"))
-                            oldData.setDlTpO1Csfcd(newData.getDlTpO1Csfcd());
-                        if (strKey.equals("dlTpO2Csfcd"))
-                            oldData.setDlTpO2Csfcd(newData.getDlTpO2Csfcd());
-                        if (strKey.equals("slpPrvStcd"))
-                            oldData.setSlpPrvStcd(newData.getSlpPrvStcd());
-                        if (strKey.equals("slpPrvDthms"))
-                            oldData.setSlpPrvDthms(newData.getSlpPrvDthms());
-                        if (strKey.equals("slpPrvStfno"))
-                            oldData.setSlpPrvStfno(newData.getSlpPrvStfno());
-                        if (strKey.equals("crDlOrgcd"))
-                            oldData.setCrDlOrgcd(newData.getCrDlOrgcd());
-                        if (strKey.equals("crDeldt"))
-                            oldData.setCrDeldt(newData.getCrDeldt());
-                        if (strKey.equals("crDlno"))
-                            oldData.setCrDlno(newData.getCrDlno());
-                        if (strKey.equals("slpStcd"))
-                            oldData.setSlpStcd(newData.getSlpStcd());
-                        if (strKey.equals("ersDthms"))
-                            oldData.setErsDthms(newData.getErsDthms());
-                        if (strKey.equals("actAtrcd"))
-                            oldData.setActAtrcd(newData.getActAtrcd());
-                        if (strKey.equals("hdcftSlpPrvStcd"))
-                            oldData.setHdcftSlpPrvStcd(newData.getHdcftSlpPrvStcd());
-                        if (strKey.equals("elecEvdImgBsnno"))
-                            oldData.setElecEvdImgBsnno(newData.getElecEvdImgBsnno());
-                        if (strKey.equals("elecPrvDcuId"))
-                            oldData.setElecPrvDcuId(newData.getElecPrvDcuId());
-                        if (strKey.equals("taccLdgCrtFlgcd"))
-                            oldData.setTaccLdgCrtFlgcd(newData.getTaccLdgCrtFlgcd());
-                        if (strKey.equals("ifrsSlpdt"))
-                            oldData.setIfrsSlpdt(newData.getIfrsSlpdt());
-                        if (strKey.equals("ifrsSlpno"))
-                            oldData.setIfrsSlpno(newData.getIfrsSlpno());
-                        if (strKey.equals("actLdgFlgcd"))
-                            oldData.setActLdgFlgcd(newData.getActLdgFlgcd());
-                        if (strKey.equals("erpTsYn"))
-                            oldData.setErpTsYn(newData.getErpTsYn());
-                        if (strKey.equals("erpTsdt"))
-                            oldData.setErpTsdt(newData.getErpTsdt());
-                        if (strKey.equals("erpSyncTaYn"))
-                            oldData.setErpSyncTaYn(newData.getErpSyncTaYn());
-                        if (strKey.equals("erpSlpno"))
-                            oldData.setErpSlpno(newData.getErpSlpno());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "slpdt" : oldData.setSlpdt(newData.getSlpdt()); break;
+						    case "slpno" : oldData.setSlpno(newData.getSlpno()); break;
+						    case "gnSpcFlgcd" : oldData.setGnSpcFlgcd(newData.getGnSpcFlgcd()); break;
+						    case "crSyscd" : oldData.setCrSyscd(newData.getCrSyscd()); break;
+						    case "dlTpO1Csfcd" : oldData.setDlTpO1Csfcd(newData.getDlTpO1Csfcd()); break;
+						    case "dlTpO2Csfcd" : oldData.setDlTpO2Csfcd(newData.getDlTpO2Csfcd()); break;
+						    case "slpPrvStcd" : oldData.setSlpPrvStcd(newData.getSlpPrvStcd()); break;
+						    case "slpPrvDthms" : oldData.setSlpPrvDthms(newData.getSlpPrvDthms()); break;
+						    case "slpPrvStfno" : oldData.setSlpPrvStfno(newData.getSlpPrvStfno()); break;
+						    case "crDlOrgcd" : oldData.setCrDlOrgcd(newData.getCrDlOrgcd()); break;
+						    case "crDeldt" : oldData.setCrDeldt(newData.getCrDeldt()); break;
+						    case "crDlno" : oldData.setCrDlno(newData.getCrDlno()); break;
+						    case "slpStcd" : oldData.setSlpStcd(newData.getSlpStcd()); break;
+						    case "ersDthms" : oldData.setErsDthms(newData.getErsDthms()); break;
+						    case "actAtrcd" : oldData.setActAtrcd(newData.getActAtrcd()); break;
+						    case "hdcftSlpPrvStcd" : oldData.setHdcftSlpPrvStcd(newData.getHdcftSlpPrvStcd()); break;
+						    case "elecEvdImgBsnno" : oldData.setElecEvdImgBsnno(newData.getElecEvdImgBsnno()); break;
+						    case "elecPrvDcuId" : oldData.setElecPrvDcuId(newData.getElecPrvDcuId()); break;
+						    case "taccLdgCrtFlgcd" : oldData.setTaccLdgCrtFlgcd(newData.getTaccLdgCrtFlgcd()); break;
+						    case "ifrsSlpdt" : oldData.setIfrsSlpdt(newData.getIfrsSlpdt()); break;
+						    case "ifrsSlpno" : oldData.setIfrsSlpno(newData.getIfrsSlpno()); break;
+						    case "actLdgFlgcd" : oldData.setActLdgFlgcd(newData.getActLdgFlgcd()); break;
+						    case "erpTsYn" : oldData.setErpTsYn(newData.getErpTsYn()); break;
+						    case "erpTsdt" : oldData.setErpTsdt(newData.getErpTsdt()); break;
+						    case "erpSyncTaYn" : oldData.setErpSyncTaYn(newData.getErpSyncTaYn()); break;
+						    case "erpSlpno" : oldData.setErpSlpno(newData.getErpSlpno()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

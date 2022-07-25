@@ -29,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsCvrIncmPrm;
 import com.skims.domain.repository.InsCvrIncmPrmRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -106,43 +105,8 @@ public class InsCvrIncmPrmController {
     ResponseEntity<InsCvrIncmPrm> putData(@RequestBody InsCvrIncmPrm newData, @PathVariable("aid") Long aid) {
         return repository.findById(aid) //
                 .map(oldData -> {
-                    oldData.setPlyno(newData.getPlyno());
-                    oldData.setIncmPrmCrSeqno(newData.getIncmPrmCrSeqno());
-                    oldData.setCvrcd(newData.getCvrcd());
-                    oldData.setCvrSeqno(newData.getCvrSeqno());
-                    oldData.setCvrPymSeq(newData.getCvrPymSeq());
-                    oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                    oldData.setCrCvrNdsno(newData.getCrCvrNdsno());
-                    oldData.setCvrPymYymm(newData.getCvrPymYymm());
-                    oldData.setBaPrm(newData.getBaPrm());
-                    oldData.setApPrm(newData.getApPrm());
-                    oldData.setRpPrm(newData.getRpPrm());
-                    oldData.setNwfsqFlgcd(newData.getNwfsqFlgcd());
-                    oldData.setCvrStStSeq(newData.getCvrStStSeq());
-                    oldData.setCvrStNwfsqFlgcd(newData.getCvrStNwfsqFlgcd());
-                    oldData.setPpyYn(newData.getPpyYn());
-                    oldData.setPpyDcYn(newData.getPpyDcYn());
-                    oldData.setPymDudt(newData.getPymDudt());
-                    oldData.setValdStdt(newData.getValdStdt());
-                    oldData.setValdClsdt(newData.getValdClsdt());
-                    oldData.setTrtApCvrPrmsm(newData.getTrtApCvrPrmsm());
-                    oldData.setPsNdstnShamt(newData.getPsNdstnShamt());
-                    oldData.setXwpyPrmNt(newData.getXwpyPrmNt());
-                    oldData.setCvrBaTrtFlgcd(newData.getCvrBaTrtFlgcd());
-                    oldData.setTrtApCvrcd(newData.getTrtApCvrcd());
-                    oldData.setCvrSpquFlgcd(newData.getCvrSpquFlgcd());
-                    oldData.setStdbdBaPrm(newData.getStdbdBaPrm());
-                    oldData.setStdbdApPrm(newData.getStdbdApPrm());
-                    oldData.setStdbdRpPrm(newData.getStdbdRpPrm());
-                    oldData.setSustdBaPrm(newData.getSustdBaPrm());
-                    oldData.setSustdApPrm(newData.getSustdApPrm());
-                    oldData.setSustdRpPrm(newData.getSustdRpPrm());
-                    oldData.setSbPrm(newData.getSbPrm());
-                    oldData.setInpUsrId(newData.getInpUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setAid(oldData.getAid());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -161,78 +125,44 @@ public class InsCvrIncmPrmController {
         return repository.findById(aid) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("plyno"))
-                            oldData.setPlyno(newData.getPlyno());
-                        if (strKey.equals("incmPrmCrSeqno"))
-                            oldData.setIncmPrmCrSeqno(newData.getIncmPrmCrSeqno());
-                        if (strKey.equals("cvrcd"))
-                            oldData.setCvrcd(newData.getCvrcd());
-                        if (strKey.equals("cvrSeqno"))
-                            oldData.setCvrSeqno(newData.getCvrSeqno());
-                        if (strKey.equals("cvrPymSeq"))
-                            oldData.setCvrPymSeq(newData.getCvrPymSeq());
-                        if (strKey.equals("ikdGrpcd"))
-                            oldData.setIkdGrpcd(newData.getIkdGrpcd());
-                        if (strKey.equals("crCvrNdsno"))
-                            oldData.setCrCvrNdsno(newData.getCrCvrNdsno());
-                        if (strKey.equals("cvrPymYymm"))
-                            oldData.setCvrPymYymm(newData.getCvrPymYymm());
-                        if (strKey.equals("baPrm"))
-                            oldData.setBaPrm(newData.getBaPrm());
-                        if (strKey.equals("apPrm"))
-                            oldData.setApPrm(newData.getApPrm());
-                        if (strKey.equals("rpPrm"))
-                            oldData.setRpPrm(newData.getRpPrm());
-                        if (strKey.equals("nwfsqFlgcd"))
-                            oldData.setNwfsqFlgcd(newData.getNwfsqFlgcd());
-                        if (strKey.equals("cvrStStSeq"))
-                            oldData.setCvrStStSeq(newData.getCvrStStSeq());
-                        if (strKey.equals("cvrStNwfsqFlgcd"))
-                            oldData.setCvrStNwfsqFlgcd(newData.getCvrStNwfsqFlgcd());
-                        if (strKey.equals("ppyYn"))
-                            oldData.setPpyYn(newData.getPpyYn());
-                        if (strKey.equals("ppyDcYn"))
-                            oldData.setPpyDcYn(newData.getPpyDcYn());
-                        if (strKey.equals("pymDudt"))
-                            oldData.setPymDudt(newData.getPymDudt());
-                        if (strKey.equals("valdStdt"))
-                            oldData.setValdStdt(newData.getValdStdt());
-                        if (strKey.equals("valdClsdt"))
-                            oldData.setValdClsdt(newData.getValdClsdt());
-                        if (strKey.equals("trtApCvrPrmsm"))
-                            oldData.setTrtApCvrPrmsm(newData.getTrtApCvrPrmsm());
-                        if (strKey.equals("psNdstnShamt"))
-                            oldData.setPsNdstnShamt(newData.getPsNdstnShamt());
-                        if (strKey.equals("xwpyPrmNt"))
-                            oldData.setXwpyPrmNt(newData.getXwpyPrmNt());
-                        if (strKey.equals("cvrBaTrtFlgcd"))
-                            oldData.setCvrBaTrtFlgcd(newData.getCvrBaTrtFlgcd());
-                        if (strKey.equals("trtApCvrcd"))
-                            oldData.setTrtApCvrcd(newData.getTrtApCvrcd());
-                        if (strKey.equals("cvrSpquFlgcd"))
-                            oldData.setCvrSpquFlgcd(newData.getCvrSpquFlgcd());
-                        if (strKey.equals("stdbdBaPrm"))
-                            oldData.setStdbdBaPrm(newData.getStdbdBaPrm());
-                        if (strKey.equals("stdbdApPrm"))
-                            oldData.setStdbdApPrm(newData.getStdbdApPrm());
-                        if (strKey.equals("stdbdRpPrm"))
-                            oldData.setStdbdRpPrm(newData.getStdbdRpPrm());
-                        if (strKey.equals("sustdBaPrm"))
-                            oldData.setSustdBaPrm(newData.getSustdBaPrm());
-                        if (strKey.equals("sustdApPrm"))
-                            oldData.setSustdApPrm(newData.getSustdApPrm());
-                        if (strKey.equals("sustdRpPrm"))
-                            oldData.setSustdRpPrm(newData.getSustdRpPrm());
-                        if (strKey.equals("sbPrm"))
-                            oldData.setSbPrm(newData.getSbPrm());
-                        if (strKey.equals("inpUsrId"))
-                            oldData.setInpUsrId(newData.getInpUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "plyno" : oldData.setPlyno(newData.getPlyno()); break;
+						    case "incmPrmCrSeqno" : oldData.setIncmPrmCrSeqno(newData.getIncmPrmCrSeqno()); break;
+						    case "cvrcd" : oldData.setCvrcd(newData.getCvrcd()); break;
+						    case "cvrSeqno" : oldData.setCvrSeqno(newData.getCvrSeqno()); break;
+						    case "cvrPymSeq" : oldData.setCvrPymSeq(newData.getCvrPymSeq()); break;
+						    case "ikdGrpcd" : oldData.setIkdGrpcd(newData.getIkdGrpcd()); break;
+						    case "crCvrNdsno" : oldData.setCrCvrNdsno(newData.getCrCvrNdsno()); break;
+						    case "cvrPymYymm" : oldData.setCvrPymYymm(newData.getCvrPymYymm()); break;
+						    case "baPrm" : oldData.setBaPrm(newData.getBaPrm()); break;
+						    case "apPrm" : oldData.setApPrm(newData.getApPrm()); break;
+						    case "rpPrm" : oldData.setRpPrm(newData.getRpPrm()); break;
+						    case "nwfsqFlgcd" : oldData.setNwfsqFlgcd(newData.getNwfsqFlgcd()); break;
+						    case "cvrStStSeq" : oldData.setCvrStStSeq(newData.getCvrStStSeq()); break;
+						    case "cvrStNwfsqFlgcd" : oldData.setCvrStNwfsqFlgcd(newData.getCvrStNwfsqFlgcd()); break;
+						    case "ppyYn" : oldData.setPpyYn(newData.getPpyYn()); break;
+						    case "ppyDcYn" : oldData.setPpyDcYn(newData.getPpyDcYn()); break;
+						    case "pymDudt" : oldData.setPymDudt(newData.getPymDudt()); break;
+						    case "valdStdt" : oldData.setValdStdt(newData.getValdStdt()); break;
+						    case "valdClsdt" : oldData.setValdClsdt(newData.getValdClsdt()); break;
+						    case "trtApCvrPrmsm" : oldData.setTrtApCvrPrmsm(newData.getTrtApCvrPrmsm()); break;
+						    case "psNdstnShamt" : oldData.setPsNdstnShamt(newData.getPsNdstnShamt()); break;
+						    case "xwpyPrmNt" : oldData.setXwpyPrmNt(newData.getXwpyPrmNt()); break;
+						    case "cvrBaTrtFlgcd" : oldData.setCvrBaTrtFlgcd(newData.getCvrBaTrtFlgcd()); break;
+						    case "trtApCvrcd" : oldData.setTrtApCvrcd(newData.getTrtApCvrcd()); break;
+						    case "cvrSpquFlgcd" : oldData.setCvrSpquFlgcd(newData.getCvrSpquFlgcd()); break;
+						    case "stdbdBaPrm" : oldData.setStdbdBaPrm(newData.getStdbdBaPrm()); break;
+						    case "stdbdApPrm" : oldData.setStdbdApPrm(newData.getStdbdApPrm()); break;
+						    case "stdbdRpPrm" : oldData.setStdbdRpPrm(newData.getStdbdRpPrm()); break;
+						    case "sustdBaPrm" : oldData.setSustdBaPrm(newData.getSustdBaPrm()); break;
+						    case "sustdApPrm" : oldData.setSustdApPrm(newData.getSustdApPrm()); break;
+						    case "sustdRpPrm" : oldData.setSustdRpPrm(newData.getSustdRpPrm()); break;
+						    case "sbPrm" : oldData.setSbPrm(newData.getSbPrm()); break;
+						    case "inpUsrId" : oldData.setInpUsrId(newData.getInpUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })

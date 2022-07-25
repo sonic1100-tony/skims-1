@@ -32,7 +32,6 @@ import com.skims.domain.entity.InsCrNcMtt;
 import com.skims.domain.entity.InsCrNcMttPK;
 import com.skims.domain.repository.InsCrNcMttRepository;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -109,16 +108,11 @@ public class InsCrNcMttController {
     ResponseEntity<InsCrNcMtt> putData(@RequestBody InsCrNcMtt newData, @PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") Date ndsApStrDthms) {
         return repository.findById(new InsCrNcMttPK(plyno, relpcSeqno, ncMttItno, ndsApStrDthms)) //
                 .map(oldData -> {
-                    oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                    oldData.setNdsno(newData.getNdsno());
-                    oldData.setQustSeqno(newData.getQustSeqno());
-                    oldData.setQustSbdSeqno(newData.getQustSbdSeqno());
-                    oldData.setRplCn(newData.getRplCn());
-                    oldData.setEtDtRpl(newData.getEtDtRpl());
-                    oldData.setMdfUsrId(newData.getMdfUsrId());
-                    oldData.setInpDthms(newData.getInpDthms());
-                    oldData.setMdfDthms(newData.getMdfDthms());
-                    return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
+                    newData.setPlyno(oldData.getPlyno());
+                    newData.setRelpcSeqno(oldData.getRelpcSeqno());
+                    newData.setNcMttItno(oldData.getNcMttItno());
+                    newData.setNdsApStrDthms(oldData.getNdsApStrDthms());
+                    return new ResponseEntity<>(repository.save(newData), HttpStatus.OK);
                 })
                 .orElseGet(() -> {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -137,24 +131,17 @@ public class InsCrNcMttController {
         return repository.findById(new InsCrNcMttPK(plyno, relpcSeqno, ncMttItno, ndsApStrDthms)) //
                 .map(oldData -> {
                     newMap.forEach((strKey, strValue) -> {
-                        if (strKey.equals("ndsApNdDthms"))
-                            oldData.setNdsApNdDthms(newData.getNdsApNdDthms());
-                        if (strKey.equals("ndsno"))
-                            oldData.setNdsno(newData.getNdsno());
-                        if (strKey.equals("qustSeqno"))
-                            oldData.setQustSeqno(newData.getQustSeqno());
-                        if (strKey.equals("qustSbdSeqno"))
-                            oldData.setQustSbdSeqno(newData.getQustSbdSeqno());
-                        if (strKey.equals("rplCn"))
-                            oldData.setRplCn(newData.getRplCn());
-                        if (strKey.equals("etDtRpl"))
-                            oldData.setEtDtRpl(newData.getEtDtRpl());
-                        if (strKey.equals("mdfUsrId"))
-                            oldData.setMdfUsrId(newData.getMdfUsrId());
-                        if (strKey.equals("inpDthms"))
-                            oldData.setInpDthms(newData.getInpDthms());
-                        if (strKey.equals("mdfDthms"))
-                            oldData.setMdfDthms(newData.getMdfDthms());
+						switch(strKey){
+						    case "ndsApNdDthms" : oldData.setNdsApNdDthms(newData.getNdsApNdDthms()); break;
+						    case "ndsno" : oldData.setNdsno(newData.getNdsno()); break;
+						    case "qustSeqno" : oldData.setQustSeqno(newData.getQustSeqno()); break;
+						    case "qustSbdSeqno" : oldData.setQustSbdSeqno(newData.getQustSbdSeqno()); break;
+						    case "rplCn" : oldData.setRplCn(newData.getRplCn()); break;
+						    case "etDtRpl" : oldData.setEtDtRpl(newData.getEtDtRpl()); break;
+						    case "mdfUsrId" : oldData.setMdfUsrId(newData.getMdfUsrId()); break;
+						    case "inpDthms" : oldData.setInpDthms(newData.getInpDthms()); break;
+						    case "mdfDthms" : oldData.setMdfDthms(newData.getMdfDthms()); break;
+						}
                     });
                     return new ResponseEntity<>(repository.save(oldData), HttpStatus.OK);
                 })
