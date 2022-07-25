@@ -66,11 +66,12 @@ logging:
       result: off
       resultsettable: info
 
-# springdoc:
+springdoc:
 #  api-docs.path: api-docs
 #  swagger-ui:
 #    path: swagger-ui.html
 #    operationsSorter: method
+  version: v0
 
 management:
   server:

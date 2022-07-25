@@ -45,6 +45,7 @@ spring:
         use_sql_comments: true
     generate-ddl: true
     show_sql: true   # console sql 
+  defer-datasource-initialization: true
   h2:
     console: 
       enabled: true
@@ -66,11 +67,12 @@ logging:
       result: off
       resultsettable: info
 
-# springdoc:
+springdoc:
 #  api-docs.path: api-docs
 #  swagger-ui:
 #    path: swagger-ui.html
 #    operationsSorter: method
+  version: v0
 
 management:
   server:
