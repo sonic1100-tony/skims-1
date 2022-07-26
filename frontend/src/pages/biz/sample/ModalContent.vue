@@ -1,20 +1,4 @@
 <template>
-  <div class="form-elements">
-    <div class="row">
-      <div class="flex xs12">
-        <va-card :title="$t('forms.inputs.title')">
-          <va-card-content>
-            <form>
-              <div class="row">
-                <va-button class="mr-2 mb-2" size="small" @click="search()">검색</va-button>
-                <va-button class="mr-2 mb-2" size="small" @click="showModal = !showModal">레이어팝업</va-button>
-              </div>
-            </form>
-          </va-card-content>
-        </va-card>
-      </div>
-    </div>
-  </div>
   <div class="markup-tables flex">
     <va-card :title="$t('tables.basic')" class="flex mb-4">
       <va-card-content>
@@ -45,42 +29,20 @@
         </div>
       </va-card-content>
     </va-card>
-  </div>
 
-  <va-modal
-    v-model="showModal"
-    hide-default-actions
-    overlay-opacity="0.2"
-  >
-    <template #header>
-      <h2>Custom header</h2>
-    </template>
-    <div>
-      <ModalContent/>
-    </div>
-    <template #footer>
-      <va-button>
-        Custom action
-      </va-button>
-    </template>
-  </va-modal>
+  </div>
 
 </template>
 
 <script>
 import axios from 'axios'
 import data from '@/data/tables/markup-table/data.json'
-import ModalContent from './ModalContent'
 
 export default {
-  components: {
-    ModalContent
-  },
   data () {
     return {
       users: data.slice(0, 8),
       todoList: [],
-      showModal: false,
     }
   },
   methods: {
