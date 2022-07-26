@@ -34,16 +34,16 @@ LTS버전으로 설치진행
 ```
 $ npm install --global yarn
 
-$ npm install
+$ yarn install
 
 # serve with hot reload at localhost:8080 by default.
-$ npm run serve
+$ yarn serve
 
 # build for production
-$ npm run build
+$ yarn build
 
 # build for production and view the bundle analyzer report.
-$ npm run build --report
+$ yarn build --report
 ```
 
 ## 2. 참고원본소스
