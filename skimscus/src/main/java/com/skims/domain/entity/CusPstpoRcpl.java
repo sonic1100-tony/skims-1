@@ -8,7 +8,7 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -46,11 +46,11 @@ public class CusPstpoRcpl implements Serializable {
 
     @Column(name = "ap_nd_dthms", nullable = false)
     @Schema(description = "적용종료일시", nullable = false)
-    private Date apNdDthms; //--적용종료일시
+    private Timestamp apNdDthms; //--적용종료일시
 
     @Column(name = "ap_str_dthms", nullable = false)
     @Schema(description = "적용시작일시", nullable = false)
-    private Date apStrDthms; //--적용시작일시
+    private Timestamp apStrDthms; //--적용시작일시
 
     @Column(name = "pstpo_rcpl_flgcd", length = 10, nullable = true)
     @Schema(description = "우편물수령지구분코드", nullable = true)
@@ -66,7 +66,7 @@ public class CusPstpoRcpl implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -74,10 +74,10 @@ public class CusPstpoRcpl implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public CusPstpoRcpl(String ctmno, Date apNdDthms, Date apStrDthms, String pstpoRcplFlgcd, String chDlno, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public CusPstpoRcpl(String ctmno, Timestamp apNdDthms, Timestamp apStrDthms, String pstpoRcplFlgcd, String chDlno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.ctmno = ctmno;
         this.apNdDthms = apNdDthms;
         this.apStrDthms = apStrDthms;

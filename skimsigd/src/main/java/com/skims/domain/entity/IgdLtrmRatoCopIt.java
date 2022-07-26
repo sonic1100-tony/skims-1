@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -73,14 +74,14 @@ public class IgdLtrmRatoCopIt implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public IgdLtrmRatoCopIt(String ltrmRtTablFlgcd, String inOutFlgcd, BigDecimal itIdcOrdr, Date apStrdt, Date apNddt, String rtItcdAtrvl, String rtItCdnm, String mdfUsrId, Date inpDthms, Date mdfDthms) {
+    public IgdLtrmRatoCopIt(String ltrmRtTablFlgcd, String inOutFlgcd, BigDecimal itIdcOrdr, Date apStrdt, Date apNddt, String rtItcdAtrvl, String rtItCdnm, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
         this.ltrmRtTablFlgcd = ltrmRtTablFlgcd;
         this.inOutFlgcd = inOutFlgcd;
         this.itIdcOrdr = itIdcOrdr;

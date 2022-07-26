@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -202,7 +203,7 @@ public class FinSlpSpc implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -210,10 +211,10 @@ public class FinSlpSpc implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public FinSlpSpc(Date slpdt, String slpno, String slpLnno, String dbcrFlgcd, String ntaccCd, String mnbrnBjNtaccCd, String actOrgcd, String mncd, BigDecimal woncrPoamt, BigDecimal fcPoamt, BigDecimal apXcrt, String dltfpFlgcd, String dltcd, String ikdGrpcd, String insImcd, String invlnGdcd, String ldgno, String ldgKndcd, String bsnsCnnnoFlgcd, String bsnsCnnno, Date bsnsCnndt, String dhOrgcd, String dhStfno, String bzcsO1Dvcd, String bzcsO2Dvcd, String rrOrgcd, String bdgOrgcd, String dlplcFlgcd, String dlpno, String crdCmpcd, String fndcd, String notsMtt, String noteMtt, String bzcsDvExecYn, String actUntFlgcd, String erpTsYn, String erpTsdt, String cuSbWrkYn, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public FinSlpSpc(Date slpdt, String slpno, String slpLnno, String dbcrFlgcd, String ntaccCd, String mnbrnBjNtaccCd, String actOrgcd, String mncd, BigDecimal woncrPoamt, BigDecimal fcPoamt, BigDecimal apXcrt, String dltfpFlgcd, String dltcd, String ikdGrpcd, String insImcd, String invlnGdcd, String ldgno, String ldgKndcd, String bsnsCnnnoFlgcd, String bsnsCnnno, Date bsnsCnndt, String dhOrgcd, String dhStfno, String bzcsO1Dvcd, String bzcsO2Dvcd, String rrOrgcd, String bdgOrgcd, String dlplcFlgcd, String dlpno, String crdCmpcd, String fndcd, String notsMtt, String noteMtt, String bzcsDvExecYn, String actUntFlgcd, String erpTsYn, String erpTsdt, String cuSbWrkYn, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.slpdt = slpdt;
         this.slpno = slpno;
         this.slpLnno = slpLnno;

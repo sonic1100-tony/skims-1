@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -323,7 +324,7 @@ public class IgdGdCvr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -331,10 +332,10 @@ public class IgdGdCvr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public IgdGdCvr(String gdcd, String cvrcd, Date apNddt, Date apStrdt, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, Date cvrPerdt, String cvrClaCn, String cvrBaTrtFlgcd, String isBjYn, String isamtNeedYn, String prmAdmYn, String prmSumBjYn, String crLvlCvrYn, String pblctOutYn, String scrIdcCvrGpcd, String pymXmpAvYn, String xtnAvYn, String dtInpscXstnYn, String ageWkctFlgcd, BigDecimal mnIsAge, BigDecimal mxIsAge, String isAvSexcd, String mrrdBjCvrYn, String onwClaFlgcd, String invcOutPrg, String plyOutPrg1, String plyOutPrg2, String inpRtYn, BigDecimal lowtInpRt, BigDecimal mxInpRt, String mdcsRgtBjYn, String autoRnwAvYn, String cvrDbisFlgcd, String rnwAfCvrcd, String isAvDrveTycd, String isAvRelFlgcd, String pymCyccd, Date slStrdt, Date slNddt, String dtScrId, String rnwXcCvrYn, Date rlSlOpndt, Date rlSlNddt, String coobjIsAvYn, String pymtmAtndMtt, Date nrdpsSlStrdt, Date nrdpsSlNddt, String rlpmiCvrYn, String cvrTrtGpFlgcd, BigDecimal rnwCvrNclmDscrt, BigDecimal rwcvrNclmAdDscrt, BigDecimal rwcvrNclmAdDctrm, String rmimcXcptPrmexBjyn, String prsClmCvrcd, String cvrXcptDlcd, String ndsXcFlgcd, String clmNdsXcCvrcd, String cvrDcFlgcd, String indpdTrtYn, String indpdTrtGdcd, BigDecimal gdCvrDscrt, String sbPymTpcd, String cvrXtnDlFlgcd, BigDecimal claSeqno, String ibnrFlgcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public IgdGdCvr(String gdcd, String cvrcd, Date apNddt, Date apStrdt, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, Date cvrPerdt, String cvrClaCn, String cvrBaTrtFlgcd, String isBjYn, String isamtNeedYn, String prmAdmYn, String prmSumBjYn, String crLvlCvrYn, String pblctOutYn, String scrIdcCvrGpcd, String pymXmpAvYn, String xtnAvYn, String dtInpscXstnYn, String ageWkctFlgcd, BigDecimal mnIsAge, BigDecimal mxIsAge, String isAvSexcd, String mrrdBjCvrYn, String onwClaFlgcd, String invcOutPrg, String plyOutPrg1, String plyOutPrg2, String inpRtYn, BigDecimal lowtInpRt, BigDecimal mxInpRt, String mdcsRgtBjYn, String autoRnwAvYn, String cvrDbisFlgcd, String rnwAfCvrcd, String isAvDrveTycd, String isAvRelFlgcd, String pymCyccd, Date slStrdt, Date slNddt, String dtScrId, String rnwXcCvrYn, Date rlSlOpndt, Date rlSlNddt, String coobjIsAvYn, String pymtmAtndMtt, Date nrdpsSlStrdt, Date nrdpsSlNddt, String rlpmiCvrYn, String cvrTrtGpFlgcd, BigDecimal rnwCvrNclmDscrt, BigDecimal rwcvrNclmAdDscrt, BigDecimal rwcvrNclmAdDctrm, String rmimcXcptPrmexBjyn, String prsClmCvrcd, String cvrXcptDlcd, String ndsXcFlgcd, String clmNdsXcCvrcd, String cvrDcFlgcd, String indpdTrtYn, String indpdTrtGdcd, BigDecimal gdCvrDscrt, String sbPymTpcd, String cvrXtnDlFlgcd, BigDecimal claSeqno, String ibnrFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.gdcd = gdcd;
         this.cvrcd = cvrcd;
         this.apNddt = apNddt;

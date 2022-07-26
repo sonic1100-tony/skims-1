@@ -6,11 +6,11 @@
 **/
 package com.skims.domain.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.time.LocalDateTime;
-
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -21,12 +21,12 @@ import javax.persistence.Id;
 // import javax.persistence.TemporalType;
 import javax.persistence.Table;
 
-import com.skims.domain.listener.InsInsCrListener;
-
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import com.skims.domain.listener.InsInsCrListener;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
@@ -64,11 +64,11 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private LocalDateTime ndsApStrDthms; //--배서승인시작일시
+    private Timestamp ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private LocalDateTime ndsApNdDthms; //--배서승인종료일시
+    private Timestamp ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "fnl_cr_stcd", length = 10, nullable = true)
     @Schema(description = "최종계약상태코드", nullable = true)
@@ -1024,7 +1024,7 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "nwcr_scan_cplt_dthms", nullable = true)
     @Schema(description = "신계약스캔완료일시", nullable = true)
-    private Date nwcrScanCpltDthms; //--신계약스캔완료일시
+    private Timestamp nwcrScanCpltDthms; //--신계약스캔완료일시
 
     @Column(name = "gu_plyno", length = 16, nullable = true)
     @Schema(description = "구증권번호", nullable = true)
@@ -1072,7 +1072,7 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -1080,11 +1080,11 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
-    // 너무 길어 오류가 나서 Comment처리 이병관
-    //@Builder
-    // public InsInsCr(String plyno, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Date ndsApStrDthms, Date ndsApNdDthms, String fnlCrStcd, String fnlCrDtStcd, String fnlPartCvrStcd, Date fnlCrStChdt, Date cnrdt, String plno, BigDecimal cgafChSeqno, BigDecimal fnlPymSeq, String fnlPymYymm, String plyLvlFlgcd, String gdcd, String ikdGrpcd, String insImcd, String nwRnwFlgcd, Date apldt, String trmSctFlgcd, Date insSt, String insStHms, Date insClstr, String insClstrHms, BigDecimal insDays, BigDecimal instrMc, BigDecimal instrYyct, BigDecimal condtTApPrm, String pymMtdcd, String ceRowcd, String plyRcMtdcd, String holoSignYn, String grCrYn, String crChncd, String cprtbAdmno, String cmpgBjYn, BigDecimal nrdct, String udrtkTycd, String crycd, String otcmMgCmpcd, String otcmPlyno, Date otcmPlySsdt, String agmtAqrRtFlgcd, String nscYn, String bkAdmno, String bkBrcd, String bkExtnQfp, String bkIpps, String hscsHsFlgcd, String psCstYn, String rtAqrRqno, String onwCrFlgcd, Date rvCcldt, BigDecimal fmlct, String bzcsQtrtApYn, String prortShtmFlgcd, String samePlyFlgcd, String dcXcApFlgcd, String pypofSymb, BigDecimal rgltVltct, BigDecimal rgltVltPoct, String rgltVltcd, String isCrrcd, String spcXccd, String dtyPymMtdcd, String pstRpblIsYn, String gnCoObjFlgcd, String coObjAsno, String bfcrIscmp, String bfcrIkdcd, String bfcrYear, String bfcrNo, Date bfcrInsSt, Date bfcrInsClstr, BigDecimal bfcrAprt, String dvpnsPlyno, String dvpnsJbcd, String udrtkGuArecd, String udrtkGrdcd, String sngCrFlgcd, String insItmSmccd, BigDecimal fstiRpPrm, String dcXcGrdcd, BigDecimal aSctCt, BigDecimal bSctCt, String bfcrDcXcGrdcd, String dcXcSameGrdyn, String rpblInsPlyno, Date repyNtRcpdt, BigDecimal repyNtRcpSeqno, String xwpyRtntmNtpyYn, BigDecimal y1ClmCt, String y1ClmYn, BigDecimal y3ClmCt, String vltSpcXccd, String xacd, String xcCyccd, String crTpcd, String hltInsIsYn, String unfRtApYn, String avgAgeFlgcd, BigDecimal dpsrt, String dpstPrmCcFlgcd, String xcPrdy, String isTpcd, String ssngArecd, String ssst, String ssngOjccd, String trfRidcd, String ssngCmpnm, String nrdpsAdmMtdcd, String stdsbRkGrdcd, String stdsbFlgcd, String rlStdsb, String prctcPln, String prctcNm, BigDecimal prctcMntct, String dmgrtMdCfcapBzmno, String dmgrtMdCfcCrpno, String dmgrtMdCfcapYn, BigDecimal fcntrDmgrt, BigDecimal dmgrtMdCfc, String fcntrSclcd, BigDecimal ccPrm, String nkorRsYn, String insRtFlgcd, String apCvrFlgcd, BigDecimal chafAnnuApprm, String rtAqrUntFlgcd, String rtAqrStncd, String bsnsChrpsStfno, String intnRltno, String cstcpFlgcd, String chrAdmrStfno, String nvgtnArecd, String etNvgtnArenm, String condtQtrtFrcapYn, BigDecimal ssPlyct, String trsprCmpnm, String dstcd, BigDecimal spclTrDst, BigDecimal trDays, Date snddt, Date arvdt, String lowtPrmApYn, Date slfdt, String outusMncd, String ivamtPrtYn, String blYn, String vpClm, String dcMtdcd, BigDecimal dvdldCt, String xpiptOpFlgcd, String cargDtFlgcd, String trtYymm, String fltno, String fltDcYn, String shtmXcYn, String annuShtmFlgcd, String opCrano, BigDecimal opCrChSeq, String opCrNapcYn, String nvCtmno, BigDecimal nvCprtEntpSeqno, String xcCtmno, BigDecimal xcCprtEntpSeqno, String marneOndsNo, String nvgtnSctDstcd, String inlwtSlngYn, String cmpxTrYn, String prvsnDcnFlgcd, String crObjnm, String pymTrmFlgcd, BigDecimal pymTrm, String pymTrmcd, BigDecimal rlPymTrm, String ndFlgcd, BigDecimal nd, String ndcd, BigDecimal rlNdTrm, String ndRtamtPyTpcd, Date inrInsCrStrdt, Date inrInsCrNddt, String pymCyccd, String typeFlgcd, BigDecimal dfrTrm, String mwPyMtdcd, BigDecimal rviNt, Date rviNtCrdt, Date anPyStdt, BigDecimal anPyAge, BigDecimal anPyTrm, BigDecimal annuAnPyCt, String anPytcd, BigDecimal anPyGirt, String txPfFlgcd, String ihtYn, BigDecimal txPfamt, String txPfRgtFlgcd, String txPfCncd, Date txPfCnldt, String txPfGdCsfcd, String crCvrIsYn, String cvYn, String grCrFlgcd, BigDecimal grDscrt, Date pymXmpStdt, String avgRtApYn, BigDecimal manAvgApAge, BigDecimal fmlAvgApAge, String manAvgInjrRnkcd, String fmlAvgInjrRnkcd, String manAvgDrveTycd, String fmlAvgDrveTycd, String plcd, String ibnfPyTpcd, String drveTycd, String drveCrUsecd, String embrMinsrYn, String sbPymRqYn, String dcStFlgcd, String aplTycd, String sepCrFlgcd, String ibnfSbPymYn, Date ibnfSbPymSt, Date rnwNddt, String signMtdcd, String ndSepRtnTycd, String ndSepPyMtdcd, BigDecimal baPrm, BigDecimal apPrm, BigDecimal stdbdPrm, BigDecimal sustdPrm, String befoPlyno, String fnlDhStfno, String gdxpnSsBjYn, String selfCrYn, String rdchCrYn, String crInfoCvapYn, String gdxpnTrnmYn, String nwcrScanBjYn, String nwcrScanCpltYn, Date nwcrScanCpltDthms, String guPlyno, String guFireGdcd, String guFireGdnm, String dcPlyno, String pprPlyno, String grCtmno, String bdlPymYn, String rltnPlyno, String fnDlRlOwnrFlgcd, String mgCmpcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    // Parmaeter가 너무 많아 Comppile중 오류 Comment처리
+    // @Builder
+    // public InsInsCr(String plyno, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String fnlCrStcd, String fnlCrDtStcd, String fnlPartCvrStcd, Date fnlCrStChdt, Date cnrdt, String plno, BigDecimal cgafChSeqno, BigDecimal fnlPymSeq, String fnlPymYymm, String plyLvlFlgcd, String gdcd, String ikdGrpcd, String insImcd, String nwRnwFlgcd, Date apldt, String trmSctFlgcd, Date insSt, String insStHms, Date insClstr, String insClstrHms, BigDecimal insDays, BigDecimal instrMc, BigDecimal instrYyct, BigDecimal condtTApPrm, String pymMtdcd, String ceRowcd, String plyRcMtdcd, String holoSignYn, String grCrYn, String crChncd, String cprtbAdmno, String cmpgBjYn, BigDecimal nrdct, String udrtkTycd, String crycd, String otcmMgCmpcd, String otcmPlyno, Date otcmPlySsdt, String agmtAqrRtFlgcd, String nscYn, String bkAdmno, String bkBrcd, String bkExtnQfp, String bkIpps, String hscsHsFlgcd, String psCstYn, String rtAqrRqno, String onwCrFlgcd, Date rvCcldt, BigDecimal fmlct, String bzcsQtrtApYn, String prortShtmFlgcd, String samePlyFlgcd, String dcXcApFlgcd, String pypofSymb, BigDecimal rgltVltct, BigDecimal rgltVltPoct, String rgltVltcd, String isCrrcd, String spcXccd, String dtyPymMtdcd, String pstRpblIsYn, String gnCoObjFlgcd, String coObjAsno, String bfcrIscmp, String bfcrIkdcd, String bfcrYear, String bfcrNo, Date bfcrInsSt, Date bfcrInsClstr, BigDecimal bfcrAprt, String dvpnsPlyno, String dvpnsJbcd, String udrtkGuArecd, String udrtkGrdcd, String sngCrFlgcd, String insItmSmccd, BigDecimal fstiRpPrm, String dcXcGrdcd, BigDecimal aSctCt, BigDecimal bSctCt, String bfcrDcXcGrdcd, String dcXcSameGrdyn, String rpblInsPlyno, Date repyNtRcpdt, BigDecimal repyNtRcpSeqno, String xwpyRtntmNtpyYn, BigDecimal y1ClmCt, String y1ClmYn, BigDecimal y3ClmCt, String vltSpcXccd, String xacd, String xcCyccd, String crTpcd, String hltInsIsYn, String unfRtApYn, String avgAgeFlgcd, BigDecimal dpsrt, String dpstPrmCcFlgcd, String xcPrdy, String isTpcd, String ssngArecd, String ssst, String ssngOjccd, String trfRidcd, String ssngCmpnm, String nrdpsAdmMtdcd, String stdsbRkGrdcd, String stdsbFlgcd, String rlStdsb, String prctcPln, String prctcNm, BigDecimal prctcMntct, String dmgrtMdCfcapBzmno, String dmgrtMdCfcCrpno, String dmgrtMdCfcapYn, BigDecimal fcntrDmgrt, BigDecimal dmgrtMdCfc, String fcntrSclcd, BigDecimal ccPrm, String nkorRsYn, String insRtFlgcd, String apCvrFlgcd, BigDecimal chafAnnuApprm, String rtAqrUntFlgcd, String rtAqrStncd, String bsnsChrpsStfno, String intnRltno, String cstcpFlgcd, String chrAdmrStfno, String nvgtnArecd, String etNvgtnArenm, String condtQtrtFrcapYn, BigDecimal ssPlyct, String trsprCmpnm, String dstcd, BigDecimal spclTrDst, BigDecimal trDays, Date snddt, Date arvdt, String lowtPrmApYn, Date slfdt, String outusMncd, String ivamtPrtYn, String blYn, String vpClm, String dcMtdcd, BigDecimal dvdldCt, String xpiptOpFlgcd, String cargDtFlgcd, String trtYymm, String fltno, String fltDcYn, String shtmXcYn, String annuShtmFlgcd, String opCrano, BigDecimal opCrChSeq, String opCrNapcYn, String nvCtmno, BigDecimal nvCprtEntpSeqno, String xcCtmno, BigDecimal xcCprtEntpSeqno, String marneOndsNo, String nvgtnSctDstcd, String inlwtSlngYn, String cmpxTrYn, String prvsnDcnFlgcd, String crObjnm, String pymTrmFlgcd, BigDecimal pymTrm, String pymTrmcd, BigDecimal rlPymTrm, String ndFlgcd, BigDecimal nd, String ndcd, BigDecimal rlNdTrm, String ndRtamtPyTpcd, Date inrInsCrStrdt, Date inrInsCrNddt, String pymCyccd, String typeFlgcd, BigDecimal dfrTrm, String mwPyMtdcd, BigDecimal rviNt, Date rviNtCrdt, Date anPyStdt, BigDecimal anPyAge, BigDecimal anPyTrm, BigDecimal annuAnPyCt, String anPytcd, BigDecimal anPyGirt, String txPfFlgcd, String ihtYn, BigDecimal txPfamt, String txPfRgtFlgcd, String txPfCncd, Date txPfCnldt, String txPfGdCsfcd, String crCvrIsYn, String cvYn, String grCrFlgcd, BigDecimal grDscrt, Date pymXmpStdt, String avgRtApYn, BigDecimal manAvgApAge, BigDecimal fmlAvgApAge, String manAvgInjrRnkcd, String fmlAvgInjrRnkcd, String manAvgDrveTycd, String fmlAvgDrveTycd, String plcd, String ibnfPyTpcd, String drveTycd, String drveCrUsecd, String embrMinsrYn, String sbPymRqYn, String dcStFlgcd, String aplTycd, String sepCrFlgcd, String ibnfSbPymYn, Date ibnfSbPymSt, Date rnwNddt, String signMtdcd, String ndSepRtnTycd, String ndSepPyMtdcd, BigDecimal baPrm, BigDecimal apPrm, BigDecimal stdbdPrm, BigDecimal sustdPrm, String befoPlyno, String fnlDhStfno, String gdxpnSsBjYn, String selfCrYn, String rdchCrYn, String crInfoCvapYn, String gdxpnTrnmYn, String nwcrScanBjYn, String nwcrScanCpltYn, Timestamp nwcrScanCpltDthms, String guPlyno, String guFireGdcd, String guFireGdnm, String dcPlyno, String pprPlyno, String grCtmno, String bdlPymYn, String rltnPlyno, String fnDlRlOwnrFlgcd, String mgCmpcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
     //     this.plyno = plyno;
     //     this.apNddt = apNddt;
     //     this.apStrdt = apStrdt;

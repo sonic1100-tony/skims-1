@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -71,11 +72,11 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Date ndsApStrDthms; //--배서승인시작일시
+    private Timestamp ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Date ndsApNdDthms; //--배서승인종료일시
+    private Timestamp ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "ctmno", length = 13, nullable = true)
     @Schema(description = "고객번호", nullable = true)
@@ -263,7 +264,7 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -271,10 +272,10 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsAutoTfRq(String plynoOrLnno, String autoTfCgKndcd, Date apNddt, Date apStrdt, String ndsno, BigDecimal olcrrSeqno, String valdNdsYn, Date ndsApStrDthms, Date ndsApNdDthms, String ctmno, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String tfTpcd, String bkBrcd, String bkBrnm, String crdValdTrm, String tfRqFlgcd, String dpsrOrCrdOwrnm, String ctmDscno, String crtRelcd, String ntTfHpdyCd, String tfDlMetcd, String autoTfRqPtncd, String ptcrdSsYn, Date rqRqudt, String tfRqDlStcd, Date rqRstRcpdt, String bdlTfYn, String bncRmactSynchYn, String chCrdno, String chCrdValdTrm, String tfRqVncErcd, String tfRqWdcmpErcd, BigDecimal atMntct, String tfErFlgcd, Date rqdt, Date cnldt, Date cnRqudt, String tfCnDlStcd, String lnPlyno, String frcCrtYn, String autoTfRqdcSsno, String dpsrTlno, String dhCmpcd, String fbsCvYn, Date ctmRqdt, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String rlPyrNo, String vocNo, String vocHdcftRgtYn, String epayFlgcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsAutoTfRq(String plynoOrLnno, String autoTfCgKndcd, Date apNddt, Date apStrdt, String ndsno, BigDecimal olcrrSeqno, String valdNdsYn, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String ctmno, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String tfTpcd, String bkBrcd, String bkBrnm, String crdValdTrm, String tfRqFlgcd, String dpsrOrCrdOwrnm, String ctmDscno, String crtRelcd, String ntTfHpdyCd, String tfDlMetcd, String autoTfRqPtncd, String ptcrdSsYn, Date rqRqudt, String tfRqDlStcd, Date rqRstRcpdt, String bdlTfYn, String bncRmactSynchYn, String chCrdno, String chCrdValdTrm, String tfRqVncErcd, String tfRqWdcmpErcd, BigDecimal atMntct, String tfErFlgcd, Date rqdt, Date cnldt, Date cnRqudt, String tfCnDlStcd, String lnPlyno, String frcCrtYn, String autoTfRqdcSsno, String dpsrTlno, String dhCmpcd, String fbsCvYn, Date ctmRqdt, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String rlPyrNo, String vocNo, String vocHdcftRgtYn, String epayFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.plynoOrLnno = plynoOrLnno;
         this.autoTfCgKndcd = autoTfCgKndcd;
         this.apNddt = apNddt;

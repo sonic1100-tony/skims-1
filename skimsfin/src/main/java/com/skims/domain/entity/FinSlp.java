@@ -9,6 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -77,7 +78,7 @@ public class FinSlp implements Serializable {
 
     @Column(name = "slp_prv_dthms", nullable = true)
     @Schema(description = "전표결재일시", nullable = true)
-    private Date slpPrvDthms; //--전표결재일시
+    private Timestamp slpPrvDthms; //--전표결재일시
 
     @Column(name = "slp_prv_stfno", length = 50, nullable = true)
     @Schema(description = "전표결재직원번호", nullable = true)
@@ -101,7 +102,7 @@ public class FinSlp implements Serializable {
 
     @Column(name = "ers_dthms", nullable = true)
     @Schema(description = "삭제일시", nullable = true)
-    private Date ersDthms; //--삭제일시
+    private Timestamp ersDthms; //--삭제일시
 
     @Column(name = "act_atrcd", length = 10, nullable = true)
     @Schema(description = "회계속성코드", nullable = true)
@@ -157,7 +158,7 @@ public class FinSlp implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -165,10 +166,10 @@ public class FinSlp implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public FinSlp(String stYymm, Date slpdt, String slpno, String gnSpcFlgcd, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String slpPrvStcd, Date slpPrvDthms, String slpPrvStfno, String crDlOrgcd, Date crDeldt, String crDlno, String slpStcd, Date ersDthms, String actAtrcd, String hdcftSlpPrvStcd, String elecEvdImgBsnno, String elecPrvDcuId, String taccLdgCrtFlgcd, Date ifrsSlpdt, String ifrsSlpno, String actLdgFlgcd, String erpTsYn, String erpTsdt, String erpSyncTaYn, String erpSlpno, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public FinSlp(String stYymm, Date slpdt, String slpno, String gnSpcFlgcd, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String slpPrvStcd, Timestamp slpPrvDthms, String slpPrvStfno, String crDlOrgcd, Date crDeldt, String crDlno, String slpStcd, Timestamp ersDthms, String actAtrcd, String hdcftSlpPrvStcd, String elecEvdImgBsnno, String elecPrvDcuId, String taccLdgCrtFlgcd, Date ifrsSlpdt, String ifrsSlpno, String actLdgFlgcd, String erpTsYn, String erpTsdt, String erpSyncTaYn, String erpSlpno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.stYymm = stYymm;
         this.slpdt = slpdt;
         this.slpno = slpno;

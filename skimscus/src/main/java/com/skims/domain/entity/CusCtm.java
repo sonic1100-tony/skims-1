@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -519,7 +520,7 @@ public class CusCtm implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -527,10 +528,10 @@ public class CusCtm implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public CusCtm(String ctmno, String ctmDscno, String hnglCtmnm, String engCtmnm, String chncCtmnm, String hnglAbrvCtmnm, String engAbrvCtmnm, String ctmTpcd, String crOwnYn, String drveYn, String ctmDatAcqPtncd, String frgDlplFlgcd, String fmllvCtmYn, String hmpagAdr, String cybmy, String smsRcvYn, String rlnmCtfctFilePth, String cntrtStRqYn, String tlRcvYn, String crdifUtlAgreYn, String mailRcvYn, String ntcltMailRcvYn, String bzfmlSmsLmitYn, String rgbrdFlgcd, String mntrBkcd, String mntrBkBrcd, String etAdrFlgcd, String cnnCmpcd, String ctmDscnoFlgcd, String spclRelCtmYn, String pdtRsno, String pdtnm, String indpdMrtmnYn, String dfltPtYn, String dmrcy518InjdYn, String rltnBzwplCd, BigDecimal rltnBzwplSeqno, String psnInfoCvapYn, String rcmnm, String rcmRsno, String dherRcmRelcd, String bzpsTpcd, String ntpSclcd, String bzpsBstnm, String bzpsImnm, BigDecimal empct, BigDecimal slamt, BigDecimal capt, Date fnddt, Date clodt, String dlncd, String bzwplOwnYn, BigDecimal mnPdtOutPdtct, String bdlTfPypsbYn, String stdIndCsfcd, String ntpTycd, String lststFlgcd, String crpno, String clgmmFlgcd, String grFlgcd, String grTpcd, String bzmno, String crpTpcd, String wdgYn, String relgnCd, String fnlEdbcd, String hndpsYn, String hndGrdcd, String hndGrdValdTrm, String hndnm, String hndGrdpaCd, String ntnMrtmnYn, String rwxno, String btplcCd, String grduSch, String slcrFlgcd, String rlBrtyrMndy, String rhTycd, String bldtyCd, String wpcnm, String depnm, String ptn, String bdt, String bnnm, String jbDt, String empTycd, String wrkArecd, String sexcd, String baLifeSadpsYn, String smokYn, String deYn, String htn, String wotYn, String frgRlnmCtfctFlgcd, String ntlcd, String pspno, BigDecimal jbChSeqno, String jbcd, String injrRnkcd, String onwJbCnfFlgcd, Date rltnBzwplPstdt, String rltnBzwplRgtrFlgcd, String rlnmCnfFlgcd, String cnvHpTmstCd, String bornYr, String bornMndy, String rlBornMndy, String mktgAgreYn, String gdintCrdioAgreYn, String donclYn, String dmRcvYn, String mktgSmsRcvYn, String mktgTlRcvYn, String mktgMailRcvYn, String mktgDmRcvYn, String cerOfAgreYn, String drveLicno, String carno, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public CusCtm(String ctmno, String ctmDscno, String hnglCtmnm, String engCtmnm, String chncCtmnm, String hnglAbrvCtmnm, String engAbrvCtmnm, String ctmTpcd, String crOwnYn, String drveYn, String ctmDatAcqPtncd, String frgDlplFlgcd, String fmllvCtmYn, String hmpagAdr, String cybmy, String smsRcvYn, String rlnmCtfctFilePth, String cntrtStRqYn, String tlRcvYn, String crdifUtlAgreYn, String mailRcvYn, String ntcltMailRcvYn, String bzfmlSmsLmitYn, String rgbrdFlgcd, String mntrBkcd, String mntrBkBrcd, String etAdrFlgcd, String cnnCmpcd, String ctmDscnoFlgcd, String spclRelCtmYn, String pdtRsno, String pdtnm, String indpdMrtmnYn, String dfltPtYn, String dmrcy518InjdYn, String rltnBzwplCd, BigDecimal rltnBzwplSeqno, String psnInfoCvapYn, String rcmnm, String rcmRsno, String dherRcmRelcd, String bzpsTpcd, String ntpSclcd, String bzpsBstnm, String bzpsImnm, BigDecimal empct, BigDecimal slamt, BigDecimal capt, Date fnddt, Date clodt, String dlncd, String bzwplOwnYn, BigDecimal mnPdtOutPdtct, String bdlTfPypsbYn, String stdIndCsfcd, String ntpTycd, String lststFlgcd, String crpno, String clgmmFlgcd, String grFlgcd, String grTpcd, String bzmno, String crpTpcd, String wdgYn, String relgnCd, String fnlEdbcd, String hndpsYn, String hndGrdcd, String hndGrdValdTrm, String hndnm, String hndGrdpaCd, String ntnMrtmnYn, String rwxno, String btplcCd, String grduSch, String slcrFlgcd, String rlBrtyrMndy, String rhTycd, String bldtyCd, String wpcnm, String depnm, String ptn, String bdt, String bnnm, String jbDt, String empTycd, String wrkArecd, String sexcd, String baLifeSadpsYn, String smokYn, String deYn, String htn, String wotYn, String frgRlnmCtfctFlgcd, String ntlcd, String pspno, BigDecimal jbChSeqno, String jbcd, String injrRnkcd, String onwJbCnfFlgcd, Date rltnBzwplPstdt, String rltnBzwplRgtrFlgcd, String rlnmCnfFlgcd, String cnvHpTmstCd, String bornYr, String bornMndy, String rlBornMndy, String mktgAgreYn, String gdintCrdioAgreYn, String donclYn, String dmRcvYn, String mktgSmsRcvYn, String mktgTlRcvYn, String mktgMailRcvYn, String mktgDmRcvYn, String cerOfAgreYn, String drveLicno, String carno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.ctmno = ctmno;
         this.ctmDscno = ctmDscno;
         this.hnglCtmnm = hnglCtmnm;

@@ -9,6 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -42,7 +43,7 @@ public class CusCtmCntrtCrr implements Serializable {
 
     @Column(name = "cntrt_dthms", nullable = false)
     @Schema(description = "접촉일시", nullable = false)
-    private Date cntrtDthms; //--접촉일시
+    private Timestamp cntrtDthms; //--접촉일시
 
     @Column(name = "ctmno", length = 13, nullable = false)
     @Schema(description = "고객번호", nullable = false)
@@ -98,7 +99,7 @@ public class CusCtmCntrtCrr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -106,10 +107,10 @@ public class CusCtmCntrtCrr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public CusCtmCntrtCrr(Date cntrtDthms, String ctmno, String cntrtMncd, String cntpsId, String plyno, String wholBsnsDlTpnm, String wholBsnsDlTpDtnm, String ntcBjpsFlgcd, String cntrtDlFlgcd, String isno, Date rqdt, String ctmCntrtRcvCn, String docId, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public CusCtmCntrtCrr(Timestamp cntrtDthms, String ctmno, String cntrtMncd, String cntpsId, String plyno, String wholBsnsDlTpnm, String wholBsnsDlTpDtnm, String ntcBjpsFlgcd, String cntrtDlFlgcd, String isno, Date rqdt, String ctmCntrtRcvCn, String docId, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.cntrtDthms = cntrtDthms;
         this.ctmno = ctmno;
         this.cntrtMncd = cntrtMncd;

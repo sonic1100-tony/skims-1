@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -431,7 +432,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -439,10 +440,10 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsWhpyBj(String pyBjno, Date ppdt, String pyCrTpcd, Date ccStdt, BigDecimal rtamt, BigDecimal pyAvLmamt, BigDecimal pmamtSmamt, BigDecimal pyNt, Date cclWdrReqdt, String pyRsCascd, String pyRsLclcd, String pyRsMdccd, String pyRsSmccd, String pyRs, String exRcvFlgcd, String acDmcyDlYn, Date acDmcyDldt, String whpyDissBjYn, String ndsno, String whpyDissYn, String plyno, BigDecimal incmPrmCrSeqno, String exOrpyBjno, String pyno, Date whpyRqdt, BigDecimal ssno, BigDecimal ssDtno, String lnno, BigDecimal samt, String cllnAutoApFlgcd, String cllnUdwrStfno, String cllnUdRstStcd, Date cllnUdwdt, Date crStdt, String rtamtTpcd, BigDecimal rviCrSeqno, String dhStfno, String orgcd, String brOrgcd, String pybfCrStcd, String pybfCrDtStcd, Date cuCvrEndt, String cfgcd, BigDecimal rndYyct, BigDecimal rndMc, BigDecimal nelpYyct, BigDecimal nelpMc, String apDhtmCd, BigDecimal baGnRndRfamt, BigDecimal cuPcamt, BigDecimal cuNt, BigDecimal cuPartNwcrtDpcs, BigDecimal baRndRfamt, BigDecimal trtGnRndRfamt, BigDecimal gnNelpRfamt, BigDecimal ppyPrm, BigDecimal ppyNt, String cvCnYn, String crBefoFnorgBzmno, String crBefoFnOrgnm, String crDvFlgcd, BigDecimal adAnYpamt, BigDecimal nocrPyamt, Date anrrfStdt, BigDecimal anrrfPcamt, BigDecimal anrrfNt, BigDecimal anrrfDchgRatoCfc, BigDecimal anPyafRpblRfamt, BigDecimal anYyodr, BigDecimal anMgnfSm, BigDecimal ayamt, BigDecimal anSepPyamt, String anFlgcd, BigDecimal relpcSeqno, BigDecimal ystrRfamt, String cllnUdBjFlgcd, Date cuCvrInsSt, BigDecimal gnNelpMntRfamt, BigDecimal gnNelpMitrmRfamt, BigDecimal rkPrm, String embrNrdpsSexcd, BigDecimal mwPyAfRrfnd, BigDecimal mwOpnRrfndPcamt, Date rcpdt, String fireLbtrsCnRscd, String exRcvRscd, Date anRcRckdt, BigDecimal anRcYyodr, BigDecimal anRcLmamt, BigDecimal anActVlamt, BigDecimal remnTxXcamt, Date dedt, Date plyRcdt, BigDecimal ntdtdIcamtAyamt, BigDecimal rkrtdIcamtAyamt, BigDecimal bzcsdIcamtAyamt, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsWhpyBj(String pyBjno, Date ppdt, String pyCrTpcd, Date ccStdt, BigDecimal rtamt, BigDecimal pyAvLmamt, BigDecimal pmamtSmamt, BigDecimal pyNt, Date cclWdrReqdt, String pyRsCascd, String pyRsLclcd, String pyRsMdccd, String pyRsSmccd, String pyRs, String exRcvFlgcd, String acDmcyDlYn, Date acDmcyDldt, String whpyDissBjYn, String ndsno, String whpyDissYn, String plyno, BigDecimal incmPrmCrSeqno, String exOrpyBjno, String pyno, Date whpyRqdt, BigDecimal ssno, BigDecimal ssDtno, String lnno, BigDecimal samt, String cllnAutoApFlgcd, String cllnUdwrStfno, String cllnUdRstStcd, Date cllnUdwdt, Date crStdt, String rtamtTpcd, BigDecimal rviCrSeqno, String dhStfno, String orgcd, String brOrgcd, String pybfCrStcd, String pybfCrDtStcd, Date cuCvrEndt, String cfgcd, BigDecimal rndYyct, BigDecimal rndMc, BigDecimal nelpYyct, BigDecimal nelpMc, String apDhtmCd, BigDecimal baGnRndRfamt, BigDecimal cuPcamt, BigDecimal cuNt, BigDecimal cuPartNwcrtDpcs, BigDecimal baRndRfamt, BigDecimal trtGnRndRfamt, BigDecimal gnNelpRfamt, BigDecimal ppyPrm, BigDecimal ppyNt, String cvCnYn, String crBefoFnorgBzmno, String crBefoFnOrgnm, String crDvFlgcd, BigDecimal adAnYpamt, BigDecimal nocrPyamt, Date anrrfStdt, BigDecimal anrrfPcamt, BigDecimal anrrfNt, BigDecimal anrrfDchgRatoCfc, BigDecimal anPyafRpblRfamt, BigDecimal anYyodr, BigDecimal anMgnfSm, BigDecimal ayamt, BigDecimal anSepPyamt, String anFlgcd, BigDecimal relpcSeqno, BigDecimal ystrRfamt, String cllnUdBjFlgcd, Date cuCvrInsSt, BigDecimal gnNelpMntRfamt, BigDecimal gnNelpMitrmRfamt, BigDecimal rkPrm, String embrNrdpsSexcd, BigDecimal mwPyAfRrfnd, BigDecimal mwOpnRrfndPcamt, Date rcpdt, String fireLbtrsCnRscd, String exRcvRscd, Date anRcRckdt, BigDecimal anRcYyodr, BigDecimal anRcLmamt, BigDecimal anActVlamt, BigDecimal remnTxXcamt, Date dedt, Date plyRcdt, BigDecimal ntdtdIcamtAyamt, BigDecimal rkrtdIcamtAyamt, BigDecimal bzcsdIcamtAyamt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.pyBjno = pyBjno;
         this.ppdt = ppdt;
         this.pyCrTpcd = pyCrTpcd;

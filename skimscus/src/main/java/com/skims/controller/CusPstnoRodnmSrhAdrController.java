@@ -13,7 +13,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,7 +55,7 @@ public class CusPstnoRodnmSrhAdrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = CusPstnoRodnmSrhAdr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @GetMapping("/cuspstnorodnmsrhadrs")
-    public ResponseEntity<Page<CusPstnoRodnmSrhAdr>> getAll(@PageableDefault Pageable pageable) {
+    public ResponseEntity<Page<CusPstnoRodnmSrhAdr>> getAll(Pageable pageable) {
         try {
 			log.info("findAll");
             return ResponseEntity.ok().body(repository.findAll(pageable));

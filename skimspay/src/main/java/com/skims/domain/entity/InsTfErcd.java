@@ -8,7 +8,7 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -72,7 +72,7 @@ public class InsTfErcd implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -80,10 +80,10 @@ public class InsTfErcd implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsTfErcd(String tfDlMetcd, String wdcmpOrVnccd, String tfRqDmFlgcd, String tfRqErcd, String erCn, String actErDlbjYn, String erDtCn, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsTfErcd(String tfDlMetcd, String wdcmpOrVnccd, String tfRqDmFlgcd, String tfRqErcd, String erCn, String actErDlbjYn, String erDtCn, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.tfDlMetcd = tfDlMetcd;
         this.wdcmpOrVnccd = wdcmpOrVnccd;
         this.tfRqDmFlgcd = tfRqDmFlgcd;

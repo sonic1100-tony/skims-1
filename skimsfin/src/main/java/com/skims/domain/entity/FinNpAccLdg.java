@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -175,7 +176,7 @@ public class FinNpAccLdg implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -183,10 +184,10 @@ public class FinNpAccLdg implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public FinNpAccLdg(String npAccLdgno, Date crdt, String ntaccCd, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String actOrgcd, String dhOrgcd, String dhStfno, String pyDlO1Flgcd, String pyDlO2Flgcd, String mncd, BigDecimal crWoamt, BigDecimal crFcamt, BigDecimal apXcrt, String ikdGrpcd, String insImcd, String invlnGdcd, String bsnsCnnnoFlgcd, String bsnsCnnno, Date rvdt, String rvOrgcd, String rvXcno, String pyCrno, String pyBjno, String rmStcd, Date fnlRmdt, String notsMtt, String noteMtt, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public FinNpAccLdg(String npAccLdgno, Date crdt, String ntaccCd, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String actOrgcd, String dhOrgcd, String dhStfno, String pyDlO1Flgcd, String pyDlO2Flgcd, String mncd, BigDecimal crWoamt, BigDecimal crFcamt, BigDecimal apXcrt, String ikdGrpcd, String insImcd, String invlnGdcd, String bsnsCnnnoFlgcd, String bsnsCnnno, Date rvdt, String rvOrgcd, String rvXcno, String pyCrno, String pyBjno, String rmStcd, Date fnlRmdt, String notsMtt, String noteMtt, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.npAccLdgno = npAccLdgno;
         this.crdt = crdt;
         this.ntaccCd = ntaccCd;

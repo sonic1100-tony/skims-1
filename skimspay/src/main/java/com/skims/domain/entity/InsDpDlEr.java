@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -139,7 +140,7 @@ public class InsDpDlEr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -147,10 +148,10 @@ public class InsDpDlEr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsDpDlEr(BigDecimal dpDlErSeqno, String plyno, BigDecimal pymSeq, String dpCascd, String dpDtCascd, String rtxKndcd, String dpRstErcd, String fnlPymYymm, String pymCyccd, String pymMtdcd, Date rpdt, BigDecimal rviNt, BigDecimal ptyOrRtnPrm, BigDecimal apPrm, BigDecimal rpamt, String dhStfno, String dppsFlgcd, String rvDlRstcd, String ctmInqAutoTfsno, Date pvlPrdt, String ikdGrpcd, String rvSbno, String frDpRstErcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsDpDlEr(BigDecimal dpDlErSeqno, String plyno, BigDecimal pymSeq, String dpCascd, String dpDtCascd, String rtxKndcd, String dpRstErcd, String fnlPymYymm, String pymCyccd, String pymMtdcd, Date rpdt, BigDecimal rviNt, BigDecimal ptyOrRtnPrm, BigDecimal apPrm, BigDecimal rpamt, String dhStfno, String dppsFlgcd, String rvDlRstcd, String ctmInqAutoTfsno, Date pvlPrdt, String ikdGrpcd, String rvSbno, String frDpRstErcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.dpDlErSeqno = dpDlErSeqno;
         this.plyno = plyno;
         this.pymSeq = pymSeq;

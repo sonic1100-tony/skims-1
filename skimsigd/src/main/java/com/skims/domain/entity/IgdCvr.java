@@ -9,6 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -131,7 +132,7 @@ public class IgdCvr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -139,10 +140,10 @@ public class IgdCvr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public IgdCvr(String cvrcd, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, String indpdTrtCvrYn, Date cvrPerdt, String cvrXpnm, String frGdcd, Date valdStrdt, Date valdNddt, String prstLclcd, String prstMdccd, String prstSmccd, String rlpmiFxamtFlgcd, String gnCncd, String cvrSpcd, String cpytFlgcd, String uiamtStncd, String cmpTrmcd, String wardDiamtFlgcd, String nppHlprmNapcFlgcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public IgdCvr(String cvrcd, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, String indpdTrtCvrYn, Date cvrPerdt, String cvrXpnm, String frGdcd, Date valdStrdt, Date valdNddt, String prstLclcd, String prstMdccd, String prstSmccd, String rlpmiFxamtFlgcd, String gnCncd, String cvrSpcd, String cpytFlgcd, String uiamtStncd, String cmpTrmcd, String wardDiamtFlgcd, String nppHlprmNapcFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.cvrcd = cvrcd;
         this.cvrPrsnm = cvrPrsnm;
         this.cvrKornm = cvrKornm;

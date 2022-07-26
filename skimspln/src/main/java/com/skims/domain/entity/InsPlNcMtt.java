@@ -9,7 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -77,14 +77,14 @@ public class InsPlNcMtt implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsPlNcMtt(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String ncMttItno, BigDecimal qustSeqno, BigDecimal qustSbdSeqno, String rplCn, String etDtRpl, String mdfUsrId, Date inpDthms, Date mdfDthms) {
+    public InsPlNcMtt(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String ncMttItno, BigDecimal qustSeqno, BigDecimal qustSbdSeqno, String rplCn, String etDtRpl, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
         this.plno = plno;
         this.cgafChSeqno = cgafChSeqno;
         this.relpcSeqno = relpcSeqno;

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -221,7 +222,7 @@ public class InsPlAutoTfRq implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -229,10 +230,10 @@ public class InsPlAutoTfRq implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsPlAutoTfRq(String plno, BigDecimal cgafChSeqno, String autoTfCgKndcd, BigDecimal olcrrSeqno, String ctmno, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String tfTpcd, String bkBrcd, String bkBrnm, String crdValdTrm, String tfRqFlgcd, String dpsrOrCrdOwrnm, String ctmDscno, String crtRelcd, String ntTfHpdyCd, String tfDlMetcd, String autoTfRqPtncd, String ptcrdSsYn, Date rqRqudt, String tfRqDlStcd, String tfRqErcd, Date rqRstRcpdt, String bdlTfYn, String bncRmactSynchYn, String chCrdno, String chCrdValdTrm, BigDecimal atMntct, String tfErFlgcd, Date rqdt, Date cnldt, Date cnRqudt, String tfCnDlStcd, String lnPlyno, String dpsrTlno, String dhCmpcd, Date ctmRqdt, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String rlPyrNo, BigDecimal lpntRqamt, String epayFlgcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsPlAutoTfRq(String plno, BigDecimal cgafChSeqno, String autoTfCgKndcd, BigDecimal olcrrSeqno, String ctmno, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String tfTpcd, String bkBrcd, String bkBrnm, String crdValdTrm, String tfRqFlgcd, String dpsrOrCrdOwrnm, String ctmDscno, String crtRelcd, String ntTfHpdyCd, String tfDlMetcd, String autoTfRqPtncd, String ptcrdSsYn, Date rqRqudt, String tfRqDlStcd, String tfRqErcd, Date rqRstRcpdt, String bdlTfYn, String bncRmactSynchYn, String chCrdno, String chCrdValdTrm, BigDecimal atMntct, String tfErFlgcd, Date rqdt, Date cnldt, Date cnRqudt, String tfCnDlStcd, String lnPlyno, String dpsrTlno, String dhCmpcd, Date ctmRqdt, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String rlPyrNo, BigDecimal lpntRqamt, String epayFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.plno = plno;
         this.cgafChSeqno = cgafChSeqno;
         this.autoTfCgKndcd = autoTfCgKndcd;

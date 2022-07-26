@@ -9,6 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -243,14 +244,14 @@ public class IgdLtrmRato implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public IgdLtrmRato(String ltrmRtTablFlgcd, String sno, Date apStrdt, Date apNddt, String copChrvl1, String copChrvl2, String copChrvl3, String copChrvl4, String copChrvl5, String copChrvl6, String copChrvl7, String copChrvl8, String copChrvl9, String copChrvl10, String copChrvl11, String copChrvl12, String copChrvl13, String copChrvl14, String copChrvl15, String copChrvl16, String copChrvl17, String copChrvl18, String copChrvl19, String copChrvl20, String copChrvl21, String outDatVl1, String outDatVl2, String outDatVl3, String outDatVl4, String outDatVl5, String outDatVl6, String outDatVl7, String outDatVl8, String outDatVl9, String outDatVl10, String outDatVl11, String outDatVl12, String outDatVl13, String outDatVl14, String outDatVl15, String outDatVl16, String outDatVl17, String outDatVl18, String outDatVl19, String outDatVl20, String outDatVl21, String outDatVl22, String outDatVl23, String outDatVl24, String outDatVl25, String mdfUsrId, Date inpDthms, Date mdfDthms) {
+    public IgdLtrmRato(String ltrmRtTablFlgcd, String sno, Date apStrdt, Date apNddt, String copChrvl1, String copChrvl2, String copChrvl3, String copChrvl4, String copChrvl5, String copChrvl6, String copChrvl7, String copChrvl8, String copChrvl9, String copChrvl10, String copChrvl11, String copChrvl12, String copChrvl13, String copChrvl14, String copChrvl15, String copChrvl16, String copChrvl17, String copChrvl18, String copChrvl19, String copChrvl20, String copChrvl21, String outDatVl1, String outDatVl2, String outDatVl3, String outDatVl4, String outDatVl5, String outDatVl6, String outDatVl7, String outDatVl8, String outDatVl9, String outDatVl10, String outDatVl11, String outDatVl12, String outDatVl13, String outDatVl14, String outDatVl15, String outDatVl16, String outDatVl17, String outDatVl18, String outDatVl19, String outDatVl20, String outDatVl21, String outDatVl22, String outDatVl23, String outDatVl24, String outDatVl25, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
         this.ltrmRtTablFlgcd = ltrmRtTablFlgcd;
         this.sno = sno;
         this.apStrdt = apStrdt;

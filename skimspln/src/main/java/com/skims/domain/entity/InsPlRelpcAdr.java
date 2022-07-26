@@ -9,7 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -103,7 +103,7 @@ public class InsPlRelpcAdr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -111,10 +111,10 @@ public class InsPlRelpcAdr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsPlRelpcAdr(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String adrUsecd, String adrFlgcd, String ctmno, BigDecimal adrSeqno, String bfBkBrPstno, String nwAdrFlgcd, String refIt, String bkBrPstno, String bkBrBaAdr, String bkBrEtAdr, String ltrmNdsDlFlgcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsPlRelpcAdr(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String adrUsecd, String adrFlgcd, String ctmno, BigDecimal adrSeqno, String bfBkBrPstno, String nwAdrFlgcd, String refIt, String bkBrPstno, String bkBrBaAdr, String bkBrEtAdr, String ltrmNdsDlFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.plno = plno;
         this.cgafChSeqno = cgafChSeqno;
         this.relpcSeqno = relpcSeqno;

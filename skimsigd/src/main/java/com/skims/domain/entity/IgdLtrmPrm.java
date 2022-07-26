@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -163,14 +164,14 @@ public class IgdLtrmPrm implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public IgdLtrmPrm(String gdcd, String cvrcd, String rtKeyAssmbCd, Date apStrdt, Date apNddt, String ndFlgcd, BigDecimal insTrm, String nwRnwFlgcd, String pymTrmFlgcd, BigDecimal pymTrm, String sexcd, String injrRnkcd, String drveTycd, String sustdYn, String cmpLmcd, BigDecimal isAge, String rtFlgVl1, String rtFlgVl2, String rtFlgVl3, String rtFlgVl4, String rtFlgVl5, String rtFlgVl6, String rtFlgVl7, String rtFlgVl8, String rtFlgVl9, String rtFlgVl10, String pymCyccd, BigDecimal stIsamt, BigDecimal bzPrm, String mdfUsrId, Date inpDthms, Date mdfDthms) {
+    public IgdLtrmPrm(String gdcd, String cvrcd, String rtKeyAssmbCd, Date apStrdt, Date apNddt, String ndFlgcd, BigDecimal insTrm, String nwRnwFlgcd, String pymTrmFlgcd, BigDecimal pymTrm, String sexcd, String injrRnkcd, String drveTycd, String sustdYn, String cmpLmcd, BigDecimal isAge, String rtFlgVl1, String rtFlgVl2, String rtFlgVl3, String rtFlgVl4, String rtFlgVl5, String rtFlgVl6, String rtFlgVl7, String rtFlgVl8, String rtFlgVl9, String rtFlgVl10, String pymCyccd, BigDecimal stIsamt, BigDecimal bzPrm, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
         this.gdcd = gdcd;
         this.cvrcd = cvrcd;
         this.rtKeyAssmbCd = rtKeyAssmbCd;

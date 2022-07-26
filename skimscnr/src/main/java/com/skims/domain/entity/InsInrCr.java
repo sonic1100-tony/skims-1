@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -115,7 +116,7 @@ public class InsInrCr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -123,10 +124,10 @@ public class InsInrCr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsInrCr(String plyno, String stYymm, String inrCrDaFlgcd, Date insSt, Date insClstr, String crtCtmno, String crStcd, String crDtStcd, Date stChdt, String hdqtOrgcd, String aregpOrgcd, String dhOrgcd, String dhStfcd, String usrno, BigDecimal inrNaamt, String inrCrDlYn, BigDecimal inrCrNt, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsInrCr(String plyno, String stYymm, String inrCrDaFlgcd, Date insSt, Date insClstr, String crtCtmno, String crStcd, String crDtStcd, Date stChdt, String hdqtOrgcd, String aregpOrgcd, String dhOrgcd, String dhStfcd, String usrno, BigDecimal inrNaamt, String inrCrDlYn, BigDecimal inrCrNt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.plyno = plyno;
         this.stYymm = stYymm;
         this.inrCrDaFlgcd = inrCrDaFlgcd;

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -527,7 +528,7 @@ public class FinPyCr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -535,10 +536,10 @@ public class FinPyCr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public FinPyCr(String pyCrno, String ldgKndcd, String ldgno, Date crdt, String actOrgcd, String rqogCd, String rqfno, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String pylno, String pyplFlgcd, String pyplKndcd, String bkcd, String pyplActno, String dpsr, String pylnm, String pynctTpcd, String dfpcd, String pyMtdcd, String mncd, Date pyPrdt, BigDecimal pyPrWoamt, BigDecimal pyPrFcamt, BigDecimal pyDcnWoamt, BigDecimal pyDcnFcamt, BigDecimal rlPyDcnWoamt, BigDecimal rlPyDcnFcamt, String fxPldoqFlgcd, BigDecimal fxPqamt, BigDecimal apXcrt, Date fcDcndt, String fcDcnStfno, BigDecimal fcDcnApXcrt, String selfYn, String rcrRsno, String rcrNm, String ikdGrpcd, String insImcd, String invlnGdcd, String bsnsCnnnoFlgcd, String bsnsCnnno, String crtDscno, String victmDscno, String nrdpsDscno, String dmgnm, String udrtkTycd, String ndsno, String fndcd, Date apdt, String apOrgcd, String apStfno, String rpAdmcrNo, Date rpAdmcrOutdt, String rpAdmcrOutbjYn, Date dsodt, String bdgDpno, Date pydt, String pyOrgcd, String pyXcno, String chbfCrno, String pyDlO1Flgcd, String pyDlO2Flgcd, Date frDpdt, String frDhOrgcd, String frDhStfno, String pyCrRmTpcd, String jonlYn, String pyDlEryn, String pyErNtMtdcd, Date fcByIptdt, String fcByInpStfno, String rmStcd, String pyCrStcd, Date pyReqdt, Date repyReqdt, String repyRqStfno, String repyRqRscd, Date slpdt, String slpno, Date pyStDvDldt, String pystDvDlStfno, String pystDvDlOrgcd, String pyno, String cclBjPyno, String pyCstno, String cclBjPyCstno, String pyStDvDlno, String cclBjNdsno, Date chrpsDsdt, String chrpsAsmtOrgcd, String chrpsAsmtStfno, String wdraBkcd, String wdraActno, String stYymm, String bdlTfBsnsFlgcd, BigDecimal bdlTfDlSeqno, String notsMtt, BigDecimal pystDvDlSeqno, String bdlRmYn, String rcapmOrgDtFlgcd, String smsPyTpcd, String bsnsAdxFileDscno, String elecEvdImgBsnno, String elecPrvDcuId, String fileEvdGpno, String myctPyBjyn, String dbAccSbjcd, String crdtAccSbjcd, String pyDlFlgcd, Date inrEdamtDldt, String inrRtxno, String smsBjYn, String hpno, String chrCn, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String kkoPayPyYn, String kkoAccId, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public FinPyCr(String pyCrno, String ldgKndcd, String ldgno, Date crdt, String actOrgcd, String rqogCd, String rqfno, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String pylno, String pyplFlgcd, String pyplKndcd, String bkcd, String pyplActno, String dpsr, String pylnm, String pynctTpcd, String dfpcd, String pyMtdcd, String mncd, Date pyPrdt, BigDecimal pyPrWoamt, BigDecimal pyPrFcamt, BigDecimal pyDcnWoamt, BigDecimal pyDcnFcamt, BigDecimal rlPyDcnWoamt, BigDecimal rlPyDcnFcamt, String fxPldoqFlgcd, BigDecimal fxPqamt, BigDecimal apXcrt, Date fcDcndt, String fcDcnStfno, BigDecimal fcDcnApXcrt, String selfYn, String rcrRsno, String rcrNm, String ikdGrpcd, String insImcd, String invlnGdcd, String bsnsCnnnoFlgcd, String bsnsCnnno, String crtDscno, String victmDscno, String nrdpsDscno, String dmgnm, String udrtkTycd, String ndsno, String fndcd, Date apdt, String apOrgcd, String apStfno, String rpAdmcrNo, Date rpAdmcrOutdt, String rpAdmcrOutbjYn, Date dsodt, String bdgDpno, Date pydt, String pyOrgcd, String pyXcno, String chbfCrno, String pyDlO1Flgcd, String pyDlO2Flgcd, Date frDpdt, String frDhOrgcd, String frDhStfno, String pyCrRmTpcd, String jonlYn, String pyDlEryn, String pyErNtMtdcd, Date fcByIptdt, String fcByInpStfno, String rmStcd, String pyCrStcd, Date pyReqdt, Date repyReqdt, String repyRqStfno, String repyRqRscd, Date slpdt, String slpno, Date pyStDvDldt, String pystDvDlStfno, String pystDvDlOrgcd, String pyno, String cclBjPyno, String pyCstno, String cclBjPyCstno, String pyStDvDlno, String cclBjNdsno, Date chrpsDsdt, String chrpsAsmtOrgcd, String chrpsAsmtStfno, String wdraBkcd, String wdraActno, String stYymm, String bdlTfBsnsFlgcd, BigDecimal bdlTfDlSeqno, String notsMtt, BigDecimal pystDvDlSeqno, String bdlRmYn, String rcapmOrgDtFlgcd, String smsPyTpcd, String bsnsAdxFileDscno, String elecEvdImgBsnno, String elecPrvDcuId, String fileEvdGpno, String myctPyBjyn, String dbAccSbjcd, String crdtAccSbjcd, String pyDlFlgcd, Date inrEdamtDldt, String inrRtxno, String smsBjYn, String hpno, String chrCn, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String kkoPayPyYn, String kkoAccId, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.pyCrno = pyCrno;
         this.ldgKndcd = ldgKndcd;
         this.ldgno = ldgno;

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -67,11 +68,11 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Date ndsApStrDthms; //--배서승인시작일시
+    private Timestamp ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Date ndsApNdDthms; //--배서승인종료일시
+    private Timestamp ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "ikd_grpcd", length = 10, nullable = false)
     @Schema(description = "보종군코드", nullable = false)
@@ -351,7 +352,7 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -359,10 +360,10 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsNrdpsTisrdAtr(String plyno, BigDecimal relpcSeqno, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Date ndsApStrDthms, Date ndsApNdDthms, String ikdGrpcd, String nrdpsTisrdFlgcd, String crPlcd, String plCsfcd, String mdNrdpsFlgcd, String gpIsTp, BigDecimal nrdpsOrTisct, BigDecimal fmlct, BigDecimal manPsct, BigDecimal fmlPsct, String rxamBjYn, String twhvcDrveYn, String drveYn, Date insSt, String insStHms, Date insClstr, String insClstrHms, Date rfdClcSt, Date rfdClcClstr, String drveTycd, String brth, String embrYn, String sexcd, BigDecimal age, String jbcd, BigDecimal jbChSeqno, String injrRnkcd, String trfRnkcd, String injrGrdcd, String ptn, String bdt, Date bthdt, Date stbdt, BigDecimal pregRndwk, String mdcsRgtFlgcd, String mdcsRgtStcd, String sttPfsstFlgcd, String bkcd, Date tisrdRcpdt, Date acdisRgtdt, String drveLicSpecd, String paMncd, BigDecimal mnthAvgPa, BigDecimal yearPaTamt, String xcApYn, String brdpsRvpsFlgcd, String dtycd, String rcnBjyn, String dgnUdBjYn, BigDecimal adIrtApChdct, String embrIsAvYn, Date bthPrdt, String nwbbyNm, String nwbbyRsno, Date pregRndwkStdt, String mdcsInqAgreYn, String smokYn, BigDecimal dscrt, String ssngCmpGdnm, String wpcnm, String bnnm, String cePlcd, String xclcBdYn, String unfRtApYn, String twhvcSubCvrtrIsFlgcd, BigDecimal dcAge, String hltAgePrmApTrtIsFlgcd, String hltAgeDcApFlgcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsNrdpsTisrdAtr(String plyno, BigDecimal relpcSeqno, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String ikdGrpcd, String nrdpsTisrdFlgcd, String crPlcd, String plCsfcd, String mdNrdpsFlgcd, String gpIsTp, BigDecimal nrdpsOrTisct, BigDecimal fmlct, BigDecimal manPsct, BigDecimal fmlPsct, String rxamBjYn, String twhvcDrveYn, String drveYn, Date insSt, String insStHms, Date insClstr, String insClstrHms, Date rfdClcSt, Date rfdClcClstr, String drveTycd, String brth, String embrYn, String sexcd, BigDecimal age, String jbcd, BigDecimal jbChSeqno, String injrRnkcd, String trfRnkcd, String injrGrdcd, String ptn, String bdt, Date bthdt, Date stbdt, BigDecimal pregRndwk, String mdcsRgtFlgcd, String mdcsRgtStcd, String sttPfsstFlgcd, String bkcd, Date tisrdRcpdt, Date acdisRgtdt, String drveLicSpecd, String paMncd, BigDecimal mnthAvgPa, BigDecimal yearPaTamt, String xcApYn, String brdpsRvpsFlgcd, String dtycd, String rcnBjyn, String dgnUdBjYn, BigDecimal adIrtApChdct, String embrIsAvYn, Date bthPrdt, String nwbbyNm, String nwbbyRsno, Date pregRndwkStdt, String mdcsInqAgreYn, String smokYn, BigDecimal dscrt, String ssngCmpGdnm, String wpcnm, String bnnm, String cePlcd, String xclcBdYn, String unfRtApYn, String twhvcSubCvrtrIsFlgcd, BigDecimal dcAge, String hltAgePrmApTrtIsFlgcd, String hltAgeDcApFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.plyno = plyno;
         this.relpcSeqno = relpcSeqno;
         this.apNddt = apNddt;

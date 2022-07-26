@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -355,7 +356,7 @@ public class InsPy implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -363,10 +364,10 @@ public class InsPy implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsPy(String pyno, String plyno, String pyCrBrcd, Date pyCrdt, String opyno, String acPyYn, Date acPydt, String pyMtdcd, String exRcvFlgcd, BigDecimal pyUramt, BigDecimal uiamt, BigDecimal pyRsamt, BigDecimal sbPyamt, BigDecimal woncvPyUramt, BigDecimal woncvUiamt, BigDecimal woncvSbPyamt, String mncd, Date xcrtApdt, BigDecimal xcrt, BigDecimal selfChamt, String baamtFlgcd, String pfbRcpsRelcd, String pyBjnm, String pyBjRsBzmno, String rqapsNm, String rqapsRsno, String dlgPyRscd, String bkcd, String actno, String dpsnm, String dpsrRsBzmno, String pyBjDpsrRelcd, String acctBdlrmInpYn, String apTxPfFlgcd, String crDhStfno, String pyCrPtncd, String bdlRmPlyno, String rcpYymm, String rcpNvSeqno, BigDecimal bdlrmRelpcClmpsSeqno, String pyActFlgcd, String ctmno, BigDecimal cprtEntpSeqno, String adtxYn, String cmpPyRltno, String pyStcd, String pyCrno, String tabPyYn, BigDecimal olcrrSeqno, String smsBjYn, String rtamtTpcd, String pyCstno, String lnPyDtFlgcd, String pyBjKndcd, String pyBjVictmRelcd, String evdno, String rmMtdcd, String ovseTfYn, String pyplFlgcd, String ibnfCsFlgcd, String ovsePyBjnm, String ovsePyBjAdr, String ovsePyBknm, String ovsePyBkAdr, String ntnBkcd, String swf, String pyBkCtynm, String pyBkNtnnm, String ovseRmBkTpcd, String oseaCmChrgFlgcd, String ovseRqaplRel, String ovsePyRs, String ovseRcpntRefRs, String ovseRqaplRelCn, String ovsePyRsCn, String ovseActno, BigDecimal pyDlayNt, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsPy(String pyno, String plyno, String pyCrBrcd, Date pyCrdt, String opyno, String acPyYn, Date acPydt, String pyMtdcd, String exRcvFlgcd, BigDecimal pyUramt, BigDecimal uiamt, BigDecimal pyRsamt, BigDecimal sbPyamt, BigDecimal woncvPyUramt, BigDecimal woncvUiamt, BigDecimal woncvSbPyamt, String mncd, Date xcrtApdt, BigDecimal xcrt, BigDecimal selfChamt, String baamtFlgcd, String pfbRcpsRelcd, String pyBjnm, String pyBjRsBzmno, String rqapsNm, String rqapsRsno, String dlgPyRscd, String bkcd, String actno, String dpsnm, String dpsrRsBzmno, String pyBjDpsrRelcd, String acctBdlrmInpYn, String apTxPfFlgcd, String crDhStfno, String pyCrPtncd, String bdlRmPlyno, String rcpYymm, String rcpNvSeqno, BigDecimal bdlrmRelpcClmpsSeqno, String pyActFlgcd, String ctmno, BigDecimal cprtEntpSeqno, String adtxYn, String cmpPyRltno, String pyStcd, String pyCrno, String tabPyYn, BigDecimal olcrrSeqno, String smsBjYn, String rtamtTpcd, String pyCstno, String lnPyDtFlgcd, String pyBjKndcd, String pyBjVictmRelcd, String evdno, String rmMtdcd, String ovseTfYn, String pyplFlgcd, String ibnfCsFlgcd, String ovsePyBjnm, String ovsePyBjAdr, String ovsePyBknm, String ovsePyBkAdr, String ntnBkcd, String swf, String pyBkCtynm, String pyBkNtnnm, String ovseRmBkTpcd, String oseaCmChrgFlgcd, String ovseRqaplRel, String ovsePyRs, String ovseRcpntRefRs, String ovseRqaplRelCn, String ovsePyRsCn, String ovseActno, BigDecimal pyDlayNt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.pyno = pyno;
         this.plyno = plyno;
         this.pyCrBrcd = pyCrBrcd;

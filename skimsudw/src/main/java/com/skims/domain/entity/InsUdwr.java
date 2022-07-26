@@ -9,6 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -73,14 +74,14 @@ public class InsUdwr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsUdwr(String udStfno, String udPlFlgcd, String udPrioRancd, String udlmiTpFlgcd, Date apStrdt, Date apNddt, String asAutcd, String mdfUsrId, Date inpDthms, Date mdfDthms) {
+    public InsUdwr(String udStfno, String udPlFlgcd, String udPrioRancd, String udlmiTpFlgcd, Date apStrdt, Date apNddt, String asAutcd, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
         this.udStfno = udStfno;
         this.udPlFlgcd = udPlFlgcd;
         this.udPrioRancd = udPrioRancd;

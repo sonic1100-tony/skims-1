@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -71,11 +72,11 @@ public class InsCrRelpcAdrCrr implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Date ndsApStrDthms; //--배서승인시작일시
+    private Timestamp ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Date ndsApNdDthms; //--배서승인종료일시
+    private Timestamp ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "adr_flgcd", length = 10, nullable = false)
     @Schema(description = "주소구분코드", nullable = false)
@@ -119,7 +120,7 @@ public class InsCrRelpcAdrCrr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -127,10 +128,10 @@ public class InsCrRelpcAdrCrr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsCrRelpcAdrCrr(String plyno, BigDecimal relpcSeqno, String adrUsecd, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Date ndsApStrDthms, Date ndsApNdDthms, String adrFlgcd, String ctmno, BigDecimal adrSeqno, String bfBkBrPstno, String bkBrBaAdr, String bkBrEtAdr, String nwAdrFlgcd, String refIt, String bkBrPstno, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsCrRelpcAdrCrr(String plyno, BigDecimal relpcSeqno, String adrUsecd, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String adrFlgcd, String ctmno, BigDecimal adrSeqno, String bfBkBrPstno, String bkBrBaAdr, String bkBrEtAdr, String nwAdrFlgcd, String refIt, String bkBrPstno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.plyno = plyno;
         this.relpcSeqno = relpcSeqno;
         this.adrUsecd = adrUsecd;

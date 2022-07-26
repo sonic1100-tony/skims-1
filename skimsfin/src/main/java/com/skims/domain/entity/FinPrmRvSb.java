@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -347,7 +348,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -355,10 +356,10 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public FinPrmRvSb(String rvSbno, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, Date rpdt, String dhOrgcd, String dhStfno, String ikdGrpcd, String insImcd, String invlnGdcd, String ntaccCd, Date cnrdt, String plyno, BigDecimal incmPrmCrSeqno, String ndsno, String ctmno, String crtRsno, Date rpblOpndt, String ltrmCrTotno, String udrtkTycd, String dpCascd, String mntFlgcd, Date dpdt, String rpAdmno, String plno, String bsnsNdsFlgcd, String clsafYn, String totFlgcd, BigDecimal totct, BigDecimal totPrm, BigDecimal woncrPrm, BigDecimal crRnPrm, BigDecimal crDtamt, String mncd, BigDecimal fcPrm, BigDecimal apXcrt, BigDecimal tfCm, String etamtFlgcd, BigDecimal etamt, Date rvdt, String rvOrgcd, String rvXcno, String daCrTpcd, String girAttfErYn, String girDpStcd, Date prmPvlSlpdt, String prmPvlSlpno, String prmPvlSlpLnno, Date ppdt, String ucPrmYn, String msgId, String msgTpCsfcd, Date tlmTsdt, String tlmPno, String tlmSpecd, String spbzFlgcd, String actno, String dpsnm, String crrnm, String inrIkdGrpcd, String inrPlyno, BigDecimal inrPrm, String bkcd, String crdCmpcd, String cclYn, String dhCmpcd, String crdSmamtAryn, String rvDlFlgcd, Date inrEdamtDldt, String inrRtxno, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String agrEntpYn, BigDecimal crRpblPrm, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public FinPrmRvSb(String rvSbno, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, Date rpdt, String dhOrgcd, String dhStfno, String ikdGrpcd, String insImcd, String invlnGdcd, String ntaccCd, Date cnrdt, String plyno, BigDecimal incmPrmCrSeqno, String ndsno, String ctmno, String crtRsno, Date rpblOpndt, String ltrmCrTotno, String udrtkTycd, String dpCascd, String mntFlgcd, Date dpdt, String rpAdmno, String plno, String bsnsNdsFlgcd, String clsafYn, String totFlgcd, BigDecimal totct, BigDecimal totPrm, BigDecimal woncrPrm, BigDecimal crRnPrm, BigDecimal crDtamt, String mncd, BigDecimal fcPrm, BigDecimal apXcrt, BigDecimal tfCm, String etamtFlgcd, BigDecimal etamt, Date rvdt, String rvOrgcd, String rvXcno, String daCrTpcd, String girAttfErYn, String girDpStcd, Date prmPvlSlpdt, String prmPvlSlpno, String prmPvlSlpLnno, Date ppdt, String ucPrmYn, String msgId, String msgTpCsfcd, Date tlmTsdt, String tlmPno, String tlmSpecd, String spbzFlgcd, String actno, String dpsnm, String crrnm, String inrIkdGrpcd, String inrPlyno, BigDecimal inrPrm, String bkcd, String crdCmpcd, String cclYn, String dhCmpcd, String crdSmamtAryn, String rvDlFlgcd, Date inrEdamtDldt, String inrRtxno, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String agrEntpYn, BigDecimal crRpblPrm, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.rvSbno = rvSbno;
         this.crSyscd = crSyscd;
         this.dlTpO1Csfcd = dlTpO1Csfcd;

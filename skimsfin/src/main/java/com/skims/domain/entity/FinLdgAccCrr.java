@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -186,7 +187,7 @@ public class FinLdgAccCrr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -194,10 +195,10 @@ public class FinLdgAccCrr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public FinLdgAccCrr(Date crRmdt, String ldgno, String ldgKndcd, BigDecimal crrSeqno, String ntaccCd, String actOrgcd, String dhOrgcd, String dhStfno, String crRmFlgcd, String mncd, BigDecimal fcCrRmamt, BigDecimal woamtCrRmamt, BigDecimal fcCrTblam, BigDecimal woncrCrTblam, BigDecimal apXcrt, String dlTpO1Csfcd, String dlTpO2Csfcd, String accCrrTpcd, Date xcdt, String xcOrgcd, String xcno, Date dsodt, String bdgDpno, String bfNtaccCd, String bfactOrgcd, String bfdhOrgcd, String bfdhStfno, Date slpdt, String slpno, String slpLnno, String ersYn, String notsMtt, String erpTsYn, String erpTsdt, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public FinLdgAccCrr(Date crRmdt, String ldgno, String ldgKndcd, BigDecimal crrSeqno, String ntaccCd, String actOrgcd, String dhOrgcd, String dhStfno, String crRmFlgcd, String mncd, BigDecimal fcCrRmamt, BigDecimal woamtCrRmamt, BigDecimal fcCrTblam, BigDecimal woncrCrTblam, BigDecimal apXcrt, String dlTpO1Csfcd, String dlTpO2Csfcd, String accCrrTpcd, Date xcdt, String xcOrgcd, String xcno, Date dsodt, String bdgDpno, String bfNtaccCd, String bfactOrgcd, String bfdhOrgcd, String bfdhStfno, Date slpdt, String slpno, String slpLnno, String ersYn, String notsMtt, String erpTsYn, String erpTsdt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.crRmdt = crRmdt;
         this.ldgno = ldgno;
         this.ldgKndcd = ldgKndcd;

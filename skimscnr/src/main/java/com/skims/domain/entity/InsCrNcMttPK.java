@@ -8,7 +8,7 @@ package com.skims.domain.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,5 +22,5 @@ public class InsCrNcMttPK implements Serializable {
     private String plyno; //--증권번호
     private BigDecimal relpcSeqno; //--관계자순번
     private String ncMttItno; //--알릴사항항목번호
-    private Date ndsApStrDthms; //--배서승인시작일시
+    private Timestamp ndsApStrDthms; //--배서승인시작일시
 }

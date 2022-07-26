@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -391,7 +392,7 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Date inpDthms; //--입력일시
+    private Timestamp inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -399,10 +400,10 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Date mdfDthms; //--수정일시
+    private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public InsPlRelpc(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String ikdGrpcd, String relpcTpcd, String relpcStcd, Date stChdt, String hnglRelnm, String engRelnm, String ctmDscno, String relpcDscnoFlgcd, String dlncd, String prsRelpcYn, BigDecimal cntadSeqno, String cntadFlgcd, String relpcName, String relpcNamePstcd, String relpcRlecd, Date isrdt, BigDecimal pprRelpcSeqno, String ctmno, String sbdGrCtmno, String guPlyno, String orelCd, String subCtmDscno, String fireMnNrdpsYn, String injrHspCvrYn, String injrOtpCvrYn, String dsasHspCvrYn, String dsasOtpCvrYn, String gnrzHspCvrYn, String gnrzOtpCvrYn, String sepCrCnYn, String rntcrYn, String fnOrgcd, String prpsFlgcd, BigDecimal prmPymRt, String hndpsYn, String ntnMrtmnYn, String baSadpsYn, String crtFlgcd, String dmosFlgcd, String indpdMrtmnYn, String dfltPtYn, String dmrcy518InjdYn, String ndtmRisAgreYn, String pfbFlgcd, String nrdpsAgreYn, BigDecimal utRt, String mdCfcapEntpYn, String sexcd, String jbcd, BigDecimal jbChSeqno, BigDecimal age, String wdgYn, String licSpecd, String licno, Date licCqdt, String clmCrrYn, BigDecimal drveCrrYyct, BigDecimal drveCrrMntct, String drvFlgcd, Date hotStdt, Date hotClsdt, String hotOj, String ltrmNdsDlFlgcd, String relpcScrInpYn, String idntyCnfcKndcd, String idntyCnfcEtInfo, String idntyCnfcNo, Date idntyCnfcIsdt, String idntyCnfcIsOrgnm, String idntyCnfPdtnm, String idntyCnfBnnm, String rdchCrTpcd, String crUdrtkArecd, String pectSlMntrChncd, String mailRcvYn, String cmMnUsCnAgryn, String pfbAstchAgrYn, String pfbAstchRscd, Date isCrrApprStrdt, Date isCrrApprNddt, String mdSlrSadpsYn, String fdWshBjGrdcd, String ovsePytxDtyTpcd, String inpUsrId, Date inpDthms, String mdfUsrId, Date mdfDthms) {
+    public InsPlRelpc(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String ikdGrpcd, String relpcTpcd, String relpcStcd, Date stChdt, String hnglRelnm, String engRelnm, String ctmDscno, String relpcDscnoFlgcd, String dlncd, String prsRelpcYn, BigDecimal cntadSeqno, String cntadFlgcd, String relpcName, String relpcNamePstcd, String relpcRlecd, Date isrdt, BigDecimal pprRelpcSeqno, String ctmno, String sbdGrCtmno, String guPlyno, String orelCd, String subCtmDscno, String fireMnNrdpsYn, String injrHspCvrYn, String injrOtpCvrYn, String dsasHspCvrYn, String dsasOtpCvrYn, String gnrzHspCvrYn, String gnrzOtpCvrYn, String sepCrCnYn, String rntcrYn, String fnOrgcd, String prpsFlgcd, BigDecimal prmPymRt, String hndpsYn, String ntnMrtmnYn, String baSadpsYn, String crtFlgcd, String dmosFlgcd, String indpdMrtmnYn, String dfltPtYn, String dmrcy518InjdYn, String ndtmRisAgreYn, String pfbFlgcd, String nrdpsAgreYn, BigDecimal utRt, String mdCfcapEntpYn, String sexcd, String jbcd, BigDecimal jbChSeqno, BigDecimal age, String wdgYn, String licSpecd, String licno, Date licCqdt, String clmCrrYn, BigDecimal drveCrrYyct, BigDecimal drveCrrMntct, String drvFlgcd, Date hotStdt, Date hotClsdt, String hotOj, String ltrmNdsDlFlgcd, String relpcScrInpYn, String idntyCnfcKndcd, String idntyCnfcEtInfo, String idntyCnfcNo, Date idntyCnfcIsdt, String idntyCnfcIsOrgnm, String idntyCnfPdtnm, String idntyCnfBnnm, String rdchCrTpcd, String crUdrtkArecd, String pectSlMntrChncd, String mailRcvYn, String cmMnUsCnAgryn, String pfbAstchAgrYn, String pfbAstchRscd, Date isCrrApprStrdt, Date isCrrApprNddt, String mdSlrSadpsYn, String fdWshBjGrdcd, String ovsePytxDtyTpcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.plno = plno;
         this.cgafChSeqno = cgafChSeqno;
         this.relpcSeqno = relpcSeqno;
