@@ -198,8 +198,8 @@ public class IgdGd implements Serializable {
     @Schema(description = "약관대출가능여부", nullable = true)
     private String claLnAvYn; //--약관대출가능여부
 
-    @Column(name = "sb_pym_flgcd", length = 10, nullable = false)
-    @Schema(description = "대체납입구분코드", nullable = false)
+    @Column(name = "sb_pym_flgcd", length = 10, nullable = true)
+    @Schema(description = "대체납입구분코드", nullable = true)
     private String sbPymFlgcd; //--대체납입구분코드
 
     @Column(name = "sb_pym_tpcd", length = 10, nullable = true)

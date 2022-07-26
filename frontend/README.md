@@ -32,6 +32,8 @@ LTS버전으로 설치진행
 ### 1.4. npm 명령어  
 
 ```
+$ npm install --global yarn
+
 $ npm install
 
 # serve with hot reload at localhost:8080 by default.
