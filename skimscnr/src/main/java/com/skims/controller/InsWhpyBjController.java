@@ -44,7 +44,7 @@ public class InsWhpyBjController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsWhpyBj.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @GetMapping("/inswhpybjs")
-    public ResponseEntity<Page<InsWhpyBj>> getAll(Pageable pageable) {
+    public ResponseEntity<Page<InsWhpyBj>> getAll( Pageable pageable) {
         try {
 			log.info("findAll");
             return ResponseEntity.ok().body(repository.findAll(pageable));
