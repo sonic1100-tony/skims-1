@@ -54,7 +54,11 @@ public class InsInsCrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsInsCr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @GetMapping("/insinscrs")
+<<<<<<< HEAD
     public ResponseEntity<Page<InsInsCr>> getAll(Pageable pageable) {
+=======
+    public ResponseEntity<Page<InsInsCr>> getAll( Pageable pageable) {
+>>>>>>> d04a89a6781d74b3fc7d3345f445ca8716a0759d
         try {
 			log.info("findAll");
             return ResponseEntity.ok().body(repository.findAll(pageable));

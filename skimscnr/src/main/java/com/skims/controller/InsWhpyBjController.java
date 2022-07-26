@@ -6,6 +6,7 @@
 **/
 package com.skims.controller;
 
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,16 +25,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+=======
+>>>>>>> d04a89a6781d74b3fc7d3345f445ca8716a0759d
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsWhpyBj;
 import com.skims.domain.repository.InsWhpyBjRepository;
-
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Optional;
 
 
 @RestController
@@ -54,7 +65,11 @@ public class InsWhpyBjController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsWhpyBj.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @GetMapping("/inswhpybjs")
+<<<<<<< HEAD
     public ResponseEntity<Page<InsWhpyBj>> getAll(Pageable pageable) {
+=======
+    public ResponseEntity<Page<InsWhpyBj>> getAll( Pageable pageable) {
+>>>>>>> d04a89a6781d74b3fc7d3345f445ca8716a0759d
         try {
 			log.info("findAll");
             return ResponseEntity.ok().body(repository.findAll(pageable));
