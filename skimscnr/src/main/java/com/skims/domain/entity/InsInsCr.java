@@ -9,6 +9,7 @@ package com.skims.domain.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,11 +64,11 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Date ndsApStrDthms; //--배서승인시작일시
+    private LocalDateTime ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Date ndsApNdDthms; //--배서승인종료일시
+    private LocalDateTime ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "fnl_cr_stcd", length = 10, nullable = true)
     @Schema(description = "최종계약상태코드", nullable = true)

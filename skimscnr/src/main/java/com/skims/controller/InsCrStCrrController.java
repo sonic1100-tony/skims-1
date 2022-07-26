@@ -60,6 +60,7 @@ public class InsCrStCrrController {
 			log.info("findAll");
             return ResponseEntity.ok().body(repository.findAll(pageable));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.internalServerError().body(null);
         }
     }
