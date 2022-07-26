@@ -1,44 +1,70 @@
 {
-  "name": "vuestic-ui-wrapper",
-  "version": "1.0.0",
-  "license": "MIT",
-  "repository": "https://github.com/epicmaxco/vuestic-ui",
-  "devDependencies": {
-    "@vue/cli-plugin-typescript": "5.0.0-alpha.8",
-    "lerna": "^3.20.2",
-    "yorkie": "^2.0.0"
-  },
+  "name": "vuestic-admin",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
-    "serve": "yarn workspace vuestic-ui serve",
-    "serve:book": "yarn workspace vuestic-ui serve",
-    "serve:production": "yarn workspace vuestic-ui serve:production",
-    "test": "yarn workspace vuestic-ui test",
-    "lint": "yarn workspace vuestic-ui lint",
-    "build": "yarn workspace vuestic-ui build",
-    "build:book": "yarn workspace vuestic-ui build:book",
-    "build:types": "yarn workspace vuestic-ui build:types",
-    "test:unit": "yarn workspace vuestic-ui test:unit",
-    "test:coverage": "yarn workspace vuestic-ui test:coverage",
-    "lint:style": "yarn workspace vuestic-ui lint:style",
-    "serve:docs": "yarn workspace docs serve",
-    "build:docs": "yarn workspace docs build",
-    "build:docs:ci": "yarn workspace docs build:ci",
-    "push": "yarn workspace vuestic-ui push",
-    "push-production": "yarn workspace vuestic-ui push-production",
-    "generate:docs": "yarn workspace docs generate:docspage",
-    "generate:component": "yarn workspace docs generate:component",
-    "release": "yarn workspace deploy release"
+    "serve": "vue-cli-service serve",
+    "serve:production": "vue-cli-service serve --mode production",
+    "build": "vue-cli-service build",
+    "build:ci": "NODE_OPTIONS=--max_old_space_size=4096 vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
+  "dependencies": {
+    "amcharts3": "^3.21.15",
+    "ammap3": "^3.21.15",
+    "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
+    "core-js": "^3.6.5",
+    "epic-spinners": "^1.1.0",
+    "flag-icon-css": "^3.5.0",
+    "font-awesome": "^4.7.0",
+    "google-maps": "^4.3.3",
+    "ionicons": "^4.6.3",
+    "leaflet": "^1.7.1",
+    "leaflet-map": "^0.2.1",
+    "medium-editor": "^5.23.3",
+    "register-service-worker": "^1.7.1",
+    "vue": "^3.2.0",
+    "vue-chartjs": "^3.5.1",
+    "vue-gtm": "^3.2.1",
+    "vue-i18n": "^9.0.0",
+    "vue-router": "^4.0.0-0",
+    "vue-yandex-maps": "^0.10.9",
+    "vuestic-ui": "^1.2.8",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.19",
+    "@types/medium-editor": "^5.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.2.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "@vue/test-utils": "^2.0.0-0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0-0",
+    "lint-staged": "^9.5.0",
+    "sass": "^1.41.1",
+    "sass-loader": "^8.0.2",
+    "typescript": "^4.3.5",
+    "vue-jest": "^5.0.0-0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
     ]
   },
   "gitHooks": {
-    "pre-commit": "lerna run --concurrency 1 --stream precommit --since HEAD"
-  },
-  "dependencies": {
-    "vuestic-ui": "^1.4.7"
+    "pre-commit": "lint-staged"
   }
 }
