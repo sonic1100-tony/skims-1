@@ -15,9 +15,16 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.skims.domain.entity.InsInsCr;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
 @RepositoryRestResource
 public interface InsInsCrRepository extends JpaRepository<InsInsCr, Long> {
-	// JPQL SAMPLE
+
+    Optional<InsInsCr> findByPlynoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(String plyno, LocalDateTime ndsApStrDthms, LocalDateTime ndsApNdDthms);
+
+    // JPQL SAMPLE
 	// @Query("select new  com.sample.dto.TestUser(m.username, m.address, m.age) from User m")
     // Page<TestUser>test(Pageable pageable);
 
