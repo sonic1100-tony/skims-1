@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.PagedModel.PageMetadata;
@@ -46,7 +46,7 @@ public class {{Base}}Controller {
     {{Base}}Repository repository;
 
     @GetMapping(value = "/{{callname}}", produces = MediaTypes.HAL_JSON_VALUE)
-    public ResponseEntity<PagedModel<EntityModel<{{Base}}>>> getAll(@PageableDefault Pageable pageable) {
+    public ResponseEntity<PagedModel<EntityModel<{{Base}}>>> getAll(Pageable pageable) {
         try {
             Page<{{Base}}> dataList = repository.findAll(pageable);
 
