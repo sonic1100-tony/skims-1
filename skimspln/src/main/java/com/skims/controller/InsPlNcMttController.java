@@ -148,7 +148,7 @@ public class InsPlNcMttController {
 	
     // @Operation(summary = "설계알릴사항 삭제" , description = "설계알릴사항 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPlNcMtt", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPlNcMtt", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPlNcMtt.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insplncmtts/{plno}/{cgafChSeqno}/{relpcSeqno}/{ncMttItno}")

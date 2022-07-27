@@ -212,7 +212,7 @@ public class InsPlNrdpsTisrdAtrController {
 	
     // @Operation(summary = "설계피보험자부보자속성 삭제" , description = "설계피보험자부보자속성 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPlNrdpsTisrdAtr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPlNrdpsTisrdAtr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPlNrdpsTisrdAtr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insplnrdpstisrdatrs/{aid}")

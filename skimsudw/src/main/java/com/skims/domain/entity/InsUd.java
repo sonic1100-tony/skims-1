@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -104,7 +104,7 @@ public class InsUd implements Serializable {
 
     @Column(name = "ud_cplt_perdt", nullable = true)
     @Schema(description = "심사완료기한일자", nullable = true)
-    private Date udCpltPerdt; //--심사완료기한일자
+    private LocalDate udCpltPerdt; //--심사완료기한일자
 
     @Column(name = "ud_xmn_cn", length = 4000, nullable = true)
     @Schema(description = "심사검토내용", nullable = true)
@@ -120,7 +120,7 @@ public class InsUd implements Serializable {
 
     @Column(name = "requ_dthms", nullable = false)
     @Schema(description = "의뢰일시", nullable = false)
-    private Timestamp requDthms; //--의뢰일시
+    private LocalDateTime requDthms; //--의뢰일시
 
     @Column(name = "dh_stfno", length = 50, nullable = true)
     @Schema(description = "취급직원번호", nullable = true)
@@ -148,7 +148,7 @@ public class InsUd implements Serializable {
 
     @Column(name = "fnl_ud_cplt_dthms", nullable = true)
     @Schema(description = "최종심사완료일시", nullable = true)
-    private Timestamp fnlUdCpltDthms; //--최종심사완료일시
+    private LocalDateTime fnlUdCpltDthms; //--최종심사완료일시
 
     @Column(name = "fnl_ud_st_info", length = 50, nullable = true)
     @Schema(description = "최종심사상태정보", nullable = true)
@@ -224,11 +224,11 @@ public class InsUd implements Serializable {
 
     @Column(name = "vald_strdt", nullable = true)
     @Schema(description = "유효시작일자", nullable = true)
-    private Date valdStrdt; //--유효시작일자
+    private LocalDate valdStrdt; //--유효시작일자
 
     @Column(name = "vald_nddt", nullable = true)
     @Schema(description = "유효종료일자", nullable = true)
-    private Date valdNddt; //--유효종료일자
+    private LocalDate valdNddt; //--유효종료일자
 
     @Column(name = "cr_spccf_tpcd", length = 10, nullable = true)
     @Schema(description = "자동차특인유형코드", nullable = true)
@@ -292,19 +292,19 @@ public class InsUd implements Serializable {
 
     @Column(name = "cr_prv_dthms", nullable = true)
     @Schema(description = "자동차결재일시", nullable = true)
-    private Timestamp crPrvDthms; //--자동차결재일시
+    private LocalDateTime crPrvDthms; //--자동차결재일시
 
     @Column(name = "dgndc_adxdt", nullable = true)
     @Schema(description = "진단서첨부일자", nullable = true)
-    private Date dgndcAdxdt; //--진단서첨부일자
+    private LocalDate dgndcAdxdt; //--진단서첨부일자
 
     @Column(name = "rcn_rptg_adxdt", nullable = true)
     @Schema(description = "실사보고서첨부일자", nullable = true)
-    private Date rcnRptgAdxdt; //--실사보고서첨부일자
+    private LocalDate rcnRptgAdxdt; //--실사보고서첨부일자
 
     @Column(name = "apldo_adxdt", nullable = true)
     @Schema(description = "청약서첨부일자", nullable = true)
-    private Date apldoAdxdt; //--청약서첨부일자
+    private LocalDate apldoAdxdt; //--청약서첨부일자
 
     @Column(name = "sbcvr_ud_yn", length = 1, nullable = true)
     @Schema(description = "부담보심사여부", nullable = true)
@@ -312,7 +312,7 @@ public class InsUd implements Serializable {
 
     @Column(name = "sbcvr_cnfst_adxdt", nullable = true)
     @Schema(description = "부담보확인서첨부일자", nullable = true)
-    private Date sbcvrCnfstAdxdt; //--부담보확인서첨부일자
+    private LocalDate sbcvrCnfstAdxdt; //--부담보확인서첨부일자
 
     @Column(name = "img_ud_end_yn", length = 1, nullable = true)
     @Schema(description = "이미지심사종결여부", nullable = true)
@@ -332,7 +332,7 @@ public class InsUd implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -340,10 +340,10 @@ public class InsUd implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsUd(String udno, BigDecimal ndvUdSeqno, String tgnrtUdBjYn, String udBjFlgcd, String udRelAtr1, String udRelAtr2, String udRelAtr3, String ikdGrpcd, String plyno, String ndsno, String udBsnsFlgcd, String udRkcd, String udFlgcd, String udPrgStcd, String udRstcd, Date udCpltPerdt, String udXmnCn, String udrtkCndCn, String rqtno, Timestamp requDthms, String dhStfno, String usrno, String udChrOrgcd, String udChrStfno, String udChrOrgFlgcd, String fnlUdStfno, Timestamp fnlUdCpltDthms, String fnlUdStInfo, String fnlUdwrCtn, BigDecimal udDlBzDays, String isPlmdfNeedYn, String rkAdmno, String ltrmPlno, String smsTsPrg, String spccfUdBjYn, String dgnUdBjYn, String nrdcd, String bnCsfcd, String insBtpcd, String entpXmnRqCn, String emegUdBjYn, String apldoPrssBjYn, String apRscd, String spccfBjFlgcd, String carnoHngl, Date valdStrdt, Date valdNddt, String crSpccfTpcd, String lowtDrvRsno, String smsRcvptId, String smsRcvYn, String msgRcvptId, String msgRcvYn, String autoAplYn, String dcuCpmtNeedYn, String prsPlno, String udwrIsPlmdfNeedYn, String rtUdRequRs, String crPrvFlgcd, String crPrvRstcd, String crPrvChrpsStfno, String crPrvCtn, Timestamp crPrvDthms, Date dgndcAdxdt, Date rcnRptgAdxdt, Date apldoAdxdt, String sbcvrUdYn, Date sbcvrCnfstAdxdt, String imgUdEndYn, BigDecimal pprUdSeqno, String udRqRs, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsUd(String udno, BigDecimal ndvUdSeqno, String tgnrtUdBjYn, String udBjFlgcd, String udRelAtr1, String udRelAtr2, String udRelAtr3, String ikdGrpcd, String plyno, String ndsno, String udBsnsFlgcd, String udRkcd, String udFlgcd, String udPrgStcd, String udRstcd, LocalDate udCpltPerdt, String udXmnCn, String udrtkCndCn, String rqtno, LocalDateTime requDthms, String dhStfno, String usrno, String udChrOrgcd, String udChrStfno, String udChrOrgFlgcd, String fnlUdStfno, LocalDateTime fnlUdCpltDthms, String fnlUdStInfo, String fnlUdwrCtn, BigDecimal udDlBzDays, String isPlmdfNeedYn, String rkAdmno, String ltrmPlno, String smsTsPrg, String spccfUdBjYn, String dgnUdBjYn, String nrdcd, String bnCsfcd, String insBtpcd, String entpXmnRqCn, String emegUdBjYn, String apldoPrssBjYn, String apRscd, String spccfBjFlgcd, String carnoHngl, LocalDate valdStrdt, LocalDate valdNddt, String crSpccfTpcd, String lowtDrvRsno, String smsRcvptId, String smsRcvYn, String msgRcvptId, String msgRcvYn, String autoAplYn, String dcuCpmtNeedYn, String prsPlno, String udwrIsPlmdfNeedYn, String rtUdRequRs, String crPrvFlgcd, String crPrvRstcd, String crPrvChrpsStfno, String crPrvCtn, LocalDateTime crPrvDthms, LocalDate dgndcAdxdt, LocalDate rcnRptgAdxdt, LocalDate apldoAdxdt, String sbcvrUdYn, LocalDate sbcvrCnfstAdxdt, String imgUdEndYn, BigDecimal pprUdSeqno, String udRqRs, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.udno = udno;
         this.ndvUdSeqno = ndvUdSeqno;
         this.tgnrtUdBjYn = tgnrtUdBjYn;

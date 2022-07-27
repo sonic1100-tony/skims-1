@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -88,7 +88,7 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "ccldt", nullable = true)
     @Schema(description = "취소일자", nullable = true)
-    private Date ccldt; //--취소일자
+    private LocalDate ccldt; //--취소일자
 
     @Column(name = "ccl_flgcd", length = 10, nullable = true)
     @Schema(description = "취소구분코드", nullable = true)
@@ -96,7 +96,7 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "ppdt", nullable = true)
     @Schema(description = "계상일자", nullable = true)
-    private Date ppdt; //--계상일자
+    private LocalDate ppdt; //--계상일자
 
     @Column(name = "pym_cyccd", length = 10, nullable = true)
     @Schema(description = "납입주기코드", nullable = true)
@@ -244,7 +244,7 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "prm_efct_nddt", nullable = true)
     @Schema(description = "보험료효력종료일자", nullable = true)
-    private Date prmEfctNddt; //--보험료효력종료일자
+    private LocalDate prmEfctNddt; //--보험료효력종료일자
 
     @Column(name = "bkcd", length = 10, nullable = true)
     @Schema(description = "은행코드", nullable = true)
@@ -268,7 +268,7 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "pym_dudt", nullable = true)
     @Schema(description = "납입응당일자", nullable = true)
-    private Date pymDudt; //--납입응당일자
+    private LocalDate pymDudt; //--납입응당일자
 
     @Column(name = "dbl_paym_yn", length = 1, nullable = true)
     @Schema(description = "이중불입여부", nullable = true)
@@ -320,7 +320,7 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "cu_st_rpdt", nullable = true)
     @Schema(description = "적립기준영수일자", nullable = true)
-    private Date cuStRpdt; //--적립기준영수일자
+    private LocalDate cuStRpdt; //--적립기준영수일자
 
     @Column(name = "self_cr_yn", length = 1, nullable = true)
     @Schema(description = "자기계약여부", nullable = true)
@@ -332,7 +332,7 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "rv_dldt", nullable = true)
     @Schema(description = "수납처리일자", nullable = true)
-    private Date rvDldt; //--수납처리일자
+    private LocalDate rvDldt; //--수납처리일자
 
     @Column(name = "logor_tpcd", length = 10, nullable = true)
     @Schema(description = "지자체유형코드", nullable = true)
@@ -356,7 +356,7 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -364,10 +364,10 @@ public class InsIncmPrm implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsIncmPrm(String plyno, BigDecimal incmPrmCrSeqno, BigDecimal pymSeq, String ndsno, String fnlPymYymm, BigDecimal pypTSeq, BigDecimal rpPrm, BigDecimal apPrm, String dpCascd, String dpDtCascd, String rvSbno, Date ccldt, String cclFlgcd, Date ppdt, String pymCyccd, String dhStfno, String usrno, String rpAdmno, String mncd, BigDecimal fcApPrm, BigDecimal usdCvApPrm, String xcrtFlgcd, BigDecimal fcApXcrt, BigDecimal usdApXcrt, BigDecimal fcCondtTPrm, BigDecimal condtTPrm, String udrtkTycd, String otcmMgCmpcd, BigDecimal cnnIncmPrmcrSeqno, String hscsHsFlgcd, BigDecimal pypAdCs, BigDecimal baCvrPrm, BigDecimal trtPrm, BigDecimal cuPrm, BigDecimal flpyCvrTrtPrm, BigDecimal dcbfCuPrm, BigDecimal cuNprm, String ppyYn, String ppyDcYn, String nwfsqFlgcd, String autoTfDcYn, BigDecimal rviNt, String duArFlgcd, String prmDissYn, String cvrPrmDisbjYn, BigDecimal dcbfPrm, String sbFlgcd, String ondsDpTpcd, String rtnFlgcd, String prmFlgcd, Date prmEfctNddt, String bkcd, String bkBrcd, String bkExtnQfp, String bkIpps, String bncAdmr, Date pymDudt, String dblPaymYn, String acTfYn, String ucPrmYn, String coCrtRvFlgcd, String ikdGrpcd, BigDecimal cclWdrRtnNt, String payaoYn, String amtNdscd, BigDecimal crtRelpcSeqno, BigDecimal tincmPrmCrSeqno, String pynoWhpyBjno, String coCrtYn, Date cuStRpdt, String selfCrYn, String rdchCrYn, Date rvDldt, String logorTpcd, BigDecimal adpymBeloMwWlamt, BigDecimal pfPrm, String npAccLdgno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsIncmPrm(String plyno, BigDecimal incmPrmCrSeqno, BigDecimal pymSeq, String ndsno, String fnlPymYymm, BigDecimal pypTSeq, BigDecimal rpPrm, BigDecimal apPrm, String dpCascd, String dpDtCascd, String rvSbno, LocalDate ccldt, String cclFlgcd, LocalDate ppdt, String pymCyccd, String dhStfno, String usrno, String rpAdmno, String mncd, BigDecimal fcApPrm, BigDecimal usdCvApPrm, String xcrtFlgcd, BigDecimal fcApXcrt, BigDecimal usdApXcrt, BigDecimal fcCondtTPrm, BigDecimal condtTPrm, String udrtkTycd, String otcmMgCmpcd, BigDecimal cnnIncmPrmcrSeqno, String hscsHsFlgcd, BigDecimal pypAdCs, BigDecimal baCvrPrm, BigDecimal trtPrm, BigDecimal cuPrm, BigDecimal flpyCvrTrtPrm, BigDecimal dcbfCuPrm, BigDecimal cuNprm, String ppyYn, String ppyDcYn, String nwfsqFlgcd, String autoTfDcYn, BigDecimal rviNt, String duArFlgcd, String prmDissYn, String cvrPrmDisbjYn, BigDecimal dcbfPrm, String sbFlgcd, String ondsDpTpcd, String rtnFlgcd, String prmFlgcd, LocalDate prmEfctNddt, String bkcd, String bkBrcd, String bkExtnQfp, String bkIpps, String bncAdmr, LocalDate pymDudt, String dblPaymYn, String acTfYn, String ucPrmYn, String coCrtRvFlgcd, String ikdGrpcd, BigDecimal cclWdrRtnNt, String payaoYn, String amtNdscd, BigDecimal crtRelpcSeqno, BigDecimal tincmPrmCrSeqno, String pynoWhpyBjno, String coCrtYn, LocalDate cuStRpdt, String selfCrYn, String rdchCrYn, LocalDate rvDldt, String logorTpcd, BigDecimal adpymBeloMwWlamt, BigDecimal pfPrm, String npAccLdgno, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plyno = plyno;
         this.incmPrmCrSeqno = incmPrmCrSeqno;
         this.pymSeq = pymSeq;

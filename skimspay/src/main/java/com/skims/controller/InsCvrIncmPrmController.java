@@ -172,7 +172,7 @@ public class InsCvrIncmPrmController {
 	
     // @Operation(summary = "담보수입보험료 삭제" , description = "담보수입보험료 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsCvrIncmPrm", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsCvrIncmPrm", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCvrIncmPrm.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inscvrincmprms/{aid}")

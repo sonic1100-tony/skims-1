@@ -257,7 +257,7 @@ public class InsPlCvrController {
 	
     // @Operation(summary = "설계담보 삭제" , description = "설계담보 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPlCvr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPlCvr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPlCvr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insplcvrs/{aid}")

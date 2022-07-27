@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -44,10 +44,10 @@ public class FinSlpSpc implements Serializable {
     @Schema(description = "aid", nullable = false)
     private Long aid; //--aid
 
-    @Id //  Date
+    @Id //  LocalDate
     @Column(name = "slpdt", nullable = false)
     @Schema(description = "전표일자", nullable = false)
-    private Date slpdt; //--전표일자
+    private LocalDate slpdt; //--전표일자
 
     @Column(name = "slpno", length = 7, nullable = false)
     @Schema(description = "전표번호", nullable = false)
@@ -127,7 +127,7 @@ public class FinSlpSpc implements Serializable {
 
     @Column(name = "bsns_cnndt", nullable = true)
     @Schema(description = "업무관련일자", nullable = true)
-    private Date bsnsCnndt; //--업무관련일자
+    private LocalDate bsnsCnndt; //--업무관련일자
 
     @Column(name = "dh_orgcd", length = 7, nullable = true)
     @Schema(description = "취급기관코드", nullable = true)
@@ -203,7 +203,7 @@ public class FinSlpSpc implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -211,10 +211,10 @@ public class FinSlpSpc implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public FinSlpSpc(Date slpdt, String slpno, String slpLnno, String dbcrFlgcd, String ntaccCd, String mnbrnBjNtaccCd, String actOrgcd, String mncd, BigDecimal woncrPoamt, BigDecimal fcPoamt, BigDecimal apXcrt, String dltfpFlgcd, String dltcd, String ikdGrpcd, String insImcd, String invlnGdcd, String ldgno, String ldgKndcd, String bsnsCnnnoFlgcd, String bsnsCnnno, Date bsnsCnndt, String dhOrgcd, String dhStfno, String bzcsO1Dvcd, String bzcsO2Dvcd, String rrOrgcd, String bdgOrgcd, String dlplcFlgcd, String dlpno, String crdCmpcd, String fndcd, String notsMtt, String noteMtt, String bzcsDvExecYn, String actUntFlgcd, String erpTsYn, String erpTsdt, String cuSbWrkYn, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public FinSlpSpc(LocalDate slpdt, String slpno, String slpLnno, String dbcrFlgcd, String ntaccCd, String mnbrnBjNtaccCd, String actOrgcd, String mncd, BigDecimal woncrPoamt, BigDecimal fcPoamt, BigDecimal apXcrt, String dltfpFlgcd, String dltcd, String ikdGrpcd, String insImcd, String invlnGdcd, String ldgno, String ldgKndcd, String bsnsCnnnoFlgcd, String bsnsCnnno, LocalDate bsnsCnndt, String dhOrgcd, String dhStfno, String bzcsO1Dvcd, String bzcsO2Dvcd, String rrOrgcd, String bdgOrgcd, String dlplcFlgcd, String dlpno, String crdCmpcd, String fndcd, String notsMtt, String noteMtt, String bzcsDvExecYn, String actUntFlgcd, String erpTsYn, String erpTsdt, String cuSbWrkYn, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.slpdt = slpdt;
         this.slpno = slpno;
         this.slpLnno = slpLnno;

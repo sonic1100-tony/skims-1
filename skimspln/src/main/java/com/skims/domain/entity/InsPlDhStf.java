@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -80,7 +80,7 @@ public class InsPlDhStf implements Serializable {
 
     @Column(name = "cnrdt", nullable = true)
     @Schema(description = "계약일자", nullable = true)
-    private Date cnrdt; //--계약일자
+    private LocalDate cnrdt; //--계약일자
 
     @Column(name = "ltrm_nds_dl_flgcd", length = 10, nullable = true)
     @Schema(description = "장기배서처리구분코드", nullable = true)
@@ -100,7 +100,7 @@ public class InsPlDhStf implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -108,10 +108,10 @@ public class InsPlDhStf implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsPlDhStf(String plno, BigDecimal cgafChSeqno, String dhStfTpcd, String dhStfno, String ikdGrpcd, String usrno, String prsDhStfYn, BigDecimal qtrt, BigDecimal bzcsQtrt, Date cnrdt, String ltrmNdsDlFlgcd, String dmgrtRkStfYn, String nwcrChekListDcuno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsPlDhStf(String plno, BigDecimal cgafChSeqno, String dhStfTpcd, String dhStfno, String ikdGrpcd, String usrno, String prsDhStfYn, BigDecimal qtrt, BigDecimal bzcsQtrt, LocalDate cnrdt, String ltrmNdsDlFlgcd, String dmgrtRkStfYn, String nwcrChekListDcuno, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plno = plno;
         this.cgafChSeqno = cgafChSeqno;
         this.dhStfTpcd = dhStfTpcd;

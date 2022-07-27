@@ -151,7 +151,7 @@ public class InsCmMtdController {
 	
     // @Operation(summary = "수금방법 삭제" , description = "수금방법 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsCmMtd", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsCmMtd", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCmMtd.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inscmmtds/{aid}")

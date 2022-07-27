@@ -209,7 +209,7 @@ public class IgdGdCvrController {
 	
     // @Operation(summary = "상품담보 삭제" , description = "상품담보 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the IgdGdCvr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the IgdGdCvr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdGdCvr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/igdgdcvrs/{aid}")

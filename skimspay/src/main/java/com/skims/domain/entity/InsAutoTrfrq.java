@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -52,7 +52,7 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "auto_tfdt", nullable = false)
     @Schema(description = "자동이체일자", nullable = false)
-    private Date autoTfdt; //--자동이체일자
+    private LocalDate autoTfdt; //--자동이체일자
 
     @Column(name = "prs_ply_rqpym_seq", precision = 5, scale = 0, nullable = false)
     @Schema(description = "대표증권의뢰납입회차", nullable = false)
@@ -76,7 +76,7 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "tf_rq_wrk_dthms", nullable = false)
     @Schema(description = "이체요청작업일시", nullable = false)
-    private Timestamp tfRqWrkDthms; //--이체요청작업일시
+    private LocalDateTime tfRqWrkDthms; //--이체요청작업일시
 
     @Column(name = "tf_requ_dl_stcd", length = 10, nullable = true)
     @Schema(description = "이체의뢰처리상태코드", nullable = true)
@@ -84,7 +84,7 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "tf_rst_rcpdt", nullable = true)
     @Schema(description = "이체결과접수일자", nullable = true)
-    private Date tfRstRcpdt; //--이체결과접수일자
+    private LocalDate tfRstRcpdt; //--이체결과접수일자
 
     @Column(name = "tf_dl_metcd", length = 10, nullable = true)
     @Schema(description = "이체처리방식코드", nullable = true)
@@ -120,7 +120,7 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "fr_tf_rqudt", nullable = true)
     @Schema(description = "최초이체의뢰일자", nullable = true)
-    private Date frTfRqudt; //--최초이체의뢰일자
+    private LocalDate frTfRqudt; //--최초이체의뢰일자
 
     @Column(name = "epay_stm_no", length = 50, nullable = true)
     @Schema(description = "페이결제번호", nullable = true)
@@ -132,7 +132,7 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "crd_apdt", nullable = true)
     @Schema(description = "카드승인일자", nullable = true)
-    private Date crdApdt; //--카드승인일자
+    private LocalDate crdApdt; //--카드승인일자
 
     @Column(name = "crd_ap_hms", length = 6, nullable = true)
     @Schema(description = "카드승인시간", nullable = true)
@@ -156,7 +156,7 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "pvl_prdt", nullable = true)
     @Schema(description = "계상예정일자", nullable = true)
-    private Date pvlPrdt; //--계상예정일자
+    private LocalDate pvlPrdt; //--계상예정일자
 
     @Column(name = "acct_wrte_cn", length = 100, nullable = true)
     @Schema(description = "통장기재내용", nullable = true)
@@ -200,7 +200,7 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -208,10 +208,10 @@ public class InsAutoTrfrq implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsAutoTrfrq(String prsPlynoOrLnno, String autoTfCgKndcd, Date autoTfdt, BigDecimal prsPlyRqpymSeq, String ndsno, BigDecimal olcrrSeqno, BigDecimal oldblSeqno, String bdlWdrcBjYn, Timestamp tfRqWrkDthms, String tfRequDlStcd, Date tfRstRcpdt, String tfDlMetcd, String tfBjYymm, String tfBjdtCd, String wdrcLmFlgcd, BigDecimal bdlWdrcBjCrct, BigDecimal rqTfamt, BigDecimal dmPcamt, String tfRequFlgcd, Date frTfRqudt, String epayStmNo, String crdApno, Date crdApdt, String crdApHms, String jnsno, String tfDmVncErcd, String tfDmWdcmpErcd, String tfErFlgcd, Date pvlPrdt, String acctWrteCn, String dhCmpcd, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String bkBrcd, String crdValdTrm, String ctmDscno, String pyrNo, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsAutoTrfrq(String prsPlynoOrLnno, String autoTfCgKndcd, LocalDate autoTfdt, BigDecimal prsPlyRqpymSeq, String ndsno, BigDecimal olcrrSeqno, BigDecimal oldblSeqno, String bdlWdrcBjYn, LocalDateTime tfRqWrkDthms, String tfRequDlStcd, LocalDate tfRstRcpdt, String tfDlMetcd, String tfBjYymm, String tfBjdtCd, String wdrcLmFlgcd, BigDecimal bdlWdrcBjCrct, BigDecimal rqTfamt, BigDecimal dmPcamt, String tfRequFlgcd, LocalDate frTfRqudt, String epayStmNo, String crdApno, LocalDate crdApdt, String crdApHms, String jnsno, String tfDmVncErcd, String tfDmWdcmpErcd, String tfErFlgcd, LocalDate pvlPrdt, String acctWrteCn, String dhCmpcd, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String bkBrcd, String crdValdTrm, String ctmDscno, String pyrNo, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.prsPlynoOrLnno = prsPlynoOrLnno;
         this.autoTfCgKndcd = autoTfCgKndcd;
         this.autoTfdt = autoTfdt;

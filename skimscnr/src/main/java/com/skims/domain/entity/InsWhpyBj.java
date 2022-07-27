@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -48,7 +48,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "ppdt", nullable = true)
     @Schema(description = "계상일자", nullable = true)
-    private Date ppdt; //--계상일자
+    private LocalDate ppdt; //--계상일자
 
     @Column(name = "py_cr_tpcd", length = 10, nullable = true)
     @Schema(description = "지급발생유형코드", nullable = true)
@@ -56,7 +56,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "cc_stdt", nullable = true)
     @Schema(description = "산출기준일자", nullable = true)
-    private Date ccStdt; //--산출기준일자
+    private LocalDate ccStdt; //--산출기준일자
 
     @Column(name = "rtamt", precision = 17, scale = 2, nullable = false)
     @Schema(description = "환급금액", nullable = false)
@@ -76,7 +76,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "ccl_wdr_reqdt", nullable = true)
     @Schema(description = "취소철회요청일자", nullable = true)
-    private Date cclWdrReqdt; //--취소철회요청일자
+    private LocalDate cclWdrReqdt; //--취소철회요청일자
 
     @Column(name = "py_rs_cascd", length = 10, nullable = true)
     @Schema(description = "지급사유원인코드", nullable = true)
@@ -108,7 +108,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "ac_dmcy_dldt", nullable = true)
     @Schema(description = "경리휴면처리일자", nullable = true)
-    private Date acDmcyDldt; //--경리휴면처리일자
+    private LocalDate acDmcyDldt; //--경리휴면처리일자
 
     @Column(name = "whpy_diss_bj_yn", length = 1, nullable = true)
     @Schema(description = "제지급분해대상여부", nullable = true)
@@ -140,7 +140,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "whpy_rqdt", nullable = true)
     @Schema(description = "제지급신청일자", nullable = true)
-    private Date whpyRqdt; //--제지급신청일자
+    private LocalDate whpyRqdt; //--제지급신청일자
 
     @Column(name = "ssno", precision = 5, scale = 0, nullable = true)
     @Schema(description = "발행번호", nullable = true)
@@ -172,11 +172,11 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "clln_udwdt", nullable = true)
     @Schema(description = "약대심사일자", nullable = true)
-    private Date cllnUdwdt; //--약대심사일자
+    private LocalDate cllnUdwdt; //--약대심사일자
 
     @Column(name = "cr_stdt", nullable = true)
     @Schema(description = "발생기준일자", nullable = true)
-    private Date crStdt; //--발생기준일자
+    private LocalDate crStdt; //--발생기준일자
 
     @Column(name = "rtamt_tpcd", length = 10, nullable = true)
     @Schema(description = "환급금유형코드", nullable = true)
@@ -208,7 +208,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "cu_cvr_endt", nullable = true)
     @Schema(description = "적립담보만기일자", nullable = true)
-    private Date cuCvrEndt; //--적립담보만기일자
+    private LocalDate cuCvrEndt; //--적립담보만기일자
 
     @Column(name = "cfgcd", length = 10, nullable = true)
     @Schema(description = "해약구분코드", nullable = true)
@@ -296,7 +296,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "anrrf_stdt", nullable = true)
     @Schema(description = "연금개시책임준비금액기준일자", nullable = true)
-    private Date anrrfStdt; //--연금개시책임준비금액기준일자
+    private LocalDate anrrfStdt; //--연금개시책임준비금액기준일자
 
     @Column(name = "anrrf_pcamt", precision = 15, scale = 0, nullable = false)
     @Schema(description = "연금개시책임준비금액원금", nullable = false)
@@ -348,7 +348,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "cu_cvr_ins_st", nullable = true)
     @Schema(description = "적립담보보험시기", nullable = true)
-    private Date cuCvrInsSt; //--적립담보보험시기
+    private LocalDate cuCvrInsSt; //--적립담보보험시기
 
     @Column(name = "gn_nelp_mnt_rfamt", precision = 15, scale = 0, nullable = true)
     @Schema(description = "보장미경과개월준비금액", nullable = true)
@@ -376,7 +376,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "rcpdt", nullable = true)
     @Schema(description = "접수일자", nullable = true)
-    private Date rcpdt; //--접수일자
+    private LocalDate rcpdt; //--접수일자
 
     @Column(name = "fire_lbtrs_cn_rscd", length = 10, nullable = true)
     @Schema(description = "화재배상책임해지사유코드", nullable = true)
@@ -388,7 +388,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "an_rc_rckdt", nullable = true)
     @Schema(description = "연금수령기산일자", nullable = true)
-    private Date anRcRckdt; //--연금수령기산일자
+    private LocalDate anRcRckdt; //--연금수령기산일자
 
     @Column(name = "an_rc_yyodr", precision = 3, scale = 0, nullable = true)
     @Schema(description = "연금수령년차", nullable = true)
@@ -408,11 +408,11 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "dedt", nullable = true)
     @Schema(description = "사망일자", nullable = true)
-    private Date dedt; //--사망일자
+    private LocalDate dedt; //--사망일자
 
     @Column(name = "ply_rcdt", nullable = true)
     @Schema(description = "증권수령일자", nullable = true)
-    private Date plyRcdt; //--증권수령일자
+    private LocalDate plyRcdt; //--증권수령일자
 
     @Column(name = "ntdtd_icamt_ayamt", precision = 15, scale = 0, nullable = true)
     @Schema(description = "이자율차증액연금연액", nullable = true)
@@ -432,7 +432,7 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -440,10 +440,10 @@ public class InsWhpyBj implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsWhpyBj(String pyBjno, Date ppdt, String pyCrTpcd, Date ccStdt, BigDecimal rtamt, BigDecimal pyAvLmamt, BigDecimal pmamtSmamt, BigDecimal pyNt, Date cclWdrReqdt, String pyRsCascd, String pyRsLclcd, String pyRsMdccd, String pyRsSmccd, String pyRs, String exRcvFlgcd, String acDmcyDlYn, Date acDmcyDldt, String whpyDissBjYn, String ndsno, String whpyDissYn, String plyno, BigDecimal incmPrmCrSeqno, String exOrpyBjno, String pyno, Date whpyRqdt, BigDecimal ssno, BigDecimal ssDtno, String lnno, BigDecimal samt, String cllnAutoApFlgcd, String cllnUdwrStfno, String cllnUdRstStcd, Date cllnUdwdt, Date crStdt, String rtamtTpcd, BigDecimal rviCrSeqno, String dhStfno, String orgcd, String brOrgcd, String pybfCrStcd, String pybfCrDtStcd, Date cuCvrEndt, String cfgcd, BigDecimal rndYyct, BigDecimal rndMc, BigDecimal nelpYyct, BigDecimal nelpMc, String apDhtmCd, BigDecimal baGnRndRfamt, BigDecimal cuPcamt, BigDecimal cuNt, BigDecimal cuPartNwcrtDpcs, BigDecimal baRndRfamt, BigDecimal trtGnRndRfamt, BigDecimal gnNelpRfamt, BigDecimal ppyPrm, BigDecimal ppyNt, String cvCnYn, String crBefoFnorgBzmno, String crBefoFnOrgnm, String crDvFlgcd, BigDecimal adAnYpamt, BigDecimal nocrPyamt, Date anrrfStdt, BigDecimal anrrfPcamt, BigDecimal anrrfNt, BigDecimal anrrfDchgRatoCfc, BigDecimal anPyafRpblRfamt, BigDecimal anYyodr, BigDecimal anMgnfSm, BigDecimal ayamt, BigDecimal anSepPyamt, String anFlgcd, BigDecimal relpcSeqno, BigDecimal ystrRfamt, String cllnUdBjFlgcd, Date cuCvrInsSt, BigDecimal gnNelpMntRfamt, BigDecimal gnNelpMitrmRfamt, BigDecimal rkPrm, String embrNrdpsSexcd, BigDecimal mwPyAfRrfnd, BigDecimal mwOpnRrfndPcamt, Date rcpdt, String fireLbtrsCnRscd, String exRcvRscd, Date anRcRckdt, BigDecimal anRcYyodr, BigDecimal anRcLmamt, BigDecimal anActVlamt, BigDecimal remnTxXcamt, Date dedt, Date plyRcdt, BigDecimal ntdtdIcamtAyamt, BigDecimal rkrtdIcamtAyamt, BigDecimal bzcsdIcamtAyamt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsWhpyBj(String pyBjno, LocalDate ppdt, String pyCrTpcd, LocalDate ccStdt, BigDecimal rtamt, BigDecimal pyAvLmamt, BigDecimal pmamtSmamt, BigDecimal pyNt, LocalDate cclWdrReqdt, String pyRsCascd, String pyRsLclcd, String pyRsMdccd, String pyRsSmccd, String pyRs, String exRcvFlgcd, String acDmcyDlYn, LocalDate acDmcyDldt, String whpyDissBjYn, String ndsno, String whpyDissYn, String plyno, BigDecimal incmPrmCrSeqno, String exOrpyBjno, String pyno, LocalDate whpyRqdt, BigDecimal ssno, BigDecimal ssDtno, String lnno, BigDecimal samt, String cllnAutoApFlgcd, String cllnUdwrStfno, String cllnUdRstStcd, LocalDate cllnUdwdt, LocalDate crStdt, String rtamtTpcd, BigDecimal rviCrSeqno, String dhStfno, String orgcd, String brOrgcd, String pybfCrStcd, String pybfCrDtStcd, LocalDate cuCvrEndt, String cfgcd, BigDecimal rndYyct, BigDecimal rndMc, BigDecimal nelpYyct, BigDecimal nelpMc, String apDhtmCd, BigDecimal baGnRndRfamt, BigDecimal cuPcamt, BigDecimal cuNt, BigDecimal cuPartNwcrtDpcs, BigDecimal baRndRfamt, BigDecimal trtGnRndRfamt, BigDecimal gnNelpRfamt, BigDecimal ppyPrm, BigDecimal ppyNt, String cvCnYn, String crBefoFnorgBzmno, String crBefoFnOrgnm, String crDvFlgcd, BigDecimal adAnYpamt, BigDecimal nocrPyamt, LocalDate anrrfStdt, BigDecimal anrrfPcamt, BigDecimal anrrfNt, BigDecimal anrrfDchgRatoCfc, BigDecimal anPyafRpblRfamt, BigDecimal anYyodr, BigDecimal anMgnfSm, BigDecimal ayamt, BigDecimal anSepPyamt, String anFlgcd, BigDecimal relpcSeqno, BigDecimal ystrRfamt, String cllnUdBjFlgcd, LocalDate cuCvrInsSt, BigDecimal gnNelpMntRfamt, BigDecimal gnNelpMitrmRfamt, BigDecimal rkPrm, String embrNrdpsSexcd, BigDecimal mwPyAfRrfnd, BigDecimal mwOpnRrfndPcamt, LocalDate rcpdt, String fireLbtrsCnRscd, String exRcvRscd, LocalDate anRcRckdt, BigDecimal anRcYyodr, BigDecimal anRcLmamt, BigDecimal anActVlamt, BigDecimal remnTxXcamt, LocalDate dedt, LocalDate plyRcdt, BigDecimal ntdtdIcamtAyamt, BigDecimal rkrtdIcamtAyamt, BigDecimal bzcsdIcamtAyamt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.pyBjno = pyBjno;
         this.ppdt = ppdt;
         this.pyCrTpcd = pyCrTpcd;

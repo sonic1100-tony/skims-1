@@ -145,7 +145,7 @@ public class CusPstpoRcplController {
 	
     // @Operation(summary = "우편물수령처 삭제" , description = "우편물수령처 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the CusPstpoRcpl", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the CusPstpoRcpl", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = CusPstpoRcpl.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/cuspstporcpls/{aid}")

@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -60,7 +60,7 @@ public class InsAutoTfSpc implements Serializable {
 
     @Column(name = "auto_tfdt", nullable = false)
     @Schema(description = "자동이체일자", nullable = false)
-    private Date autoTfdt; //--자동이체일자
+    private LocalDate autoTfdt; //--자동이체일자
 
     @Column(name = "prs_ply_rqpym_seq", precision = 5, scale = 0, nullable = false)
     @Schema(description = "대표증권의뢰납입회차", nullable = false)
@@ -108,7 +108,7 @@ public class InsAutoTfSpc implements Serializable {
 
     @Column(name = "dp_dl_wrk_dthms", nullable = true)
     @Schema(description = "입금처리작업일시", nullable = true)
-    private Timestamp dpDlWrkDthms; //--입금처리작업일시
+    private LocalDateTime dpDlWrkDthms; //--입금처리작업일시
 
     @Column(name = "tf_requ_flgcd", length = 10, nullable = true)
     @Schema(description = "이체의뢰구분코드", nullable = true)
@@ -136,7 +136,7 @@ public class InsAutoTfSpc implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -144,10 +144,10 @@ public class InsAutoTfSpc implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsAutoTfSpc(String autoTfsno, String plynoOrLnno, String prsPlynoOrLnno, String autoTfCgKndcd, Date autoTfdt, BigDecimal prsPlyRqpymSeq, String ndsno, BigDecimal olcrrSeqno, BigDecimal oldblSeqno, BigDecimal rqPymSeq, String requFnlPymYymm, BigDecimal dlPymSeq, String dlFnlPymYymm, BigDecimal apPrm, BigDecimal tfamt, String rvDlRstcd, Timestamp dpDlWrkDthms, String tfRequFlgcd, String dhStfno, String tfBjYymm, String tfBjdtCd, BigDecimal tfAdDscrt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsAutoTfSpc(String autoTfsno, String plynoOrLnno, String prsPlynoOrLnno, String autoTfCgKndcd, LocalDate autoTfdt, BigDecimal prsPlyRqpymSeq, String ndsno, BigDecimal olcrrSeqno, BigDecimal oldblSeqno, BigDecimal rqPymSeq, String requFnlPymYymm, BigDecimal dlPymSeq, String dlFnlPymYymm, BigDecimal apPrm, BigDecimal tfamt, String rvDlRstcd, LocalDateTime dpDlWrkDthms, String tfRequFlgcd, String dhStfno, String tfBjYymm, String tfBjdtCd, BigDecimal tfAdDscrt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.autoTfsno = autoTfsno;
         this.plynoOrLnno = plynoOrLnno;
         this.prsPlynoOrLnno = prsPlynoOrLnno;

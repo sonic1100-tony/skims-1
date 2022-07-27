@@ -146,7 +146,7 @@ public class InsAutoTfSchdController {
 	
     // @Operation(summary = "자동이체일정 삭제" , description = "자동이체일정 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsAutoTfSchd", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsAutoTfSchd", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsAutoTfSchd.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insautotfschds/{aid}")

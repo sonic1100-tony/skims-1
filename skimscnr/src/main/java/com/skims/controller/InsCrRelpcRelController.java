@@ -6,7 +6,6 @@
 **/
 package com.skims.controller;
 
-<<<<<<< HEAD
 import java.util.Map;
 import java.util.Optional;
 
@@ -25,26 +24,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-=======
->>>>>>> d04a89a6781d74b3fc7d3345f445ca8716a0759d
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsCrRelpcRel;
 import com.skims.domain.repository.InsCrRelpcRelRepository;
+
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.Optional;
 
 
 @RestController
@@ -164,7 +153,7 @@ public class InsCrRelpcRelController {
 	
     // @Operation(summary = "계약관계자관계 삭제" , description = "계약관계자관계 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsCrRelpcRel", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsCrRelpcRel", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCrRelpcRel.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inscrrelpcrels/{aid}")

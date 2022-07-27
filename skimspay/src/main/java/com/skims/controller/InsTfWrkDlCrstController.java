@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -73,7 +73,7 @@ public class InsTfWrkDlCrstController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsTfWrkDlCrst.class)) }),
             @ApiResponse(responseCode = "404", description = "InsTfWrkDlCrst not found", content = @Content) })
     @GetMapping("/instfwrkdlcrsts/{stdt}/{tfWrkFlgcd}/{seqno}")
-    public ResponseEntity<InsTfWrkDlCrst> getById(@PathVariable("stdt") Date stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
+    public ResponseEntity<InsTfWrkDlCrst> getById(@PathVariable("stdt") LocalDate stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
         Optional<InsTfWrkDlCrst> data = repository.findById(new InsTfWrkDlCrstPK(stdt, tfWrkFlgcd, seqno));
 
         if (data.isPresent()) {
@@ -104,7 +104,7 @@ public class InsTfWrkDlCrstController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsTfWrkDlCrst.class)) }),
             @ApiResponse(responseCode = "404", description = "InsTfWrkDlCrst not found", content = @Content) })
     @PutMapping("/instfwrkdlcrsts/{stdt}/{tfWrkFlgcd}/{seqno}")
-    ResponseEntity<InsTfWrkDlCrst> putData(@RequestBody InsTfWrkDlCrst newData, @PathVariable("stdt") Date stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
+    ResponseEntity<InsTfWrkDlCrst> putData(@RequestBody InsTfWrkDlCrst newData, @PathVariable("stdt") LocalDate stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
         return repository.findById(new InsTfWrkDlCrstPK(stdt, tfWrkFlgcd, seqno)) //
                 .map(oldData -> {
                     newData.setStdt(oldData.getStdt());
@@ -124,7 +124,7 @@ public class InsTfWrkDlCrstController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsTfWrkDlCrst.class)) }),
             @ApiResponse(responseCode = "404", description = "InsTfWrkDlCrst not found", content = @Content) })
 	@PatchMapping("/instfwrkdlcrsts/{stdt}/{tfWrkFlgcd}/{seqno}")
-    ResponseEntity<InsTfWrkDlCrst> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("stdt") Date stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
+    ResponseEntity<InsTfWrkDlCrst> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("stdt") LocalDate stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
         InsTfWrkDlCrst newData = mapper.convertValue(newMap, InsTfWrkDlCrst.class);
         return repository.findById(new InsTfWrkDlCrstPK(stdt, tfWrkFlgcd, seqno)) //
                 .map(oldData -> {
@@ -158,11 +158,11 @@ public class InsTfWrkDlCrstController {
 	
     // @Operation(summary = "이체작업처리현황 삭제" , description = "이체작업처리현황 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsTfWrkDlCrst", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsTfWrkDlCrst", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsTfWrkDlCrst.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/instfwrkdlcrsts/{stdt}/{tfWrkFlgcd}/{seqno}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("stdt") Date stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("stdt") LocalDate stdt, @PathVariable("tfWrkFlgcd") String tfWrkFlgcd, @PathVariable("seqno") BigDecimal seqno) {
         try {
             repository.deleteById(new InsTfWrkDlCrstPK(stdt, tfWrkFlgcd, seqno));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

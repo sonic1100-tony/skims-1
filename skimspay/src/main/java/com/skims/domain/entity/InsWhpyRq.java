@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -44,7 +44,7 @@ public class InsWhpyRq implements Serializable {
 
     @Column(name = "whpy_rqdt", nullable = false)
     @Schema(description = "제지급신청일자", nullable = false)
-    private Date whpyRqdt; //--제지급신청일자
+    private LocalDate whpyRqdt; //--제지급신청일자
 
     @Column(name = "ssno", precision = 5, scale = 0, nullable = false)
     @Schema(description = "발행번호", nullable = false)
@@ -68,7 +68,7 @@ public class InsWhpyRq implements Serializable {
 
     @Column(name = "ssdt", nullable = false)
     @Schema(description = "발행일자", nullable = false)
-    private Date ssdt; //--발행일자
+    private LocalDate ssdt; //--발행일자
 
     @Column(name = "rqor_cd", length = 7, nullable = true)
     @Schema(description = "신청기관코드", nullable = true)
@@ -268,11 +268,11 @@ public class InsWhpyRq implements Serializable {
 
     @Column(name = "py_rs_crdt", nullable = true)
     @Schema(description = "지급사유발생일자", nullable = true)
-    private Date pyRsCrdt; //--지급사유발생일자
+    private LocalDate pyRsCrdt; //--지급사유발생일자
 
     @Column(name = "cmp_rcgnt_dt", nullable = true)
     @Schema(description = "회사인식일자", nullable = true)
-    private Date cmpRcgntDt; //--회사인식일자
+    private LocalDate cmpRcgntDt; //--회사인식일자
 
     @Column(name = "inp_usr_id", length = 50, nullable = false)
     @Schema(description = "입력사용자id", nullable = false)
@@ -280,7 +280,7 @@ public class InsWhpyRq implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -288,10 +288,10 @@ public class InsWhpyRq implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsWhpyRq(Date whpyRqdt, BigDecimal ssno, BigDecimal ssDtno, String crtRsno, String crtName, String plyno, Date ssdt, String rqorCd, String whpyRqDlStcd, String rqValdYn, BigDecimal oldssNo, String frcRqYn, String pyDlStcd, String pyRcpMtdcd, String pyMtdcd, String pfbRcpsRelcd, String rqapsRsno, String rqapsNm, String dlgPyRscd, String pyBjnm, String pyBjRsBzmno, String actno, String bkcd, String dpsrRsBzmno, String dpsnm, String pyBjDpsrRelcd, String rcapmOrgcd, String cnvYn, String cnvpsNm, BigDecimal rqamt, BigDecimal uiamt, BigDecimal sbPyamt, String rsvDlRstErcd, String claLnApYn, String lnFdUsecd, String clnrfBkcd, String clnrfActno, String clnrfDpsrRsBzmno, String clnrfDpsnm, String clnrfTfHpdyCd, String clnrfCrtRelcd, String pyCrTpcd, String pyRsCascd, String pyRsMdccd, String pyRsSmccd, String anTfactTpcd, String anTfactIsdyFlgcd, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String autoPyFlgcd, BigDecimal pyNt, String rlDpsnm, String befoChekRstcd, String dlOrgAnscd, String dpsrInqAnscd, Date pyRsCrdt, Date cmpRcgntDt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsWhpyRq(LocalDate whpyRqdt, BigDecimal ssno, BigDecimal ssDtno, String crtRsno, String crtName, String plyno, LocalDate ssdt, String rqorCd, String whpyRqDlStcd, String rqValdYn, BigDecimal oldssNo, String frcRqYn, String pyDlStcd, String pyRcpMtdcd, String pyMtdcd, String pfbRcpsRelcd, String rqapsRsno, String rqapsNm, String dlgPyRscd, String pyBjnm, String pyBjRsBzmno, String actno, String bkcd, String dpsrRsBzmno, String dpsnm, String pyBjDpsrRelcd, String rcapmOrgcd, String cnvYn, String cnvpsNm, BigDecimal rqamt, BigDecimal uiamt, BigDecimal sbPyamt, String rsvDlRstErcd, String claLnApYn, String lnFdUsecd, String clnrfBkcd, String clnrfActno, String clnrfDpsrRsBzmno, String clnrfDpsnm, String clnrfTfHpdyCd, String clnrfCrtRelcd, String pyCrTpcd, String pyRsCascd, String pyRsMdccd, String pyRsSmccd, String anTfactTpcd, String anTfactIsdyFlgcd, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String autoPyFlgcd, BigDecimal pyNt, String rlDpsnm, String befoChekRstcd, String dlOrgAnscd, String dpsrInqAnscd, LocalDate pyRsCrdt, LocalDate cmpRcgntDt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.whpyRqdt = whpyRqdt;
         this.ssno = ssno;
         this.ssDtno = ssDtno;

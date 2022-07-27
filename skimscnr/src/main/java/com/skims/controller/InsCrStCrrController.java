@@ -151,7 +151,7 @@ public class InsCrStCrrController {
 	
     // @Operation(summary = "계약상태이력 삭제" , description = "계약상태이력 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsCrStCrr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsCrStCrr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCrStCrr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inscrstcrrs/{aid}")

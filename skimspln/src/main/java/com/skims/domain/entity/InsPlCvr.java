@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -88,7 +88,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "cvr_st_chdt", nullable = true)
     @Schema(description = "담보상태변경일자", nullable = true)
-    private Date cvrStChdt; //--담보상태변경일자
+    private LocalDate cvrStChdt; //--담보상태변경일자
 
     @Column(name = "isamt", precision = 17, scale = 2, nullable = false)
     @Schema(description = "가입금액", nullable = false)
@@ -120,7 +120,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "ins_st", nullable = true)
     @Schema(description = "보험시기", nullable = true)
-    private Date insSt; //--보험시기
+    private LocalDate insSt; //--보험시기
 
     @Column(name = "ins_st_hms", length = 4, nullable = true)
     @Schema(description = "보험시기시각", nullable = true)
@@ -128,7 +128,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "ins_clstr", nullable = true)
     @Schema(description = "보험종기", nullable = true)
-    private Date insClstr; //--보험종기
+    private LocalDate insClstr; //--보험종기
 
     @Column(name = "ins_clstr_hms", length = 4, nullable = true)
     @Schema(description = "보험종기시각", nullable = true)
@@ -208,11 +208,11 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "rfamt_clc_ins_st", nullable = true)
     @Schema(description = "준비금액산정보험시기", nullable = true)
-    private Date rfamtClcInsSt; //--준비금액산정보험시기
+    private LocalDate rfamtClcInsSt; //--준비금액산정보험시기
 
     @Column(name = "rfamt_clc_ins_clstr", nullable = true)
     @Schema(description = "준비금액산정보험종기", nullable = true)
-    private Date rfamtClcInsClstr; //--준비금액산정보험종기
+    private LocalDate rfamtClcInsClstr; //--준비금액산정보험종기
 
     @Column(name = "auto_rnw_av_yn", length = 1, nullable = true)
     @Schema(description = "자동갱신가능여부", nullable = true)
@@ -220,7 +220,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "auto_rnw_cvr_cnldt", nullable = true)
     @Schema(description = "자동갱신담보해지일자", nullable = true)
-    private Date autoRnwCvrCnldt; //--자동갱신담보해지일자
+    private LocalDate autoRnwCvrCnldt; //--자동갱신담보해지일자
 
     @Column(name = "cvr_fnl_pym_yymm", length = 6, nullable = true)
     @Schema(description = "담보최종납입년월", nullable = true)
@@ -296,7 +296,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "rnw_nddt", nullable = true)
     @Schema(description = "갱신종료일자", nullable = true)
-    private Date rnwNddt; //--갱신종료일자
+    private LocalDate rnwNddt; //--갱신종료일자
 
     @Column(name = "rnw_cvr_nclm_dcamt", precision = 15, scale = 0, nullable = true)
     @Schema(description = "갱신담보무사고할인금액", nullable = true)
@@ -360,7 +360,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "sys_mpv_dt", nullable = true)
     @Schema(description = "제도개선일자", nullable = true)
-    private Date sysMpvDt; //--제도개선일자
+    private LocalDate sysMpvDt; //--제도개선일자
 
     @Column(name = "trt_ap_cvrcd", length = 10, nullable = true)
     @Schema(description = "특약적용담보코드", nullable = true)
@@ -380,7 +380,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "emeg_mvo_cnrdt", nullable = true)
     @Schema(description = "긴급출동계약일자", nullable = true)
-    private Date emegMvoCnrdt; //--긴급출동계약일자
+    private LocalDate emegMvoCnrdt; //--긴급출동계약일자
 
     @Column(name = "cvr_spqu_flgcd", length = 10, nullable = true)
     @Schema(description = "담보특성구분코드", nullable = true)
@@ -388,7 +388,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "nds_prdt", nullable = true)
     @Schema(description = "배서예정일자", nullable = true)
-    private Date ndsPrdt; //--배서예정일자
+    private LocalDate ndsPrdt; //--배서예정일자
 
     @Column(name = "prort_shtm_flgcd", length = 10, nullable = true)
     @Schema(description = "일할단기구분코드", nullable = true)
@@ -492,11 +492,11 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "prm_ap_strdt", nullable = true)
     @Schema(description = "보험료적용시작일자", nullable = true)
-    private Date prmApStrdt; //--보험료적용시작일자
+    private LocalDate prmApStrdt; //--보험료적용시작일자
 
     @Column(name = "prm_ap_nddt", nullable = true)
     @Schema(description = "보험료적용종료일자", nullable = true)
-    private Date prmApNddt; //--보험료적용종료일자
+    private LocalDate prmApNddt; //--보험료적용종료일자
 
     @Column(name = "sl_cvrcd", length = 8, nullable = true)
     @Schema(description = "판매담보코드", nullable = true)
@@ -516,7 +516,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -524,10 +524,10 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsPlCvr(String plno, BigDecimal cgafChSeqno, String cvrcd, BigDecimal cvrSeqno, String ikdGrpcd, String cvrBjFlgcd, BigDecimal relpcOjSeqno, BigDecimal relpcSeqno, String cvrBaTrtFlgcd, String cvrSuboLvlFlgcd, String cvrStcd, Date cvrStChdt, BigDecimal isamt, BigDecimal ndsIsamt, BigDecimal baPrm, BigDecimal ndsBaPrm, BigDecimal apPrm, BigDecimal ndsApPrm, BigDecimal scdInsTrmApprm, Date insSt, String insStHms, Date insClstr, String insClstrHms, String selfChamtMncd, BigDecimal selfChamt, String agmtAqrRtFlgcd, String nrdpsLvlcd, String rkTpcd, String rnwTpcd, BigDecimal chbfApPrm, BigDecimal chafApPrm, BigDecimal dscrt, BigDecimal dcbfPrm, BigDecimal nrdpsDcamt, BigDecimal sccKdsSpcDcamt, BigDecimal fstiPrmDcamt, String pymCyccd, String pymTrmcd, String cvrStStYymm, String pymXmpYn, String pymXmpStrYymm, Date rfamtClcInsSt, Date rfamtClcInsClstr, String autoRnwAvYn, Date autoRnwCvrCnldt, String cvrFnlPymYymm, BigDecimal cvrFnlPymSeq, String ndFlgcd, BigDecimal nd, String ndcd, BigDecimal rlNdTrm, String pymTrmFlgcd, BigDecimal pymTrm, BigDecimal rlPymTrm, BigDecimal nrdpsApAge, BigDecimal bfrnwCvrsn, String bfrnwCvrcd, BigDecimal trtPregRndWkct, String dbCvrFlgcd, String cvrIsTpcd, String afgstPrmCcbjYn, String sepCrCnYn, String flpyCvrfsSbYn, Date rnwNddt, BigDecimal rnwCvrNclmDcamt, BigDecimal rwcvrNclmAdDcamt, BigDecimal sustdXcRkNdx, BigDecimal stdbdPrm, BigDecimal sustdPrm, BigDecimal dcamt, BigDecimal sustdRwcvrNclmDcamt, BigDecimal stdbdRwcvrNclmDcamt, String clmrlNdsApcd, BigDecimal rmimcStbzDcamt, String sbCscd, String isamtCd, BigDecimal xpDmamt, BigDecimal mdDmamt, BigDecimal trtApCvrPrmsm, Date sysMpvDt, String trtApCvrcd, String mstrCarPlyno, String clmp1IsAmtcd, String emegMvoCeStfno, Date emegMvoCnrdt, String cvrSpquFlgcd, Date ndsPrdt, String prortShtmFlgcd, BigDecimal prortShtrt, BigDecimal xpSumAmt, BigDecimal mdSumAmt, String deSelObsFlgcd, String itmCvrRkRnk, String imuTrmcd, BigDecimal agrRt, String abscTrmFlgcd, String agrRestTrmcd, String isamtSpc, BigDecimal esrct, String bdDlbrRpblBtpcd, BigDecimal woncrCvSelfChamt, BigDecimal dcRt, BigDecimal actOrActct, String frcRtApYn, BigDecimal adSelfChamt, String prgcsPrtYn, String ltrmNdsDlFlgcd, BigDecimal mpyCvNprm, String rfdDscno, BigDecimal remnAmt, String rtKeyAssmbCd, String bzcsRtKeyAssmbCd, Date prmApStrdt, Date prmApNddt, String slCvrcd, BigDecimal slCvrsn, String cmpLmcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsPlCvr(String plno, BigDecimal cgafChSeqno, String cvrcd, BigDecimal cvrSeqno, String ikdGrpcd, String cvrBjFlgcd, BigDecimal relpcOjSeqno, BigDecimal relpcSeqno, String cvrBaTrtFlgcd, String cvrSuboLvlFlgcd, String cvrStcd, LocalDate cvrStChdt, BigDecimal isamt, BigDecimal ndsIsamt, BigDecimal baPrm, BigDecimal ndsBaPrm, BigDecimal apPrm, BigDecimal ndsApPrm, BigDecimal scdInsTrmApprm, LocalDate insSt, String insStHms, LocalDate insClstr, String insClstrHms, String selfChamtMncd, BigDecimal selfChamt, String agmtAqrRtFlgcd, String nrdpsLvlcd, String rkTpcd, String rnwTpcd, BigDecimal chbfApPrm, BigDecimal chafApPrm, BigDecimal dscrt, BigDecimal dcbfPrm, BigDecimal nrdpsDcamt, BigDecimal sccKdsSpcDcamt, BigDecimal fstiPrmDcamt, String pymCyccd, String pymTrmcd, String cvrStStYymm, String pymXmpYn, String pymXmpStrYymm, LocalDate rfamtClcInsSt, LocalDate rfamtClcInsClstr, String autoRnwAvYn, LocalDate autoRnwCvrCnldt, String cvrFnlPymYymm, BigDecimal cvrFnlPymSeq, String ndFlgcd, BigDecimal nd, String ndcd, BigDecimal rlNdTrm, String pymTrmFlgcd, BigDecimal pymTrm, BigDecimal rlPymTrm, BigDecimal nrdpsApAge, BigDecimal bfrnwCvrsn, String bfrnwCvrcd, BigDecimal trtPregRndWkct, String dbCvrFlgcd, String cvrIsTpcd, String afgstPrmCcbjYn, String sepCrCnYn, String flpyCvrfsSbYn, LocalDate rnwNddt, BigDecimal rnwCvrNclmDcamt, BigDecimal rwcvrNclmAdDcamt, BigDecimal sustdXcRkNdx, BigDecimal stdbdPrm, BigDecimal sustdPrm, BigDecimal dcamt, BigDecimal sustdRwcvrNclmDcamt, BigDecimal stdbdRwcvrNclmDcamt, String clmrlNdsApcd, BigDecimal rmimcStbzDcamt, String sbCscd, String isamtCd, BigDecimal xpDmamt, BigDecimal mdDmamt, BigDecimal trtApCvrPrmsm, LocalDate sysMpvDt, String trtApCvrcd, String mstrCarPlyno, String clmp1IsAmtcd, String emegMvoCeStfno, LocalDate emegMvoCnrdt, String cvrSpquFlgcd, LocalDate ndsPrdt, String prortShtmFlgcd, BigDecimal prortShtrt, BigDecimal xpSumAmt, BigDecimal mdSumAmt, String deSelObsFlgcd, String itmCvrRkRnk, String imuTrmcd, BigDecimal agrRt, String abscTrmFlgcd, String agrRestTrmcd, String isamtSpc, BigDecimal esrct, String bdDlbrRpblBtpcd, BigDecimal woncrCvSelfChamt, BigDecimal dcRt, BigDecimal actOrActct, String frcRtApYn, BigDecimal adSelfChamt, String prgcsPrtYn, String ltrmNdsDlFlgcd, BigDecimal mpyCvNprm, String rfdDscno, BigDecimal remnAmt, String rtKeyAssmbCd, String bzcsRtKeyAssmbCd, LocalDate prmApStrdt, LocalDate prmApNddt, String slCvrcd, BigDecimal slCvrsn, String cmpLmcd, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plno = plno;
         this.cgafChSeqno = cgafChSeqno;
         this.cvrcd = cvrcd;

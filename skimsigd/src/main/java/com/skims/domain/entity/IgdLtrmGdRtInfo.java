@@ -8,7 +8,7 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -74,14 +74,14 @@ public class IgdLtrmGdRtInfo implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public IgdLtrmGdRtInfo(String ltrmRtTablFlgcd, String gdcd, String ltrmRtTabnm, String ikdGrpcd, String rtApCsfcd, String rtApFlgcd, String rtApUntcd, String prmApUntcd, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
+    public IgdLtrmGdRtInfo(String ltrmRtTablFlgcd, String gdcd, String ltrmRtTabnm, String ikdGrpcd, String rtApCsfcd, String rtApFlgcd, String rtApUntcd, String prmApUntcd, String mdfUsrId, LocalDateTime inpDthms, LocalDateTime mdfDthms) {
         this.ltrmRtTablFlgcd = ltrmRtTablFlgcd;
         this.gdcd = gdcd;
         this.ltrmRtTabnm = ltrmRtTabnm;

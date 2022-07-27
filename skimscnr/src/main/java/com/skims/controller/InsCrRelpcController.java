@@ -231,7 +231,7 @@ public class InsCrRelpcController {
 	
     // @Operation(summary = "계약관계자 삭제" , description = "계약관계자 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsCrRelpc", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsCrRelpc", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCrRelpc.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inscrrelpcs/{aid}")

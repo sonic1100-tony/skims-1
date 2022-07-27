@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -68,7 +68,7 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "st_chdt", nullable = true)
     @Schema(description = "상태변경일자", nullable = true)
-    private Date stChdt; //--상태변경일자
+    private LocalDate stChdt; //--상태변경일자
 
     @Column(name = "hngl_relnm", length = 100, nullable = true)
     @Schema(description = "한글관계자명", nullable = true)
@@ -116,7 +116,7 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "isrdt", nullable = true)
     @Schema(description = "가입일자", nullable = true)
-    private Date isrdt; //--가입일자
+    private LocalDate isrdt; //--가입일자
 
     @Column(name = "ppr_relpc_seqno", precision = 10, scale = 0, nullable = true)
     @Schema(description = "상위관계자순번", nullable = true)
@@ -272,7 +272,7 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "lic_cqdt", nullable = true)
     @Schema(description = "면허취득일자", nullable = true)
-    private Date licCqdt; //--면허취득일자
+    private LocalDate licCqdt; //--면허취득일자
 
     @Column(name = "clm_crr_yn", length = 1, nullable = true)
     @Schema(description = "사고경력여부", nullable = true)
@@ -292,11 +292,11 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "hot_stdt", nullable = true)
     @Schema(description = "임대차시기일자", nullable = true)
-    private Date hotStdt; //--임대차시기일자
+    private LocalDate hotStdt; //--임대차시기일자
 
     @Column(name = "hot_clsdt", nullable = true)
     @Schema(description = "임대차종기일자", nullable = true)
-    private Date hotClsdt; //--임대차종기일자
+    private LocalDate hotClsdt; //--임대차종기일자
 
     @Column(name = "hot_oj", length = 300, nullable = true)
     @Schema(description = "임대차목적", nullable = true)
@@ -324,7 +324,7 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "idnty_cnfc_isdt", nullable = true)
     @Schema(description = "신원확인증발급일자", nullable = true)
-    private Date idntyCnfcIsdt; //--신원확인증발급일자
+    private LocalDate idntyCnfcIsdt; //--신원확인증발급일자
 
     @Column(name = "idnty_cnfc_is_orgnm", length = 100, nullable = true)
     @Schema(description = "신원확인증발급기관명", nullable = true)
@@ -368,11 +368,11 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "is_crr_appr_strdt", nullable = true)
     @Schema(description = "가입경력인정시작일자", nullable = true)
-    private Date isCrrApprStrdt; //--가입경력인정시작일자
+    private LocalDate isCrrApprStrdt; //--가입경력인정시작일자
 
     @Column(name = "is_crr_appr_nddt", nullable = true)
     @Schema(description = "가입경력인정종료일자", nullable = true)
-    private Date isCrrApprNddt; //--가입경력인정종료일자
+    private LocalDate isCrrApprNddt; //--가입경력인정종료일자
 
     @Column(name = "md_slr_sadps_yn", length = 1, nullable = true)
     @Schema(description = "의료급여수급자여부", nullable = true)
@@ -392,7 +392,7 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -400,10 +400,10 @@ public class InsPlRelpc implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsPlRelpc(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String ikdGrpcd, String relpcTpcd, String relpcStcd, Date stChdt, String hnglRelnm, String engRelnm, String ctmDscno, String relpcDscnoFlgcd, String dlncd, String prsRelpcYn, BigDecimal cntadSeqno, String cntadFlgcd, String relpcName, String relpcNamePstcd, String relpcRlecd, Date isrdt, BigDecimal pprRelpcSeqno, String ctmno, String sbdGrCtmno, String guPlyno, String orelCd, String subCtmDscno, String fireMnNrdpsYn, String injrHspCvrYn, String injrOtpCvrYn, String dsasHspCvrYn, String dsasOtpCvrYn, String gnrzHspCvrYn, String gnrzOtpCvrYn, String sepCrCnYn, String rntcrYn, String fnOrgcd, String prpsFlgcd, BigDecimal prmPymRt, String hndpsYn, String ntnMrtmnYn, String baSadpsYn, String crtFlgcd, String dmosFlgcd, String indpdMrtmnYn, String dfltPtYn, String dmrcy518InjdYn, String ndtmRisAgreYn, String pfbFlgcd, String nrdpsAgreYn, BigDecimal utRt, String mdCfcapEntpYn, String sexcd, String jbcd, BigDecimal jbChSeqno, BigDecimal age, String wdgYn, String licSpecd, String licno, Date licCqdt, String clmCrrYn, BigDecimal drveCrrYyct, BigDecimal drveCrrMntct, String drvFlgcd, Date hotStdt, Date hotClsdt, String hotOj, String ltrmNdsDlFlgcd, String relpcScrInpYn, String idntyCnfcKndcd, String idntyCnfcEtInfo, String idntyCnfcNo, Date idntyCnfcIsdt, String idntyCnfcIsOrgnm, String idntyCnfPdtnm, String idntyCnfBnnm, String rdchCrTpcd, String crUdrtkArecd, String pectSlMntrChncd, String mailRcvYn, String cmMnUsCnAgryn, String pfbAstchAgrYn, String pfbAstchRscd, Date isCrrApprStrdt, Date isCrrApprNddt, String mdSlrSadpsYn, String fdWshBjGrdcd, String ovsePytxDtyTpcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsPlRelpc(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno, String ikdGrpcd, String relpcTpcd, String relpcStcd, LocalDate stChdt, String hnglRelnm, String engRelnm, String ctmDscno, String relpcDscnoFlgcd, String dlncd, String prsRelpcYn, BigDecimal cntadSeqno, String cntadFlgcd, String relpcName, String relpcNamePstcd, String relpcRlecd, LocalDate isrdt, BigDecimal pprRelpcSeqno, String ctmno, String sbdGrCtmno, String guPlyno, String orelCd, String subCtmDscno, String fireMnNrdpsYn, String injrHspCvrYn, String injrOtpCvrYn, String dsasHspCvrYn, String dsasOtpCvrYn, String gnrzHspCvrYn, String gnrzOtpCvrYn, String sepCrCnYn, String rntcrYn, String fnOrgcd, String prpsFlgcd, BigDecimal prmPymRt, String hndpsYn, String ntnMrtmnYn, String baSadpsYn, String crtFlgcd, String dmosFlgcd, String indpdMrtmnYn, String dfltPtYn, String dmrcy518InjdYn, String ndtmRisAgreYn, String pfbFlgcd, String nrdpsAgreYn, BigDecimal utRt, String mdCfcapEntpYn, String sexcd, String jbcd, BigDecimal jbChSeqno, BigDecimal age, String wdgYn, String licSpecd, String licno, LocalDate licCqdt, String clmCrrYn, BigDecimal drveCrrYyct, BigDecimal drveCrrMntct, String drvFlgcd, LocalDate hotStdt, LocalDate hotClsdt, String hotOj, String ltrmNdsDlFlgcd, String relpcScrInpYn, String idntyCnfcKndcd, String idntyCnfcEtInfo, String idntyCnfcNo, LocalDate idntyCnfcIsdt, String idntyCnfcIsOrgnm, String idntyCnfPdtnm, String idntyCnfBnnm, String rdchCrTpcd, String crUdrtkArecd, String pectSlMntrChncd, String mailRcvYn, String cmMnUsCnAgryn, String pfbAstchAgrYn, String pfbAstchRscd, LocalDate isCrrApprStrdt, LocalDate isCrrApprNddt, String mdSlrSadpsYn, String fdWshBjGrdcd, String ovsePytxDtyTpcd, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plno = plno;
         this.cgafChSeqno = cgafChSeqno;
         this.relpcSeqno = relpcSeqno;

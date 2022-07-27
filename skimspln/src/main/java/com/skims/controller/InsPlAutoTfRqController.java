@@ -185,7 +185,7 @@ public class InsPlAutoTfRqController {
 	
     // @Operation(summary = "설계자동이체신청 삭제" , description = "설계자동이체신청 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPlAutoTfRq", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPlAutoTfRq", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPlAutoTfRq.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insplautotfrqs/{plno}/{cgafChSeqno}/{autoTfCgKndcd}/{olcrrSeqno}")

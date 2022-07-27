@@ -215,7 +215,7 @@ public class FinPrmRvSbController {
 	
     // @Operation(summary = "보험료수납대기 삭제" , description = "보험료수납대기 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the FinPrmRvSb", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the FinPrmRvSb", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinPrmRvSb.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/finprmrvsbs/{aid}")

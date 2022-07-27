@@ -8,8 +8,8 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -64,7 +64,7 @@ public class IgdCvr implements Serializable {
 
     @Column(name = "cvr_perdt", nullable = true)
     @Schema(description = "담보인가일자", nullable = true)
-    private Date cvrPerdt; //--담보인가일자
+    private LocalDate cvrPerdt; //--담보인가일자
 
     @Column(name = "cvr_xpnm", length = 1000, nullable = true)
     @Schema(description = "담보설명", nullable = true)
@@ -76,11 +76,11 @@ public class IgdCvr implements Serializable {
 
     @Column(name = "vald_strdt", nullable = false)
     @Schema(description = "유효시작일자", nullable = false)
-    private Date valdStrdt; //--유효시작일자
+    private LocalDate valdStrdt; //--유효시작일자
 
     @Column(name = "vald_nddt", nullable = false)
     @Schema(description = "유효종료일자", nullable = false)
-    private Date valdNddt; //--유효종료일자
+    private LocalDate valdNddt; //--유효종료일자
 
     @Column(name = "prst_lclcd", length = 7, nullable = true)
     @Schema(description = "급부대분류코드", nullable = true)
@@ -132,7 +132,7 @@ public class IgdCvr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -140,10 +140,10 @@ public class IgdCvr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public IgdCvr(String cvrcd, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, String indpdTrtCvrYn, Date cvrPerdt, String cvrXpnm, String frGdcd, Date valdStrdt, Date valdNddt, String prstLclcd, String prstMdccd, String prstSmccd, String rlpmiFxamtFlgcd, String gnCncd, String cvrSpcd, String cpytFlgcd, String uiamtStncd, String cmpTrmcd, String wardDiamtFlgcd, String nppHlprmNapcFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public IgdCvr(String cvrcd, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, String indpdTrtCvrYn, LocalDate cvrPerdt, String cvrXpnm, String frGdcd, LocalDate valdStrdt, LocalDate valdNddt, String prstLclcd, String prstMdccd, String prstSmccd, String rlpmiFxamtFlgcd, String gnCncd, String cvrSpcd, String cpytFlgcd, String uiamtStncd, String cmpTrmcd, String wardDiamtFlgcd, String nppHlprmNapcFlgcd, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.cvrcd = cvrcd;
         this.cvrPrsnm = cvrPrsnm;
         this.cvrKornm = cvrKornm;

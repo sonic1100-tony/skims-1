@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -48,7 +48,7 @@ public class FinNpAccLdg implements Serializable {
 
     @Column(name = "crdt", nullable = false)
     @Schema(description = "발생일자", nullable = false)
-    private Date crdt; //--발생일자
+    private LocalDate crdt; //--발생일자
 
     @Column(name = "ntacc_cd", length = 11, nullable = false)
     @Schema(description = "계정과목코드", nullable = false)
@@ -124,7 +124,7 @@ public class FinNpAccLdg implements Serializable {
 
     @Column(name = "rvdt", nullable = true)
     @Schema(description = "수납일자", nullable = true)
-    private Date rvdt; //--수납일자
+    private LocalDate rvdt; //--수납일자
 
     @Column(name = "rv_orgcd", length = 7, nullable = true)
     @Schema(description = "수납기관코드", nullable = true)
@@ -148,7 +148,7 @@ public class FinNpAccLdg implements Serializable {
 
     @Column(name = "fnl_rmdt", nullable = true)
     @Schema(description = "최종반제일자", nullable = true)
-    private Date fnlRmdt; //--최종반제일자
+    private LocalDate fnlRmdt; //--최종반제일자
 
     @Column(name = "nots_mtt", length = 2000, nullable = true)
     @Schema(description = "적요사항", nullable = true)
@@ -176,7 +176,7 @@ public class FinNpAccLdg implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -184,10 +184,10 @@ public class FinNpAccLdg implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public FinNpAccLdg(String npAccLdgno, Date crdt, String ntaccCd, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String actOrgcd, String dhOrgcd, String dhStfno, String pyDlO1Flgcd, String pyDlO2Flgcd, String mncd, BigDecimal crWoamt, BigDecimal crFcamt, BigDecimal apXcrt, String ikdGrpcd, String insImcd, String invlnGdcd, String bsnsCnnnoFlgcd, String bsnsCnnno, Date rvdt, String rvOrgcd, String rvXcno, String pyCrno, String pyBjno, String rmStcd, Date fnlRmdt, String notsMtt, String noteMtt, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public FinNpAccLdg(String npAccLdgno, LocalDate crdt, String ntaccCd, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, String actOrgcd, String dhOrgcd, String dhStfno, String pyDlO1Flgcd, String pyDlO2Flgcd, String mncd, BigDecimal crWoamt, BigDecimal crFcamt, BigDecimal apXcrt, String ikdGrpcd, String insImcd, String invlnGdcd, String bsnsCnnnoFlgcd, String bsnsCnnno, LocalDate rvdt, String rvOrgcd, String rvXcno, String pyCrno, String pyBjno, String rmStcd, LocalDate fnlRmdt, String notsMtt, String noteMtt, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.npAccLdgno = npAccLdgno;
         this.crdt = crdt;
         this.ntaccCd = ntaccCd;

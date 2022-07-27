@@ -162,7 +162,7 @@ public class InsAutoTfSpcController {
 	
     // @Operation(summary = "자동이체내역 삭제" , description = "자동이체내역 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsAutoTfSpc", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsAutoTfSpc", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsAutoTfSpc.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insautotfspcs/{aid}")

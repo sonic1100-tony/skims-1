@@ -8,8 +8,8 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -91,7 +91,7 @@ public class CusPstnoRodnmSrhAdr implements Serializable {
 
     @Column(name = "stdt", nullable = true)
     @Schema(description = "기준일자", nullable = true)
-    private Date stdt; //--기준일자
+    private LocalDate stdt; //--기준일자
 
     @Column(name = "bf_pstno", length = 6, nullable = true)
     @Schema(description = "전우편번호", nullable = true)
@@ -103,7 +103,7 @@ public class CusPstnoRodnmSrhAdr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -111,10 +111,10 @@ public class CusPstnoRodnmSrhAdr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public CusPstnoRodnmSrhAdr(String roadNmFlgcd, String twmdSno, String sd, String sgng, String twm, String twmd, String roadNm, String bldno, String bldCt, String baAdr, String engRoadNmAdr, String engRoadNm, String pstno, Date stdt, String bfPstno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public CusPstnoRodnmSrhAdr(String roadNmFlgcd, String twmdSno, String sd, String sgng, String twm, String twmd, String roadNm, String bldno, String bldCt, String baAdr, String engRoadNmAdr, String engRoadNm, String pstno, LocalDate stdt, String bfPstno, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.roadNmFlgcd = roadNmFlgcd;
         this.twmdSno = twmdSno;
         this.sd = sd;

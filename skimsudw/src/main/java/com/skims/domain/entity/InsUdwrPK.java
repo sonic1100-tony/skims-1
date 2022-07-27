@@ -7,7 +7,7 @@
 package com.skims.domain.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,5 +22,5 @@ public class InsUdwrPK implements Serializable {
     private String udPlFlgcd; //--심사설계구분코드
     private String udPrioRancd; //--심사우선순위코드
     private String udlmiTpFlgcd; //--인수제한유형구분코드
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 }

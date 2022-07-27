@@ -8,8 +8,8 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -71,7 +71,7 @@ public class CusCtmAct implements Serializable {
 
     @Column(name = "rgtdt", nullable = true)
     @Schema(description = "등록일자", nullable = true)
-    private Date rgtdt; //--등록일자
+    private LocalDate rgtdt; //--등록일자
 
     @Column(name = "cnf_yn", length = 1, nullable = true)
     @Schema(description = "확인여부", nullable = true)
@@ -83,7 +83,7 @@ public class CusCtmAct implements Serializable {
 
     @Column(name = "fnl_usdt", nullable = true)
     @Schema(description = "최종사용일자", nullable = true)
-    private Date fnlUsdt; //--최종사용일자
+    private LocalDate fnlUsdt; //--최종사용일자
 
     @Column(name = "ch_dlno", length = 14, nullable = true)
     @Schema(description = "변경처리번호", nullable = true)
@@ -99,7 +99,7 @@ public class CusCtmAct implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -107,10 +107,10 @@ public class CusCtmAct implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public CusCtmAct(String ctmno, String bkcd, String actno, String dpsnm, String bkBrcd, String bkBrnm, String usYn, Date rgtdt, String cnfYn, String mntrActYn, Date fnlUsdt, String chDlno, String bknm, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public CusCtmAct(String ctmno, String bkcd, String actno, String dpsnm, String bkBrcd, String bkBrnm, String usYn, LocalDate rgtdt, String cnfYn, String mntrActYn, LocalDate fnlUsdt, String chDlno, String bknm, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.ctmno = ctmno;
         this.bkcd = bkcd;
         this.actno = actno;

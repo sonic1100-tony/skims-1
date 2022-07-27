@@ -435,7 +435,7 @@ public class InsInsPlController {
 	
     // @Operation(summary = "보험설계 삭제" , description = "보험설계 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsInsPl", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsInsPl", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsInsPl.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insinspls/{aid}")

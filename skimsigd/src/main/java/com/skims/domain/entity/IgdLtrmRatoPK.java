@@ -7,7 +7,7 @@
 package com.skims.domain.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,5 +20,5 @@ import lombok.NoArgsConstructor;
 public class IgdLtrmRatoPK implements Serializable {
     private String ltrmRtTablFlgcd; //--장기요율테이블구분코드
     private String sno; //--일련번호
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 }

@@ -163,7 +163,7 @@ public class InsDpDlErController {
 	
     // @Operation(summary = "입금처리오류 삭제" , description = "입금처리오류 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsDpDlEr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsDpDlEr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsDpDlEr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insdpdlers/{aid}")

@@ -151,7 +151,7 @@ public class InsPyDcController {
 	
     // @Operation(summary = "지급공제 삭제" , description = "지급공제 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPyDc", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPyDc", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPyDc.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inspydcs/{aid}")

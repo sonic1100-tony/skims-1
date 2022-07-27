@@ -9,7 +9,7 @@ package com.skims.controller;
 import java.util.Map;
 import java.util.Optional;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -72,7 +72,7 @@ public class InsUdwrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsUdwr.class)) }),
             @ApiResponse(responseCode = "404", description = "InsUdwr not found", content = @Content) })
     @GetMapping("/insudwrs/{udStfno}/{udPlFlgcd}/{udPrioRancd}/{udlmiTpFlgcd}/{apStrdt}")
-    public ResponseEntity<InsUdwr> getById(@PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") Date apStrdt) {
+    public ResponseEntity<InsUdwr> getById(@PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") LocalDate apStrdt) {
         Optional<InsUdwr> data = repository.findById(new InsUdwrPK(udStfno, udPlFlgcd, udPrioRancd, udlmiTpFlgcd, apStrdt));
 
         if (data.isPresent()) {
@@ -103,7 +103,7 @@ public class InsUdwrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsUdwr.class)) }),
             @ApiResponse(responseCode = "404", description = "InsUdwr not found", content = @Content) })
     @PutMapping("/insudwrs/{udStfno}/{udPlFlgcd}/{udPrioRancd}/{udlmiTpFlgcd}/{apStrdt}")
-    ResponseEntity<InsUdwr> putData(@RequestBody InsUdwr newData, @PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") Date apStrdt) {
+    ResponseEntity<InsUdwr> putData(@RequestBody InsUdwr newData, @PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") LocalDate apStrdt) {
         return repository.findById(new InsUdwrPK(udStfno, udPlFlgcd, udPrioRancd, udlmiTpFlgcd, apStrdt)) //
                 .map(oldData -> {
                     newData.setUdStfno(oldData.getUdStfno());
@@ -125,7 +125,7 @@ public class InsUdwrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsUdwr.class)) }),
             @ApiResponse(responseCode = "404", description = "InsUdwr not found", content = @Content) })
 	@PatchMapping("/insudwrs/{udStfno}/{udPlFlgcd}/{udPrioRancd}/{udlmiTpFlgcd}/{apStrdt}")
-    ResponseEntity<InsUdwr> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") Date apStrdt) {
+    ResponseEntity<InsUdwr> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") LocalDate apStrdt) {
         InsUdwr newData = mapper.convertValue(newMap, InsUdwr.class);
         return repository.findById(new InsUdwrPK(udStfno, udPlFlgcd, udPrioRancd, udlmiTpFlgcd, apStrdt)) //
                 .map(oldData -> {
@@ -147,11 +147,11 @@ public class InsUdwrController {
 	
     // @Operation(summary = "심사자 삭제" , description = "심사자 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsUdwr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsUdwr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsUdwr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insudwrs/{udStfno}/{udPlFlgcd}/{udPrioRancd}/{udlmiTpFlgcd}/{apStrdt}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") Date apStrdt) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("udStfno") String udStfno, @PathVariable("udPlFlgcd") String udPlFlgcd, @PathVariable("udPrioRancd") String udPrioRancd, @PathVariable("udlmiTpFlgcd") String udlmiTpFlgcd, @PathVariable("apStrdt") LocalDate apStrdt) {
         try {
             repository.deleteById(new InsUdwrPK(udStfno, udPlFlgcd, udPrioRancd, udlmiTpFlgcd, apStrdt));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

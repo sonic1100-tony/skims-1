@@ -217,7 +217,7 @@ public class InsPyController {
 	
     // @Operation(summary = "지급 삭제" , description = "지급 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPy", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPy", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPy.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inspys/{aid}")

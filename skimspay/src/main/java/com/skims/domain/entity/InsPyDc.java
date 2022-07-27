@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -64,11 +64,11 @@ public class InsPyDc implements Serializable {
 
     @Column(name = "nt_cc_strdt", nullable = true)
     @Schema(description = "이자산출시작일자", nullable = true)
-    private Date ntCcStrdt; //--이자산출시작일자
+    private LocalDate ntCcStrdt; //--이자산출시작일자
 
     @Column(name = "nt_cc_nddt", nullable = true)
     @Schema(description = "이자산출종료일자", nullable = true)
-    private Date ntCcNddt; //--이자산출종료일자
+    private LocalDate ntCcNddt; //--이자산출종료일자
 
     @Column(name = "py_dc_cr_flgcd", length = 10, nullable = false)
     @Schema(description = "지급공제발생구분코드", nullable = false)
@@ -92,7 +92,7 @@ public class InsPyDc implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -100,10 +100,10 @@ public class InsPyDc implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsPyDc(String pyDcNo, String pyDcNoSorcCd, String dcItcd, BigDecimal dcItSeqno, BigDecimal uiamt, Date ntCcStrdt, Date ntCcNddt, String pyDcCrFlgcd, String finaRnDlYn, String plyno, String ndsno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsPyDc(String pyDcNo, String pyDcNoSorcCd, String dcItcd, BigDecimal dcItSeqno, BigDecimal uiamt, LocalDate ntCcStrdt, LocalDate ntCcNddt, String pyDcCrFlgcd, String finaRnDlYn, String plyno, String ndsno, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.pyDcNo = pyDcNo;
         this.pyDcNoSorcCd = pyDcNoSorcCd;
         this.dcItcd = dcItcd;

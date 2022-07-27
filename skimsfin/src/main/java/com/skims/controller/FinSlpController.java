@@ -168,7 +168,7 @@ public class FinSlpController {
 	
     // @Operation(summary = "전표 삭제" , description = "전표 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the FinSlp", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the FinSlp", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinSlp.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/finslps/{aid}/{stYymm}")

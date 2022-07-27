@@ -9,7 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -50,14 +50,14 @@ public class InsCrNcMtt implements Serializable {
     @Schema(description = "알릴사항항목번호", nullable = false)
     private String ncMttItno; //--알릴사항항목번호
 
-    @Id //  Timestamp
+    @Id //  LocalDateTime
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Timestamp ndsApStrDthms; //--배서승인시작일시
+    private LocalDateTime ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Timestamp ndsApNdDthms; //--배서승인종료일시
+    private LocalDateTime ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "ndsno", length = 4, nullable = false)
     @Schema(description = "배서번호", nullable = false)
@@ -85,14 +85,14 @@ public class InsCrNcMtt implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsCrNcMtt(String plyno, BigDecimal relpcSeqno, String ncMttItno, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String ndsno, BigDecimal qustSeqno, BigDecimal qustSbdSeqno, String rplCn, String etDtRpl, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
+    public InsCrNcMtt(String plyno, BigDecimal relpcSeqno, String ncMttItno, LocalDateTime ndsApStrDthms, LocalDateTime ndsApNdDthms, String ndsno, BigDecimal qustSeqno, BigDecimal qustSbdSeqno, String rplCn, String etDtRpl, String mdfUsrId, LocalDateTime inpDthms, LocalDateTime mdfDthms) {
         this.plyno = plyno;
         this.relpcSeqno = relpcSeqno;
         this.ncMttItno = ncMttItno;

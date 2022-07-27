@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -56,11 +56,11 @@ public class IgdLtrmPrm implements Serializable {
 
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "nd_flgcd", length = 10, nullable = false)
     @Schema(description = "만기구분코드", nullable = false)
@@ -164,14 +164,14 @@ public class IgdLtrmPrm implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public IgdLtrmPrm(String gdcd, String cvrcd, String rtKeyAssmbCd, Date apStrdt, Date apNddt, String ndFlgcd, BigDecimal insTrm, String nwRnwFlgcd, String pymTrmFlgcd, BigDecimal pymTrm, String sexcd, String injrRnkcd, String drveTycd, String sustdYn, String cmpLmcd, BigDecimal isAge, String rtFlgVl1, String rtFlgVl2, String rtFlgVl3, String rtFlgVl4, String rtFlgVl5, String rtFlgVl6, String rtFlgVl7, String rtFlgVl8, String rtFlgVl9, String rtFlgVl10, String pymCyccd, BigDecimal stIsamt, BigDecimal bzPrm, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
+    public IgdLtrmPrm(String gdcd, String cvrcd, String rtKeyAssmbCd, LocalDate apStrdt, LocalDate apNddt, String ndFlgcd, BigDecimal insTrm, String nwRnwFlgcd, String pymTrmFlgcd, BigDecimal pymTrm, String sexcd, String injrRnkcd, String drveTycd, String sustdYn, String cmpLmcd, BigDecimal isAge, String rtFlgVl1, String rtFlgVl2, String rtFlgVl3, String rtFlgVl4, String rtFlgVl5, String rtFlgVl6, String rtFlgVl7, String rtFlgVl8, String rtFlgVl9, String rtFlgVl10, String pymCyccd, BigDecimal stIsamt, BigDecimal bzPrm, String mdfUsrId, LocalDateTime inpDthms, LocalDateTime mdfDthms) {
         this.gdcd = gdcd;
         this.cvrcd = cvrcd;
         this.rtKeyAssmbCd = rtKeyAssmbCd;

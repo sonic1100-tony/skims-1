@@ -177,7 +177,7 @@ public class CusCtmAdrCrrController {
 	
     // @Operation(summary = "고객주소이력 삭제" , description = "고객주소이력 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the CusCtmAdrCrr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the CusCtmAdrCrr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = CusCtmAdrCrr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/cusctmadrcrrs/{aid}")

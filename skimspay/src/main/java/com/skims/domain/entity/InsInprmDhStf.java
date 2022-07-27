@@ -9,7 +9,7 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -77,7 +77,7 @@ public class InsInprmDhStf implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -85,10 +85,10 @@ public class InsInprmDhStf implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsInprmDhStf(String plyno, BigDecimal incmPrmCrSeqno, String dhStfTpcd, String dhStfno, String usrno, BigDecimal bzcsQtrt, BigDecimal qtrt, String prsDhStfYn, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsInprmDhStf(String plyno, BigDecimal incmPrmCrSeqno, String dhStfTpcd, String dhStfno, String usrno, BigDecimal bzcsQtrt, BigDecimal qtrt, String prsDhStfYn, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plyno = plyno;
         this.incmPrmCrSeqno = incmPrmCrSeqno;
         this.dhStfTpcd = dhStfTpcd;

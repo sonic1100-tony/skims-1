@@ -260,7 +260,7 @@ public class FinPyCrController {
 	
     // @Operation(summary = "지급발생 삭제" , description = "지급발생 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the FinPyCr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the FinPyCr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinPyCr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/finpycrs/{aid}")

@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -60,7 +60,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "rpdt", nullable = true)
     @Schema(description = "영수일자", nullable = true)
-    private Date rpdt; //--영수일자
+    private LocalDate rpdt; //--영수일자
 
     @Column(name = "dh_orgcd", length = 7, nullable = true)
     @Schema(description = "취급기관코드", nullable = true)
@@ -88,7 +88,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "cnrdt", nullable = true)
     @Schema(description = "계약일자", nullable = true)
-    private Date cnrdt; //--계약일자
+    private LocalDate cnrdt; //--계약일자
 
     @Column(name = "plyno", length = 16, nullable = true)
     @Schema(description = "증권번호", nullable = true)
@@ -112,7 +112,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "rpbl_opndt", nullable = true)
     @Schema(description = "책임개시일자", nullable = true)
-    private Date rpblOpndt; //--책임개시일자
+    private LocalDate rpblOpndt; //--책임개시일자
 
     @Column(name = "ltrm_cr_totno", length = 10, nullable = true)
     @Schema(description = "장기계약집계번호", nullable = true)
@@ -132,7 +132,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "dpdt", nullable = true)
     @Schema(description = "입금일자", nullable = true)
-    private Date dpdt; //--입금일자
+    private LocalDate dpdt; //--입금일자
 
     @Column(name = "rp_admno", length = 20, nullable = true)
     @Schema(description = "영수관리번호", nullable = true)
@@ -200,7 +200,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "rvdt", nullable = true)
     @Schema(description = "수납일자", nullable = true)
-    private Date rvdt; //--수납일자
+    private LocalDate rvdt; //--수납일자
 
     @Column(name = "rv_orgcd", length = 7, nullable = true)
     @Schema(description = "수납기관코드", nullable = true)
@@ -224,7 +224,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "prm_pvl_slpdt", nullable = true)
     @Schema(description = "보험료계상전표일자", nullable = true)
-    private Date prmPvlSlpdt; //--보험료계상전표일자
+    private LocalDate prmPvlSlpdt; //--보험료계상전표일자
 
     @Column(name = "prm_pvl_slpno", length = 7, nullable = true)
     @Schema(description = "보험료계상전표번호", nullable = true)
@@ -236,7 +236,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "ppdt", nullable = true)
     @Schema(description = "계상일자", nullable = true)
-    private Date ppdt; //--계상일자
+    private LocalDate ppdt; //--계상일자
 
     @Column(name = "uc_prm_yn", length = 1, nullable = true)
     @Schema(description = "미수보험료여부", nullable = true)
@@ -252,7 +252,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "tlm_tsdt", nullable = true)
     @Schema(description = "전문전송일자", nullable = true)
-    private Date tlmTsdt; //--전문전송일자
+    private LocalDate tlmTsdt; //--전문전송일자
 
     @Column(name = "tlm_pno", length = 7, nullable = true)
     @Schema(description = "전문고유번호", nullable = true)
@@ -316,7 +316,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "inr_edamt_dldt", nullable = true)
     @Schema(description = "통합입출금처리일자", nullable = true)
-    private Date inrEdamtDldt; //--통합입출금처리일자
+    private LocalDate inrEdamtDldt; //--통합입출금처리일자
 
     @Column(name = "inr_rtxno", length = 20, nullable = true)
     @Schema(description = "통합영수증번호", nullable = true)
@@ -348,7 +348,7 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -356,10 +356,10 @@ public class FinPrmRvSb implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public FinPrmRvSb(String rvSbno, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, Date rpdt, String dhOrgcd, String dhStfno, String ikdGrpcd, String insImcd, String invlnGdcd, String ntaccCd, Date cnrdt, String plyno, BigDecimal incmPrmCrSeqno, String ndsno, String ctmno, String crtRsno, Date rpblOpndt, String ltrmCrTotno, String udrtkTycd, String dpCascd, String mntFlgcd, Date dpdt, String rpAdmno, String plno, String bsnsNdsFlgcd, String clsafYn, String totFlgcd, BigDecimal totct, BigDecimal totPrm, BigDecimal woncrPrm, BigDecimal crRnPrm, BigDecimal crDtamt, String mncd, BigDecimal fcPrm, BigDecimal apXcrt, BigDecimal tfCm, String etamtFlgcd, BigDecimal etamt, Date rvdt, String rvOrgcd, String rvXcno, String daCrTpcd, String girAttfErYn, String girDpStcd, Date prmPvlSlpdt, String prmPvlSlpno, String prmPvlSlpLnno, Date ppdt, String ucPrmYn, String msgId, String msgTpCsfcd, Date tlmTsdt, String tlmPno, String tlmSpecd, String spbzFlgcd, String actno, String dpsnm, String crrnm, String inrIkdGrpcd, String inrPlyno, BigDecimal inrPrm, String bkcd, String crdCmpcd, String cclYn, String dhCmpcd, String crdSmamtAryn, String rvDlFlgcd, Date inrEdamtDldt, String inrRtxno, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String agrEntpYn, BigDecimal crRpblPrm, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public FinPrmRvSb(String rvSbno, String crSyscd, String dlTpO1Csfcd, String dlTpO2Csfcd, LocalDate rpdt, String dhOrgcd, String dhStfno, String ikdGrpcd, String insImcd, String invlnGdcd, String ntaccCd, LocalDate cnrdt, String plyno, BigDecimal incmPrmCrSeqno, String ndsno, String ctmno, String crtRsno, LocalDate rpblOpndt, String ltrmCrTotno, String udrtkTycd, String dpCascd, String mntFlgcd, LocalDate dpdt, String rpAdmno, String plno, String bsnsNdsFlgcd, String clsafYn, String totFlgcd, BigDecimal totct, BigDecimal totPrm, BigDecimal woncrPrm, BigDecimal crRnPrm, BigDecimal crDtamt, String mncd, BigDecimal fcPrm, BigDecimal apXcrt, BigDecimal tfCm, String etamtFlgcd, BigDecimal etamt, LocalDate rvdt, String rvOrgcd, String rvXcno, String daCrTpcd, String girAttfErYn, String girDpStcd, LocalDate prmPvlSlpdt, String prmPvlSlpno, String prmPvlSlpLnno, LocalDate ppdt, String ucPrmYn, String msgId, String msgTpCsfcd, LocalDate tlmTsdt, String tlmPno, String tlmSpecd, String spbzFlgcd, String actno, String dpsnm, String crrnm, String inrIkdGrpcd, String inrPlyno, BigDecimal inrPrm, String bkcd, String crdCmpcd, String cclYn, String dhCmpcd, String crdSmamtAryn, String rvDlFlgcd, LocalDate inrEdamtDldt, String inrRtxno, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String agrEntpYn, BigDecimal crRpblPrm, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.rvSbno = rvSbno;
         this.crSyscd = crSyscd;
         this.dlTpO1Csfcd = dlTpO1Csfcd;

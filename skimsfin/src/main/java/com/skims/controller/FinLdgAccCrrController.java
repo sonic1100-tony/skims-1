@@ -9,7 +9,7 @@ package com.skims.controller;
 import java.util.Map;
 import java.util.Optional;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -72,7 +72,7 @@ public class FinLdgAccCrrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinLdgAccCrr.class)) }),
             @ApiResponse(responseCode = "404", description = "FinLdgAccCrr not found", content = @Content) })
     @GetMapping("/finldgacccrrs/{aid}/{crRmdt}")
-    public ResponseEntity<FinLdgAccCrr> getById(@PathVariable("aid") Long aid, @PathVariable("crRmdt") Date crRmdt) {
+    public ResponseEntity<FinLdgAccCrr> getById(@PathVariable("aid") Long aid, @PathVariable("crRmdt") LocalDate crRmdt) {
         Optional<FinLdgAccCrr> data = repository.findById(new FinLdgAccCrrPK(aid, crRmdt));
 
         if (data.isPresent()) {
@@ -103,7 +103,7 @@ public class FinLdgAccCrrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinLdgAccCrr.class)) }),
             @ApiResponse(responseCode = "404", description = "FinLdgAccCrr not found", content = @Content) })
     @PutMapping("/finldgacccrrs/{aid}/{crRmdt}")
-    ResponseEntity<FinLdgAccCrr> putData(@RequestBody FinLdgAccCrr newData, @PathVariable("aid") Long aid, @PathVariable("crRmdt") Date crRmdt) {
+    ResponseEntity<FinLdgAccCrr> putData(@RequestBody FinLdgAccCrr newData, @PathVariable("aid") Long aid, @PathVariable("crRmdt") LocalDate crRmdt) {
         return repository.findById(new FinLdgAccCrrPK(aid, crRmdt)) //
                 .map(oldData -> {
                     newData.setAid(oldData.getAid());
@@ -122,7 +122,7 @@ public class FinLdgAccCrrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinLdgAccCrr.class)) }),
             @ApiResponse(responseCode = "404", description = "FinLdgAccCrr not found", content = @Content) })
 	@PatchMapping("/finldgacccrrs/{aid}/{crRmdt}")
-    ResponseEntity<FinLdgAccCrr> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("aid") Long aid, @PathVariable("crRmdt") Date crRmdt) {
+    ResponseEntity<FinLdgAccCrr> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("aid") Long aid, @PathVariable("crRmdt") LocalDate crRmdt) {
         FinLdgAccCrr newData = mapper.convertValue(newMap, FinLdgAccCrr.class);
         return repository.findById(new FinLdgAccCrrPK(aid, crRmdt)) //
                 .map(oldData -> {
@@ -176,11 +176,11 @@ public class FinLdgAccCrrController {
 	
     // @Operation(summary = "원장계정이력 삭제" , description = "원장계정이력 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the FinLdgAccCrr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the FinLdgAccCrr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinLdgAccCrr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/finldgacccrrs/{aid}/{crRmdt}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("aid") Long aid, @PathVariable("crRmdt") Date crRmdt) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("aid") Long aid, @PathVariable("crRmdt") LocalDate crRmdt) {
         try {
             repository.deleteById(new FinLdgAccCrrPK(aid, crRmdt));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

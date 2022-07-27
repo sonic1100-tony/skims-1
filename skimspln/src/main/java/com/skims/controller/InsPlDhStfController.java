@@ -153,7 +153,7 @@ public class InsPlDhStfController {
 	
     // @Operation(summary = "설계취급직원 삭제" , description = "설계취급직원 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPlDhStf", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPlDhStf", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPlDhStf.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inspldhstfs/{aid}")

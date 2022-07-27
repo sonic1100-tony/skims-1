@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -73,7 +73,7 @@ public class IgdLtrmRatoCopItController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRatoCopIt.class)) }),
             @ApiResponse(responseCode = "404", description = "IgdLtrmRatoCopIt not found", content = @Content) })
     @GetMapping("/igdltrmratocopits/{ltrmRtTablFlgcd}/{inOutFlgcd}/{itIdcOrdr}/{apStrdt}")
-    public ResponseEntity<IgdLtrmRatoCopIt> getById(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") Date apStrdt) {
+    public ResponseEntity<IgdLtrmRatoCopIt> getById(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") LocalDate apStrdt) {
         Optional<IgdLtrmRatoCopIt> data = repository.findById(new IgdLtrmRatoCopItPK(ltrmRtTablFlgcd, inOutFlgcd, itIdcOrdr, apStrdt));
 
         if (data.isPresent()) {
@@ -104,7 +104,7 @@ public class IgdLtrmRatoCopItController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRatoCopIt.class)) }),
             @ApiResponse(responseCode = "404", description = "IgdLtrmRatoCopIt not found", content = @Content) })
     @PutMapping("/igdltrmratocopits/{ltrmRtTablFlgcd}/{inOutFlgcd}/{itIdcOrdr}/{apStrdt}")
-    ResponseEntity<IgdLtrmRatoCopIt> putData(@RequestBody IgdLtrmRatoCopIt newData, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") Date apStrdt) {
+    ResponseEntity<IgdLtrmRatoCopIt> putData(@RequestBody IgdLtrmRatoCopIt newData, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") LocalDate apStrdt) {
         return repository.findById(new IgdLtrmRatoCopItPK(ltrmRtTablFlgcd, inOutFlgcd, itIdcOrdr, apStrdt)) //
                 .map(oldData -> {
                     newData.setLtrmRtTablFlgcd(oldData.getLtrmRtTablFlgcd());
@@ -125,7 +125,7 @@ public class IgdLtrmRatoCopItController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRatoCopIt.class)) }),
             @ApiResponse(responseCode = "404", description = "IgdLtrmRatoCopIt not found", content = @Content) })
 	@PatchMapping("/igdltrmratocopits/{ltrmRtTablFlgcd}/{inOutFlgcd}/{itIdcOrdr}/{apStrdt}")
-    ResponseEntity<IgdLtrmRatoCopIt> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") Date apStrdt) {
+    ResponseEntity<IgdLtrmRatoCopIt> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") LocalDate apStrdt) {
         IgdLtrmRatoCopIt newData = mapper.convertValue(newMap, IgdLtrmRatoCopIt.class);
         return repository.findById(new IgdLtrmRatoCopItPK(ltrmRtTablFlgcd, inOutFlgcd, itIdcOrdr, apStrdt)) //
                 .map(oldData -> {
@@ -148,11 +148,11 @@ public class IgdLtrmRatoCopItController {
 	
     // @Operation(summary = "장기이율구성항목 삭제" , description = "장기이율구성항목 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the IgdLtrmRatoCopIt", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the IgdLtrmRatoCopIt", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRatoCopIt.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/igdltrmratocopits/{ltrmRtTablFlgcd}/{inOutFlgcd}/{itIdcOrdr}/{apStrdt}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") Date apStrdt) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("inOutFlgcd") String inOutFlgcd, @PathVariable("itIdcOrdr") BigDecimal itIdcOrdr, @PathVariable("apStrdt") LocalDate apStrdt) {
         try {
             repository.deleteById(new IgdLtrmRatoCopItPK(ltrmRtTablFlgcd, inOutFlgcd, itIdcOrdr, apStrdt));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

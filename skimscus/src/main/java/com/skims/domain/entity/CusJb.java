@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -56,11 +56,11 @@ public class CusJb implements Serializable {
 
     @Column(name = "ap_strdt", nullable = true)
     @Schema(description = "적용시작일자", nullable = true)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ap_nddt", nullable = true)
     @Schema(description = "적용종료일자", nullable = true)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "ppr_jb_ch_seqno", precision = 5, scale = 0, nullable = true)
     @Schema(description = "상위직업변경순번", nullable = true)
@@ -128,7 +128,7 @@ public class CusJb implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -136,10 +136,10 @@ public class CusJb implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public CusJb(BigDecimal jbChSeqno, String jbcd, String jbnm, String dtJbnm, Date apStrdt, Date apNddt, BigDecimal pprJbChSeqno, String pprJbcd, String injrRnkcd, String injrGrdcd, String trfRnkcd, String xcCvrYn, String crJbcd, String ltrmXclcJbFlgcd, String jbXpnm, String jbDtTpnm, String apldoOutBjyn, String jbXpnmOutCn, String udXcptJbYn, String injrRkGrdcd, String dsasRkGrdcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public CusJb(BigDecimal jbChSeqno, String jbcd, String jbnm, String dtJbnm, LocalDate apStrdt, LocalDate apNddt, BigDecimal pprJbChSeqno, String pprJbcd, String injrRnkcd, String injrGrdcd, String trfRnkcd, String xcCvrYn, String crJbcd, String ltrmXclcJbFlgcd, String jbXpnm, String jbDtTpnm, String apldoOutBjyn, String jbXpnmOutCn, String udXcptJbYn, String injrRkGrdcd, String dsasRkGrdcd, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.jbChSeqno = jbChSeqno;
         this.jbcd = jbcd;
         this.jbnm = jbnm;

@@ -185,7 +185,7 @@ public class FinPyXcController {
 	
     // @Operation(summary = "지급정산 삭제" , description = "지급정산 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the FinPyXc", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the FinPyXc", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinPyXc.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/finpyxcs/{aid}")

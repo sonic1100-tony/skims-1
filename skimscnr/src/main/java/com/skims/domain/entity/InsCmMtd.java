@@ -8,8 +8,8 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -47,11 +47,11 @@ public class InsCmMtd implements Serializable {
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ndsno", length = 4, nullable = false)
     @Schema(description = "배서번호", nullable = false)
@@ -63,11 +63,11 @@ public class InsCmMtd implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Timestamp ndsApStrDthms; //--배서승인시작일시
+    private LocalDateTime ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Timestamp ndsApNdDthms; //--배서승인종료일시
+    private LocalDateTime ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "cm_mtdcd", length = 10, nullable = false)
     @Schema(description = "수금방법코드", nullable = false)
@@ -91,7 +91,7 @@ public class InsCmMtd implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -99,10 +99,10 @@ public class InsCmMtd implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsCmMtd(String plyno, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String cmMtdcd, String slrTfStfno, String crtSlrtfStfRelcd, String autoTfRqdcSsno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsCmMtd(String plyno, LocalDate apNddt, LocalDate apStrdt, String ndsno, String valdNdsYn, LocalDateTime ndsApStrDthms, LocalDateTime ndsApNdDthms, String cmMtdcd, String slrTfStfno, String crtSlrtfStfRelcd, String autoTfRqdcSsno, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plyno = plyno;
         this.apNddt = apNddt;
         this.apStrdt = apStrdt;

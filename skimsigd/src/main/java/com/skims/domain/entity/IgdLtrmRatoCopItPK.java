@@ -8,7 +8,7 @@ package com.skims.domain.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,5 +22,5 @@ public class IgdLtrmRatoCopItPK implements Serializable {
     private String ltrmRtTablFlgcd; //--장기요율테이블구분코드
     private String inOutFlgcd; //--inout구분코드
     private BigDecimal itIdcOrdr; //--항목표시순서
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 }

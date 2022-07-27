@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -44,10 +44,10 @@ public class FinLdgAccCrr implements Serializable {
     @Schema(description = "aid", nullable = false)
     private Long aid; //--aid
 
-    @Id //  Date
+    @Id //  LocalDate
     @Column(name = "cr_rmdt", nullable = false)
     @Schema(description = "발생반제일자", nullable = false)
-    private Date crRmdt; //--발생반제일자
+    private LocalDate crRmdt; //--발생반제일자
 
     @Column(name = "ldgno", length = 20, nullable = false)
     @Schema(description = "원장번호", nullable = false)
@@ -119,7 +119,7 @@ public class FinLdgAccCrr implements Serializable {
 
     @Column(name = "xcdt", nullable = true)
     @Schema(description = "정산일자", nullable = true)
-    private Date xcdt; //--정산일자
+    private LocalDate xcdt; //--정산일자
 
     @Column(name = "xc_orgcd", length = 7, nullable = true)
     @Schema(description = "정산기관코드", nullable = true)
@@ -131,7 +131,7 @@ public class FinLdgAccCrr implements Serializable {
 
     @Column(name = "dsodt", nullable = true)
     @Schema(description = "발의일자", nullable = true)
-    private Date dsodt; //--발의일자
+    private LocalDate dsodt; //--발의일자
 
     @Column(name = "bdg_dpno", length = 7, nullable = true)
     @Schema(description = "예산발의번호", nullable = true)
@@ -155,7 +155,7 @@ public class FinLdgAccCrr implements Serializable {
 
     @Column(name = "slpdt", nullable = true)
     @Schema(description = "전표일자", nullable = true)
-    private Date slpdt; //--전표일자
+    private LocalDate slpdt; //--전표일자
 
     @Column(name = "slpno", length = 7, nullable = true)
     @Schema(description = "전표번호", nullable = true)
@@ -187,7 +187,7 @@ public class FinLdgAccCrr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -195,10 +195,10 @@ public class FinLdgAccCrr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public FinLdgAccCrr(Date crRmdt, String ldgno, String ldgKndcd, BigDecimal crrSeqno, String ntaccCd, String actOrgcd, String dhOrgcd, String dhStfno, String crRmFlgcd, String mncd, BigDecimal fcCrRmamt, BigDecimal woamtCrRmamt, BigDecimal fcCrTblam, BigDecimal woncrCrTblam, BigDecimal apXcrt, String dlTpO1Csfcd, String dlTpO2Csfcd, String accCrrTpcd, Date xcdt, String xcOrgcd, String xcno, Date dsodt, String bdgDpno, String bfNtaccCd, String bfactOrgcd, String bfdhOrgcd, String bfdhStfno, Date slpdt, String slpno, String slpLnno, String ersYn, String notsMtt, String erpTsYn, String erpTsdt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public FinLdgAccCrr(LocalDate crRmdt, String ldgno, String ldgKndcd, BigDecimal crrSeqno, String ntaccCd, String actOrgcd, String dhOrgcd, String dhStfno, String crRmFlgcd, String mncd, BigDecimal fcCrRmamt, BigDecimal woamtCrRmamt, BigDecimal fcCrTblam, BigDecimal woncrCrTblam, BigDecimal apXcrt, String dlTpO1Csfcd, String dlTpO2Csfcd, String accCrrTpcd, LocalDate xcdt, String xcOrgcd, String xcno, LocalDate dsodt, String bdgDpno, String bfNtaccCd, String bfactOrgcd, String bfdhOrgcd, String bfdhStfno, LocalDate slpdt, String slpno, String slpLnno, String ersYn, String notsMtt, String erpTsYn, String erpTsdt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.crRmdt = crRmdt;
         this.ldgno = ldgno;
         this.ldgKndcd = ldgKndcd;

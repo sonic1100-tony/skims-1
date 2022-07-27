@@ -8,8 +8,8 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -55,14 +55,14 @@ public class InsUdwr implements Serializable {
     @Schema(description = "인수제한유형구분코드", nullable = false)
     private String udlmiTpFlgcd; //--인수제한유형구분코드
 
-    @Id //  Date
+    @Id //  LocalDate
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "as_autcd", length = 10, nullable = false)
     @Schema(description = "배정권한코드", nullable = false)
@@ -74,14 +74,14 @@ public class InsUdwr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsUdwr(String udStfno, String udPlFlgcd, String udPrioRancd, String udlmiTpFlgcd, Date apStrdt, Date apNddt, String asAutcd, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
+    public InsUdwr(String udStfno, String udPlFlgcd, String udPrioRancd, String udlmiTpFlgcd, LocalDate apStrdt, LocalDate apNddt, String asAutcd, String mdfUsrId, LocalDateTime inpDthms, LocalDateTime mdfDthms) {
         this.udStfno = udStfno;
         this.udPlFlgcd = udPlFlgcd;
         this.udPrioRancd = udPrioRancd;

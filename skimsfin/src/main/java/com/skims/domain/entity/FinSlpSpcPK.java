@@ -7,7 +7,7 @@
 package com.skims.domain.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,5 +19,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 public class FinSlpSpcPK implements Serializable {
     private Long aid; //--aid
-    private Date slpdt; //--전표일자
+    private LocalDate slpdt; //--전표일자
 }

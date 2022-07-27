@@ -147,7 +147,7 @@ public class InsTfErcdController {
 	
     // @Operation(summary = "이체오류코드 삭제" , description = "이체오류코드 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsTfErcd", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsTfErcd", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsTfErcd.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/instfercds/{tfDlMetcd}/{wdcmpOrVnccd}/{tfRqDmFlgcd}/{tfRqErcd}")

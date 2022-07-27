@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -52,11 +52,11 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ndsno", length = 4, nullable = false)
     @Schema(description = "배서번호", nullable = false)
@@ -72,11 +72,11 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Timestamp ndsApStrDthms; //--배서승인시작일시
+    private LocalDateTime ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Timestamp ndsApNdDthms; //--배서승인종료일시
+    private LocalDateTime ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "ctmno", length = 13, nullable = true)
     @Schema(description = "고객번호", nullable = true)
@@ -144,7 +144,7 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "rq_rqudt", nullable = true)
     @Schema(description = "신청의뢰일자", nullable = true)
-    private Date rqRqudt; //--신청의뢰일자
+    private LocalDate rqRqudt; //--신청의뢰일자
 
     @Column(name = "tf_rq_dl_stcd", length = 10, nullable = true)
     @Schema(description = "이체신청처리상태코드", nullable = true)
@@ -152,7 +152,7 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "rq_rst_rcpdt", nullable = true)
     @Schema(description = "신청결과접수일자", nullable = true)
-    private Date rqRstRcpdt; //--신청결과접수일자
+    private LocalDate rqRstRcpdt; //--신청결과접수일자
 
     @Column(name = "bdl_tf_yn", length = 1, nullable = true)
     @Schema(description = "일괄이체여부", nullable = true)
@@ -188,15 +188,15 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "rqdt", nullable = true)
     @Schema(description = "신청일자", nullable = true)
-    private Date rqdt; //--신청일자
+    private LocalDate rqdt; //--신청일자
 
     @Column(name = "cnldt", nullable = true)
     @Schema(description = "해지일자", nullable = true)
-    private Date cnldt; //--해지일자
+    private LocalDate cnldt; //--해지일자
 
     @Column(name = "cn_rqudt", nullable = true)
     @Schema(description = "해지의뢰일자", nullable = true)
-    private Date cnRqudt; //--해지의뢰일자
+    private LocalDate cnRqudt; //--해지의뢰일자
 
     @Column(name = "tf_cn_dl_stcd", length = 10, nullable = true)
     @Schema(description = "이체해지처리상태코드", nullable = true)
@@ -228,7 +228,7 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "ctm_rqdt", nullable = true)
     @Schema(description = "고객신청일자", nullable = true)
-    private Date ctmRqdt; //--고객신청일자
+    private LocalDate ctmRqdt; //--고객신청일자
 
     @Column(name = "evd_da_flgcd", length = 10, nullable = true)
     @Schema(description = "증빙자료구분코드", nullable = true)
@@ -264,7 +264,7 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -272,10 +272,10 @@ public class InsAutoTfRq implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsAutoTfRq(String plynoOrLnno, String autoTfCgKndcd, Date apNddt, Date apStrdt, String ndsno, BigDecimal olcrrSeqno, String valdNdsYn, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String ctmno, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String tfTpcd, String bkBrcd, String bkBrnm, String crdValdTrm, String tfRqFlgcd, String dpsrOrCrdOwrnm, String ctmDscno, String crtRelcd, String ntTfHpdyCd, String tfDlMetcd, String autoTfRqPtncd, String ptcrdSsYn, Date rqRqudt, String tfRqDlStcd, Date rqRstRcpdt, String bdlTfYn, String bncRmactSynchYn, String chCrdno, String chCrdValdTrm, String tfRqVncErcd, String tfRqWdcmpErcd, BigDecimal atMntct, String tfErFlgcd, Date rqdt, Date cnldt, Date cnRqudt, String tfCnDlStcd, String lnPlyno, String frcCrtYn, String autoTfRqdcSsno, String dpsrTlno, String dhCmpcd, String fbsCvYn, Date ctmRqdt, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String rlPyrNo, String vocNo, String vocHdcftRgtYn, String epayFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsAutoTfRq(String plynoOrLnno, String autoTfCgKndcd, LocalDate apNddt, LocalDate apStrdt, String ndsno, BigDecimal olcrrSeqno, String valdNdsYn, LocalDateTime ndsApStrDthms, LocalDateTime ndsApNdDthms, String ctmno, String bkOrCrdCmpcd, String actnoOrCrdno, String epayPeriStmNo, String tfTpcd, String bkBrcd, String bkBrnm, String crdValdTrm, String tfRqFlgcd, String dpsrOrCrdOwrnm, String ctmDscno, String crtRelcd, String ntTfHpdyCd, String tfDlMetcd, String autoTfRqPtncd, String ptcrdSsYn, LocalDate rqRqudt, String tfRqDlStcd, LocalDate rqRstRcpdt, String bdlTfYn, String bncRmactSynchYn, String chCrdno, String chCrdValdTrm, String tfRqVncErcd, String tfRqWdcmpErcd, BigDecimal atMntct, String tfErFlgcd, LocalDate rqdt, LocalDate cnldt, LocalDate cnRqudt, String tfCnDlStcd, String lnPlyno, String frcCrtYn, String autoTfRqdcSsno, String dpsrTlno, String dhCmpcd, String fbsCvYn, LocalDate ctmRqdt, String evdDaFlgcd, String evdDaDscVl, String evdDaSavePtncd, String rlPyrNo, String vocNo, String vocHdcftRgtYn, String epayFlgcd, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plynoOrLnno = plynoOrLnno;
         this.autoTfCgKndcd = autoTfCgKndcd;
         this.apNddt = apNddt;

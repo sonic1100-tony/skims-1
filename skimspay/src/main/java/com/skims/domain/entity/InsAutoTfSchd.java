@@ -8,8 +8,8 @@ package com.skims.domain.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -55,15 +55,15 @@ public class InsAutoTfSchd implements Serializable {
 
     @Column(name = "dm_wrkdt", nullable = false)
     @Schema(description = "청구작업일자", nullable = false)
-    private Date dmWrkdt; //--청구작업일자
+    private LocalDate dmWrkdt; //--청구작업일자
 
     @Column(name = "tfdt", nullable = false)
     @Schema(description = "이체일자", nullable = false)
-    private Date tfdt; //--이체일자
+    private LocalDate tfdt; //--이체일자
 
     @Column(name = "dp_wrkdt", nullable = false)
     @Schema(description = "입금작업일자", nullable = false)
-    private Date dpWrkdt; //--입금작업일자
+    private LocalDate dpWrkdt; //--입금작업일자
 
     @Column(name = "inp_usr_id", length = 50, nullable = false)
     @Schema(description = "입력사용자id", nullable = false)
@@ -71,7 +71,7 @@ public class InsAutoTfSchd implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -79,10 +79,10 @@ public class InsAutoTfSchd implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsAutoTfSchd(String tfYymm, String tfDaycd, String tfTpcd, Date dmWrkdt, Date tfdt, Date dpWrkdt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsAutoTfSchd(String tfYymm, String tfDaycd, String tfTpcd, LocalDate dmWrkdt, LocalDate tfdt, LocalDate dpWrkdt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.tfYymm = tfYymm;
         this.tfDaycd = tfDaycd;
         this.tfTpcd = tfTpcd;

@@ -178,7 +178,7 @@ public class InsAutoTrfrqController {
 	
     // @Operation(summary = "자동이체의뢰 삭제" , description = "자동이체의뢰 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsAutoTrfrq", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsAutoTrfrq", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsAutoTrfrq.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insautotrfrqs/{aid}")

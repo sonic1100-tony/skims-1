@@ -6,7 +6,6 @@
 **/
 package com.skims.controller;
 
-<<<<<<< HEAD
 import java.util.Map;
 import java.util.Optional;
 
@@ -25,27 +24,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-=======
->>>>>>> d04a89a6781d74b3fc7d3345f445ca8716a0759d
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.CusPstnoRodnmSrhAdr;
 import com.skims.domain.entity.CusPstnoRodnmSrhAdrPK;
 import com.skims.domain.repository.CusPstnoRodnmSrhAdrRepository;
+
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.Optional;
 
 
 @RestController
@@ -166,7 +155,7 @@ public class CusPstnoRodnmSrhAdrController {
 	
     // @Operation(summary = "우편번호도로명검색주소 삭제" , description = "우편번호도로명검색주소 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the CusPstnoRodnmSrhAdr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the CusPstnoRodnmSrhAdr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = CusPstnoRodnmSrhAdr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/cuspstnorodnmsrhadrs/{roadNmFlgcd}/{twmdSno}")

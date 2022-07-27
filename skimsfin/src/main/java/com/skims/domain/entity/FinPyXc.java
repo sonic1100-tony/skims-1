@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -44,7 +44,7 @@ public class FinPyXc implements Serializable {
 
     @Column(name = "pydt", nullable = false)
     @Schema(description = "지급일자", nullable = false)
-    private Date pydt; //--지급일자
+    private LocalDate pydt; //--지급일자
 
     @Column(name = "py_orgcd", length = 7, nullable = false)
     @Schema(description = "지급기관코드", nullable = false)
@@ -128,7 +128,7 @@ public class FinPyXc implements Serializable {
 
     @Column(name = "py_slpdt", nullable = true)
     @Schema(description = "지급전표일자", nullable = true)
-    private Date pySlpdt; //--지급전표일자
+    private LocalDate pySlpdt; //--지급전표일자
 
     @Column(name = "py_slpno", length = 7, nullable = true)
     @Schema(description = "지급전표번호", nullable = true)
@@ -140,7 +140,7 @@ public class FinPyXc implements Serializable {
 
     @Column(name = "ccldt", nullable = true)
     @Schema(description = "취소일자", nullable = true)
-    private Date ccldt; //--취소일자
+    private LocalDate ccldt; //--취소일자
 
     @Column(name = "ccl_stfno", length = 50, nullable = true)
     @Schema(description = "취소직원번호", nullable = true)
@@ -228,7 +228,7 @@ public class FinPyXc implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -236,10 +236,10 @@ public class FinPyXc implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public FinPyXc(Date pydt, String pyOrgcd, String pyXcno, String pyActOrgcd, String dlTpO1Csfcd, String dlTpO2Csfcd, String pyMtdcd, String pyDlO1Flgcd, String pyDlO2Flgcd, String selfYn, String rcrRsno, String rcrNm, String mncd, BigDecimal pySmct, BigDecimal pyWoncrSmamt, BigDecimal pyFcSmamt, String fxPldoqFlgcd, BigDecimal fxPqamt, BigDecimal apXcrt, String dfpcd, String pyStcd, Date pySlpdt, String pySlpno, String inpScrId, Date ccldt, String cclStfno, String notsMtt, String vnccd, String mtactBkcd, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String tlmPno, String msgId, String msgTpCsfcd, String uplsTlmTsdt, String uplsTlmTsHms, String uplsTmmno, String uplsTlmcd, String uplsBsnsFlgcd, String imtyTfErFlgcd, String acctSpcft, String pynctTpcd, String accLdgno, String chkDscno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public FinPyXc(LocalDate pydt, String pyOrgcd, String pyXcno, String pyActOrgcd, String dlTpO1Csfcd, String dlTpO2Csfcd, String pyMtdcd, String pyDlO1Flgcd, String pyDlO2Flgcd, String selfYn, String rcrRsno, String rcrNm, String mncd, BigDecimal pySmct, BigDecimal pyWoncrSmamt, BigDecimal pyFcSmamt, String fxPldoqFlgcd, BigDecimal fxPqamt, BigDecimal apXcrt, String dfpcd, String pyStcd, LocalDate pySlpdt, String pySlpno, String inpScrId, LocalDate ccldt, String cclStfno, String notsMtt, String vnccd, String mtactBkcd, String finaDatVrfFlg1Vl, String finaDatVrfFlg2Vl, String finaDatVrfFlg3Vl, String tlmPno, String msgId, String msgTpCsfcd, String uplsTlmTsdt, String uplsTlmTsHms, String uplsTmmno, String uplsTlmcd, String uplsBsnsFlgcd, String imtyTfErFlgcd, String acctSpcft, String pynctTpcd, String accLdgno, String chkDscno, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.pydt = pydt;
         this.pyOrgcd = pyOrgcd;
         this.pyXcno = pyXcno;

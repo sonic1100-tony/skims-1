@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -35,11 +35,11 @@ import com.skims.domain.listener.InsTfWrkDlCrstListener;
 @Schema(description = "이체작업처리현황")
 @IdClass(InsTfWrkDlCrstPK.class)
 public class InsTfWrkDlCrst implements Serializable {
-    @Id //  Date
+    @Id //  LocalDate
     @Column(name = "stdt", nullable = false)
 //    @Schema(description = "", nullable = true , defaultValue = "" , example = ""  , allowableValues = {"", ""})
     @Schema(description = "기준일자", nullable = false)
-    private Date stdt; //--기준일자
+    private LocalDate stdt; //--기준일자
 
     @Id //  String
     @Column(name = "tf_wrk_flgcd", length = 10, nullable = false)
@@ -109,7 +109,7 @@ public class InsTfWrkDlCrst implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -117,10 +117,10 @@ public class InsTfWrkDlCrst implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsTfWrkDlCrst(Date stdt, String tfWrkFlgcd, BigDecimal seqno, String tf1Yymm, String tf1Daycd, String tf2Yymm, String tf2Daycd, String tfDlMetcd, String autoTfCgKndcd, String dhCmpcd, String tfWrkRkcd, String wrkExecRstTpcd, BigDecimal wrkExecRstCt, BigDecimal wrkExecRstAmt, String cnfMtdcd, String cnfYn, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsTfWrkDlCrst(LocalDate stdt, String tfWrkFlgcd, BigDecimal seqno, String tf1Yymm, String tf1Daycd, String tf2Yymm, String tf2Daycd, String tfDlMetcd, String autoTfCgKndcd, String dhCmpcd, String tfWrkRkcd, String wrkExecRstTpcd, BigDecimal wrkExecRstCt, BigDecimal wrkExecRstAmt, String cnfMtdcd, String cnfYn, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.stdt = stdt;
         this.tfWrkFlgcd = tfWrkFlgcd;
         this.seqno = seqno;

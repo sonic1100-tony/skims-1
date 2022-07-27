@@ -54,11 +54,7 @@ public class InsInsCrController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsInsCr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @GetMapping("/insinscrs")
-<<<<<<< HEAD
     public ResponseEntity<Page<InsInsCr>> getAll(Pageable pageable) {
-=======
-    public ResponseEntity<Page<InsInsCr>> getAll( Pageable pageable) {
->>>>>>> d04a89a6781d74b3fc7d3345f445ca8716a0759d
         try {
 			log.info("findAll");
             return ResponseEntity.ok().body(repository.findAll(pageable));
@@ -400,7 +396,7 @@ public class InsInsCrController {
 	
     // @Operation(summary = "보험계약 삭제" , description = "보험계약 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsInsCr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsInsCr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsInsCr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insinscrs/{aid}")

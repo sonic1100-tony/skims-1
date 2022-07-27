@@ -150,7 +150,7 @@ public class InsPlRelpcRelController {
 	
     // @Operation(summary = "설계관계자관계 삭제" , description = "설계관계자관계 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPlRelpcRel", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPlRelpcRel", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPlRelpcRel.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insplrelpcrels/{plno}/{cgafChSeqno}/{stRelpcSeqno}/{cnftRelpcSeqno}")

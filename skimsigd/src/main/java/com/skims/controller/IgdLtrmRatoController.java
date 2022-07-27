@@ -9,7 +9,7 @@ package com.skims.controller;
 import java.util.Map;
 import java.util.Optional;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -72,7 +72,7 @@ public class IgdLtrmRatoController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRato.class)) }),
             @ApiResponse(responseCode = "404", description = "IgdLtrmRato not found", content = @Content) })
     @GetMapping("/igdltrmratos/{ltrmRtTablFlgcd}/{sno}/{apStrdt}")
-    public ResponseEntity<IgdLtrmRato> getById(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") Date apStrdt) {
+    public ResponseEntity<IgdLtrmRato> getById(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") LocalDate apStrdt) {
         Optional<IgdLtrmRato> data = repository.findById(new IgdLtrmRatoPK(ltrmRtTablFlgcd, sno, apStrdt));
 
         if (data.isPresent()) {
@@ -103,7 +103,7 @@ public class IgdLtrmRatoController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRato.class)) }),
             @ApiResponse(responseCode = "404", description = "IgdLtrmRato not found", content = @Content) })
     @PutMapping("/igdltrmratos/{ltrmRtTablFlgcd}/{sno}/{apStrdt}")
-    ResponseEntity<IgdLtrmRato> putData(@RequestBody IgdLtrmRato newData, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") Date apStrdt) {
+    ResponseEntity<IgdLtrmRato> putData(@RequestBody IgdLtrmRato newData, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") LocalDate apStrdt) {
         return repository.findById(new IgdLtrmRatoPK(ltrmRtTablFlgcd, sno, apStrdt)) //
                 .map(oldData -> {
                     newData.setLtrmRtTablFlgcd(oldData.getLtrmRtTablFlgcd());
@@ -123,7 +123,7 @@ public class IgdLtrmRatoController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRato.class)) }),
             @ApiResponse(responseCode = "404", description = "IgdLtrmRato not found", content = @Content) })
 	@PatchMapping("/igdltrmratos/{ltrmRtTablFlgcd}/{sno}/{apStrdt}")
-    ResponseEntity<IgdLtrmRato> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") Date apStrdt) {
+    ResponseEntity<IgdLtrmRato> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") LocalDate apStrdt) {
         IgdLtrmRato newData = mapper.convertValue(newMap, IgdLtrmRato.class);
         return repository.findById(new IgdLtrmRatoPK(ltrmRtTablFlgcd, sno, apStrdt)) //
                 .map(oldData -> {
@@ -190,11 +190,11 @@ public class IgdLtrmRatoController {
 	
     // @Operation(summary = "장기이율 삭제" , description = "장기이율 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the IgdLtrmRato", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the IgdLtrmRato", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmRato.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/igdltrmratos/{ltrmRtTablFlgcd}/{sno}/{apStrdt}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") Date apStrdt) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("ltrmRtTablFlgcd") String ltrmRtTablFlgcd, @PathVariable("sno") String sno, @PathVariable("apStrdt") LocalDate apStrdt) {
         try {
             repository.deleteById(new IgdLtrmRatoPK(ltrmRtTablFlgcd, sno, apStrdt));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

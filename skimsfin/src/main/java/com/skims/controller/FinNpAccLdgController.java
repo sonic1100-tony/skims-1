@@ -172,7 +172,7 @@ public class FinNpAccLdgController {
 	
     // @Operation(summary = "미지급계정원장 삭제" , description = "미지급계정원장 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the FinNpAccLdg", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the FinNpAccLdg", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FinNpAccLdg.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/finnpaccldgs/{aid}")

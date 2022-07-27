@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -52,11 +52,11 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ndsno", length = 4, nullable = false)
     @Schema(description = "배서번호", nullable = false)
@@ -68,11 +68,11 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "nds_ap_str_dthms", nullable = false)
     @Schema(description = "배서승인시작일시", nullable = false)
-    private Timestamp ndsApStrDthms; //--배서승인시작일시
+    private LocalDateTime ndsApStrDthms; //--배서승인시작일시
 
     @Column(name = "nds_ap_nd_dthms", nullable = false)
     @Schema(description = "배서승인종료일시", nullable = false)
-    private Timestamp ndsApNdDthms; //--배서승인종료일시
+    private LocalDateTime ndsApNdDthms; //--배서승인종료일시
 
     @Column(name = "ikd_grpcd", length = 10, nullable = false)
     @Schema(description = "보종군코드", nullable = false)
@@ -128,7 +128,7 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "ins_st", nullable = true)
     @Schema(description = "보험시기", nullable = true)
-    private Date insSt; //--보험시기
+    private LocalDate insSt; //--보험시기
 
     @Column(name = "ins_st_hms", length = 4, nullable = true)
     @Schema(description = "보험시기시각", nullable = true)
@@ -136,7 +136,7 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "ins_clstr", nullable = true)
     @Schema(description = "보험종기", nullable = true)
-    private Date insClstr; //--보험종기
+    private LocalDate insClstr; //--보험종기
 
     @Column(name = "ins_clstr_hms", length = 4, nullable = true)
     @Schema(description = "보험종기시각", nullable = true)
@@ -144,11 +144,11 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "rfd_clc_st", nullable = true)
     @Schema(description = "준비금산정시기", nullable = true)
-    private Date rfdClcSt; //--준비금산정시기
+    private LocalDate rfdClcSt; //--준비금산정시기
 
     @Column(name = "rfd_clc_clstr", nullable = true)
     @Schema(description = "준비금산정종기", nullable = true)
-    private Date rfdClcClstr; //--준비금산정종기
+    private LocalDate rfdClcClstr; //--준비금산정종기
 
     @Column(name = "drve_tycd", length = 10, nullable = true)
     @Schema(description = "운전형태코드", nullable = true)
@@ -200,11 +200,11 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "bthdt", nullable = true)
     @Schema(description = "출산일자", nullable = true)
-    private Date bthdt; //--출산일자
+    private LocalDate bthdt; //--출산일자
 
     @Column(name = "stbdt", nullable = true)
     @Schema(description = "사산일자", nullable = true)
-    private Date stbdt; //--사산일자
+    private LocalDate stbdt; //--사산일자
 
     @Column(name = "preg_rndwk", precision = 2, scale = 0, nullable = true)
     @Schema(description = "임신경과주", nullable = true)
@@ -228,11 +228,11 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "tisrd_rcpdt", nullable = true)
     @Schema(description = "부보자접수일자", nullable = true)
-    private Date tisrdRcpdt; //--부보자접수일자
+    private LocalDate tisrdRcpdt; //--부보자접수일자
 
     @Column(name = "acdis_rgtdt", nullable = true)
     @Schema(description = "학원등록일자", nullable = true)
-    private Date acdisRgtdt; //--학원등록일자
+    private LocalDate acdisRgtdt; //--학원등록일자
 
     @Column(name = "drve_lic_specd", length = 10, nullable = true)
     @Schema(description = "운전면허종별코드", nullable = true)
@@ -280,7 +280,7 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "bth_prdt", nullable = true)
     @Schema(description = "출산예정일자", nullable = true)
-    private Date bthPrdt; //--출산예정일자
+    private LocalDate bthPrdt; //--출산예정일자
 
     @Column(name = "nwbby_nm", length = 100, nullable = true)
     @Schema(description = "신생아성명", nullable = true)
@@ -292,7 +292,7 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "preg_rndwk_stdt", nullable = true)
     @Schema(description = "임신경과주기준일자", nullable = true)
-    private Date pregRndwkStdt; //--임신경과주기준일자
+    private LocalDate pregRndwkStdt; //--임신경과주기준일자
 
     @Column(name = "mdcs_inq_agre_yn", length = 1, nullable = true)
     @Schema(description = "의료비조회동의여부", nullable = true)
@@ -352,7 +352,7 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -360,10 +360,10 @@ public class InsNrdpsTisrdAtr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsNrdpsTisrdAtr(String plyno, BigDecimal relpcSeqno, Date apNddt, Date apStrdt, String ndsno, String valdNdsYn, Timestamp ndsApStrDthms, Timestamp ndsApNdDthms, String ikdGrpcd, String nrdpsTisrdFlgcd, String crPlcd, String plCsfcd, String mdNrdpsFlgcd, String gpIsTp, BigDecimal nrdpsOrTisct, BigDecimal fmlct, BigDecimal manPsct, BigDecimal fmlPsct, String rxamBjYn, String twhvcDrveYn, String drveYn, Date insSt, String insStHms, Date insClstr, String insClstrHms, Date rfdClcSt, Date rfdClcClstr, String drveTycd, String brth, String embrYn, String sexcd, BigDecimal age, String jbcd, BigDecimal jbChSeqno, String injrRnkcd, String trfRnkcd, String injrGrdcd, String ptn, String bdt, Date bthdt, Date stbdt, BigDecimal pregRndwk, String mdcsRgtFlgcd, String mdcsRgtStcd, String sttPfsstFlgcd, String bkcd, Date tisrdRcpdt, Date acdisRgtdt, String drveLicSpecd, String paMncd, BigDecimal mnthAvgPa, BigDecimal yearPaTamt, String xcApYn, String brdpsRvpsFlgcd, String dtycd, String rcnBjyn, String dgnUdBjYn, BigDecimal adIrtApChdct, String embrIsAvYn, Date bthPrdt, String nwbbyNm, String nwbbyRsno, Date pregRndwkStdt, String mdcsInqAgreYn, String smokYn, BigDecimal dscrt, String ssngCmpGdnm, String wpcnm, String bnnm, String cePlcd, String xclcBdYn, String unfRtApYn, String twhvcSubCvrtrIsFlgcd, BigDecimal dcAge, String hltAgePrmApTrtIsFlgcd, String hltAgeDcApFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsNrdpsTisrdAtr(String plyno, BigDecimal relpcSeqno, LocalDate apNddt, LocalDate apStrdt, String ndsno, String valdNdsYn, LocalDateTime ndsApStrDthms, LocalDateTime ndsApNdDthms, String ikdGrpcd, String nrdpsTisrdFlgcd, String crPlcd, String plCsfcd, String mdNrdpsFlgcd, String gpIsTp, BigDecimal nrdpsOrTisct, BigDecimal fmlct, BigDecimal manPsct, BigDecimal fmlPsct, String rxamBjYn, String twhvcDrveYn, String drveYn, LocalDate insSt, String insStHms, LocalDate insClstr, String insClstrHms, LocalDate rfdClcSt, LocalDate rfdClcClstr, String drveTycd, String brth, String embrYn, String sexcd, BigDecimal age, String jbcd, BigDecimal jbChSeqno, String injrRnkcd, String trfRnkcd, String injrGrdcd, String ptn, String bdt, LocalDate bthdt, LocalDate stbdt, BigDecimal pregRndwk, String mdcsRgtFlgcd, String mdcsRgtStcd, String sttPfsstFlgcd, String bkcd, LocalDate tisrdRcpdt, LocalDate acdisRgtdt, String drveLicSpecd, String paMncd, BigDecimal mnthAvgPa, BigDecimal yearPaTamt, String xcApYn, String brdpsRvpsFlgcd, String dtycd, String rcnBjyn, String dgnUdBjYn, BigDecimal adIrtApChdct, String embrIsAvYn, LocalDate bthPrdt, String nwbbyNm, String nwbbyRsno, LocalDate pregRndwkStdt, String mdcsInqAgreYn, String smokYn, BigDecimal dscrt, String ssngCmpGdnm, String wpcnm, String bnnm, String cePlcd, String xclcBdYn, String unfRtApYn, String twhvcSubCvrtrIsFlgcd, BigDecimal dcAge, String hltAgePrmApTrtIsFlgcd, String hltAgeDcApFlgcd, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plyno = plyno;
         this.relpcSeqno = relpcSeqno;
         this.apNddt = apNddt;

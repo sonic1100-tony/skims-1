@@ -158,7 +158,7 @@ public class InsRpAdmController {
 	
     // @Operation(summary = "영수관리 삭제" , description = "영수관리 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsRpAdm", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsRpAdm", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsRpAdm.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insrpadms/{aid}")

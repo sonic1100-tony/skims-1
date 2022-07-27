@@ -153,7 +153,7 @@ public class CusCtmCntrtCrrController {
 	
     // @Operation(summary = "고객접촉이력 삭제" , description = "고객접촉이력 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the CusCtmCntrtCrr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the CusCtmCntrtCrr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = CusCtmCntrtCrr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/cusctmcntrtcrrs/{aid}")

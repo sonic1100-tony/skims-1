@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -51,14 +51,14 @@ public class IgdLtrmRatoCopIt implements Serializable {
     @Schema(description = "항목표시순서", nullable = false)
     private BigDecimal itIdcOrdr; //--항목표시순서
 
-    @Id //  Date
+    @Id //  LocalDate
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "rt_itcd_atrvl", length = 100, nullable = false)
     @Schema(description = "요율항목코드속성값", nullable = false)
@@ -74,14 +74,14 @@ public class IgdLtrmRatoCopIt implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public IgdLtrmRatoCopIt(String ltrmRtTablFlgcd, String inOutFlgcd, BigDecimal itIdcOrdr, Date apStrdt, Date apNddt, String rtItcdAtrvl, String rtItCdnm, String mdfUsrId, Timestamp inpDthms, Timestamp mdfDthms) {
+    public IgdLtrmRatoCopIt(String ltrmRtTablFlgcd, String inOutFlgcd, BigDecimal itIdcOrdr, LocalDate apStrdt, LocalDate apNddt, String rtItcdAtrvl, String rtItCdnm, String mdfUsrId, LocalDateTime inpDthms, LocalDateTime mdfDthms) {
         this.ltrmRtTablFlgcd = ltrmRtTablFlgcd;
         this.inOutFlgcd = inOutFlgcd;
         this.itIdcOrdr = itIdcOrdr;

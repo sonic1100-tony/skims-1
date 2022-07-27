@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -56,11 +56,11 @@ public class InsInrCr implements Serializable {
 
     @Column(name = "ins_st", nullable = true)
     @Schema(description = "보험시기", nullable = true)
-    private Date insSt; //--보험시기
+    private LocalDate insSt; //--보험시기
 
     @Column(name = "ins_clstr", nullable = true)
     @Schema(description = "보험종기", nullable = true)
-    private Date insClstr; //--보험종기
+    private LocalDate insClstr; //--보험종기
 
     @Column(name = "crt_ctmno", length = 13, nullable = true)
     @Schema(description = "계약자고객번호", nullable = true)
@@ -76,7 +76,7 @@ public class InsInrCr implements Serializable {
 
     @Column(name = "st_chdt", nullable = true)
     @Schema(description = "상태변경일자", nullable = true)
-    private Date stChdt; //--상태변경일자
+    private LocalDate stChdt; //--상태변경일자
 
     @Column(name = "hdqt_orgcd", length = 7, nullable = true)
     @Schema(description = "본부기관코드", nullable = true)
@@ -116,7 +116,7 @@ public class InsInrCr implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -124,10 +124,10 @@ public class InsInrCr implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsInrCr(String plyno, String stYymm, String inrCrDaFlgcd, Date insSt, Date insClstr, String crtCtmno, String crStcd, String crDtStcd, Date stChdt, String hdqtOrgcd, String aregpOrgcd, String dhOrgcd, String dhStfcd, String usrno, BigDecimal inrNaamt, String inrCrDlYn, BigDecimal inrCrNt, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsInrCr(String plyno, String stYymm, String inrCrDaFlgcd, LocalDate insSt, LocalDate insClstr, String crtCtmno, String crStcd, String crDtStcd, LocalDate stChdt, String hdqtOrgcd, String aregpOrgcd, String dhOrgcd, String dhStfcd, String usrno, BigDecimal inrNaamt, String inrCrDlYn, BigDecimal inrCrNt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.plyno = plyno;
         this.stYymm = stYymm;
         this.inrCrDaFlgcd = inrCrDaFlgcd;

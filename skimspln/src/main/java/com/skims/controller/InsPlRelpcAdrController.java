@@ -154,7 +154,7 @@ public class InsPlRelpcAdrController {
 	
     // @Operation(summary = "설계관계자주소 삭제" , description = "설계관계자주소 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsPlRelpcAdr", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsPlRelpcAdr", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsPlRelpcAdr.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insplrelpcadrs/{aid}")

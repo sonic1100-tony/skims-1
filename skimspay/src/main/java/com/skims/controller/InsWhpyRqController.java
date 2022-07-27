@@ -198,7 +198,7 @@ public class InsWhpyRqController {
 	
     // @Operation(summary = "제지급신청 삭제" , description = "제지급신청 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsWhpyRq", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsWhpyRq", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsWhpyRq.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inswhpyrqs/{aid}")

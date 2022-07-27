@@ -6,12 +6,11 @@
 **/
 package com.skims.controller;
 
-<<<<<<< HEAD
 import java.util.Map;
 import java.util.Optional;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,29 +26,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-=======
->>>>>>> d04a89a6781d74b3fc7d3345f445ca8716a0759d
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsCrNcMtt;
 import com.skims.domain.entity.InsCrNcMttPK;
 import com.skims.domain.repository.InsCrNcMttRepository;
+
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.Map;
-import java.util.Optional;
 
 
 @RestController
@@ -86,7 +73,7 @@ public class InsCrNcMttController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCrNcMtt.class)) }),
             @ApiResponse(responseCode = "404", description = "InsCrNcMtt not found", content = @Content) })
     @GetMapping("/inscrncmtts/{plyno}/{relpcSeqno}/{ncMttItno}/{ndsApStrDthms}")
-    public ResponseEntity<InsCrNcMtt> getById(@PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") Timestamp ndsApStrDthms) {
+    public ResponseEntity<InsCrNcMtt> getById(@PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") LocalDateTime ndsApStrDthms) {
         Optional<InsCrNcMtt> data = repository.findById(new InsCrNcMttPK(plyno, relpcSeqno, ncMttItno, ndsApStrDthms));
 
         if (data.isPresent()) {
@@ -117,7 +104,7 @@ public class InsCrNcMttController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCrNcMtt.class)) }),
             @ApiResponse(responseCode = "404", description = "InsCrNcMtt not found", content = @Content) })
     @PutMapping("/inscrncmtts/{plyno}/{relpcSeqno}/{ncMttItno}/{ndsApStrDthms}")
-    ResponseEntity<InsCrNcMtt> putData(@RequestBody InsCrNcMtt newData, @PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") Timestamp ndsApStrDthms) {
+    ResponseEntity<InsCrNcMtt> putData(@RequestBody InsCrNcMtt newData, @PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") LocalDateTime ndsApStrDthms) {
         return repository.findById(new InsCrNcMttPK(plyno, relpcSeqno, ncMttItno, ndsApStrDthms)) //
                 .map(oldData -> {
                     newData.setPlyno(oldData.getPlyno());
@@ -138,7 +125,7 @@ public class InsCrNcMttController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCrNcMtt.class)) }),
             @ApiResponse(responseCode = "404", description = "InsCrNcMtt not found", content = @Content) })
 	@PatchMapping("/inscrncmtts/{plyno}/{relpcSeqno}/{ncMttItno}/{ndsApStrDthms}")
-    ResponseEntity<InsCrNcMtt> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") Timestamp ndsApStrDthms) {
+    ResponseEntity<InsCrNcMtt> patchData(@RequestBody Map<String, Object> newMap, @PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") LocalDateTime ndsApStrDthms) {
         InsCrNcMtt newData = mapper.convertValue(newMap, InsCrNcMtt.class);
         return repository.findById(new InsCrNcMttPK(plyno, relpcSeqno, ncMttItno, ndsApStrDthms)) //
                 .map(oldData -> {
@@ -164,11 +151,11 @@ public class InsCrNcMttController {
 	
     // @Operation(summary = "계약알릴사항 삭제" , description = "계약알릴사항 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsCrNcMtt", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsCrNcMtt", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsCrNcMtt.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/inscrncmtts/{plyno}/{relpcSeqno}/{ncMttItno}/{ndsApStrDthms}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") Timestamp ndsApStrDthms) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("plyno") String plyno, @PathVariable("relpcSeqno") BigDecimal relpcSeqno, @PathVariable("ncMttItno") String ncMttItno, @PathVariable("ndsApStrDthms") LocalDateTime ndsApStrDthms) {
         try {
             repository.deleteById(new InsCrNcMttPK(plyno, relpcSeqno, ncMttItno, ndsApStrDthms));
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

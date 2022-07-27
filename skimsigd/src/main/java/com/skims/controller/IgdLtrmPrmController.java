@@ -168,7 +168,7 @@ public class IgdLtrmPrmController {
 	
     // @Operation(summary = "장기보험료 삭제" , description = "장기보험료 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the IgdLtrmPrm", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the IgdLtrmPrm", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = IgdLtrmPrm.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/igdltrmprms/{aid}")

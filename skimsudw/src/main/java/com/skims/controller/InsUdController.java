@@ -211,7 +211,7 @@ public class InsUdController {
 	
     // @Operation(summary = "심사 삭제" , description = "심사 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the InsUd", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the InsUd", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = InsUd.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/insuds/{aid}")

@@ -162,7 +162,7 @@ public class CusJbController {
 	
     // @Operation(summary = "직업 삭제" , description = "직업 Primary Key로 삭제" )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Delete the CusJb", content = {
+            @ApiResponse(responseCode = "204", description = "Delete the CusJb", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = CusJb.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @DeleteMapping("/cusjbs/{jbChSeqno}/{jbcd}")

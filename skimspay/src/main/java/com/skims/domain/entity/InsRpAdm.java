@@ -9,8 +9,8 @@ package com.skims.domain.entity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -52,7 +52,7 @@ public class InsRpAdm implements Serializable {
 
     @Column(name = "rp_dthms", nullable = true)
     @Schema(description = "영수일시", nullable = true)
-    private Timestamp rpDthms; //--영수일시
+    private LocalDateTime rpDthms; //--영수일시
 
     @Column(name = "rtx_csfcd", length = 10, nullable = true)
     @Schema(description = "영수증분류코드", nullable = true)
@@ -68,7 +68,7 @@ public class InsRpAdm implements Serializable {
 
     @Column(name = "rvdt", nullable = true)
     @Schema(description = "수납일자", nullable = true)
-    private Date rvdt; //--수납일자
+    private LocalDate rvdt; //--수납일자
 
     @Column(name = "rv_yn", length = 1, nullable = true)
     @Schema(description = "수납여부", nullable = true)
@@ -120,7 +120,7 @@ public class InsRpAdm implements Serializable {
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private Timestamp inpDthms; //--입력일시
+    private LocalDateTime inpDthms; //--입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
@@ -128,10 +128,10 @@ public class InsRpAdm implements Serializable {
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private Timestamp mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; //--수정일시
 
     @Builder
-    public InsRpAdm(String rpAdmno, String mntFlgcd, Timestamp rpDthms, String rtxCsfcd, BigDecimal rpamt, String rvXcno, Date rvdt, String rvYn, String actSbrcd, String crdCmpcd, String rpPthFlgcd, String plno, BigDecimal cgafChSeqno, String clsafRcpno, BigDecimal clsafRcpSeqno, String ctmSlrAutoTfsno, String ltrmCrTotno, String bllLdgno, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public InsRpAdm(String rpAdmno, String mntFlgcd, LocalDateTime rpDthms, String rtxCsfcd, BigDecimal rpamt, String rvXcno, LocalDate rvdt, String rvYn, String actSbrcd, String crdCmpcd, String rpPthFlgcd, String plno, BigDecimal cgafChSeqno, String clsafRcpno, BigDecimal clsafRcpSeqno, String ctmSlrAutoTfsno, String ltrmCrTotno, String bllLdgno, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.rpAdmno = rpAdmno;
         this.mntFlgcd = mntFlgcd;
         this.rpDthms = rpDthms;
