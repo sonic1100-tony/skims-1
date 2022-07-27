@@ -30,11 +30,11 @@
 LTS버전으로 설치진행
 
 ### 1.4. yarn 설치
-* windows
+#### windows
 https://classic.yarnpkg.com/en/docs/install#windows-stable 브라우저로 접속하셔서
 Alternatives 누르시면 인스톨러 다운로드 받아서 yarn 설치진행 
 
-* Mac
+#### Mac
 $ npm install --location=global yarn
 
 ### 1.4. npm 명령어  
