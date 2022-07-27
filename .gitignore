@@ -36,3 +36,25 @@ hs_err_pid*
 
 # Generated files
 */bin/
+
+
+
+
+# Ignore Gradle project-specific cache directory
+**/.gradle
+
+# ignore idea
+**/.idea
+
+# Ignore Gradle build output directory
+**/build
+**/out
+
+# ignore data and log
+**/dat
+**/log
+**/logs
+
+# ignore auto generated file
+/**/src/main/generated
+/**/src/test/generated_tests
