@@ -11,13 +11,14 @@ package com.skims.domain.repository;
 // import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 // import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.skims.domain.entity.IgdGd;
 import com.skims.domain.entity.IgdGdPK;
 
 @RepositoryRestResource
-public interface IgdGdRepository extends JpaRepository<IgdGd, IgdGdPK> {
+public interface IgdGdRepository extends JpaRepository<IgdGd, IgdGdPK>, JpaSpecificationExecutor<IgdGd> {
 	// JPQL SAMPLE
 	// @Query("select new  com.sample.dto.TestUser(m.username, m.address, m.age) from User m")
     // Page<TestUser>test(Pageable pageable);

@@ -6,27 +6,19 @@
 **/
 package com.skims.domain.entity;
 
+import com.skims.domain.listener.IgdGdCvrListener;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-// import javax.persistence.Temporal;
-// import javax.persistence.TemporalType;
-import javax.persistence.Table;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import com.skims.domain.listener.IgdGdCvrListener;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
@@ -52,11 +44,11 @@ public class IgdGdCvr implements Serializable {
 
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "cvr_prsnm", length = 500, nullable = false)
     @Schema(description = "담보대표명", nullable = false)
@@ -335,7 +327,7 @@ public class IgdGdCvr implements Serializable {
     private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public IgdGdCvr(String gdcd, String cvrcd, Date apNddt, Date apStrdt, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, Date cvrPerdt, String cvrClaCn, String cvrBaTrtFlgcd, String isBjYn, String isamtNeedYn, String prmAdmYn, String prmSumBjYn, String crLvlCvrYn, String pblctOutYn, String scrIdcCvrGpcd, String pymXmpAvYn, String xtnAvYn, String dtInpscXstnYn, String ageWkctFlgcd, BigDecimal mnIsAge, BigDecimal mxIsAge, String isAvSexcd, String mrrdBjCvrYn, String onwClaFlgcd, String invcOutPrg, String plyOutPrg1, String plyOutPrg2, String inpRtYn, BigDecimal lowtInpRt, BigDecimal mxInpRt, String mdcsRgtBjYn, String autoRnwAvYn, String cvrDbisFlgcd, String rnwAfCvrcd, String isAvDrveTycd, String isAvRelFlgcd, String pymCyccd, Date slStrdt, Date slNddt, String dtScrId, String rnwXcCvrYn, Date rlSlOpndt, Date rlSlNddt, String coobjIsAvYn, String pymtmAtndMtt, Date nrdpsSlStrdt, Date nrdpsSlNddt, String rlpmiCvrYn, String cvrTrtGpFlgcd, BigDecimal rnwCvrNclmDscrt, BigDecimal rwcvrNclmAdDscrt, BigDecimal rwcvrNclmAdDctrm, String rmimcXcptPrmexBjyn, String prsClmCvrcd, String cvrXcptDlcd, String ndsXcFlgcd, String clmNdsXcCvrcd, String cvrDcFlgcd, String indpdTrtYn, String indpdTrtGdcd, BigDecimal gdCvrDscrt, String sbPymTpcd, String cvrXtnDlFlgcd, BigDecimal claSeqno, String ibnrFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public IgdGdCvr(String gdcd, String cvrcd, LocalDate apNddt, LocalDate apStrdt, String cvrPrsnm, String cvrKornm, String cvrHnglShtnm, String cvrEnnm, String cvrEngShtnm, Date cvrPerdt, String cvrClaCn, String cvrBaTrtFlgcd, String isBjYn, String isamtNeedYn, String prmAdmYn, String prmSumBjYn, String crLvlCvrYn, String pblctOutYn, String scrIdcCvrGpcd, String pymXmpAvYn, String xtnAvYn, String dtInpscXstnYn, String ageWkctFlgcd, BigDecimal mnIsAge, BigDecimal mxIsAge, String isAvSexcd, String mrrdBjCvrYn, String onwClaFlgcd, String invcOutPrg, String plyOutPrg1, String plyOutPrg2, String inpRtYn, BigDecimal lowtInpRt, BigDecimal mxInpRt, String mdcsRgtBjYn, String autoRnwAvYn, String cvrDbisFlgcd, String rnwAfCvrcd, String isAvDrveTycd, String isAvRelFlgcd, String pymCyccd, Date slStrdt, Date slNddt, String dtScrId, String rnwXcCvrYn, Date rlSlOpndt, Date rlSlNddt, String coobjIsAvYn, String pymtmAtndMtt, Date nrdpsSlStrdt, Date nrdpsSlNddt, String rlpmiCvrYn, String cvrTrtGpFlgcd, BigDecimal rnwCvrNclmDscrt, BigDecimal rwcvrNclmAdDscrt, BigDecimal rwcvrNclmAdDctrm, String rmimcXcptPrmexBjyn, String prsClmCvrcd, String cvrXcptDlcd, String ndsXcFlgcd, String clmNdsXcCvrcd, String cvrDcFlgcd, String indpdTrtYn, String indpdTrtGdcd, BigDecimal gdCvrDscrt, String sbPymTpcd, String cvrXtnDlFlgcd, BigDecimal claSeqno, String ibnrFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.gdcd = gdcd;
         this.cvrcd = cvrcd;
         this.apNddt = apNddt;

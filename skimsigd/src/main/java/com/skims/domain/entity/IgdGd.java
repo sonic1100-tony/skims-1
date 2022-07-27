@@ -6,26 +6,19 @@
 **/
 package com.skims.domain.entity;
 
+import com.skims.domain.listener.IgdGdListener;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-// import javax.persistence.Temporal;
-// import javax.persistence.TemporalType;
-import javax.persistence.Table;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import com.skims.domain.listener.IgdGdListener;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
@@ -44,12 +37,12 @@ public class IgdGd implements Serializable {
     @Id //  Date
     @Column(name = "ap_nddt", nullable = false)
     @Schema(description = "적용종료일자", nullable = false)
-    private Date apNddt; //--적용종료일자
+    private LocalDate apNddt; //--적용종료일자
 
     @Id //  Date
     @Column(name = "ap_strdt", nullable = false)
     @Schema(description = "적용시작일자", nullable = false)
-    private Date apStrdt; //--적용시작일자
+    private LocalDate apStrdt; //--적용시작일자
 
     @Column(name = "ikd_grpcd", length = 10, nullable = false)
     @Schema(description = "보종군코드", nullable = false)
@@ -492,7 +485,7 @@ public class IgdGd implements Serializable {
     private Timestamp mdfDthms; //--수정일시
 
     @Builder
-    public IgdGd(String gdcd, Date apNddt, Date apStrdt, String ikdGrpcd, String insImcd, String claLngFlgcd, String gdTyFlgcd, String gdSlnm, String gdShtnm, String gdKornm, String gdEnnm, String gdXpnm, String gdPerYn, String gdPernm, String gdPerTpcd, Date gdPerdt, String gdSlTpcd, String crOpnBaHms, String crNdBaHms, String fcDhYn, String reUntFlgcd, String pymXmpUntFlgcd, String ppyPrmPrmYn, BigDecimal ppyPrmMxpsbMc, String psnclDbinsPrmYn, String cvInsAvYn, String autoTfDcYn, String typeFlgcd, String typeCnFlgcd, String speScrRnwYn, String dvTpcd, String prmStrFlgcd, String mwRtamtCrFlgcd, String ndRtamtCrYn, String dgnGdYn, String autoRnwAvYn, String prmInpFlgcd, String cuPrmOcpymYn, String ctuCrdtfAvYn, String claLnAvYn, String sbPymFlgcd, String sbPymTpcd, String ageCcStFlgcd, String bzMtdrpCsfcd, String isPlChtWrtyn, String xtnTpcd, String xtntmRtamtFlgcd, BigDecimal trmclExplNtcMntct, String rmimcFlgcd, String grIsFlgcd, String grDcAvYn, BigDecimal grMnIsPsct, String avgRtUsYn, String prEsPrmYn, String lowtPrmMncd, BigDecimal lowtPrm, String cvrPrmSgdlgFlgcd, String apprmSglrDlFlgcd, String slPlAdmYn, String crLogflPstInfo, String opEnvrCvYn, String insTrmBavl, String insTrmLm, String pymGrcTrm, String txPfGdCsfcd, String slPlOpTpcd, String plyOutTpFlgcd, String typeChAvYn, String gdDtScrYn, String dtScrId, String dcApFlgcd, String dtInpscXstnYn, String dtInpscId, BigDecimal mwWdraAvRt, String mwWdraStrRndcd, String mwWdraCrCyccd, BigDecimal mwWdraCrCaseq, String dvpnsRprIkdcd, String gdExpprOutYn, String marneNelpCalMetcd, String pectSlMntrBjpcd, String prmInpTpcd, String rntclDscrtApYn, BigDecimal gdsMxDcLmrt, String prmSbPymTpcd, String prmNpySbFlgcd, BigDecimal scrIdcOrdr, String mxMnCcTpcd, String rnwdcFundChekYn, String rmimcRkrtDclYn, BigDecimal anulBzprmRtAdtm, String ccXcptDlcd, String indpdTrtTpcd, String indpdTrtIncldYn, BigDecimal gdMxIsAge, BigDecimal mxRnwTrm, String smPrmMnYn, String rlpmiMdInsCsfcd, String psvnBjGdYn, String reIsgdTpcd, String adpymPrmLmFlgcd, String irtCnGdYn, String ltrmGdGrpCsfcd, String sofGdCsfcd, String crycd, String isAvOjTpcd, String rtnTpInfoCd, String adpymAvFlgcd, String mwwdrAvFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
+    public IgdGd(String gdcd, LocalDate apNddt, LocalDate apStrdt, String ikdGrpcd, String insImcd, String claLngFlgcd, String gdTyFlgcd, String gdSlnm, String gdShtnm, String gdKornm, String gdEnnm, String gdXpnm, String gdPerYn, String gdPernm, String gdPerTpcd, Date gdPerdt, String gdSlTpcd, String crOpnBaHms, String crNdBaHms, String fcDhYn, String reUntFlgcd, String pymXmpUntFlgcd, String ppyPrmPrmYn, BigDecimal ppyPrmMxpsbMc, String psnclDbinsPrmYn, String cvInsAvYn, String autoTfDcYn, String typeFlgcd, String typeCnFlgcd, String speScrRnwYn, String dvTpcd, String prmStrFlgcd, String mwRtamtCrFlgcd, String ndRtamtCrYn, String dgnGdYn, String autoRnwAvYn, String prmInpFlgcd, String cuPrmOcpymYn, String ctuCrdtfAvYn, String claLnAvYn, String sbPymFlgcd, String sbPymTpcd, String ageCcStFlgcd, String bzMtdrpCsfcd, String isPlChtWrtyn, String xtnTpcd, String xtntmRtamtFlgcd, BigDecimal trmclExplNtcMntct, String rmimcFlgcd, String grIsFlgcd, String grDcAvYn, BigDecimal grMnIsPsct, String avgRtUsYn, String prEsPrmYn, String lowtPrmMncd, BigDecimal lowtPrm, String cvrPrmSgdlgFlgcd, String apprmSglrDlFlgcd, String slPlAdmYn, String crLogflPstInfo, String opEnvrCvYn, String insTrmBavl, String insTrmLm, String pymGrcTrm, String txPfGdCsfcd, String slPlOpTpcd, String plyOutTpFlgcd, String typeChAvYn, String gdDtScrYn, String dtScrId, String dcApFlgcd, String dtInpscXstnYn, String dtInpscId, BigDecimal mwWdraAvRt, String mwWdraStrRndcd, String mwWdraCrCyccd, BigDecimal mwWdraCrCaseq, String dvpnsRprIkdcd, String gdExpprOutYn, String marneNelpCalMetcd, String pectSlMntrBjpcd, String prmInpTpcd, String rntclDscrtApYn, BigDecimal gdsMxDcLmrt, String prmSbPymTpcd, String prmNpySbFlgcd, BigDecimal scrIdcOrdr, String mxMnCcTpcd, String rnwdcFundChekYn, String rmimcRkrtDclYn, BigDecimal anulBzprmRtAdtm, String ccXcptDlcd, String indpdTrtTpcd, String indpdTrtIncldYn, BigDecimal gdMxIsAge, BigDecimal mxRnwTrm, String smPrmMnYn, String rlpmiMdInsCsfcd, String psvnBjGdYn, String reIsgdTpcd, String adpymPrmLmFlgcd, String irtCnGdYn, String ltrmGdGrpCsfcd, String sofGdCsfcd, String crycd, String isAvOjTpcd, String rtnTpInfoCd, String adpymAvFlgcd, String mwwdrAvFlgcd, String inpUsrId, Timestamp inpDthms, String mdfUsrId, Timestamp mdfDthms) {
         this.gdcd = gdcd;
         this.apNddt = apNddt;
         this.apStrdt = apStrdt;
