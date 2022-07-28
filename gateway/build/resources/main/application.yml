@@ -51,10 +51,6 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: payment
-          uri: http://payment:8080
-          predicates:
-            - Path=/payments/**, /callmemleak**
         - id: cnr
           uri: http://skimscnr:8080
           predicates:
