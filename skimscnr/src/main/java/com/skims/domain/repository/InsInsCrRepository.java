@@ -12,14 +12,17 @@ package com.skims.domain.repository;
 // import org.springframework.data.domain.Pageable;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.jpa.repository.Modifying;
+
+import com.skims.domain.entity.InsInsCr;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-
-import com.skims.domain.entity.InsInsCr;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RepositoryRestResource
 public interface InsInsCrRepository extends JpaRepository<InsInsCr, Long> {
+	Optional<InsInsCr> findByPlynoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(String policyNumber, LocalDateTime ndsStrDthms, LocalDateTime ndsNdDthms);
 }
 
 /**
