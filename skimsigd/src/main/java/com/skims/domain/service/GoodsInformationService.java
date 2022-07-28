@@ -100,7 +100,7 @@ public class GoodsInformationService {
         }
 
         if( true ) {
-
+            igdGdRepository.joinGoodsAndCoverage(goodsCode);
         }
 
         return Optional.ofNullable(dto);
