@@ -6,16 +6,24 @@
 **/
 package com.skims.controller;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import java.math.BigDecimal;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -59,6 +67,34 @@ public class CusJbController {
     public ResponseEntity<Page<CusJb>> getAll(Pageable pageable) {
         try {
 			log.info("findAll");
+			
+//			Page<CusJb> historyPage = historyRepository.findAll(new Specification<CusJb>() {
+//				@Override
+//				public Predicate toPredicate(
+//						Root<CusJb> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+//					List<Predicate> predicates = new ArrayList<>();
+//
+//					predicates.add(criteriaBuilder.between(root.get("startTime"), startDatetime, endDatetime));
+//
+//					if(!ObjectUtils.isEmpty(requestDto.getLayoutName())) {
+//						predicates.add(criteriaBuilder.equal(root.get("layout").get("serviceId").as(String.class), requestDto.getLayoutName()));
+//					}
+//
+//					if(!ObjectUtils.isEmpty(requestDto.getPageId())) {
+//						predicates.add(criteriaBuilder.equal(root.get("pageId").as(String.class), requestDto.getPageId()));
+//					}
+//
+//					if(!ObjectUtils.isEmpty(requestDto.getIsSuccess())) {
+//						predicates.add(criteriaBuilder.equal(root.get("isSuccess").as(Boolean.class), requestDto.getIsSuccess()));
+//					}
+//
+//					if(!ObjectUtils.isEmpty(requestDto.getServerId()) && requestDto.getServerId() != -1) {
+//						predicates.add(criteriaBuilder.equal(root.get("server").get("id"), requestDto.getServerId()));
+//					}
+//					return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+//				}
+//			}, pageable);
+			
             return ResponseEntity.ok().body(repository.findAll(pageable));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(null);

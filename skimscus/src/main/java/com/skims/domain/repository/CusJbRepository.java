@@ -8,6 +8,8 @@ package com.skims.domain.repository;
 
 import java.math.BigDecimal;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 // import java.util.Map;
 // import org.springframework.data.domain.Page;
 // import org.springframework.data.domain.Pageable;
@@ -16,12 +18,13 @@ import java.math.BigDecimal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-
 import com.skims.domain.entity.CusJb;
 import com.skims.domain.entity.CusJbPK;
 
 @RepositoryRestResource
 public interface CusJbRepository extends JpaRepository<CusJb, CusJbPK> {
+	
+	Page<CusJb> findByPprJbChSeqnoAndPprJbcd(BigDecimal pprJbChSeqno, String pprJbcd, Pageable pageable);
 }
 
 /**
