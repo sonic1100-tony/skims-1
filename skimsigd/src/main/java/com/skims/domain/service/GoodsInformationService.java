@@ -62,7 +62,7 @@ public class GoodsInformationService {
             Specification<IgdGdCvr> specification = (root, query, builder) -> {
                 List<Predicate> predicates = new ArrayList<>();
                 predicates.add(builder.equal(root.get("gdcd"), goodsCode));
-                predicates.add(builder.lessThanOrEqualTo(root.get("apStrdt"), LocalDate.now()));
+                predicates.add(builder.lessThanOrEqualTo(root.get("apStr dt"), LocalDate.now()));
                 predicates.add(builder.greaterThan(root.get("apNddt"), LocalDate.now()));
 
                 return builder.and(predicates.toArray(new Predicate[predicates.size()]));
