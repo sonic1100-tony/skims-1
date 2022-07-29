@@ -88,12 +88,78 @@ public class GoodsInformationService {
 //                return coverageInformationDataDto;
 //            }).collect(Collectors.toList());
 
+
             dto.setCoveragesInformation(igdGdCvrRepository.findAll(specification, sort).stream().map(e-> {
 
                 GoodsInformationDto.CoverageInformationDataDto coverageInformationDataDto = mapper.convertValue(e, GoodsInformationDto.CoverageInformationDataDto.class);
 
                 BeanUtils.copyProperties(mapper.convertValue(igdCvrRepository.findById(e.getCvrcd()), GoodsInformationDto.CoverageInformationDataDto.class),
                         coverageInformationDataDto);
+
+                List<GoodsInformationDto.CodeValueDataDto> paymentTermDataDtos = new ArrayList<>();
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01")
+                        .value("1년")
+                        .build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02")
+                        .value("2년")
+                        .build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03")
+                        .value("3년")
+                        .build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04")
+                        .value("4년")
+                        .build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("05")
+                        .value("5년")
+                        .build());
+                coverageInformationDataDto.setPaymentTerm(paymentTermDataDtos);
+
+                List<GoodsInformationDto.CodeValueDataDto> insuranceTermDataDtos = new ArrayList<>();
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01")
+                        .value("1년")
+                        .build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02")
+                        .value("2년")
+                        .build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03")
+                        .value("3년")
+                        .build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04")
+                        .value("4년")
+                        .build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("05")
+                        .value("5년")
+                        .build());
+                coverageInformationDataDto.setInsuranceTerm(insuranceTermDataDtos);
+
+                List<GoodsInformationDto.CodeValueDataDto> paymentCycleDataDtos = new ArrayList<>();
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01")
+                        .value("월납")
+                        .build());
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03")
+                        .value("3월납")
+                        .build());
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("06")
+                        .value("6월납")
+                        .build());
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("00")
+                        .value("일시납")
+                        .build());
+                 coverageInformationDataDto.setPaymentCycle(paymentCycleDataDtos);
 
                 return coverageInformationDataDto;
             }).collect(Collectors.toList()));

@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoodsInformationResponseDto implements Serializable {
+public class GoodsInformationResponse implements Serializable {
 
     /** 상품정보 */
     private GoodsInformationDataDto goodsInformation;
@@ -322,6 +322,9 @@ public class GoodsInformationResponseDto implements Serializable {
 
         /** 보험기간 */
         private List<CodeValueDataDto> insuranceTerm;
+
+        /** 납입주기 */
+        private List<CodeValueDataDto> paymentCycle;
     }
 
     @Data

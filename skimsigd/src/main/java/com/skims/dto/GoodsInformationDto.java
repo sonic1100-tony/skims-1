@@ -321,6 +321,9 @@ public class GoodsInformationDto {
 
         /** 보험기간 */
         private List<CodeValueDataDto> insuranceTerm;
+
+        /** 납입주기 */
+        private List<CodeValueDataDto> paymentCycle;
     }
 
     @Data

@@ -3,7 +3,7 @@ package com.skims.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.service.GoodsInformationService;
 import com.skims.dto.GoodsInformationDto;
-import com.skims.dto.GoodsInformationResponseDto;
+import com.skims.dto.GoodsInformationResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,18 +29,18 @@ public class GoodsInformationController {
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the GoodsInformation", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = GoodsInformationResponseDto.class)) }),
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = GoodsInformationResponse.class)) }),
             @ApiResponse(responseCode = "404", description = "Goods not found", content = @Content) })
     @GetMapping("/goods/{goodsCode}")
-    ResponseEntity<GoodsInformationResponseDto> getGoodsInformationAll(@PathVariable String goodsCode) {
+    ResponseEntity<GoodsInformationResponse> getGoodsInformationAll(@PathVariable String goodsCode) {
 
         Optional<GoodsInformationDto> data = goodsInformationService.getGoodsInformationAll(goodsCode);
 
         if (data.isPresent()) {
-            GoodsInformationResponseDto response = GoodsInformationResponseDto.builder()
-                    .goodsInformation(mapper.convertValue(data.get().getGoodsInformation(),GoodsInformationResponseDto.GoodsInformationDataDto.class))
+            GoodsInformationResponse response = GoodsInformationResponse.builder()
+                    .goodsInformation(mapper.convertValue(data.get().getGoodsInformation(), GoodsInformationResponse.GoodsInformationDataDto.class))
                     .coverageInformation(data.get().getCoveragesInformation().stream().map(e->
-                            mapper.convertValue(e, GoodsInformationResponseDto.CoverageInformationDataDto.class))
+                            mapper.convertValue(e, GoodsInformationResponse.CoverageInformationDataDto.class))
                             .collect(Collectors.toList()))
                     .build();
             return ResponseEntity.ok().body(response);
