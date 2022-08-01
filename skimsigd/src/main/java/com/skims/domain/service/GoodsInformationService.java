@@ -200,6 +200,19 @@ public class GoodsInformationService {
                         .code("05").value("5년").build());
                 coverageInformationDataDto.setInsuranceTerm(insuranceTermDataDtos);
 
+                List<GoodsInformationDto.CodeValueDataDto> isamtDataDtos = new ArrayList<>();
+                isamtDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("10,000,000").numberValue("10000000").build());
+                isamtDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02").value("20,000,000").numberValue("20000000").build());
+                isamtDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("30,000,000").numberValue("30000000").build());
+                isamtDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04").value("40,000,000").numberValue("40000000").build());
+                isamtDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("05").value("50,000,000").numberValue("50000000").build());
+                coverageInformationDataDto.setInsuranceTerm(isamtDataDtos);
+
                 return coverageInformationDataDto;
             }).collect(Collectors.toList()));
         }

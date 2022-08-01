@@ -340,6 +340,9 @@ public class GoodsInformationDto {
 
         /** 보험기간 */
         private List<CodeValueDataDto> insuranceTerm;
+
+        /** 가입금액 */
+        private List<CodeValueDataDto> isamt;
     }
 
     @Data

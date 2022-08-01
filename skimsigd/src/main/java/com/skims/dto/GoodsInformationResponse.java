@@ -339,6 +339,9 @@ public class GoodsInformationResponse implements Serializable {
 
         /** 보험기간 */
         private List<CodeValueDataDto> insuranceTerm;
+
+        /** 가입금액 */
+        private List<GoodsInformationDto.CodeValueDataDto> isamt;
     }
 
     @Data
