@@ -23,7 +23,7 @@ public class PlanInformationDto {
     /**
      * 발행후변경순번
      */
-    private Integer cgafChSeqno;
+    private BigDecimal cgafChSeqno;
 
     /**
      * 보험설계

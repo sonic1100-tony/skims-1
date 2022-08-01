@@ -18,8 +18,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.skims.domain.entity.InsPlNrdpsTisrdAtr;
 
+import java.math.BigDecimal;
+import java.util.Optional;
+
 @RepositoryRestResource
 public interface InsPlNrdpsTisrdAtrRepository extends JpaRepository<InsPlNrdpsTisrdAtr, Long> {
+	Optional<InsPlNrdpsTisrdAtr> findByPlnoAndCgafChSeqnoAndRelpcSeqno(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno);
 }
 
 /**

@@ -12,14 +12,19 @@ package com.skims.domain.repository;
 // import org.springframework.data.domain.Pageable;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.jpa.repository.Modifying;
+import com.skims.domain.entity.InsPlRelpc;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
 import com.skims.domain.entity.InsPlCvr;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @RepositoryRestResource
 public interface InsPlCvrRepository extends JpaRepository<InsPlCvr, Long> {
+	List<InsPlCvr> findByPlnoAndCgafChSeqnoAndRelpcSeqno(String plno, BigDecimal cgafChSeqno, BigDecimal relpcSeqno);
 }
 
 /**
