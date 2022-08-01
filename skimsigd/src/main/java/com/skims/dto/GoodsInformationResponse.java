@@ -142,6 +142,23 @@ public class GoodsInformationResponse implements Serializable {
         private BigDecimal lowtPrm; //--최저보험료
 
         private String cvrPrmSgdlgFlgcd; //--담보보험료단수처리구분코드
+
+
+
+        /** 설계상태코드 */
+        private List<GoodsInformationDto.CodeValueDataDto> plStcd;
+
+        /** 납입기간 */
+        private List<GoodsInformationDto.CodeValueDataDto> paymentTerm;
+
+        /** 보험기간 */
+        private List<GoodsInformationDto.CodeValueDataDto> insuranceTerm;
+
+        /** 납입주기 */
+        private List<GoodsInformationDto.CodeValueDataDto> paymentCycle;
+
+        /** 운전형태코드 */
+        private List<GoodsInformationDto.CodeValueDataDto> drveTycd;
     }
 
     @Data
@@ -322,9 +339,6 @@ public class GoodsInformationResponse implements Serializable {
 
         /** 보험기간 */
         private List<CodeValueDataDto> insuranceTerm;
-
-        /** 납입주기 */
-        private List<CodeValueDataDto> paymentCycle;
     }
 
     @Data

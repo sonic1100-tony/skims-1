@@ -53,7 +53,85 @@ public class GoodsInformationService {
             List<IgdGd> igdGds = igdGdRepository.findAll(specification, sort);
 
             igdGds.forEach(e->{
-                dto.setGoodsInformation(mapper.convertValue(e, GoodsInformationDto.GoodsInformationDataDto.class));
+                GoodsInformationDto.GoodsInformationDataDto goodsInformationDataDto = mapper.convertValue(e, GoodsInformationDto.GoodsInformationDataDto.class);
+
+                List<GoodsInformationDto.CodeValueDataDto> plStcdDataDtos = new ArrayList<>();
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("설계중").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("11").value("설계삭제").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02").value("보험료계산").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("설계완료").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04").value("심사의뢰").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("41").value("심사중").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("42").value("심사승인").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("43").value("심사반려").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("05").value("청약완료").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("51").value("수납대기").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("06").value("수납완료").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("61").value("계약반영").build());
+                goodsInformationDataDto.setPlStcd(plStcdDataDtos);
+
+
+                List<GoodsInformationDto.CodeValueDataDto> paymentTermDataDtos = new ArrayList<>();
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("1년").build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02").value("2년").build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("3년").build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04").value("4년").build());
+                paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("05").value("5년").build());
+                goodsInformationDataDto.setPaymentTerm(paymentTermDataDtos);
+
+
+                List<GoodsInformationDto.CodeValueDataDto> insuranceTermDataDtos = new ArrayList<>();
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("1년").build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02").value("2년").build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("3년").build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04").value("4년").build());
+                insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("05").value("5년").build());
+                goodsInformationDataDto.setInsuranceTerm(insuranceTermDataDtos);
+
+                List<GoodsInformationDto.CodeValueDataDto> paymentCycleDataDtos = new ArrayList<>();
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("월납").build());
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("3월납").build());
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("06").value("6월납").build());
+                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("00").value("일시납").build());
+                goodsInformationDataDto.setPaymentCycle(paymentCycleDataDtos);
+
+                List<GoodsInformationDto.CodeValueDataDto> drveTycdDataDtos = new ArrayList<>();
+                drveTycdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("자가용").build());
+                drveTycdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02").value("영업용").build());
+                drveTycdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("업무용").build());
+
+                goodsInformationDataDto.setDrveTycd(drveTycdDataDtos);
+
+                dto.setGoodsInformation(goodsInformationDataDto);
             });
         }
 
@@ -62,7 +140,7 @@ public class GoodsInformationService {
             Specification<IgdGdCvr> specification = (root, query, builder) -> {
                 List<Predicate> predicates = new ArrayList<>();
                 predicates.add(builder.equal(root.get("gdcd"), goodsCode));
-                predicates.add(builder.lessThanOrEqualTo(root.get("apStr dt"), LocalDate.now()));
+                predicates.add(builder.lessThanOrEqualTo(root.get("apStrdt"), LocalDate.now()));
                 predicates.add(builder.greaterThan(root.get("apNddt"), LocalDate.now()));
 
                 return builder.and(predicates.toArray(new Predicate[predicates.size()]));
@@ -98,68 +176,29 @@ public class GoodsInformationService {
 
                 List<GoodsInformationDto.CodeValueDataDto> paymentTermDataDtos = new ArrayList<>();
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("01")
-                        .value("1년")
-                        .build());
+                        .code("01").value("1년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("02")
-                        .value("2년")
-                        .build());
+                        .code("02").value("2년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("03")
-                        .value("3년")
-                        .build());
+                        .code("03").value("3년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("04")
-                        .value("4년")
-                        .build());
+                        .code("04").value("4년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("05")
-                        .value("5년")
-                        .build());
+                        .code("05").value("5년").build());
                 coverageInformationDataDto.setPaymentTerm(paymentTermDataDtos);
 
                 List<GoodsInformationDto.CodeValueDataDto> insuranceTermDataDtos = new ArrayList<>();
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("01")
-                        .value("1년")
-                        .build());
+                        .code("01").value("1년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("02")
-                        .value("2년")
-                        .build());
+                        .code("02").value("2년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("03")
-                        .value("3년")
-                        .build());
+                        .code("03").value("3년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("04")
-                        .value("4년")
-                        .build());
+                        .code("04").value("4년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("05")
-                        .value("5년")
-                        .build());
+                        .code("05").value("5년").build());
                 coverageInformationDataDto.setInsuranceTerm(insuranceTermDataDtos);
-
-                List<GoodsInformationDto.CodeValueDataDto> paymentCycleDataDtos = new ArrayList<>();
-                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("01")
-                        .value("월납")
-                        .build());
-                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("03")
-                        .value("3월납")
-                        .build());
-                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("06")
-                        .value("6월납")
-                        .build());
-                paymentCycleDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("00")
-                        .value("일시납")
-                        .build());
-                 coverageInformationDataDto.setPaymentCycle(paymentCycleDataDtos);
 
                 return coverageInformationDataDto;
             }).collect(Collectors.toList()));

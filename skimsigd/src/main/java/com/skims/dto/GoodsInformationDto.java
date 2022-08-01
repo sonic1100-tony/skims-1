@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoodsInformationDto {
+
     /** 상품정보 */
     private GoodsInformationDataDto goodsInformation;
 
@@ -140,6 +141,24 @@ public class GoodsInformationDto {
         private BigDecimal lowtPrm; //--최저보험료
 
         private String cvrPrmSgdlgFlgcd; //--담보보험료단수처리구분코드
+
+
+
+
+        /** 설계상태코드 */
+        private List<CodeValueDataDto> plStcd;
+
+        /** 납입기간 */
+        private List<CodeValueDataDto> paymentTerm;
+
+        /** 보험기간 */
+        private List<CodeValueDataDto> insuranceTerm;
+
+        /** 납입주기 */
+        private List<CodeValueDataDto> paymentCycle;
+
+        /** 운전형태코드 */
+        private List<CodeValueDataDto> drveTycd;
     }
 
     @Data
@@ -321,9 +340,6 @@ public class GoodsInformationDto {
 
         /** 보험기간 */
         private List<CodeValueDataDto> insuranceTerm;
-
-        /** 납입주기 */
-        private List<CodeValueDataDto> paymentCycle;
     }
 
     @Data
