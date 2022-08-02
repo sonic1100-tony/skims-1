@@ -68,33 +68,6 @@ public class CusJbController {
         try {
 			log.info("findAll");
 			
-//			Page<CusJb> historyPage = historyRepository.findAll(new Specification<CusJb>() {
-//				@Override
-//				public Predicate toPredicate(
-//						Root<CusJb> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-//					List<Predicate> predicates = new ArrayList<>();
-//
-//					predicates.add(criteriaBuilder.between(root.get("startTime"), startDatetime, endDatetime));
-//
-//					if(!ObjectUtils.isEmpty(requestDto.getLayoutName())) {
-//						predicates.add(criteriaBuilder.equal(root.get("layout").get("serviceId").as(String.class), requestDto.getLayoutName()));
-//					}
-//
-//					if(!ObjectUtils.isEmpty(requestDto.getPageId())) {
-//						predicates.add(criteriaBuilder.equal(root.get("pageId").as(String.class), requestDto.getPageId()));
-//					}
-//
-//					if(!ObjectUtils.isEmpty(requestDto.getIsSuccess())) {
-//						predicates.add(criteriaBuilder.equal(root.get("isSuccess").as(Boolean.class), requestDto.getIsSuccess()));
-//					}
-//
-//					if(!ObjectUtils.isEmpty(requestDto.getServerId()) && requestDto.getServerId() != -1) {
-//						predicates.add(criteriaBuilder.equal(root.get("server").get("id"), requestDto.getServerId()));
-//					}
-//					return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-//				}
-//			}, pageable);
-			
             return ResponseEntity.ok().body(repository.findAll(pageable));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(null);

@@ -7,24 +7,26 @@
 package com.skims.domain.repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 // import java.util.Map;
 // import org.springframework.data.domain.Page;
 // import org.springframework.data.domain.Pageable;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.skims.domain.entity.CusJb;
 import com.skims.domain.entity.CusJbPK;
 
 @RepositoryRestResource
-public interface CusJbRepository extends JpaRepository<CusJb, CusJbPK> {
+public interface CusJbRepository extends JpaRepository<CusJb, CusJbPK>,  JpaSpecificationExecutor<CusJb> {
 	
-	Page<CusJb> findByPprJbChSeqnoAndPprJbcd(BigDecimal pprJbChSeqno, String pprJbcd, Pageable pageable);
+	List<CusJb> findByPprJbChSeqnoAndPprJbcdOrderByJbnm(BigDecimal pprJbChSeqno, String pprJbcd);
+	
+	
 }
 
 /**
