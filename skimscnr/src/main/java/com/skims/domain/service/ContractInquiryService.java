@@ -19,6 +19,7 @@ public class ContractInquiryService {
 
     public Optional<ContractInformationDto> getContractDetailInformation(String policyNumber) {
 
+        /** 채번 Sample */
         Optional<String> optionalS = insInsCrRepository.findMaxPlyno();
         String newPolicyNumber = null;
 
@@ -32,6 +33,8 @@ public class ContractInquiryService {
             newPolicyNumber = "0000000001";
 
         log.info("증권번호 채번 테스트: {}", newPolicyNumber);
+
+
 
         return insInsCrRepository.findByPlynoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(policyNumber,
                 LocalDateTime.now(),
