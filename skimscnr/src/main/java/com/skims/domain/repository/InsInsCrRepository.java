@@ -14,7 +14,9 @@ package com.skims.domain.repository;
 // import org.springframework.data.jpa.repository.Modifying;
 
 import com.skims.domain.entity.InsInsCr;
+import feign.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.time.LocalDateTime;
@@ -23,6 +25,10 @@ import java.util.Optional;
 @RepositoryRestResource
 public interface InsInsCrRepository extends JpaRepository<InsInsCr, Long> {
 	Optional<InsInsCr> findByPlynoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(String policyNumber, LocalDateTime ndsStrDthms, LocalDateTime ndsNdDthms);
+//com.skims.domain.entity.InsInsCr
+	@Query(" select new java.lang.String(MAX(iic.plyno) as plyno) " +
+			" from InsInsCr iic ")
+	Optional<String> findMaxPlyno();
 }
 
 /**
