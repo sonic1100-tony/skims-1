@@ -1,4 +1,4 @@
-# frontend (아직 작업중)
+# frontend
 
 ## 1. 초기설정
 
