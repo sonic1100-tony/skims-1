@@ -162,6 +162,12 @@ public class PlanInformationDto {
         private String injrRnkcd; //--상해급수코드
 
 
+        /**
+         * 관계자관계
+         */
+        private String relpcRelcd; //--관계자관계코드
+
+
         /** 담보 */
         private List<Coverage> coverages;
     }
