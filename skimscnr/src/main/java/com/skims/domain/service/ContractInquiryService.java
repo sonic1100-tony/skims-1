@@ -39,7 +39,7 @@ public class ContractInquiryService {
         return insInsCrRepository.findByPlynoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(policyNumber,
                 LocalDateTime.now(),
                 LocalDateTime.now()).map(insCr -> ContractInformationDto.builder()
-                .insInsCr(insCr)
+//                .insInsCr(insCr)
                 .build());
     }
 
