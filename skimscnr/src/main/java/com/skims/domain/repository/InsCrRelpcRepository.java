@@ -12,14 +12,21 @@ package com.skims.domain.repository;
 // import org.springframework.data.domain.Pageable;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.jpa.repository.Modifying;
+
+import com.skims.domain.entity.InsCrRelpc;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-
-import com.skims.domain.entity.InsCrRelpc;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RepositoryRestResource
 public interface InsCrRelpcRepository extends JpaRepository<InsCrRelpc, Long> {
+	List<InsCrRelpc> findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+			String plyno,
+			String relpcTpcd,
+			LocalDateTime ndsApStrDthms,
+			LocalDateTime ndsApNdDthms);
 }
 
 /**

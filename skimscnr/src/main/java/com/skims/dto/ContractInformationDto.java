@@ -124,6 +124,12 @@ public class ContractInformationDto {
 
         private String ctmno; //--고객번호
 
+        /**
+         * 관계자관계
+         */
+        private String relpcRelcd; //--관계자관계코드
+
+
 //        private List<Coverage> coverages;
     }
 
@@ -210,6 +216,11 @@ public class ContractInformationDto {
         private String prsRelpcYn; //--대표관계자여부
 
         private String ctmno; //--고객번호
+
+        /**
+         * 관계자관계
+         */
+        private String relpcRelcd; //--관계자관계코드
     }
 
     @Data
