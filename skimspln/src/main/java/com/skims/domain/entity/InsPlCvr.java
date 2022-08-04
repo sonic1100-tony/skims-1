@@ -64,7 +64,7 @@ public class InsPlCvr implements Serializable {
 
     @Column(name = "cvr_bj_flgcd", length = 10, nullable = true)
     @Schema(description = "담보대상구분코드", nullable = true)
-    private String cvrBjFlgcd; //--담보대상구분코드
+    private String cvrBjFlgcd; //--담보대상구분코드 (01:피보험자, 02:목적물, 03:계약)
 
     @Column(name = "relpc_oj_seqno", precision = 10, scale = 0, nullable = true)
     @Schema(description = "관계자목적물순번", nullable = true)
