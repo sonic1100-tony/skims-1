@@ -13,13 +13,22 @@ package com.skims.domain.repository;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
 import com.skims.domain.entity.FinPrmRvSb;
 
+import java.util.Optional;
+
 @RepositoryRestResource
 public interface FinPrmRvSbRepository extends JpaRepository<FinPrmRvSb, Long> {
+
+	@Query(" select new java.lang.String(COALESCE(MAX(fprs.rvSbno),0) as rvSbno) "
+			+"from FinPrmRvSb fprs")
+	Optional<String> findMaxRvSbno();
+
+
 }
 
 /**
