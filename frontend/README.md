@@ -87,3 +87,26 @@ $ yarn build --report
   ...
 }
 ```
+
+## 3. 데이터전달, 함수호출, 서버통신 방식
+
+### 컴포넌트 간 데이터 전달, 함수 호출 방식
+#### 1. 부모컴포넌트 -> 자식컴포넌트 데이터 전달방식 (단방향 데이터 바인딩)
+vue props
+https://vuejs.org/guide/components/props.html#prop-passing-details
+
+#### 2. 자식컴포넌트 -> 부모컴포넌트 함수 호출 (부모컴포넌트로 이벤트전달)
+vue Event emit
+https://vuejs.org/guide/components/events.html
+
+#### 3. 부모컴포넌트 -> 자식컴포넌트 함수 호출
+vue ref
+https://vuejs.org/guide/essentials/template-refs.html
+
+### 서버와 통신 - ajax
+axios 사용
+https://www.koderhq.com/tutorial/vue/http-axios/
+
+## 4.Front-End 샘플 추가
+참고 소스 위치 
+skims/frontend/src/pages/biz/job/
