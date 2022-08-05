@@ -336,7 +336,8 @@
     "404-pages": "404 Pages",
     "faq": "Faq",
     "sample":"샘플",
-    "job":"직업조회"
+    "job":"직업조회",
+    "newPlan": "가입설계"
   },
   "messages": {
     "all": "See all messages",
@@ -394,7 +395,7 @@
     "modalText": "File type is incorrect!"
   },
   "chips": {
-    "chips": { 
+    "chips": {
     "title": "Chips",
     "primary": "Primary chip",
     "secondary": "Secondary chip",
@@ -405,7 +406,7 @@
     "gray": "Gray chip",
     "dark": "Dark chip"
     },
-    "badges": { 
+    "badges": {
     "title": "Badges",
     "primary": "Primary badge",
     "secondary": "Secondary badge",

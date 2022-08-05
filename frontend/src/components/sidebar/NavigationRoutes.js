@@ -12,6 +12,13 @@ export default {
       },
     },
     {
+      name: 'newPlan',
+      displayName: 'menu.newPlan',
+      meta: {
+        icon: 'vuestic-iconset-forms',
+      },
+    },
+    {
       name: 'sample',
       displayName: 'menu.sample',
       meta: {

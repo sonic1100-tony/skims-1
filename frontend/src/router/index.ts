@@ -26,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'job',
         component: () => import('@/pages/biz/job/JobSearch.vue'),
       },
+      {
+        name: "newPlan",
+        path: "plan",
+        component: () => import('@/pages/biz/pln/NewPlanMain.vue'),
+      },
     ]
   },
   {
