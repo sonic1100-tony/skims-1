@@ -6,22 +6,17 @@
 **/
 package com.skims.domain.repository;
 
-import java.math.BigDecimal;
-
-// import java.util.Map;
-// import org.springframework.data.domain.Page;
-// import org.springframework.data.domain.Pageable;
-// import org.springframework.data.jpa.repository.Query;
-// import org.springframework.data.jpa.repository.Modifying;
+import com.skims.domain.entity.InsPlRelpcRel;
+import com.skims.domain.entity.InsPlRelpcRelPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-
-import com.skims.domain.entity.InsPlRelpcRel;
-import com.skims.domain.entity.InsPlRelpcRelPK;
+import java.math.BigDecimal;
+import java.util.Optional;
 
 @RepositoryRestResource
 public interface InsPlRelpcRelRepository extends JpaRepository<InsPlRelpcRel, InsPlRelpcRelPK> {
+	Optional<InsPlRelpcRel> findByPlnoAndCgafChSeqnoAndCnftRelpcSeqnoAndCnftRelpcTpcd(String plno, BigDecimal cgafChSeqno, BigDecimal cnftRelpcSeqno, String cnftRelpcTpcd);
 }
 
 /**

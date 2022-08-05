@@ -1,4 +1,4 @@
-# frontend (아직 작업중)
+# frontend
 
 ## 1. 초기설정
 
@@ -55,3 +55,35 @@ $ yarn build --report
 ## 2. 참고원본소스
 
 [vuestic](https://vuestic.dev/)
+
+## 3. 메뉴추가방법
+### 3.1. router 추가
+```
+// /router/index.ts 항목 추가
+// router 등록시 contextRoot/[등록path] 로 접근가능
+{
+  name: 'job',
+  path: 'job',
+  component: () => import('@/pages/biz/job/JobSearch.vue'),
+},
+```
+### 3.2. menu 추가
+```
+// frontend/src/components/sidebar/NavigationRoutes.js 항목 추가
+{
+  name: 'job', // router Name과 매칭
+  displayName: 'menu.job', // 표시 매뉴명 : frontend/src/i18n/kr.json 값 추가
+  meta: {
+    icon: 'vuestic-iconset-forms', // 표시 icon
+  },
+},
+```
+### 3.3. menu명 추가
+```
+// frontend/src/i18n/kr.json 항목 추가
+"menu": {
+  ...
+  "job": "직업조회",
+  ...
+}
+```

@@ -1,14 +1,8 @@
 package com.skims.domain.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skims.domain.entity.InsInsPl;
-import com.skims.domain.entity.InsPlCvr;
-import com.skims.domain.entity.InsPlNrdpsTisrdAtr;
-import com.skims.domain.entity.InsPlRelpc;
-import com.skims.domain.repository.InsInsPlRepository;
-import com.skims.domain.repository.InsPlCvrRepository;
-import com.skims.domain.repository.InsPlNrdpsTisrdAtrRepository;
-import com.skims.domain.repository.InsPlRelpcRepository;
+import com.skims.domain.entity.*;
+import com.skims.domain.repository.*;
 import com.skims.dto.PlanInformationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,15 +18,14 @@ public class PlanInformationService {
 
     @Autowired
     InsInsPlRepository insInsPlRepository;
-
     @Autowired
     InsPlRelpcRepository insPlRelpcRepository;
     @Autowired
     InsPlNrdpsTisrdAtrRepository insPlNrdpsTisrdAtrRepository;
-
     @Autowired
     InsPlCvrRepository insPlCvrRepository;
-
+    @Autowired
+    InsPlRelpcRelRepository insPlRelpcRelRepository;
     @Autowired
     ObjectMapper mapper;
 
@@ -46,8 +39,9 @@ public class PlanInformationService {
         dto.setCgafChSeqno(cgafChSeqno);
         dto.setInsurancePlan(mapper.convertValue(insInsPl, PlanInformationDto.InsurancePlan.class));
 
-        //설계관계자 조회
-        List<InsPlRelpc> insPlRelpcs = insPlRelpcRepository.findByPlnoAndCgafChSeqno(plno, cgafChSeqno);
+        //피보험자 조회
+        //관계자유형코드(relpc_tpcd) 02:피보험자
+        List<InsPlRelpc> insPlRelpcs = insPlRelpcRepository.findByPlnoAndCgafChSeqnoAndRelpcTpcd(plno, cgafChSeqno, "02");
         dto.setInsuredPersons(insPlRelpcs.stream().map(e->{
             PlanInformationDto.InsuredPerson insuredPerson = mapper.convertValue(e, PlanInformationDto.InsuredPerson.class);
             //설계피보험자부보자속성 조회
@@ -58,9 +52,13 @@ public class PlanInformationService {
                 insuredPerson.setJbChSeqno(insPlNrdpsTisrdAtr.get().getJbChSeqno());
                 insuredPerson.setInjrRnkcd(insPlNrdpsTisrdAtr.get().getInjrRnkcd());
             }
-
+            //TODO : 관계자관계테이블 조회
+            Optional<InsPlRelpcRel> insPlRelpcRel = insPlRelpcRelRepository.findByPlnoAndCgafChSeqnoAndCnftRelpcSeqnoAndCnftRelpcTpcd(plno, cgafChSeqno, insuredPerson.getRelpcSeqno(), insuredPerson.getRelpcTpcd());
+            insuredPerson.setRelpcRelcd(insPlRelpcRel.get().getRelpcRelcd()); //관계자관계코드
+            
             //설계담보 조회
-            List<InsPlCvr> insPlCvrs = insPlCvrRepository.findByPlnoAndCgafChSeqnoAndRelpcSeqno(plno, cgafChSeqno, insuredPerson.getRelpcSeqno());
+            //담보대상구분코드(cvrBjFlgcd) 01:피보험자
+            List<InsPlCvr> insPlCvrs = insPlCvrRepository.findByPlnoAndCgafChSeqnoAndCvrBjFlgcdAndRelpcOjSeqno(plno, cgafChSeqno, "01",insuredPerson.getRelpcSeqno());
             List<PlanInformationDto.Coverage> coverages = new ArrayList<>();
             insPlCvrs.forEach(f->{
                 coverages.add(mapper.convertValue(f, PlanInformationDto.Coverage.class));
