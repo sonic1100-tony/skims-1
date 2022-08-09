@@ -579,5 +579,45 @@
     "overflow": "Tabs Overflow",
     "hidden": "Tabs with Hidden slider",
     "grow": "Tabs Grow"
+  },
+  "common": {
+    "title": {
+      "planNumber": "설계번호",
+      "policyNumber": "증권번호",
+      "planStatus": "설계상태",
+      "groupNumber": "단체번호",
+      "goodsName": "상품명",
+      "goodsCode": "상품코드",
+      "applyDate": "청약일자",
+      "insuranceTerm": "보험기간",
+      "paymentTerm": "납입기간",
+      "paymentCycle": "납입주기",
+      "insuranceStartDate": "보험시기",
+      "insuranceCloseDate": "보험종기"
+    },
+    "button": {
+      "search": "조회",
+      "save": "저장",
+      "delete": "삭제",
+      "init": "초기화"
+    }
+  },
+  "newPlan": {
+    "basicInfo": {
+      "title": "설계기본정보"
+    },
+    "insuredPersion": {
+      "title": "피보험자"
+    },
+    "coverage": {
+      "title": "담보"
+    },
+    "premium": {
+      "title": "보험료"
+    },
+    "button": {
+      "premium": "보험료계산",
+      "planComplete": "설계완료"
+    }
   }
 }
