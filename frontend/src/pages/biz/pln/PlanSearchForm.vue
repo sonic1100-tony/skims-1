@@ -4,7 +4,7 @@
       <div class="row">
         <div class="flex md2">
           <va-input
-            label="설계번호"
+            :label="$t('common.title.planNumber')"
             v-model="searchFormData.plno"
             :rules="[value => (value && value.length != 10) || 'Field is 10 digit required']"
           />
@@ -12,27 +12,27 @@
         <div class="flex md2">
           <va-select
             class="mb-4"
-            label="설계상태"
+            :label="$t('common.title.planStatus')"
             v-model="searchFormData.plStcd"
             :options="plStcd"
           />
         </div>
         <div class="flex md2">
           <va-input
-            label="증권번호"
+            :label="$t('common.title.policyNumber')"
             v-model="searchFormData.plyno"
             :rules="[value => (value.length > 0 && value.length != 10) || 'Field is required']"
           />
         </div>
         <div class="flex md2">
           <va-input
-            label="단체번호"
+            :label="$t('common.title.groupNumber')"
             v-model="searchFormData.grCtmno"
             :rules="[value => (value && value.length > 0) || 'Field is required']"
           />
         </div>
         <div class="flex md3">
-          <va-button size="small" @click="search()">조회</va-button>
+          <va-button size="small" @click="search()">{{ $t("common.button.search") }}</va-button>
         </div>
       </div>
     </va-card-content>
