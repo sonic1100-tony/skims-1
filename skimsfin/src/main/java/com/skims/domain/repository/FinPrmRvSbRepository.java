@@ -28,7 +28,7 @@ public interface FinPrmRvSbRepository extends JpaRepository<FinPrmRvSb, Long> {
 			+"from FinPrmRvSb fprs")
 	Optional<String> findMaxRvSbno();
 
-
+	Optional<FinPrmRvSb> findByRvSbno(String rvSbno);
 }
 
 /**
