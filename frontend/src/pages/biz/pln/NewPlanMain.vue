@@ -1,8 +1,8 @@
 <template>
   <div class="form-elements">
-    <PlanSearchForm></PlanSearchForm>
+    <PlanSearchForm ref="planSearchForm" v-on="search"></PlanSearchForm>
     <br/>
-    <PlanBasicInfoForm></PlanBasicInfoForm>
+    <PlanBasicInfoForm :planBasicInfoData="planBasicInfoData"/>
     <br/>
     <PlanInsuredPersionForm></PlanInsuredPersionForm>
     <br/>
@@ -28,16 +28,27 @@ export default {
     PlanInsuredPersionForm,
     // PlanCoverageForm,
     // PlanPremiumForm
-},
+  },
   data () {
     return {
       searchForm:{
-        searchJobName: true,
-        searchJobDetailName: true,
-        jobName: '',
-        jobCode: '',
+        // searchJobName: true,
+        // searchJobDetailName: true,
+        // jobName: '',
+        // jobCode: '',
       },
-      todoList: [],
+      planBasicInfoData: {
+        goodsCode: "AA0000",
+        goodsName: "SKIMS 테스트 보험",
+        applyDate: new Date(2022,0,1),
+        insuranceTerm: "01",
+        paymentTerm:  "01",
+        paymentCycle: "01",
+        insuranceStartDate: new Date(2022,0,1),
+        insuranceCloseDate: new Date(2022,11,31)
+      },
+      planInsuredPersionForm: [],
+      parentValue: "TEST"
     }
   },
   methods: {
@@ -61,10 +72,22 @@ export default {
       // 자식함수 호출 ref로 자식컴포넌트 지정
       this.$refs.searchForm.initData();
     },
+
+    formatDate (date) {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    },
+
+    parseDate (text) {
+      const [year, month, day] = text.split('-')
+
+      return new Date(year, month - 1, day)
+    },
   },
 
   created () {
     console.log("created...");
+    // this.planBasicInfoData.insuranceStartDate = new Date();
+    // this.planBasicInfoData.insuranceCloseDate = new Date();
   }
 }
 </script>
