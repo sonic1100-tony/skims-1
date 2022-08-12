@@ -9,9 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,5 +32,15 @@ public class ReceiveProcessController {
 
         ReceiveStandbyDto dto = mapper.convertValue(request, ReceiveStandbyDto.class);
         return receiveStandbyService.savePremiumReceiveStandby(dto);
+    }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Create the FinPrmRvSb", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = FinPrmRvSb.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
+    @PostMapping("/receive")
+    void updateReceiveStandby(@RequestBody String receiveStandbyNumber) throws Exception {
+
+        receiveStandbyService.processPremiumReceive(receiveStandbyNumber);
     }
 }

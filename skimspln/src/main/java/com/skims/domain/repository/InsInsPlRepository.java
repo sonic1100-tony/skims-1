@@ -15,6 +15,7 @@ package com.skims.domain.repository;
 
 import com.skims.domain.entity.InsInsPl;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.math.BigDecimal;
@@ -23,6 +24,10 @@ import java.util.Optional;
 @RepositoryRestResource
 public interface InsInsPlRepository extends JpaRepository<InsInsPl, Long> {
 	Optional<InsInsPl> findByPlnoAndCgafChSeqno(String plno, BigDecimal cgafChSeqno);
+
+	@Query(" select new java.lang.String(COALESCE(MAX(iip.plno),0) as plno) "
+			+"from InsInsPl iip")
+	Optional<String> findMaxPlno();
 }
 
 /**

@@ -27,9 +27,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.skims.domain.listener.FinPrmRvSbListener;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@SuperBuilder(toBuilder = true)
 @Entity
 @EntityListeners(FinPrmRvSbListener.class)
 @Table(name = "fin_prm_rv_sb") //--보험료수납대기

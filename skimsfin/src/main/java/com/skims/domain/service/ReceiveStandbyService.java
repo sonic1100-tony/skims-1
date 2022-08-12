@@ -100,4 +100,21 @@ public class ReceiveStandbyService {
         return sb.toString();
     }
 
+    public void processPremiumReceive(String receiveStandbyNumber) throws Exception{
+
+        //수납처리
+        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(receiveStandbyNumber).orElseThrow(() -> new Exception("수납대기가 존재하지 않습니다"));
+
+        entity = entity.toBuilder()
+            .rvdt(LocalDate.now())
+            .rvXcno(receiveStandbyNumber.substring(8))
+            .rvOrgcd("SK001")
+            .mdfDthms(LocalDateTime.now()).build();
+
+        finPrmRvSbRepository.saveAndFlush(entity);
+
+        //TODO 수납후처리 호출
+
+    }
+
 }
