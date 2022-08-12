@@ -4,11 +4,21 @@
     <br/>
     <PlanBasicInfoForm :planBasicInfoData="planBasicInfoData"/>
     <br/>
-    <PlanInsuredPersionForm></PlanInsuredPersionForm>
+    <PlanInsuredPersionForm :planInsuredPersionData="planInsuredPersionData"></PlanInsuredPersionForm>
     <br/>
     <!-- <PlanCoverageForm></PlanCoverageForm> -->
     <br/>
     <!-- <PlanPremiumForm></PlanPremiumForm> -->
+    <br />
+    <div>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.save')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.premium')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.planComplete')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.underwriting')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.print')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.premiumIncome')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.contractReflection')}}</va-button>
+    </div>
   </div>
 </template>
 
@@ -47,7 +57,44 @@ export default {
         insuranceStartDate: new Date(2022,0,1),
         insuranceCloseDate: new Date(2022,11,31)
       },
-      planInsuredPersionForm: [],
+      planInsuredPersionData: [
+        {
+            relpcSeqno: 1,
+            relpcRelcd: "01",
+            ctmDscno: "123456-1234567",
+            hnglRelnm: "홍길동1",
+            ppaYn: "Y",
+            jbcd: "12345",
+            jbcnm: "사무원",
+            injrRnkcd: "1",
+            drveTycd: "1",
+            twhvcDrveYn: "1"
+        },
+        {
+            relpcSeqno: 1,
+            relpcRelcd: "01",
+            ctmDscno: "123456-1234567",
+            hnglRelnm: "홍길동2",
+            ppaYn: "Y",
+            jbcd: "12345",
+            jbcnm: "사무원",
+            injrRnkcd: "1",
+            drveTycd: "1",
+            twhvcDrveYn: "1"
+        },
+        {
+            relpcSeqno: 1,
+            relpcRelcd: "01",
+            ctmDscno: "123456-1234567",
+            hnglRelnm: "홍길동3",
+            ppaYn: "Y",
+            jbcd: "12345",
+            jbcnm: "사무원",
+            injrRnkcd: "1",
+            drveTycd: "1",
+            twhvcDrveYn: "1"
+        }
+      ],
       parentValue: "TEST"
     }
   },

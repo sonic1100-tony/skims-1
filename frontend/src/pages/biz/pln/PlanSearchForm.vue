@@ -14,6 +14,7 @@
             class="mb-4"
             :label="$t('common.title.planStatus')"
             v-model="searchFormData.plStcd"
+            value-by="value"
             :options="plStcd"
           />
         </div>
@@ -32,7 +33,7 @@
           />
         </div>
         <div class="flex md3">
-          <va-button size="small" @click="search()">{{ $t("common.button.search") }}</va-button>
+          <va-button :rounded="false" class="mr-4 mb-2" @click="search">{{$t('common.button.search')}}</va-button>
         </div>
       </div>
     </va-card-content>
@@ -44,16 +45,41 @@
 export default {
   data () {
     return {
-      plStcd: ['설계중', '보험료계산', '설계완료', '청약완료', '수납완료', '걔약완료'],
+      plStcd: [
+        {
+          value: "01",
+          text: '설계중',
+        },
+        {
+          value: "02",
+          text: '보험료계산',
+        },
+        {
+          value: "03", 
+          text: '설계완료',
+        },
+        {
+          value: "04", 
+          text: '청약완료',
+        },
+        {
+          value: "05", 
+          text: '수납완료',
+        },
+        {
+          value: "06", 
+          text: '걔약완료',
+        },
+      ],
       searchFormData: null,
     }
   },
   methods: {
     initData () {
       this.searchFormData = {
-        plno: '',
-        plStcd: '',
-        plyno: '',
+        plno: '0000000001',
+        plStcd: '01',
+        plyno: '1000000001',
         grCtmno: '',
       };
     },

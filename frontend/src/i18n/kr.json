@@ -599,6 +599,7 @@
       "search": "조회",
       "save": "저장",
       "delete": "삭제",
+      "print": "출력",
       "init": "초기화"
     }
   },
@@ -617,7 +618,11 @@
     },
     "button": {
       "premium": "보험료계산",
-      "planComplete": "설계완료"
+      "planComplete": "설계완료",
+      "underwriting": "심사요청",
+      "print": "출력",
+      "premiumIncome": "보험료입금",
+      "contractReflection": "계약반영"
     }
   }
 }
