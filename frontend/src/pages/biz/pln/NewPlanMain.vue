@@ -1,15 +1,10 @@
 <template>
   <div class="form-elements">
     <PlanSearchForm ref="planSearchForm" v-on="search"></PlanSearchForm>
-    <br/>
-    <PlanBasicInfoForm :planBasicInfoData="planBasicInfoData"/>
-    <br/>
-    <PlanInsuredPersionForm :planInsuredPersionData="planInsuredPersionData"></PlanInsuredPersionForm>
-    <br/>
-    <!-- <PlanCoverageForm></PlanCoverageForm> -->
-    <br/>
-    <!-- <PlanPremiumForm></PlanPremiumForm> -->
-    <br />
+    <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData"/>
+    <PlanInsuredPersionForm ref="planInsuredPersionForm" :planInsuredPersionData="planInsuredPersionData"></PlanInsuredPersionForm>
+    <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData"></PlanCoverageForm>
+    <PlanPremiumForm ref="planPremiumForm" :planPremiumData="planPremiumData"></PlanPremiumForm>
     <div>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.save')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.premium')}}</va-button>
@@ -28,16 +23,16 @@ import axios from 'axios'
 import PlanSearchForm from './PlanSearchForm.vue'
 import PlanBasicInfoForm from './PlanBasicInfoForm.vue'
 import PlanInsuredPersionForm from './PlanInsuredPersionForm.vue'
-// import PlanCoverageForm from './PlanCoverageForm.vue'
-// import PlanPremiumForm from './PlanPremiumForm.vue'
+import PlanCoverageForm from './PlanCoverageForm.vue'
+import PlanPremiumForm from './PlanPremiumForm.vue'
 
 export default {
   components: {
     PlanSearchForm,
     PlanBasicInfoForm,
     PlanInsuredPersionForm,
-    // PlanCoverageForm,
-    // PlanPremiumForm
+    PlanCoverageForm,
+    PlanPremiumForm
   },
   data () {
     return {
@@ -48,14 +43,14 @@ export default {
         // jobCode: '',
       },
       planBasicInfoData: {
-        goodsCode: "AA0000",
-        goodsName: "SKIMS 테스트 보험",
-        applyDate: new Date(2022,0,1),
-        insuranceTerm: "01",
-        paymentTerm:  "01",
-        paymentCycle: "01",
-        insuranceStartDate: new Date(2022,0,1),
-        insuranceCloseDate: new Date(2022,11,31)
+        gdcd: "AA0000",
+        gdcnm: "SKIMS 테스트 보험",
+        apldt: new Date(2022,0,1),
+        ndcd: "01",
+        pymTrmcd:  "01",
+        pymCyccd: "01",
+        insSt: new Date(2022,0,1),
+        insClstr: new Date(2022,11,31)
       },
       planInsuredPersionData: [
         {
@@ -95,7 +90,46 @@ export default {
             twhvcDrveYn: "1"
         }
       ],
-      parentValue: "TEST"
+      planCoverageData: [
+        {
+            relpcSeqno: 1,
+            cvrcd: "CVR001",
+            cvrSeqno: "1",
+            cvrnm: "무배당 아파아파 보험",
+            ndcd: "01",
+            pymTrmcd:  "01",
+            isamt: "100000000",
+            baPrm: "100000",
+            apPrm: "100000",
+        },
+        {
+            relpcSeqno: 1,
+            cvrcd: "CVR002",
+            cvrSeqno: "1",
+            cvrnm: "무배당 아파아파 보험",
+            ndcd: "01",
+            pymTrmcd:  "01",
+            isamt: "100000000",
+            baPrm: "100000",
+            apPrm: "100000",
+        },
+        {
+            relpcSeqno: 1,
+            cvrcd: "CVR003",
+            cvrSeqno: "1",
+            cvrnm: "무배당 아파아파 보험",
+            ndcd: "01",
+            pymTrmcd:  "01",
+            isamt: "100000000",
+            baPrm: "100000",
+            apPrm: "100000",
+        }
+      ],
+      planPremiumData: {
+        baPrm: "1000000",
+        apPrm: "900000",
+        dcPrm: "100000"
+      },
     }
   },
   methods: {

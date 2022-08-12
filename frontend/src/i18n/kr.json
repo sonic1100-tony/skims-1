@@ -593,14 +593,19 @@
       "paymentTerm": "납입기간",
       "paymentCycle": "납입주기",
       "insuranceStartDate": "보험시기",
-      "insuranceCloseDate": "보험종기"
+      "insuranceCloseDate": "보험종기",
+      "checkbox": "선택",
+      "basicPremium": "기본보험료",
+      "applicationPremium": "적용보험료",
+      "discountPremium": "할인보험료"
     },
     "button": {
       "search": "조회",
       "save": "저장",
       "delete": "삭제",
       "print": "출력",
-      "init": "초기화"
+      "init": "초기화",
+      "close": "닫기"
     }
   },
   "newPlan": {

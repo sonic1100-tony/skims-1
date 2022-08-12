@@ -10,21 +10,21 @@
                   <div class="flex md2"> 
                     <va-input
                       :label="$t('common.title.goodsName')"
-                      v-model="planBasicInfoFormData.goodsName"
+                      v-model="planBasicInfoFormData.gdcnm"
                       readonly
                     />
                   </div>
                   <div class="flex md2">
                     <va-input
                       :label="$t('common.title.goodsCode')"
-                      v-model="planBasicInfoFormData.goodsCode"
+                      v-model="planBasicInfoFormData.gdcd"
                       readonly
                     />
                   </div>
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.insuranceTerm')"
-                      v-model="planBasicInfoFormData.insuranceTerm"
+                      v-model="planBasicInfoFormData.ndcd"
                       value-by="value"
                       :options="insuranceTerms"
                     />
@@ -32,7 +32,7 @@
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.paymentTerm')"
-                      v-model="planBasicInfoFormData.paymentTerm"
+                      v-model="planBasicInfoFormData.pymTrmcd"
                       value-by="value"
                       :options="paymentTerms"
                     />
@@ -40,7 +40,7 @@
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.paymentCycle')"
-                      v-model="planBasicInfoFormData.paymentCycle"
+                      v-model="planBasicInfoFormData.pymCyccd"
                       value-by="value"
                       :options="paymentCycles"
                     />
@@ -50,19 +50,19 @@
                   <div class="flex md2">
                     <va-date-input 
                       :label="$t('common.title.applyDate')"
-                      v-model="planBasicInfoFormData.applyDate"
+                      v-model="planBasicInfoFormData.apldt"
                     />
                   </div>
                   <div class="flex md2">
                     <va-date-input 
                       :label="$t('common.title.insuranceStartDate')"
-                      v-model="planBasicInfoFormData.insuranceStartDate"
+                      v-model="planBasicInfoFormData.insSt"
                     />
                   </div>
                   <div class="flex md2">
                     <va-date-input 
                       :label="$t('common.title.insuranceCloseDate')"
-                      v-model="planBasicInfoFormData.insuranceCloseDate"
+                      v-model="planBasicInfoFormData.insClstr"
                     />
                   </div>
                 </div>

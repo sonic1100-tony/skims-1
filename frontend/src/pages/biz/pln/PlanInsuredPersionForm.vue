@@ -1,84 +1,90 @@
 <template>
-  <div class="markup-tables flex">
-    <va-card title="피보험자" class="flex mb-4">
-      <va-card-content>
-        <div class="table-wrapper">
-          <table class="va-table">
-            <thead>
-              <tr>
-                <th>선택</th>
-                <th>주피관계</th>
-                <th>주민등록번호</th>
-                <th colspan="2">피보험자명</th>
-                <th colspan="2">법정대리인</th>
-                <th>직업코드</th>
-                <th colspan="2">직업명</th>
-                <th>상해급수</th>
-                <th>운전형태</th>
-                <th>이륜차부담보</th>
-              </tr>
-            </thead>
+  <div class="collapse-page">
+    <div class="markup-tables flex">
+      <va-card title="피보험자" class="flex mb-4">
+        <va-card-content>
+          <va-accordion v-model="basicAccordionValue">
+            <va-collapse class="mb-4" :header="$t('newPlan.insuredPersion.title')">
+              <div class="table-wrapper">
+                <table class="va-table">
+                  <thead>
+                    <tr>
+                      <th>선택</th>
+                      <th>주피관계</th>
+                      <th>주민등록번호</th>
+                      <th colspan="2">피보험자명</th>
+                      <th colspan="2">법정대리인</th>
+                      <th>직업코드</th>
+                      <th colspan="2">직업명</th>
+                      <th>상해급수</th>
+                      <th>운전형태</th>
+                      <th>이륜차부담보</th>
+                    </tr>
+                  </thead>
 
-            <tbody>
-              <tr v-for="planInsuredPerson in planInsuredPersonFormData" :key="planInsuredPerson.relpcSeqno">
-                <td>
-                  <va-checkbox v-model="planInsuredPerson.check" />
-                </td>
-                <td>
-                  <va-select size="small"
-                    v-model="planInsuredPerson.relpcRelcd"
-                    value-by="value"
-                    :options="relpcRelcds"
-                  />
-                </td>
-                <td>
-                  <va-input v-model="planInsuredPerson.ctmDscno" />
-                </td>
-                <td><va-input v-model="planInsuredPerson.hnglRelnm" /></td>
-                <td><va-button icon="search" /></td>
-                <td>
-                  <va-input v-model="planInsuredPerson.ppaYn" />
-                </td>
-                <td>
-                  <va-button icon="search" />
-                </td>
-                <td>
-                  <va-input v-model="planInsuredPerson.jbcd" />
-                </td>
-                <td>
-                  <va-input v-model="planInsuredPerson.jbcnm" />
-                </td>
-                <td>
-                  <va-button icon="search" />
-                </td>
-                <td>
-                  <va-select size="small"
-                    v-model="planInsuredPerson.injrRnkcd"
-                    value-by="value"
-                    :options="injrRnkcds"
-                  />
-                </td>
-                <td>
-                  <va-select size="small"
-                    v-model="planInsuredPerson.drveTycd"
-                    value-by="value"
-                    :options="drveTycds"
-                  />
-                </td>
-                <td>
-                  <va-select
-                    size="small"
-                    v-model="planInsuredPerson.twhvcDrveYn"
-                    value-by="value"
-                    :options="twhvcDrveYns"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>                
-        </div>
-      </va-card-content>
-    </va-card>
+                  <tbody>
+                    <tr v-for="planInsuredPerson in planInsuredPersonFormData" :key="planInsuredPerson.relpcSeqno">
+                      <td>
+                        <va-checkbox v-model="planInsuredPerson.check" />
+                      </td>
+                      <td>
+                        <va-select size="small"
+                          v-model="planInsuredPerson.relpcRelcd"
+                          value-by="value"
+                          :options="relpcRelcds"
+                        />
+                      </td>
+                      <td>
+                        <va-input v-model="planInsuredPerson.ctmDscno" />
+                      </td>
+                      <td><va-input v-model="planInsuredPerson.hnglRelnm" /></td>
+                      <td><va-button icon="search" /></td>
+                      <td>
+                        <va-input v-model="planInsuredPerson.ppaYn" />
+                      </td>
+                      <td>
+                        <va-button icon="search" />
+                      </td>
+                      <td>
+                        <va-input v-model="planInsuredPerson.jbcd" />
+                      </td>
+                      <td>
+                        <va-input v-model="planInsuredPerson.jbcnm" />
+                      </td>
+                      <td>
+                        <va-button icon="search" />
+                      </td>
+                      <td>
+                        <va-select size="small"
+                          v-model="planInsuredPerson.injrRnkcd"
+                          value-by="value"
+                          :options="injrRnkcds"
+                        />
+                      </td>
+                      <td>
+                        <va-select size="small"
+                          v-model="planInsuredPerson.drveTycd"
+                          value-by="value"
+                          :options="drveTycds"
+                        />
+                      </td>
+                      <td>
+                        <va-select
+                          size="small"
+                          v-model="planInsuredPerson.twhvcDrveYn"
+                          value-by="value"
+                          :options="twhvcDrveYns"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>                
+              </div>
+            </va-collapse>
+          </va-accordion>
+        </va-card-content>
+      </va-card>
+    </div>
   </div>
 </template>
 
@@ -86,6 +92,7 @@
 export default {
   data () {
     return {
+      basicAccordionValue: [true],
       planInsuredPersonFormData: this.planInsuredPersionData,
       relpcRelcds: [
         {

@@ -1,33 +1,41 @@
 <template>
-  <va-card>
-    <va-card-content>
-      <div class="row">
-        <div class="flex md3">
-          <va-input
-            label="기본보험료"
-            v-model="searchFormData.jobName"
-            :rules="[value => (value && value.length > 0) || 'Field is required']"
-          />
-        </div>
-        <div class="flex md2">
-          <va-checkbox class="mb-2" v-model="searchFormData.searchJobName" label="직업명" />
-        </div>
-        <div class="flex md2">
-          <va-checkbox class="mb-2" v-model="searchFormData.searchJobDetailName" label="세부직업" />
-        </div>
-        <div class="flex md3">
-          <va-input
-            label="직업코드"
-            v-model="searchFormData.jobCode"
-            :rules="[value => (value && value.length > 0) || 'Field is required']"
-          />
-        </div>
-        <div class="flex md2 ">
-          <va-button size="small" @click="search()">조회</va-button>
-        </div>
+  <div class="collapse-page">
+    <div class="row">
+      <div class="flex xs12">
+        <va-card>
+          <va-card-content>
+            <va-accordion v-model="basicAccordionValue">
+              <va-collapse class="mb-4" :header="$t('newPlan.premium.title')">
+                <div class="row">
+                  <div class="flex md2"> 
+                    <va-input
+                      :label="$t('common.title.basicPremium')"
+                      v-model="planPremiumFormData.baPrm"
+                      readonly
+                    />
+                  </div>
+                  <div class="flex md2">
+                    <va-input
+                      :label="$t('common.title.applicationPremium')"
+                      v-model="planPremiumFormData.apPrm"
+                      readonly
+                    />
+                  </div>
+                  <div class="flex md2">
+                    <va-input
+                      :label="$t('common.title.discountPremium')"
+                      v-model="planPremiumFormData.dcPrm"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </va-collapse>
+            </va-accordion>
+          </va-card-content>
+        </va-card>
       </div>
-    </va-card-content>
-  </va-card>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -35,28 +43,45 @@
 export default {
   data () {
     return {
-      searchFormData:null,
+      basicAccordionValue: [true],
+      planPremiumFormData: this.planPremiumData,
+    }
+  },
+  props : {
+    planPremiumData: {
     }
   },
   methods: {
     initData () {
-      this.searchFormData = {
-        searchJobName: true,
-        searchJobDetailName: true,
-        jobName: '',
-        jobCode: '',
-      };
+      console.log("initData");
     },
-    search () {
+
+    insuranceTermChange () {
       console.log('search');
       this.$emit("search", {
-        ...this.searchFormData,
+        ...this.planPremiumFormData,
       });
+    },
+
+    logMethod () {
+      console.log("logMethod");
+      console.log(this);
+    },
+    
+    formatDate (date) {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    },
+
+    parseDate (text) {
+      const [year, month, day] = text.split('-')
+
+      return new Date(year, month - 1, day)
     },
   },
 
   created () {
     console.log("created...");
+    console.log(this.planBasicInfoData);
     this.initData();
   }
 }
