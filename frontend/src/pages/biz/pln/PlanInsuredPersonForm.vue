@@ -93,7 +93,7 @@ export default {
   data () {
     return {
       basicAccordionValue: [true],
-      planInsuredPersonFormData: this.planInsuredPersionData,
+      planInsuredPersonFormData: this.planInsuredPersonData,
       relpcRelcds: [
         {
           value: "01",
@@ -165,7 +165,7 @@ export default {
     }
   },
   props : {
-    planInsuredPersionData:{
+    planInsuredPersonData:{
     }
   },
   methods: {

@@ -84,7 +84,7 @@ export default {
       };
     },
     search () {
-      console.log('search');
+      console.log('search', this.searchFormData);
       this.$emit("search", {
         ...this.searchFormData,
       });

@@ -1,8 +1,8 @@
 <template>
   <div class="form-elements">
-    <PlanSearchForm ref="planSearchForm" v-on="search"></PlanSearchForm>
+    <PlanSearchForm ref="planSearchForm" @search="search"></PlanSearchForm>
     <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData"/>
-    <PlanInsuredPersionForm ref="planInsuredPersionForm" :planInsuredPersionData="planInsuredPersionData"></PlanInsuredPersionForm>
+    <PlanInsuredPersonForm ref="planInsuredPersonForm" :planInsuredPersonData="planInsuredPersonData"></PlanInsuredPersonForm>
     <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData"></PlanCoverageForm>
     <PlanPremiumForm ref="planPremiumForm" :planPremiumData="planPremiumData"></PlanPremiumForm>
     <div>
@@ -22,7 +22,7 @@
 import axios from 'axios'
 import PlanSearchForm from './PlanSearchForm.vue'
 import PlanBasicInfoForm from './PlanBasicInfoForm.vue'
-import PlanInsuredPersionForm from './PlanInsuredPersionForm.vue'
+import PlanInsuredPersonForm from './PlanInsuredPersonForm.vue'
 import PlanCoverageForm from './PlanCoverageForm.vue'
 import PlanPremiumForm from './PlanPremiumForm.vue'
 
@@ -30,17 +30,13 @@ export default {
   components: {
     PlanSearchForm,
     PlanBasicInfoForm,
-    PlanInsuredPersionForm,
+    PlanInsuredPersonForm,
     PlanCoverageForm,
     PlanPremiumForm
   },
   data () {
     return {
       searchForm:{
-        // searchJobName: true,
-        // searchJobDetailName: true,
-        // jobName: '',
-        // jobCode: '',
       },
       planBasicInfoData: {
         gdcd: "AA0000",
@@ -52,7 +48,7 @@ export default {
         insSt: new Date(2022,0,1),
         insClstr: new Date(2022,11,31)
       },
-      planInsuredPersionData: [
+      planInsuredPersonData: [
         {
             relpcSeqno: 1,
             relpcRelcd: "01",
@@ -134,9 +130,9 @@ export default {
   },
   methods: {
     search ( searchFormData ) {
-      console.log('search', searchFormData);
+      console.log('NewPlanMain search', searchFormData);
       axios
-        .get('https://jsonplaceholder.typicode.com/todos')
+        .get('http://localhost:8081/cnr/contract/'+"0000000001") //searchFormData.plyno)
         .then(response => {
           console.log("response", response);
           this.todoList = response.data.slice(0, 8);
