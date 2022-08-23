@@ -188,6 +188,10 @@ public class PlanInformationResponse {
 
         private String cvrStcd; //--담보상태코드
 
+        private String cvrBjFlgcd; //--담보대상구분코드 (01:피보험자, 02:목적물, 03:계약)
+
+        private BigDecimal relpcOjSeqno; //--관계자목적물순번
+
         private LocalDate cvrStChdt; //--담보상태변경일자
 
         private BigDecimal isamt; //--가입금액
