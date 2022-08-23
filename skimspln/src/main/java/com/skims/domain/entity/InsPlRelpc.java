@@ -36,7 +36,7 @@ import com.skims.domain.listener.InsPlRelpcListener;
 @Schema(description = "설계관계자")
 public class InsPlRelpc implements Serializable {
     @Id //  Long
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "aid", nullable = false)
 //    @Schema(description = "", nullable = true , defaultValue = "" , example = ""  , allowableValues = {"", ""})
     @Schema(description = "aid", nullable = false)

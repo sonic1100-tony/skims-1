@@ -36,7 +36,7 @@ import com.skims.domain.listener.InsPlNrdpsTisrdAtrListener;
 @Schema(description = "설계피보험자부보자속성")
 public class InsPlNrdpsTisrdAtr implements Serializable {
     @Id //  Long
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "aid", nullable = false)
 //    @Schema(description = "", nullable = true , defaultValue = "" , example = ""  , allowableValues = {"", ""})
     @Schema(description = "aid", nullable = false)
