@@ -1,10 +1,10 @@
 package com.skims.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skims.domain.entity.InsCrStCrr;
-import com.skims.domain.repository.InsInrCrRepository;
+import com.skims.client.IgdFeignClient;
 import com.skims.domain.service.ContractInquiryService;
 import com.skims.dto.ContractInformationDto;
+import com.skims.dto.GoodsInformationResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,6 +31,9 @@ public class ContractManagementController {
     @Autowired
     ObjectMapper mapper;
 
+    @Autowired
+    IgdFeignClient igdFeignClient;
+
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the Contract", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ContractInformationDto.class)) }),
@@ -39,6 +42,12 @@ public class ContractManagementController {
     public ResponseEntity<ContractInformationDto> getContractDetailInformation(@PathVariable String policyNumber) {
 
         Optional<ContractInformationDto> data = service.getContractDetailInformation(policyNumber);
+
+        Optional<GoodsInformationResponse> goodsInformationResponse = igdFeignClient.getGoodsInformation("LAA201");
+
+        if( goodsInformationResponse.isPresent() ) {
+            log.debug(goodsInformationResponse.get().toString());
+        }
 
         if (data.isPresent()) {
             return ResponseEntity.ok().body(data.get());
