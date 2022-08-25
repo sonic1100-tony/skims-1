@@ -2,6 +2,7 @@ package com.skims.domain.service;
 
 import com.skims.domain.entity.FinPrmRvSb;
 import com.skims.domain.repository.FinPrmRvSbRepository;
+import com.skims.dto.ImmediatelyWithdrawDto;
 import com.skims.dto.ReceiveStandbyDto;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,21 +101,45 @@ public class ReceiveStandbyService {
         return sb.toString();
     }
 
-    public void processPremiumReceive(String receiveStandbyNumber) throws Exception{
+    public void processPremiumReceive(ReceiveStandbyDto dto) throws Exception{
 
         //수납처리
-        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(receiveStandbyNumber).orElseThrow(() -> new Exception("수납대기가 존재하지 않습니다"));
+        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(dto.getReceiveStandbyNumber()).orElseThrow(() -> new Exception("수납대기가 존재하지 않습니다"));
 
         entity = entity.toBuilder()
             .rvdt(LocalDate.now())
-            .rvXcno(receiveStandbyNumber.substring(8))
+            .rvXcno(dto.getReceiveStandbyNumber().substring(8))
             .rvOrgcd("SK001")
+            .bkcd(dto.getBankCode())
+            .dpsnm(dto.getDepositor())
+            .actno(dto.getAccountNumber())
             .mdfDthms(LocalDateTime.now()).build();
 
         finPrmRvSbRepository.saveAndFlush(entity);
 
         //TODO 수납후처리 호출
 
+    }
+
+    public ReceiveStandbyDto inquiryReceiveStandby(String receiveStandbyNumber) throws Exception{
+        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(receiveStandbyNumber).orElseThrow(() -> new Exception("수납대기가 존재하지 않습니다"));
+        //TODO 조회항목 확인 후 추가
+        ReceiveStandbyDto result = ReceiveStandbyDto.builder()
+                .wonCurrencyPremium(entity.getWoncrPrm())
+                .build();
+        return result;
+    }
+
+    public String processWithdraw(ImmediatelyWithdrawDto dto){
+
+        String answerCode = "";
+
+        //TODO VAN사 연계 출금 처리
+
+        //출금 처리 테스트를 위한 성공응답 셋팅
+        answerCode = "0000";
+
+        return answerCode;
     }
 
 }

@@ -31,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "plan",
         component: () => import('@/pages/biz/pln/NewPlanMain.vue'),
       },
+      {
+        name: "finance",
+        path: "finance",
+        component: () => import('@/pages/biz/fin/ReceiveTest.vue'),
+      },      
     ]
   },
   {
