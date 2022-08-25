@@ -337,7 +337,8 @@
     "faq": "Faq",
     "sample":"샘플",
     "job":"직업조회",
-    "newPlan": "가입설계"
+    "newPlan": "가입설계",
+    "finance":"수납"
   },
   "messages": {
     "all": "See all messages",

@@ -19,6 +19,13 @@ export default {
       },
     },
     {
+      name: 'finance',
+      displayName: 'menu.finance',
+      meta: {
+        icon: 'vuestic-iconset-forms',
+      },
+    },    
+    {
       name: 'sample',
       displayName: 'menu.sample',
       meta: {
