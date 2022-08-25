@@ -14,6 +14,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ReceiveStandbyRequest {
 
+    //수납대기번호
+    private String receiveStandbyNumber;
+    
     // 발생시스템코드
     private String occurrenceSystemCode;
 
@@ -103,4 +106,5 @@ public class ReceiveStandbyRequest {
 
     // 계약자명
     private String contractorName;
+
 }

@@ -12,11 +12,11 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReceiveStandbyDto {
+public class ReceiveStandbyResponse {
 
-    // 수납대기번호
+    //수납대기번호
     private String receiveStandbyNumber;
-
+    
     // 발생시스템코드
     private String occurrenceSystemCode;
 
@@ -107,12 +107,4 @@ public class ReceiveStandbyDto {
     // 계약자명
     private String contractorName;
 
-    // 은행코드
-    private String bankCode;
-
-    // 예금주명
-    private String depositor;
-
-    // 계좌번호
-    private String accountNumber;
 }
