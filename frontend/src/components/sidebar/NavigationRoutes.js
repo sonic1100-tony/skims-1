@@ -5,6 +5,13 @@ export default {
   },
   routes: [
     {
+      name: 'cus',
+      displayName: 'menu.cus',
+      meta: {
+        icon: 'vuestic-iconset-forms',
+      },
+    },
+    {
       name: 'job',
       displayName: 'menu.job',
       meta: {

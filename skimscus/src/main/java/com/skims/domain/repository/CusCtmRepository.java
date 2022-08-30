@@ -7,19 +7,37 @@
 package com.skims.domain.repository;
 
 
-// import java.util.Map;
-// import org.springframework.data.domain.Page;
-// import org.springframework.data.domain.Pageable;
-// import org.springframework.data.jpa.repository.Query;
-// import org.springframework.data.jpa.repository.Modifying;
+import java.util.Optional;
+
+import java.util.Map;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import java.util.List;
 
 
 import com.skims.domain.entity.CusCtm;
 
+
 @RepositoryRestResource
 public interface CusCtmRepository extends JpaRepository<CusCtm, Long> {
+
+	//고객명으로 조회_네이티브쿼리
+    @Query(value = "SELECT * FROM CUS_CTM where hngl_ctmnm like :hngl_ctmnm", nativeQuery = true)
+    List<CusCtm> findByHhnglCtmnmLike(@Param("hngl_ctmnm") String hnglCtmnm);
+
+	//고객번호로 조회_네이티브쿼리
+    @Query(value = "SELECT * FROM CUS_CTM where ctmno = :ctmno", nativeQuery = true)
+    List<CusCtm> findByCtmno(@Param("ctmno") String ctmno);
+
+	//고객번호 또는 고객명으로 조회_네이티브쿼리
+	@Query(value = "SELECT * FROM CUS_CTM where ctmno = :ctmno AND hngl_ctmnm like :hngl_ctmnm", nativeQuery = true)
+	List<CusCtm> findByCtmnoAndHgNm(@Param("ctmno") String ctmno, @Param("hngl_ctmnm") String hnglCtmnm);
+	
 }
 
 /**
