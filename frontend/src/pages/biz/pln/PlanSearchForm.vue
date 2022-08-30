@@ -77,7 +77,7 @@ export default {
   methods: {
     initData () {
       this.searchFormData = {
-        plno: '0000000001',
+        plno: '00001',
         plStcd: '01',
         plyno: '1000000001',
         grCtmno: '',

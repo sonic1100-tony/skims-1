@@ -38,16 +38,7 @@ export default {
     return {
       searchForm:{
       },
-      planBasicInfoData: {
-        gdcd: "AA0000",
-        gdcnm: "SKIMS 테스트 보험",
-        apldt: new Date(2022,0,1),
-        ndcd: "01",
-        pymTrmcd:  "01",
-        pymCyccd: "01",
-        insSt: new Date(2022,0,1),
-        insClstr: new Date(2022,11,31)
-      },
+      planBasicInfoData: [],
       planInsuredPersonData: [
         {
             relpcSeqno: 1,
@@ -132,10 +123,11 @@ export default {
     search ( searchFormData ) {
       console.log('NewPlanMain search', searchFormData);
       axios
-        .get('http://localhost:8081/cnr/contract/'+"0000000001") //searchFormData.plyno)
+        .get('http://localhost:8087/pln/planInformation?plno='+searchFormData.plno+'&cgafChSeqno=1') //searchFormData.plyno)
         .then(response => {
-          console.log("response", response);
-          this.todoList = response.data.slice(0, 8);
+          console.log("response", response);        
+          this.planBasicInfoData = response.data.insurancePlan;
+          console.log("13 : " + this.planBasicInfoData.gdcd);
         })
         .catch(error => {
           console.log(error)
@@ -147,7 +139,7 @@ export default {
     },
     clearSearchForm(){
       // 자식함수 호출 ref로 자식컴포넌트 지정
-      this.$refs.searchForm.initData();
+      //this.$refs.searchForm.initData();
     },
 
     formatDate (date) {
