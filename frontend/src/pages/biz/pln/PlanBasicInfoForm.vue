@@ -147,12 +147,12 @@ export default {
         }
       ],
       basicAccordionValue: [true],
-      planBasicInfoFormData: this.planBasicInfoData,
+      planBasicInfoFormData: {},
     }
   },
   props : {
     planBasicInfoData: {
-      // type: Object
+      type: Object
       // goodsCode: String,
       // goodsName: String,
       // applyDate: String,
@@ -161,6 +161,28 @@ export default {
       // paymentCycle: String,
       // insuranceStartDate: String,
       // insuranceCloseDate: String
+    }
+  },
+  // child component
+  /**
+   * props <-> v-model vue2.X 특정버전대부터 데이터연결을 지원하지않음. (데이터양뱡향 바인딩을 막으려는 것으로 보임.)
+   * props는 readonly 성격의 데이터를 사용할 때 써야함. (like datagrid)
+   * 컴포넌트내에 변경해야하는 데이터는 내부 data에 복사 후 컴포넌트 자신에서만 사용함.
+   * 생각할수 있는 방법
+   * 1. 부모컴포넌트에서 명시적으로 자식컴포넌트 데이터를 셋팅하는 함수를 명시적으로 호출함.
+   * // 자식함수 호출 ref로 자식컴포넌트 지정
+   * JobSearchForm.vue 예시 
+   * this.$refs.searchForm.initData();
+   * 
+   * 2. Watch prop 변경감지
+   * Watch로 prop가 변경되는 시점에 data 내 변수에 값을 복사해서 넘겨줌
+   * 
+   * https://kamang-it.tistory.com/entry/Vue22props-%EB%B3%80%EA%B2%BD%EC%9D%98-%EA%B0%90%EC%8B%9C%EC%9E%90-watch
+   */
+  watch: {
+    planBasicInfoData: function ( obj ) {
+      console.log("change data", obj);
+      this.planBasicInfoFormData = { ...obj };
     }
   },
   methods: {

@@ -38,7 +38,7 @@ export default {
     return {
       searchForm:{
       },
-      planBasicInfoData: [],
+      planBasicInfoData: {},
       planInsuredPersonData: [
         {
             relpcSeqno: 1,
