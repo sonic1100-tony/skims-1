@@ -36,7 +36,7 @@ import com.skims.domain.listener.InsRpAdmListener;
 @Schema(description = "영수관리")
 public class InsRpAdm implements Serializable {
     @Id //  Long
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "aid", nullable = false)
 //    @Schema(description = "", nullable = true , defaultValue = "" , example = ""  , allowableValues = {"", ""})
     @Schema(description = "aid", nullable = false)

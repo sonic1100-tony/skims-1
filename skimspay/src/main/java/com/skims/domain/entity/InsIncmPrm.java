@@ -36,7 +36,7 @@ import com.skims.domain.listener.InsIncmPrmListener;
 @Schema(description = "수입보험료")
 public class InsIncmPrm implements Serializable {
     @Id //  Long
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "aid", nullable = false)
 //    @Schema(description = "", nullable = true , defaultValue = "" , example = ""  , allowableValues = {"", ""})
     @Schema(description = "aid", nullable = false)

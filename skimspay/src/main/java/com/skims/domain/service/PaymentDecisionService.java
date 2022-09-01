@@ -37,6 +37,10 @@ public class PaymentDecisionService {
                 .mntFlgcd(paymentDecisionDto.getMntFlgcd()) // 금종구분코드
                 .plno(paymentDecisionDto.getPlno()) // 설계번호
                 .cgafChSeqno(paymentDecisionDto.getCgafChSeqno()) // 발행후변경순번
+                .inpUsrId("SK001")
+                .inpDthms(LocalDateTime.now())
+                .mdfUsrId("SK001")
+                .mdfDthms(LocalDateTime.now())
                 .build();
 
         // 영수관리(insRpAdm) insert
@@ -59,8 +63,30 @@ public class PaymentDecisionService {
                 .rpPrm(paymentDecisionDto.getPaymentPremium()) // 납입보험료
                 .rpAdmno(rpAdmno) // 영수관리번호
                 .prmFlgcd("1") // 보험료구분코드(1:분납/계속분)
-             //   .dpCascd() // 입금원인코드()
-           //     .dpDtCascd() // 입금세부원인코드()
+                .dpCascd("01") // 입금원인코드()
+                .dpDtCascd("00") // 입금세부원인코드()
+                .dhStfno("SK001")
+                .fcApPrm(BigDecimal.ZERO)
+                .usdCvApPrm(BigDecimal.ZERO)
+                .fcApXcrt(BigDecimal.ZERO)
+                .usdApXcrt(BigDecimal.ZERO)
+                .fcCondtTPrm(BigDecimal.ZERO)
+                .condtTPrm(BigDecimal.ZERO)
+                .pypAdCs(BigDecimal.ZERO)
+                .baCvrPrm(BigDecimal.ZERO)
+                .trtPrm(BigDecimal.ZERO)
+                .cuPrm(BigDecimal.ZERO)
+                .flpyCvrTrtPrm(BigDecimal.ZERO)
+                .dcbfCuPrm(BigDecimal.ZERO)
+                .cuNprm(BigDecimal.ZERO)
+                .rviNt(BigDecimal.ZERO)
+                .dcbfPrm(BigDecimal.ZERO)
+                .ikdGrpcd("LA")
+                .cclWdrRtnNt(BigDecimal.ZERO)
+                .inpUsrId("SK001")
+                .inpDthms(LocalDateTime.now())
+                .mdfUsrId("SK001")
+                .mdfDthms(LocalDateTime.now())
                 .build();
 
         // 수입보험료(insIncmPrm) insert
