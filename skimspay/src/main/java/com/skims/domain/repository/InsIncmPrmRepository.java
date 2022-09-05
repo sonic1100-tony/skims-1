@@ -13,13 +13,22 @@ package com.skims.domain.repository;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
 import com.skims.domain.entity.InsIncmPrm;
 
+import java.math.BigDecimal;
+import java.util.Optional;
+
 @RepositoryRestResource
 public interface InsIncmPrmRepository extends JpaRepository<InsIncmPrm, Long> {
+	Optional<InsIncmPrm> findByPlynoAndIncmPrmCrSeqno(String plyno, BigDecimal incmPrmCrSeqno);
+
+	@Query(" select new java.lang.String(COALESCE(MAX(iip.plyno),0) as plyno) "
+			+"from InsIncmPrm iip")
+	Optional<String> findMaxPlyno();
 }
 
 /**

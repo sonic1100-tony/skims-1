@@ -1,12 +1,15 @@
 package com.skims.domain.service;
 
+import com.skims.client.FinFeignClient;
 import com.skims.domain.entity.InsIncmPrm;
 import com.skims.domain.entity.InsRpAdm;
 import com.skims.domain.repository.InsIncmPrmRepository;
 import com.skims.domain.repository.InsRpAdmRepository;
 import com.skims.dto.PaymentDecisionDto;
+import com.skims.dto.ReceiveStandbyRequest;
 import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -24,10 +28,13 @@ public class PaymentDecisionService {
     @Autowired
     InsIncmPrmRepository insIncmPrmRepository;
 
+    @Autowired
+    FinFeignClient finFeignClient;
+
     public String savePaymentDecision(PaymentDecisionDto paymentDecisionDto) {
 
         // 영수관리번호
-        String rpAdmno = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))+"000001";
+        String rpAdmno = this.getReceiptAdministrationNumber();
         if(!StringUtils.isBlank(paymentDecisionDto.getRpAdmno())) rpAdmno = paymentDecisionDto.getRpAdmno();
 
         InsRpAdm insRpAdm = InsRpAdm.builder()
@@ -47,7 +54,7 @@ public class PaymentDecisionService {
         insRpAdmRepository.saveAndFlush(insRpAdm);
 
         String plyno = paymentDecisionDto.getPlyno();
-        if(StringUtils.isBlank(plyno))  plyno = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))+"001";
+        if(StringUtils.isBlank(plyno))  plyno = this.getPolicyNumber();
         BigDecimal incmPrmCrSeqno = BigDecimal.ONE;
 
 
@@ -92,6 +99,42 @@ public class PaymentDecisionService {
         // 수입보험료(insIncmPrm) insert
         insIncmPrmRepository.saveAndFlush(insIncmPrm);
 
+
+        //수납대기 생성
+        ReceiveStandbyRequest finRequest = ReceiveStandbyRequest.builder()
+                .occurrenceSystemCode("02")
+                .dealingsTypeOrder1ClassificationCode("01")
+                .dealingsTypeOrder2ClassificationCode("0101")
+                .receiptDate(LocalDate.now())
+                .handlingOrganizationCode("SK")
+                .handlingStaffNumber("SK001")
+                .insuranceKindGroupCode("LA")
+                .insuranceItemCode("LAA1010")
+                .contractDate(LocalDate.now())
+                .policyNumber(plyno)
+                .incomePremiumOccurrenceSequenceNumber(incmPrmCrSeqno)
+                .customerNumber("330003015")
+                .contractorResidentNumber("9001011111111")
+                .responsibilityThirdPartyBodilyInjuryOpenDate(LocalDate.now())
+                .undertakeTypeClassificationCode("01")
+                .depositCauseCode("01")
+                .moneyTypeFlagCode("01")
+                .depositDate(LocalDate.now())
+                .receiptAdministrationNumber(rpAdmno)
+                .planNumber(paymentDecisionDto.getPlno())
+                .totalCount(BigDecimal.ZERO)
+                .totalPremium(paymentDecisionDto.getPaymentPremium())
+                .wonCurrencyPremium(paymentDecisionDto.getPaymentPremium())
+                .transferCommission(BigDecimal.ZERO)
+//                .etcAmountFlagCode(null)
+                .etcAmount(BigDecimal.ZERO)
+                .contractorName("홍길동").build();
+
+        // 수납대기 생성 및 수납대기번호 update
+        String receiveStandbyNumber = finFeignClient.insertReceiveStandby(finRequest);
+        insIncmPrm.setRvSbno(receiveStandbyNumber);
+        insIncmPrmRepository.saveAndFlush(insIncmPrm);
+
         return rpAdmno;
     }
 
@@ -100,4 +143,46 @@ public class PaymentDecisionService {
             throw new Exception("설계번호가 존재하지 않습니다.");
         }
     }
+
+    private String getReceiptAdministrationNumber(){
+
+        Optional<String> maxRpAdmno = insRpAdmRepository.findMaxRpAdmno();
+        String receiptAdministrationNumber = null;
+
+        if(maxRpAdmno.isPresent()){
+            if( NumberUtils.isDigits(maxRpAdmno.get()) ) {
+                BigDecimal temp = new BigDecimal(maxRpAdmno.get()).add(BigDecimal.ONE);
+                receiptAdministrationNumber = padLeftZeros(temp.toString(),20);
+            }
+        }
+
+        return receiptAdministrationNumber;
+    }
+    private String getPolicyNumber(){
+
+        Optional<String> maxPlyno = insIncmPrmRepository.findMaxPlyno();
+        String policyNumber = null;
+
+        if(maxPlyno.isPresent()){
+            if( NumberUtils.isDigits(maxPlyno.get()) ) {
+                BigDecimal temp = new BigDecimal(maxPlyno.get()).add(BigDecimal.ONE);
+                policyNumber = padLeftZeros(temp.toString(),16);
+            }
+        }
+
+        return policyNumber;
+    }
+    private String padLeftZeros(String inputString, int length) {
+        if (inputString.length() >= length) {
+            return inputString;
+        }
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < length - inputString.length()) {
+            sb.append('0');
+        }
+        sb.append(inputString);
+
+        return sb.toString();
+    }
+
 }
