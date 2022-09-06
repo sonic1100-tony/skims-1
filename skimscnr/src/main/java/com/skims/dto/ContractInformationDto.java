@@ -22,6 +22,8 @@ public class ContractInformationDto {
 
     private LocalDateTime ndsApDthms;
 
+    private BigDecimal mnNrdpsRelpcSeqno;   // 주피보험자관계자순번
+
 
 
     private InsuranceContract insuranceContract;
@@ -182,6 +184,8 @@ public class ContractInformationDto {
         private BigDecimal jbChSeqno; //--직업변경순번
 
         private String injrRnkcd; //--상해급수코드
+
+        private String twhvcSubCvrtrIsFlgcd;    //--이륜차부담보특약가입구분코드
 
 
         /**

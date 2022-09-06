@@ -27,11 +27,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.skims.domain.listener.InsCrCvrListener;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @Entity
 @EntityListeners(InsCrCvrListener.class)
+@SuperBuilder(toBuilder = true)
 @Table(name = "ins_cr_cvr") //--계약담보
 @Schema(description = "계약담보")
 public class InsCrCvr implements Serializable {

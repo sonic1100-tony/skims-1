@@ -27,11 +27,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.skims.domain.listener.InsNrdpsTisrdAtrListener;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @Entity
 @EntityListeners(InsNrdpsTisrdAtrListener.class)
+@SuperBuilder(toBuilder = true)
 @Table(name = "ins_nrdps_tisrd_atr") //--피보험자부보자속성
 @Schema(description = "피보험자부보자속성")
 public class InsNrdpsTisrdAtr implements Serializable {

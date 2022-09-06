@@ -11,8 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableJpaAuditing     // JPA Auditing을 활성화 하기 위한 어노테이션
 @SpringBootApplication
-// @EnableBinding(KafkaProcessor.class)
 @EnableFeignClients
+// @EnableBinding(KafkaProcessor.class)
 public class SkimsPayApplication {
 	protected static ApplicationContext applicationContext;
 

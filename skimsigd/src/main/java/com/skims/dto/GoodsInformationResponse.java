@@ -159,6 +159,15 @@ public class GoodsInformationResponse implements Serializable {
 
         /** 운전형태코드 */
         private List<CodeValueDataDto> drveTycd;
+
+        /** 관계코드 */
+        private List<GoodsInformationDto.CodeValueDataDto> relcd;
+
+        /** 상해급수코드 */
+        private List<GoodsInformationDto.CodeValueDataDto> injrRnkcd;
+
+        /** 이륜차부담보특약가입구분코드 */
+        private List<GoodsInformationDto.CodeValueDataDto> twhvcSubCvrtrIsFlgcd;
     }
 
     @Data

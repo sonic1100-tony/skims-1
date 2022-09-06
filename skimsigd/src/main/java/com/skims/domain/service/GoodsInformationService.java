@@ -128,8 +128,43 @@ public class GoodsInformationService {
                         .code("02").value("영업용").build());
                 drveTycdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
                         .code("03").value("업무용").build());
-
                 goodsInformationDataDto.setDrveTycd(drveTycdDataDtos);
+
+                List<GoodsInformationDto.CodeValueDataDto> relcdDtos = new ArrayList<>();
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("본인").build());
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02").value("자녀").build());
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("부").build());
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04").value("모").build());
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("05").value("조부").build());
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("06").value("조모").build());
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("07").value("형재").build());
+                relcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("99").value("기타").build());
+                goodsInformationDataDto.setRelcd(relcdDtos);
+
+                List<GoodsInformationDto.CodeValueDataDto> injrRnkcdDtos = new ArrayList<>();
+                injrRnkcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("01").value("1급").build());
+                injrRnkcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("02").value("2급").build());
+                injrRnkcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("03").value("3급").build());
+                injrRnkcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("04").value("4급").build());
+                goodsInformationDataDto.setInjrRnkcd(injrRnkcdDtos);
+
+                List<GoodsInformationDto.CodeValueDataDto> twhvcSubCvrtrIsFlgcdDtos = new ArrayList<>();
+                twhvcSubCvrtrIsFlgcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("1").value("가입").build());
+                twhvcSubCvrtrIsFlgcdDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("0").value("미가입").build());
 
                 dto.setGoodsInformation(goodsInformationDataDto);
             });
