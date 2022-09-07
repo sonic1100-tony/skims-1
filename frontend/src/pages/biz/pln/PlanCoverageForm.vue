@@ -120,6 +120,12 @@ export default {
   },
   props : {
     planCoverageData: {
+      type: Object
+    }
+  },
+  watch: {
+    planCoverageData: function ( obj ) {
+      this.planCoverageFormData = { ...obj };
     }
   },
   methods: {
@@ -129,7 +135,6 @@ export default {
 
     created () {
       console.log("created...");
-      console.log(this.planCoverageData);
       this.initData();
     }
   },

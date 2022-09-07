@@ -25,7 +25,7 @@
                   <tbody>
                     <tr v-for="planInsuredPerson in planInsuredPersonFormData" :key="planInsuredPerson.relpcSeqno">
                       <td>
-                        <va-checkbox v-model="planInsuredPerson.check" />
+                        <input type="checkbox" v-model="check" value="1" @click="checkboxClick(planInsuredPerson.coverages)"/>
                       </td>
                       <td>
                         <va-select size="small"
@@ -92,6 +92,8 @@
 export default {
   data () {
     return {
+      coverages: [],
+      check: [],
       basicAccordionValue: [true],
       planInsuredPersonFormData: this.planInsuredPersonData,
       relpcRelcds: [
@@ -166,6 +168,13 @@ export default {
   },
   props : {
     planInsuredPersonData:{
+      type: Object
+    }
+  },
+  watch: {
+    planInsuredPersonData: function ( obj ) {
+      //console.log("change data 피보험자", obj);
+      this.planInsuredPersonFormData = { ...obj };
     }
   },
   methods: {
@@ -175,9 +184,15 @@ export default {
 
     created () {
       console.log("created...");
-      console.log(this.planBasicInfoData);
+      //console.log(this.planBasicInfoData);
       // this.planBasicInfoFormData = this.planBasicInfoData;
       this.initData();
+    },
+    checkboxClick(selectedCoverages) {
+      if(this.check==""){
+        this.coverages = selectedCoverages;
+        this.$emit("insuredPersonChange", this.coverages);
+      }
     }
   },
 

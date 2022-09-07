@@ -182,6 +182,9 @@ export default {
   watch: {
     planBasicInfoData: function ( obj ) {
       console.log("change data", obj);
+      obj.apldt = new Date(obj.apldt); //청약일자
+      obj.insSt = new Date(obj.insSt); //보험시기
+      obj.insClstr = new Date(obj.insClstr); //보험종기
       this.planBasicInfoFormData = { ...obj };
     }
   },
