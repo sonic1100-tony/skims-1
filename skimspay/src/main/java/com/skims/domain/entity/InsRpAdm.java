@@ -27,9 +27,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.skims.domain.listener.InsRpAdmListener;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@SuperBuilder(toBuilder = true)
 @Entity
 @EntityListeners(InsRpAdmListener.class)
 @Table(name = "ins_rp_adm") //--영수관리

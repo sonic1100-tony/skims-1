@@ -27,9 +27,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.skims.domain.listener.InsIncmPrmListener;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
+@SuperBuilder(toBuilder = true)
 @Entity
 @EntityListeners(InsIncmPrmListener.class)
 @Table(name = "ins_incm_prm") //--수입보험료

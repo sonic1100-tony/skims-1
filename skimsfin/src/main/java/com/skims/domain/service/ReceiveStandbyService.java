@@ -1,24 +1,34 @@
 package com.skims.domain.service;
 
+import com.skims.client.PayFeignClient;
 import com.skims.domain.entity.FinPrmRvSb;
 import com.skims.domain.repository.FinPrmRvSbRepository;
+import com.skims.dto.DepositReflectionRequest;
 import com.skims.dto.ImmediatelyWithdrawDto;
 import com.skims.dto.ReceiveStandbyDto;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class ReceiveStandbyService {
 
     @Autowired
     FinPrmRvSbRepository finPrmRvSbRepository;
 
+    @Autowired
+    PayFeignClient payFeignClient;
+
+    @Transactional
     public String savePremiumReceiveStandby(ReceiveStandbyDto dto){
         String premiumReceiveStandbyNumber = this.getPremiumReceiveStandbyNumber();
 
@@ -101,28 +111,46 @@ public class ReceiveStandbyService {
         return sb.toString();
     }
 
-    public void processPremiumReceive(ReceiveStandbyDto dto) throws Exception{
+    @Transactional
+    public void processPremiumReceive(ReceiveStandbyDto dto){
+
+        List<FinPrmRvSb> finPrmRvSbList = finPrmRvSbRepository.findByRpAdmno(dto.getReceiptAdministrationNumber());
+
+        if(finPrmRvSbList.isEmpty()){
+            throw new RuntimeException("수납대기가 존재하지 않습니다");
+        }
 
         //수납처리
-        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(dto.getReceiveStandbyNumber()).orElseThrow(() -> new Exception("수납대기가 존재하지 않습니다"));
+        for(FinPrmRvSb finPrmRvSb : finPrmRvSbList){
+            //수납처리
+            finPrmRvSb = finPrmRvSb.toBuilder()
+                    .rvdt(LocalDate.now())
+                    .rvXcno("0000001") // TODO 수납정산 테이블 생략으로 임시로 수납정산번호 셋팅
+                    .rvOrgcd("SK001")
+                    .bkcd(dto.getBankCode())
+                    .dpsnm(dto.getDepositor())
+                    .actno(dto.getAccountNumber())
+                    .mntFlgcd("01")
+                    .mdfDthms(LocalDateTime.now()).build();
 
-        entity = entity.toBuilder()
-            .rvdt(LocalDate.now())
-            .rvXcno(dto.getReceiveStandbyNumber().substring(8))
-            .rvOrgcd("SK001")
-            .bkcd(dto.getBankCode())
-            .dpsnm(dto.getDepositor())
-            .actno(dto.getAccountNumber())
-            .mdfDthms(LocalDateTime.now()).build();
+            finPrmRvSbRepository.saveAndFlush(finPrmRvSb);
 
-        finPrmRvSbRepository.saveAndFlush(entity);
+            //수납후처리 호출
+            DepositReflectionRequest payRequest = DepositReflectionRequest.builder()
+                    .receiveStandbyNumber(finPrmRvSb.getRvSbno())
+                    .receiptAdministrationNumber(dto.getReceiptAdministrationNumber())
+                    .receiveDate(finPrmRvSb.getRvdt())
+                    .receiveExactCalculationNumber(finPrmRvSb.getRvXcno())
+                    .moneyTypeFlagCode(finPrmRvSb.getMntFlgcd())
+                    .build();
 
-        //TODO 수납후처리 호출
+            payFeignClient.reflectDepositAfterReceive(payRequest);
+        }
 
     }
 
-    public ReceiveStandbyDto inquiryReceiveStandby(String receiveStandbyNumber) throws Exception{
-        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(receiveStandbyNumber).orElseThrow(() -> new Exception("수납대기가 존재하지 않습니다"));
+    public ReceiveStandbyDto inquiryReceiveStandby(String receiveStandbyNumber) {
+        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(receiveStandbyNumber).orElseThrow(() -> new RuntimeException("수납대기가 존재하지 않습니다"));
         //TODO 조회항목 확인 후 추가
         ReceiveStandbyDto result = ReceiveStandbyDto.builder()
                 .wonCurrencyPremium(entity.getWoncrPrm())

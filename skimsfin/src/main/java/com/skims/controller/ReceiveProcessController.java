@@ -43,7 +43,7 @@ public class ReceiveProcessController {
     }
 
     @GetMapping("/receive-info/{receiveStandbyNumber}")
-    ReceiveStandbyResponse inquiryReceiveStandby(@PathVariable String receiveStandbyNumber) throws Exception {
+    ReceiveStandbyResponse inquiryReceiveStandby(@PathVariable String receiveStandbyNumber) {
         ReceiveStandbyDto dto = receiveStandbyService.inquiryReceiveStandby(receiveStandbyNumber);
         ReceiveStandbyResponse response = mapper.convertValue(dto, ReceiveStandbyResponse.class);
         return response;

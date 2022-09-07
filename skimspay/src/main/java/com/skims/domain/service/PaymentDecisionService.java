@@ -5,6 +5,7 @@ import com.skims.domain.entity.InsIncmPrm;
 import com.skims.domain.entity.InsRpAdm;
 import com.skims.domain.repository.InsIncmPrmRepository;
 import com.skims.domain.repository.InsRpAdmRepository;
+import com.skims.dto.DepositReflectionDto;
 import com.skims.dto.PaymentDecisionDto;
 import com.skims.dto.ReceiveStandbyRequest;
 import io.micrometer.core.instrument.util.StringUtils;
@@ -13,10 +14,12 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,6 +34,7 @@ public class PaymentDecisionService {
     @Autowired
     FinFeignClient finFeignClient;
 
+    @Transactional
     public String savePaymentDecision(PaymentDecisionDto paymentDecisionDto) {
 
         // 영수관리번호
@@ -183,6 +187,42 @@ public class PaymentDecisionService {
         sb.append(inputString);
 
         return sb.toString();
+    }
+
+    @Transactional
+    public void reflectDepositAfterReceive(DepositReflectionDto dto){
+
+        //영수관리 update
+        InsRpAdm insRpAdm = insRpAdmRepository.findByRpAdmno(dto.getReceiptAdministrationNumber());
+        insRpAdm = insRpAdm.toBuilder()
+                .rvdt(dto.getReceiveDate())
+                .rvXcno(dto.getReceiveExactCalculationNumber())
+                .rvYn("1")
+                .mntFlgcd(dto.getMoneyTypeFlagCode())
+                .build();
+
+        insRpAdmRepository.saveAndFlush(insRpAdm);
+
+        //수입보험료 update
+        List<InsIncmPrm> insIncmPrmList = insIncmPrmRepository.findByRvSbno(dto.getReceiveStandbyNumber());
+        for(InsIncmPrm insIncmPrm : insIncmPrmList){
+            insIncmPrm = insIncmPrm.toBuilder()
+                    .rvDldt(dto.getReceiveDate())
+                    .ppdt(dto.getReceiveDate())
+                    .build();
+            insIncmPrmRepository.saveAndFlush(insIncmPrm);
+        }
+
+        insIncmPrmList.stream().forEach(a -> this.updateIncomePremium(a, dto.getReceiveDate()));
+        // TODO 계약반영 호출
+    }
+
+    private void updateIncomePremium(InsIncmPrm insIncmPrm, LocalDate receiveDate){
+        insIncmPrm = insIncmPrm.toBuilder()
+                .rvDldt(receiveDate)
+                .ppdt(receiveDate)
+                .build();
+        insIncmPrmRepository.saveAndFlush(insIncmPrm);
     }
 
 }

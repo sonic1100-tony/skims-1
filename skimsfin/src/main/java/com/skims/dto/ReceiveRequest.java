@@ -14,6 +14,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ReceiveRequest {
 
+    //영수관리번호
+    private String receiptAdministrationNumber;
+
     //수납대기번호
     private String receiveStandbyNumber;
 

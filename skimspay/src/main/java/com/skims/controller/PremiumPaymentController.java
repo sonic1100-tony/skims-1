@@ -3,6 +3,8 @@ package com.skims.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.domain.entity.InsRpAdm;
 import com.skims.domain.service.PaymentDecisionService;
+import com.skims.dto.DepositReflectionDto;
+import com.skims.dto.DepositReflectionRequest;
 import com.skims.dto.PaymentDecisionDto;
 import com.skims.dto.PaymentDecisionRequest;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,6 +36,12 @@ public class PremiumPaymentController {
         PaymentDecisionDto dto = mapper.convertValue(request, PaymentDecisionDto.class);
 
         return paymentDecisionService.savePaymentDecision(dto);
+    }
+
+    @PostMapping("/deposit-reflection")
+    public void reflectDepositAfterReceive(final @RequestBody DepositReflectionRequest request){
+        DepositReflectionDto dto = mapper.convertValue(request, DepositReflectionDto.class);
+        paymentDecisionService.reflectDepositAfterReceive(dto);
     }
 
 }
