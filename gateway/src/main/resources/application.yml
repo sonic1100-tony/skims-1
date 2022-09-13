@@ -2,7 +2,9 @@ server:
   port: 8080
 ---
 spring:
-  profiles: default
+  config:
+    activate:
+      on-profile: default
   cloud:
     gateway:
       routes:
@@ -34,6 +36,7 @@ spring:
           uri: http://localhost:8088
           predicates:
             - Path=/udw/**
+
 server:
   port: 8081
 
@@ -45,7 +48,9 @@ logging:
         cloud: debug
 ---
 spring:
-  profiles: docker
+  config:
+    activate:
+      on-profile: docker
   cloud:
     gateway:
       routes:
