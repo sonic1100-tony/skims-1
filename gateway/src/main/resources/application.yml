@@ -1,6 +1,5 @@
 server:
-  port: 8081
-
+  port: 8080
 ---
 spring:
   profiles: default
@@ -40,12 +39,11 @@ server:
 
 logging:
   level:
-    root: error   # trace, debug, info, warn, error, fatal
+    root: error # trace, debug, info, warn, error, fatal
     org:
       springframework:
         cloud: debug
 ---
-
 spring:
   profiles: docker
   cloud:
@@ -81,7 +79,7 @@ spring:
             - Path=/udw/**
       globalcors:
         corsConfigurations:
-          '[/**]':
+          "[/**]":
             allowedOrigins:
               - "*"
             allowedMethods:
@@ -89,6 +87,3 @@ spring:
             allowedHeaders:
               - "*"
             allowCredentials: true
-
-server:
-  port: 8081

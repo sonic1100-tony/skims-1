@@ -1,0 +1,17 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "skimsdbms.c1ndjsbnqrij.ap-northeast-2.rds.amazonaws.com",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "skimsaws",
+      "database": "skimspay",
+      "username": "payapp",
+      "password": "payapp1234"
+    }
+  ]
+}
