@@ -21,6 +21,24 @@
           </table>                
         </div>
       </va-card-content>
+      <va-card-content>
+        <div class="row">
+          <va-input
+            class="mb-12"
+            v-model="value"
+            type="textarea"
+            label="설명"
+          />
+        </div>
+        <div class="row">
+          <va-input
+            class="mb-12"
+            v-model="value"
+            type="textarea"
+            label="세부직업"
+          />
+        </div>
+      </va-card-content>
     </va-card>
   </div>
 </template>
