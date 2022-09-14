@@ -27,7 +27,7 @@
           <va-button size="small" @click="search()">조회</va-button>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="flex md12 ">
           <va-button size="small" @click="search()">가</va-button>
           <va-button size="small" @click="search()">나</va-button>
@@ -49,8 +49,8 @@
           <va-button size="small" @click="search()">P-T</va-button>
           <va-button size="small" @click="search()">U-Z</va-button>
         </div>
-      </div>
-      <div class="row">
+      </div> -->
+      <!-- <div class="row">
         <div class="flex md4">
           <table class="va-table" style="width: 100%;">
             <thead>
@@ -98,7 +98,7 @@
             </tbody>
           </table>
         </div>
-      </div>
+      </div> -->
     </va-card-content>
   </va-card>
 </template>
