@@ -70,7 +70,7 @@ public class PlanInformationController {
             @ApiResponse(responseCode = "200", description = "계약반영 성공", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = String.class)) }),
             @ApiResponse(responseCode = "404", description = "계약반영 실패", content = @Content) })
-    @GetMapping("/reflect-contract/{planNumber}")
+    @PostMapping("/reflect-contract/{planNumber}")
     @Operation(summary = "계약반영", description = "설계정보를 조회하고, 계약생성을 호출")
     public ResponseEntity<String> setReflectContract(@PathVariable String planNumber) {
 
