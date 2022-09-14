@@ -56,10 +56,17 @@ public class ContractInquiryService {
                                         "01",
                                         LocalDateTime.now(),
                                         LocalDateTime.now())
-                                        .stream().map(e->mapper.convertValue(e, ContractInformationDto.Contractor.class))
+                                        .stream()
+                                        .map(contractor->mapper.convertValue(contractor, ContractInformationDto.Contractor.class))
                                         .map(
                                                 contractor -> contractor.toBuilder()
-                                                        .relpcRelcd("01")
+                                                        .relpcRelcd(insCrRelpcRelRepository.findByPlynoAndCnftRelpcSeqnoAndCnftRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+                                                                plyno,
+                                                                contractor.getRelpcSeqno(),
+                                                                contractor.getRelpcTpcd(),
+                                                                LocalDateTime.now(),
+                                                                LocalDateTime.now()
+                                                        ).get().getRelpcRelcd())
                                                         .build() )
                                         .collect(Collectors.toList()))
                                 .insuredPersons(insCrRelpcRepository.findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
@@ -67,7 +74,7 @@ public class ContractInquiryService {
                                         "02",
                                         LocalDateTime.now(),
                                         LocalDateTime.now()).stream()
-                                        .map(e->mapper.convertValue(e, ContractInformationDto.InsuredPerson.class))
+                                        .map(insuredPerson->mapper.convertValue(insuredPerson, ContractInformationDto.InsuredPerson.class))
                                         .map(
                                                 insuredPerson -> insuredPerson.toBuilder()
                                                         .relpcRelcd("01")
@@ -86,10 +93,17 @@ public class ContractInquiryService {
                                         plyno,
                                         "11",
                                         LocalDateTime.now(),
-                                        LocalDateTime.now()).stream().map(e->mapper.convertValue(e, ContractInformationDto.Beneficiary.class))
+                                        LocalDateTime.now()).stream()
+                                        .map(beneficiary->mapper.convertValue(beneficiary, ContractInformationDto.Beneficiary.class))
                                         .map(
                                                 beneficiary -> beneficiary.toBuilder()
-                                                        .relpcRelcd("01")
+                                                        .relpcRelcd(insCrRelpcRelRepository.findByPlynoAndCnftRelpcSeqnoAndCnftRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+                                                                plyno,
+                                                                beneficiary.getRelpcSeqno(),
+                                                                beneficiary.getRelpcTpcd(),
+                                                                LocalDateTime.now(),
+                                                                LocalDateTime.now()
+                                                        ).get().getRelpcRelcd())
                                                         .build() )
                                         .collect(Collectors.toList()))
                                 .build());

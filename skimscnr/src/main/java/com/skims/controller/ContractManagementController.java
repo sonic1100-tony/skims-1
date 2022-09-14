@@ -58,15 +58,17 @@ public class ContractManagementController {
     }
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "계약생성완료", content = {
+            @ApiResponse(responseCode = "200", description = "계약생성 완료", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ContractInformationRequest.class)) }),
-            @ApiResponse(responseCode = "404", description = "계약생성불가", content = @Content) })
+            @ApiResponse(responseCode = "404", description = "계약생성 불가", content = @Content) })
     @PostMapping("/contract-create")
     @Operation(summary = "계약상세생성", description = "계약상세 생성")
     public ResponseEntity<String> createContractDetailInformation(@RequestBody ContractInformationRequest request) {
 
         log.debug("Controller createContractDetailInformation ContractInformationRequest: {}", request.toString());
 
-        return ResponseEntity.ok().body(service.createContractDetailInformation(mapper.convertValue(request, ContractInformationDto.class)).getPlyno());
+        return ResponseEntity.ok().body(
+                service.createContractDetailInformation(
+                        mapper.convertValue(request, ContractInformationDto.class)).getPlyno());
     }
 }

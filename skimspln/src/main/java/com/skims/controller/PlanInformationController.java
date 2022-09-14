@@ -7,6 +7,7 @@ import com.skims.dto.ContractInformationRequest;
 import com.skims.dto.PlanInformationDto;
 import com.skims.dto.PlanInformationRequest;
 import com.skims.dto.PlanInformationResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -66,12 +67,14 @@ public class PlanInformationController {
 
 
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the PlanInformation", content = {
+            @ApiResponse(responseCode = "200", description = "계약반영 성공", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "404", description = "Plan not found", content = @Content) })
+            @ApiResponse(responseCode = "404", description = "계약반영 실패", content = @Content) })
     @GetMapping("/reflect-contract/{planNumber}")
+    @Operation(summary = "계약반영", description = "설계정보를 조회하고, 계약생성을 호출")
     public ResponseEntity<String> setReflectContract(@PathVariable String planNumber) {
 
+        // 설계조회
         Optional<PlanInformationDto> data = planInformationService.getPlanInformation(planNumber, BigDecimal.ONE);
 
         if (data.isPresent()) {
@@ -80,15 +83,17 @@ public class PlanInformationController {
 
             ContractInformationRequest request = mapper.convertValue(data.get(), ContractInformationRequest.class);
 
-            request.setInsuranceContract(mapper.convertValue(data.get().getInsurancePlan(),ContractInformationRequest.InsuranceContract.class));
+            request.setInsuranceContract(
+                    mapper.convertValue(data.get().getInsurancePlan(),ContractInformationRequest.InsuranceContract.class));
 
-            request.setInsuredPersons(data.get().getInsuredPersons().stream().map(e->{
-                return mapper.convertValue(e, ContractInformationRequest.InsuredPerson.class);
-            }).collect(Collectors.toList()));
+            request.setInsuredPersons(
+                    data.get().getInsuredPersons().stream()
+                            .map(e->mapper.convertValue(e, ContractInformationRequest.InsuredPerson.class))
+                            .collect(Collectors.toList()));
 
             log.debug("ContractInformationRequest: {}", request.toString());
 
-            return ResponseEntity.ok().body(cnrFeignClient.createContractDetailInformation(request).getBody());
+            return ResponseEntity.ok().body(cnrFeignClient.createContractDetailInformation(request).getBody().toString());
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
