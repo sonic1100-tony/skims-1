@@ -63,8 +63,10 @@ public class ContractManagementController {
             @ApiResponse(responseCode = "404", description = "계약생성불가", content = @Content) })
     @PostMapping("/contract-create")
     @Operation(summary = "계약상세생성", description = "계약상세 생성")
-    public void createContractDetailInformation(@RequestBody ContractInformationRequest request) {
+    public ResponseEntity<String> createContractDetailInformation(@RequestBody ContractInformationRequest request) {
 
-        service.createContractDetailInformation(mapper.convertValue(request, ContractInformationDto.class));
+        log.debug("Controller createContractDetailInformation ContractInformationRequest: {}", request.toString());
+
+        return ResponseEntity.ok().body(service.createContractDetailInformation(mapper.convertValue(request, ContractInformationDto.class)).getPlyno());
     }
 }

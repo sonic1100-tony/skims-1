@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +28,7 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder = true)
 @Table(name = "ins_cr_relpc") //--계약관계자
 @Schema(description = "계약관계자")
+@DynamicInsert
 public class InsCrRelpc implements Serializable {
     @Id //  Long
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -6,6 +6,7 @@ import com.skims.domain.entity.*;
 import com.skims.domain.repository.*;
 import com.skims.dto.ContractInformationDto;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,14 +62,24 @@ public class ContractInquiryService {
                                                         .relpcRelcd("01")
                                                         .build() )
                                         .collect(Collectors.toList()))
-                                .insuredPeople(insCrRelpcRepository.findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+                                .insuredPersons(insCrRelpcRepository.findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
                                         plyno,
                                         "02",
                                         LocalDateTime.now(),
-                                        LocalDateTime.now()).stream().map(e->mapper.convertValue(e, ContractInformationDto.InsuredPerson.class))
+                                        LocalDateTime.now()).stream()
+                                        .map(e->mapper.convertValue(e, ContractInformationDto.InsuredPerson.class))
                                         .map(
                                                 insuredPerson -> insuredPerson.toBuilder()
                                                         .relpcRelcd("01")
+                                                        .coverages(
+                                                                insCrCvrRepository.findByPlynoAndCvrBjFlgcdAndRelpcOjSeqnoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+                                                                    plyno,
+                                                                    "01",
+                                                                    insuredPerson.getRelpcSeqno(),
+                                                                    LocalDateTime.now(),
+                                                                    LocalDateTime.now()).stream()
+                                                                .map(e->mapper.convertValue(e, ContractInformationDto.Coverage.class))
+                                                                .collect(Collectors.toList()))
                                                         .build() )
                                         .collect(Collectors.toList()))
                                 .beneficiaries(insCrRelpcRepository.findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
@@ -110,9 +121,11 @@ public class ContractInquiryService {
      * 계약상세정보 생성
      * @param dto
      */
-    public void createContractDetailInformation(ContractInformationDto dto) {
+    public ContractInformationDto createContractDetailInformation(ContractInformationDto dto) {
 
         dto.setPlyno(createPolicyNumber());
+
+        log.debug("Service createContractDetailInformation ContractInformationDto: {}",dto.toString());
 
         LocalDate apStrdt = LocalDate.now();                                // 적용시작일자
         LocalDate apNddt = LocalDate.of(9999,12,31);  // 적용종료일자
@@ -125,158 +138,188 @@ public class ContractInquiryService {
 
 
         // 보험계약
-        insInsCrRepository.saveAndFlush(mapper.convertValue(dto.getInsuranceContract(), InsInsCr.class).toBuilder()
-                .plyno(dto.getPlyno())
-                .ndsno(ndsno)
-                .apStrdt(apStrdt)
-                .apNddt(apNddt)
-                .ndsApStrDthms(ndsApStrDthms)
-                .ndsApNdDthms(ndsApNdDthms)
-                .inpUsrId(userId)
-                .inpDthms(localDateTime)
-                .mdfUsrId(userId)
-                .mdfDthms(localDateTime)
-                .build());
+        if(ObjectUtils.isNotEmpty(dto.getInsuranceContract())) {
+            insInsCrRepository.saveAndFlush(mapper.convertValue(dto.getInsuranceContract(), InsInsCr.class).toBuilder()
+                    .plyno(dto.getPlyno())
+                    .ndsno(ndsno)
+                    .apStrdt(apStrdt)
+                    .apNddt(apNddt)
+                    .ndsApStrDthms(ndsApStrDthms)
+                    .ndsApNdDthms(ndsApNdDthms)
+                    .ikdGrpcd("LA")
+                    .valdNdsYn("1")
+                    .plyLvlFlgcd("01")
+                    .fnlDhStfno(userId)
+                    .inpUsrId(userId)
+                    .inpDthms(localDateTime)
+                    .mdfUsrId(userId)
+                    .mdfDthms(localDateTime)
+                    .build());
+        }
 
         // 계약관계자(피보험자)
-        dto.getInsuredPeople().stream().forEach(
-                e-> {
-                    // 관계자유형코드 = 피보험자 && 대표자여부 = "1"
-                    if( "02".equals(e.getRelpcTpcd()) && "1".equals(e.getPrsRelpcYn()) ) {
-                        dto.setMnNrdpsRelpcSeqno(e.getRelpcSeqno());
+        if(ObjectUtils.isNotEmpty(dto.getInsuredPersons())) {
+            dto.getInsuredPersons().stream().forEach(
+                    e -> {
+                        // 관계자유형코드 = 피보험자 && 대표자여부 = "1"
+                        if ("02".equals(e.getRelpcTpcd()) && "1".equals(e.getPrsRelpcYn())) {
+                            dto.setMnNrdpsRelpcSeqno(e.getRelpcSeqno());
+                        }
+
+                        insCrRelpcRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpc.class).toBuilder()
+                                .plyno(dto.getPlyno())
+                                .ndsno(ndsno)
+                                .apStrdt(apStrdt)
+                                .apNddt(apNddt)
+                                .ndsApStrDthms(ndsApStrDthms)
+                                .ndsApNdDthms(ndsApNdDthms)
+                                .ikdGrpcd("LA")
+                                .valdNdsYn("1")
+                                .inpUsrId(userId)
+                                .inpDthms(localDateTime)
+                                .mdfUsrId(userId)
+                                .mdfDthms(localDateTime)
+                                .build());
+
+                        insCrRelpcRelRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpcRel.class).toBuilder()
+                                .plyno(dto.getPlyno())
+                                .ndsno(ndsno)
+                                .apStrdt(apStrdt)
+                                .apNddt(apNddt)
+                                .ndsApStrDthms(ndsApStrDthms)
+                                .ndsApNdDthms(ndsApNdDthms)
+                                .valdNdsYn("1")
+                                .stRelpcSeqno(dto.getMnNrdpsRelpcSeqno())
+                                .stRelpcTpcd(RelpcTpcdEnum.RELPC_TPCD_02.getCode())
+                                .cnftRelpcSeqno(e.getRelpcSeqno())
+                                .cnftRelpcTpcd(e.getRelpcTpcd())
+                                .inpUsrId(userId)
+                                .inpDthms(localDateTime)
+                                .mdfUsrId(userId)
+                                .mdfDthms(localDateTime)
+                                .build());
+
+                        insNrdpsTisrdAtrRepository.saveAndFlush(mapper.convertValue(e, InsNrdpsTisrdAtr.class).toBuilder()
+                                .plyno(dto.getPlyno())
+                                .ndsno(ndsno)
+                                .apStrdt(apStrdt)
+                                .apNddt(apNddt)
+                                .ndsApStrDthms(ndsApStrDthms)
+                                .ndsApNdDthms(ndsApNdDthms)
+                                .ikdGrpcd("LA")
+                                .valdNdsYn("1")
+                                .inpUsrId(userId)
+                                .inpDthms(localDateTime)
+                                .mdfUsrId(userId)
+                                .mdfDthms(localDateTime)
+                                .build());
+                        ;
+
+                        e.getCoverages().stream().forEach(
+                                ee -> {
+                                    insCrCvrRepository.saveAndFlush(mapper.convertValue(ee, InsCrCvr.class).toBuilder()
+                                            .plyno(dto.getPlyno())
+                                            .ndsno(ndsno)
+                                            .apStrdt(apStrdt)
+                                            .apNddt(apNddt)
+                                            .ndsApStrDthms(ndsApStrDthms)
+                                            .ndsApNdDthms(ndsApNdDthms)
+                                            .ikdGrpcd("LA")
+                                            .valdNdsYn("1")
+                                            .cvrBjFlgcd("01")
+                                            .relpcOjSeqno(e.getRelpcSeqno())
+                                            .inpUsrId(userId)
+                                            .inpDthms(localDateTime)
+                                            .mdfUsrId(userId)
+                                            .mdfDthms(localDateTime)
+                                            .build());
+                                }
+                        );
                     }
-
-                    insCrRelpcRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpc.class).toBuilder()
-                            .plyno(dto.getPlyno())
-                            .ndsno(ndsno)
-                            .apStrdt(apStrdt)
-                            .apNddt(apNddt)
-                            .ndsApStrDthms(ndsApStrDthms)
-                            .ndsApNdDthms(ndsApNdDthms)
-                            .inpUsrId(userId)
-                            .inpDthms(localDateTime)
-                            .mdfUsrId(userId)
-                            .mdfDthms(localDateTime)
-                            .build());
-
-                    insCrRelpcRelRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpcRel.class).toBuilder()
-                            .plyno(dto.getPlyno())
-                            .ndsno(ndsno)
-                            .apStrdt(apStrdt)
-                            .apNddt(apNddt)
-                            .ndsApStrDthms(ndsApStrDthms)
-                            .ndsApNdDthms(ndsApNdDthms)
-                            .stRelpcSeqno(dto.getMnNrdpsRelpcSeqno())
-                            .stRelpcTpcd(RelpcTpcdEnum.RELPC_TPCD_02.getCode())
-                            .cnftRelpcSeqno(e.getRelpcSeqno())
-                            .cnftRelpcTpcd(e.getRelpcTpcd())
-                            .inpUsrId(userId)
-                            .inpDthms(localDateTime)
-                            .mdfUsrId(userId)
-                            .mdfDthms(localDateTime)
-                            .build());
-
-                    insNrdpsTisrdAtrRepository.saveAndFlush(mapper.convertValue(e, InsNrdpsTisrdAtr.class).toBuilder()
-                            .plyno(dto.getPlyno())
-                            .ndsno(ndsno)
-                            .apStrdt(apStrdt)
-                            .apNddt(apNddt)
-                            .ndsApStrDthms(ndsApStrDthms)
-                            .ndsApNdDthms(ndsApNdDthms)
-                            .inpUsrId(userId)
-                            .inpDthms(localDateTime)
-                            .mdfUsrId(userId)
-                            .mdfDthms(localDateTime)
-                            .build());;
-
-                    e.getCoverages().stream().forEach(
-                            ee -> {
-                                insCrCvrRepository.saveAndFlush(mapper.convertValue(ee, InsCrCvr.class).toBuilder()
-                                        .plyno(dto.getPlyno())
-                                        .ndsno(ndsno)
-                                        .apStrdt(apStrdt)
-                                        .apNddt(apNddt)
-                                        .ndsApStrDthms(ndsApStrDthms)
-                                        .ndsApNdDthms(ndsApNdDthms)
-                                        .inpUsrId(userId)
-                                        .inpDthms(localDateTime)
-                                        .mdfUsrId(userId)
-                                        .mdfDthms(localDateTime)
-                                        .build());
-                            }
-                    );
-                }
-        );
+            );
+        }
 
         // 계약관계자(계약자)
-        dto.getContractors().stream().forEach(
-                e-> {
-                    insCrRelpcRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpc.class).toBuilder()
-                            .plyno(dto.getPlyno())
-                            .ndsno(ndsno)
-                            .apStrdt(apStrdt)
-                            .apNddt(apNddt)
-                            .ndsApStrDthms(ndsApStrDthms)
-                            .ndsApNdDthms(ndsApNdDthms)
-                            .inpUsrId(userId)
-                            .inpDthms(localDateTime)
-                            .mdfUsrId(userId)
-                            .mdfDthms(localDateTime)
-                            .build());
+        if(ObjectUtils.isNotEmpty(dto.getContractors())) {
+            dto.getContractors().stream().forEach(
+                    e -> {
+                        insCrRelpcRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpc.class).toBuilder()
+                                .plyno(dto.getPlyno())
+                                .ndsno(ndsno)
+                                .apStrdt(apStrdt)
+                                .apNddt(apNddt)
+                                .ndsApStrDthms(ndsApStrDthms)
+                                .ndsApNdDthms(ndsApNdDthms)
+                                .ikdGrpcd("LA")
+                                .valdNdsYn("1")
+                                .inpUsrId(userId)
+                                .inpDthms(localDateTime)
+                                .mdfUsrId(userId)
+                                .mdfDthms(localDateTime)
+                                .build());
 
-                    insCrRelpcRelRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpcRel.class).toBuilder()
-                            .plyno(dto.getPlyno())
-                            .ndsno(ndsno)
-                            .apStrdt(apStrdt)
-                            .apNddt(apNddt)
-                            .ndsApStrDthms(ndsApStrDthms)
-                            .ndsApNdDthms(ndsApNdDthms)
-                            .stRelpcSeqno(dto.getMnNrdpsRelpcSeqno())
-                            .stRelpcTpcd(RelpcTpcdEnum.RELPC_TPCD_02.getCode())
-                            .cnftRelpcSeqno(e.getRelpcSeqno())
-                            .cnftRelpcTpcd(e.getRelpcTpcd())
-                            .inpUsrId(userId)
-                            .inpDthms(localDateTime)
-                            .mdfUsrId(userId)
-                            .mdfDthms(localDateTime)
-                            .build());
-                }
-        );
+                        insCrRelpcRelRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpcRel.class).toBuilder()
+                                .plyno(dto.getPlyno())
+                                .ndsno(ndsno)
+                                .apStrdt(apStrdt)
+                                .apNddt(apNddt)
+                                .ndsApStrDthms(ndsApStrDthms)
+                                .ndsApNdDthms(ndsApNdDthms)
+                                .valdNdsYn("1")
+                                .stRelpcSeqno(dto.getMnNrdpsRelpcSeqno())
+                                .stRelpcTpcd(RelpcTpcdEnum.RELPC_TPCD_02.getCode())
+                                .cnftRelpcSeqno(e.getRelpcSeqno())
+                                .cnftRelpcTpcd(e.getRelpcTpcd())
+                                .inpUsrId(userId)
+                                .inpDthms(localDateTime)
+                                .mdfUsrId(userId)
+                                .mdfDthms(localDateTime)
+                                .build());
+                    }
+            );
+        }
 
         // 계약관계자(수익자)
-        dto.getBeneficiaries().stream().forEach(
-                e-> {
-                    insCrRelpcRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpc.class).toBuilder()
-                            .plyno(dto.getPlyno())
-                            .ndsno(ndsno)
-                            .apStrdt(apStrdt)
-                            .apNddt(apNddt)
-                            .ndsApStrDthms(ndsApStrDthms)
-                            .ndsApNdDthms(ndsApNdDthms)
-                            .inpUsrId(userId)
-                            .inpDthms(localDateTime)
-                            .mdfUsrId(userId)
-                            .mdfDthms(localDateTime)
-                            .build());
+        if(ObjectUtils.isNotEmpty(dto.getBeneficiaries())) {
+            dto.getBeneficiaries().stream().forEach(
+                    e -> {
+                        insCrRelpcRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpc.class).toBuilder()
+                                .plyno(dto.getPlyno())
+                                .ndsno(ndsno)
+                                .apStrdt(apStrdt)
+                                .apNddt(apNddt)
+                                .ndsApStrDthms(ndsApStrDthms)
+                                .ndsApNdDthms(ndsApNdDthms)
+                                .ikdGrpcd("LA")
+                                .valdNdsYn("1")
+                                .inpUsrId(userId)
+                                .inpDthms(localDateTime)
+                                .mdfUsrId(userId)
+                                .mdfDthms(localDateTime)
+                                .build());
 
-                    insCrRelpcRelRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpcRel.class).toBuilder()
-                            .plyno(dto.getPlyno())
-                            .ndsno(ndsno)
-                            .apStrdt(apStrdt)
-                            .apNddt(apNddt)
-                            .ndsApStrDthms(ndsApStrDthms)
-                            .ndsApNdDthms(ndsApNdDthms)
-                            .stRelpcSeqno(dto.getMnNrdpsRelpcSeqno())
-                            .stRelpcTpcd(RelpcTpcdEnum.RELPC_TPCD_02.getCode())
-                            .cnftRelpcSeqno(e.getRelpcSeqno())
-                            .cnftRelpcTpcd(e.getRelpcTpcd())
-                            .inpUsrId(userId)
-                            .inpDthms(localDateTime)
-                            .mdfUsrId(userId)
-                            .mdfDthms(localDateTime)
-                            .build());
-                }
-        );
+                        insCrRelpcRelRepository.saveAndFlush(mapper.convertValue(e, InsCrRelpcRel.class).toBuilder()
+                                .plyno(dto.getPlyno())
+                                .ndsno(ndsno)
+                                .apStrdt(apStrdt)
+                                .apNddt(apNddt)
+                                .ndsApStrDthms(ndsApStrDthms)
+                                .ndsApNdDthms(ndsApNdDthms)
+                                .valdNdsYn("1")
+                                .stRelpcSeqno(dto.getMnNrdpsRelpcSeqno())
+                                .stRelpcTpcd(RelpcTpcdEnum.RELPC_TPCD_02.getCode())
+                                .cnftRelpcSeqno(e.getRelpcSeqno())
+                                .cnftRelpcTpcd(e.getRelpcTpcd())
+                                .inpUsrId(userId)
+                                .inpDthms(localDateTime)
+                                .mdfUsrId(userId)
+                                .mdfDthms(localDateTime)
+                                .build());
+                    }
+            );
+        }
+
+        return dto;
     }
 
     public String padLeftZeros(String inputString, int length) {

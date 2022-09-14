@@ -9,10 +9,11 @@ package com.skims.domain.entity;
 import com.skims.domain.listener.InsInsCrListener;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +28,7 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder = true)
 @Table(name = "ins_ins_cr") // --보험계약
 @Schema(description = "보험계약")
+@DynamicInsert
 public class InsInsCr implements Serializable {
     @Id // Long
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -346,7 +348,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "bfcr_aprt", precision = 12, scale = 6, nullable = false)
     @Schema(description = "전계약적용율", nullable = false)
-    private BigDecimal bfcrAprt; // --전계약적용율
+    @Builder.Default
+    private BigDecimal bfcrAprt = BigDecimal.ZERO; // --전계약적용율
 
     @Column(name = "dvpns_plyno", length = 16, nullable = true)
     @Schema(description = "개발원증권번호", nullable = true)
@@ -374,7 +377,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "fsti_rp_prm", precision = 15, scale = 0, nullable = true)
     @Schema(description = "초회영수보험료", nullable = true)
-    private BigDecimal fstiRpPrm; // --초회영수보험료
+    @Builder.Default
+    private BigDecimal fstiRpPrm = BigDecimal.ZERO; // --초회영수보험료
 
     @Column(name = "dc_xc_grdcd", length = 10, nullable = true)
     @Schema(description = "할인할증등급코드", nullable = true)
@@ -382,7 +386,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "a_sct_ct", precision = 3, scale = 0, nullable = true)
     @Schema(description = "a구간대수", nullable = true)
-    private BigDecimal aSctCt; // --a구간대수
+    @Builder.Default
+    private BigDecimal aSctCt = BigDecimal.ZERO; // --a구간대수
 
     @Column(name = "b_sct_ct", precision = 3, scale = 0, nullable = true)
     @Schema(description = "b구간대수", nullable = true)
@@ -454,7 +459,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "dpsrt", precision = 12, scale = 6, nullable = false)
     @Schema(description = "예치율", nullable = false)
-    private BigDecimal dpsrt; // --예치율
+    @Builder.Default
+    private BigDecimal dpsrt = BigDecimal.ZERO; // --예치율
 
     @Column(name = "dpst_prm_cc_flgcd", length = 10, nullable = true)
     @Schema(description = "예치보험료산출구분코드", nullable = true)
@@ -530,11 +536,13 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "fcntr_dmgrt", precision = 12, scale = 6, nullable = false)
     @Schema(description = "원청자손해율", nullable = false)
-    private BigDecimal fcntrDmgrt; // --원청자손해율
+    @Builder.Default
+    private BigDecimal fcntrDmgrt = BigDecimal.ZERO; // --원청자손해율
 
     @Column(name = "dmgrt_md_cfc", precision = 12, scale = 6, nullable = false)
     @Schema(description = "손해율조정계수", nullable = false)
-    private BigDecimal dmgrtMdCfc; // --손해율조정계수
+    @Builder.Default
+    private BigDecimal dmgrtMdCfc = BigDecimal.ZERO; // --손해율조정계수
 
     @Column(name = "fcntr_sclcd", length = 10, nullable = true)
     @Schema(description = "원청자범위코드", nullable = true)
@@ -798,7 +806,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "rvi_nt", precision = 15, scale = 0, nullable = false)
     @Schema(description = "부활이자", nullable = false)
-    private BigDecimal rviNt; // --부활이자
+    @Builder.Default
+    private BigDecimal rviNt = BigDecimal.ZERO; // --부활이자
 
     @Column(name = "rvi_nt_crdt", nullable = true)
     @Schema(description = "부활이자발생일자", nullable = true)
@@ -826,7 +835,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "an_py_girt", precision = 12, scale = 6, nullable = false)
     @Schema(description = "연금지급체증율", nullable = false)
-    private BigDecimal anPyGirt; // --연금지급체증율
+    @Builder.Default
+    private BigDecimal anPyGirt = BigDecimal.ZERO; // --연금지급체증율
 
     @Column(name = "tx_pf_flgcd", length = 10, nullable = true)
     @Schema(description = "세금우대구분코드", nullable = true)
@@ -838,7 +848,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "tx_pfamt", precision = 15, scale = 0, nullable = false)
     @Schema(description = "세금우대금액", nullable = false)
-    private BigDecimal txPfamt; // --세금우대금액
+    @Builder.Default
+    private BigDecimal txPfamt = BigDecimal.ZERO; // --세금우대금액
 
     @Column(name = "tx_pf_rgt_flgcd", length = 10, nullable = true)
     @Schema(description = "세금우대등록구분코드", nullable = true)
@@ -870,7 +881,8 @@ public class InsInsCr implements Serializable {
 
     @Column(name = "gr_dscrt", precision = 12, scale = 6, nullable = false)
     @Schema(description = "단체할인율", nullable = false)
-    private BigDecimal grDscrt; // --단체할인율
+    @Builder.Default
+    private BigDecimal grDscrt = BigDecimal.ZERO; // --단체할인율
 
     @Column(name = "pym_xmp_stdt", nullable = true)
     @Schema(description = "납입면제시기일자", nullable = true)
