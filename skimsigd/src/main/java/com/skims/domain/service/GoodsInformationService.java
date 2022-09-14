@@ -85,29 +85,29 @@ public class GoodsInformationService {
 
                 List<GoodsInformationDto.CodeValueDataDto> paymentTermDataDtos = new ArrayList<>();
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("01").value("1년").build());
+                        .code("02001").value("1년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("02").value("2년").build());
+                        .code("02002").value("2년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("03").value("3년").build());
+                        .code("02003").value("3년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("04").value("4년").build());
+                        .code("02004").value("4년").build());
                 paymentTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("05").value("5년").build());
+                        .code("02005").value("5년").build());
                 goodsInformationDataDto.setPaymentTerm(paymentTermDataDtos);
 
 
                 List<GoodsInformationDto.CodeValueDataDto> insuranceTermDataDtos = new ArrayList<>();
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("01").value("1년").build());
+                        .code("02001").value("1년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("02").value("2년").build());
+                        .code("02002").value("2년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("03").value("3년").build());
+                        .code("02003").value("3년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("04").value("4년").build());
+                        .code("02004").value("4년").build());
                 insuranceTermDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("05").value("5년").build());
+                        .code("02005").value("5년").build());
                 goodsInformationDataDto.setInsuranceTerm(insuranceTermDataDtos);
 
                 List<GoodsInformationDto.CodeValueDataDto> paymentCycleDataDtos = new ArrayList<>();
