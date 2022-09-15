@@ -1,12 +1,16 @@
 <template>
-  <td>{{ item.userId }}</td>
-  <td>{{ item.id }}</td>
-  <td>{{ item.title }}</td>
-  <td>
+  <td>{{ item.jbcd }}</td>
+  <td>{{ item.jbnm }}</td>
+  <td>{{ item.injrRnkcd }}</td>
+  <td>{{ item.injrGrdcd }}</td>
+  <td>{{ item.crJbcd }}</td>
+  <td>{{ item.trfRnkcd }}</td>
+  <td>{{ item.xcCvrYn }}</td>
+  <!-- <td>
     <va-badge :color="getStatusColor(item.completed)">
       {{ getStatus(item.completed) }}
     </va-badge>
-  </td>
+  </td> -->
 </template>
 
 <script>

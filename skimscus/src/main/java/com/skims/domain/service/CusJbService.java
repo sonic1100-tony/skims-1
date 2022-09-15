@@ -46,8 +46,10 @@ public class CusJbService {
 				}
 	
 				if(!ObjectUtils.isEmpty(requestDto.getDtJbnm())) {
-					predicates.add(criteriaBuilder.equal(root.get("dtJbnm"), "%" + requestDto.getDtJbnm() + "%"));
+					predicates.add(criteriaBuilder.like(root.get("dtJbnm"), "%" + requestDto.getDtJbnm() + "%"));
 				}
+				
+				predicates.add(criteriaBuilder.notEqual(root.get("dsasRkGrdcd"), ""));
 				
 				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}
