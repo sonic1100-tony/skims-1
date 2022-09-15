@@ -17,7 +17,7 @@
             </thead>
 
             <tbody>
-              <tr v-for="item in jobList" :key="item.jbcd">
+              <tr v-for="(item, index) in jobList" :key="item.jbcd" @click="selectItem(index, item, $event)">
                 <JobSearchTableItem :item="item" />
               </tr>
             </tbody>
@@ -28,7 +28,7 @@
         <div class="row">
           <va-input
             class="mb-12"
-            v-model="value"
+            v-model="jbXpnm"
             type="textarea"
             label="설명"
           />
@@ -36,7 +36,7 @@
         <div class="row">
           <va-input
             class="mb-12"
-            v-model="value"
+            v-model="dtJbnm"
             type="textarea"
             label="세부직업"
           />
@@ -55,7 +55,8 @@ export default {
   },
   data () {
     return {
-      
+      jbXpnm: '', // 직업설명
+      dtJbnm: '', // 세부직업명
     }
   },
   props : {
@@ -64,11 +65,30 @@ export default {
     }
   },
   methods: {
+    initData () {
+      this.jbXpnm = '';
+      this.dtJbnm = '';
+    },
+    selectItem(index, item, event){
+      console.log(index);
+      console.log(item);
+      console.log(event);
+
+      this.dtJbnm = item.dtJbnm;
+      this.jbXpnm = item.jbXpnm;
+
+      this.$emit("setSelectedJob", {
+        ...item,
+      });
+    }
   },
 
   created () {
     console.log("created...");
-  }
+  }, 
+  mounted () {
+    console.log("mounted...");
+  },
 }
 </script>
 
