@@ -125,7 +125,7 @@ spring:
     #---- MySQL
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://skimsdbms.c1ndjsbnqrij.ap-northeast-2.rds.amazonaws.com:3306/skimsudw?serverTimezone=Asia/Seoul
-    username: skimsudw
+    username: udwapp
     password: udwapp1234
     #---- HDDB
     #driver-class-name: org.h2.Driver
