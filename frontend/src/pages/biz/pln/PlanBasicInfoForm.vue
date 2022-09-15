@@ -10,7 +10,7 @@
                   <div class="flex md2"> 
                     <va-input
                       :label="$t('common.title.goodsName')"
-                      v-model="planBasicInfoFormData.gdcnm"
+                      v-model="gdSlnm"
                       readonly
                     />
                   </div>
@@ -24,7 +24,7 @@
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.insuranceTerm')"
-                      v-model="planBasicInfoFormData.ndcd"
+                      v-model="planBasicInfoFormData.nd"
                       value-by="value"
                       :options="insuranceTerms"
                     />
@@ -32,7 +32,7 @@
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.paymentTerm')"
-                      v-model="planBasicInfoFormData.pymTrmcd"
+                      v-model="planBasicInfoFormData.pymTrm"
                       value-by="value"
                       :options="paymentTerms"
                     />
@@ -80,87 +80,20 @@
 export default {
   data () {
     return {
-      insuranceTerms: [
-        {
-          value: "01",
-          text: '1년',
-        },
-        {
-          value: "02",
-          text: '2년',
-        },
-        {
-          value: "03", 
-          text: '3년',
-        },
-        {
-          value: "04", 
-          text: '4년',
-        },
-        {
-          value: "05", 
-          text: '5년',
-        }
-      ],
-      paymentTerms: [
-        {
-          value: "01",
-          text: '1년',
-        },
-        {
-          value: "02",
-          text: '2년',
-        },
-        {
-          value: "03", 
-          text: '3년',
-        },
-        {
-          value: "04", 
-          text: '4년',
-        },
-        {
-          value: "05", 
-          text: '5년',
-        }
-      ],
-      paymentCycles: [
-        {
-          value: "01",
-          text: '월납', 
-        },
-        {
-          value: "03",
-          text: '3월납', 
-        },
-        {
-          value: "06",
-          text: '6월납', 
-        },
-        {
-          value: "12",
-          text: '년납', 
-        },
-        {
-          value: "00",
-          text: '일시납',
-        }
-      ],
+      insuranceTerms: [],
+      paymentTerms: [],
+      paymentCycles: [],
       basicAccordionValue: [true],
       planBasicInfoFormData: {},
+      gdSlnm : null
     }
   },
   props : {
     planBasicInfoData: {
       type: Object
-      // goodsCode: String,
-      // goodsName: String,
-      // applyDate: String,
-      // insuranceTerm: String,
-      // paymentTerm: String,
-      // paymentCycle: String,
-      // insuranceStartDate: String,
-      // insuranceCloseDate: String
+    },
+    goodsInformation: {
+      type: Object
     }
   },
   // child component
@@ -181,11 +114,38 @@ export default {
    */
   watch: {
     planBasicInfoData: function ( obj ) {
-      console.log("change data", obj);
       obj.apldt = new Date(obj.apldt); //청약일자
       obj.insSt = new Date(obj.insSt); //보험시기
       obj.insClstr = new Date(obj.insClstr); //보험종기
+      obj.nd = "0"+ obj.nd;
+      obj.pymTrm = "0" + obj.pymTrm;
       this.planBasicInfoFormData = { ...obj };
+    },
+    goodsInformation: function ( obj ) {
+      this.gdSlnm = obj.gdSlnm;
+      for(let i=0; i<obj.insuranceTerm.length; i++){
+        const array = {
+          value: obj.insuranceTerm[i].code,
+          text: obj.insuranceTerm[i].value
+        }
+        this.insuranceTerms.push(array);
+      }
+
+      for(let i=0; i<obj.paymentTerm.length; i++){
+        const array = {
+          value: obj.paymentTerm[i].code,
+          text: obj.paymentTerm[i].value
+        }
+        this.paymentTerms.push(array);
+      }
+
+      for(let i=0; i<obj.paymentCycle.length; i++){
+        const array = {
+          value: obj.paymentCycle[i].code,
+          text: obj.paymentCycle[i].value
+        }
+        this.paymentCycles.push(array);
+      }
     }
   },
   methods: {
