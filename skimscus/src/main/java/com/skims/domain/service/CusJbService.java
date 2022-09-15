@@ -27,8 +27,6 @@ public class CusJbService {
 
 	private final CusJbRepository repository;
 	
-	
-	
 	public List<CusJb> retrieveJobList(RetrieveJobListRequestDto requestDto){
 		@SuppressWarnings("serial")
 		List<CusJb> jobList = repository.findAll(new Specification<CusJb>() {
@@ -40,31 +38,48 @@ public class CusJbService {
 				List<Predicate> predicates = new ArrayList<>();
 	
 				if(!ObjectUtils.isEmpty(requestDto.getJbcd())) {
-					predicates.add(criteriaBuilder.like(root.get("jbcd"), requestDto.getJbcd() + "%"));
+					predicates.add(criteriaBuilder.like(root.get("jbcd"), "%" + requestDto.getJbcd() + "%"));
 				}
 	
 				if(!ObjectUtils.isEmpty(requestDto.getJbnm())) {
-					predicates.add(criteriaBuilder.like(root.get("jbnm"), requestDto.getJbnm() + "%"));
+					predicates.add(criteriaBuilder.like(root.get("jbnm"), "%" + requestDto.getJbnm() + "%"));
 				}
 	
 				if(!ObjectUtils.isEmpty(requestDto.getDtJbnm())) {
-					predicates.add(criteriaBuilder.equal(root.get("dtJbnm"), requestDto.getDtJbnm() + "%"));
+					predicates.add(criteriaBuilder.like(root.get("dtJbnm"), "%" + requestDto.getDtJbnm() + "%"));
 				}
 				
-				if(!ObjectUtils.isEmpty(requestDto.getPprJbChSeqno())) {
-					predicates.add(criteriaBuilder.equal(root.get("isSuccess").as(BigDecimal.class), requestDto.getPprJbChSeqno()));
-				}
-				
-				if(!ObjectUtils.isEmpty(requestDto.getPprJbcd())) {
-					predicates.add(criteriaBuilder.equal(root.get("isSuccess").as(String.class), requestDto.getPprJbcd()));
-				}
-	
+				predicates.add(criteriaBuilder.notEqual(root.get("dsasRkGrdcd"), ""));
 				
 				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}
 		});
 		
 		return jobList;
+	}
+	
+	public List<CusJb> retrieveJobListStartChar(RetrieveJobListRequestDto requestDto){
+		final BigDecimal jbChSeqno = requestDto.getJbChSeqno(); //--직업변경순번
+		final String startJbnm = requestDto.getStartJbnm(); //--시작 직업명
+		
+		List<CusJb> jobList = new ArrayList<>();
+		
+		// FIXME:
+		if(!startJbnm.contains("-")) { 
+			return repository.findByJbChSeqnoAndJbnmStartingWithAndDsasRkGrdcdNotOrderByJbnm(jbChSeqno, null, "");
+		} else {
+			return repository.findByJbChSeqnoAndJbnmStartingWithAndDsasRkGrdcdNotOrderByJbnm(jbChSeqno, null, "");
+		}
+		
+//		return jobList;
+	}
+	
+	public List<CusJb> retrieveJobListParentCode(RetrieveJobListRequestDto requestDto){
+		
+		final BigDecimal pprJbChSeqno = requestDto.getPprJbChSeqno(); //--상위직업변경순번
+		final String pprJbcd = requestDto.getPprJbcd(); //--상위직업코드
+		
+		return repository.findByPprJbChSeqnoAndPprJbcdOrderByJbnm(pprJbChSeqno, pprJbcd);
 	}
 	
 	public Optional<CusJb> retrieveJob(CusJbPK id){

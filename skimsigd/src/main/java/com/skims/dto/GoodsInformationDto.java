@@ -159,6 +159,15 @@ public class GoodsInformationDto {
 
         /** 운전형태코드 */
         private List<CodeValueDataDto> drveTycd;
+
+        /** 관계코드 */
+        private List<CodeValueDataDto> relcd;
+
+        /** 상해급수코드 */
+        private List<CodeValueDataDto> injrRnkcd;
+
+        /** 이륜차부담보특약가입구분코드 */
+        private List<CodeValueDataDto> twhvcSubCvrtrIsFlgcd;
     }
 
     @Data

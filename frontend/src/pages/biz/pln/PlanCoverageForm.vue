@@ -33,14 +33,14 @@
                       </td>
                       <td>
                         <va-select size="small"
-                          v-model="planCoverage.ndcd"
+                          v-model="planCoverage.nd"
                           value-by="value"
                           :options="insuranceTerms"
                         />
                       </td>
                       <td>
                         <va-select size="small"
-                          v-model="planCoverage.pymTrmcd"
+                          v-model="planCoverage.pymTrm"
                           value-by="value"
                           :options="paymentTerms"
                         />
@@ -72,54 +72,52 @@ export default {
     return {
       basicAccordionValue: [true],
       planCoverageFormData: this.planCoverageData,
-      insuranceTerms: [
-        {
-          value: "01",
-          text: '1년',
-        },
-        {
-          value: "02",
-          text: '2년',
-        },
-        {
-          value: "03", 
-          text: '3년',
-        },
-        {
-          value: "04", 
-          text: '4년',
-        },
-        {
-          value: "05", 
-          text: '5년',
-        }
-      ],
-      paymentTerms: [
-        {
-          value: "01",
-          text: '1년',
-        },
-        {
-          value: "02",
-          text: '2년',
-        },
-        {
-          value: "03", 
-          text: '3년',
-        },
-        {
-          value: "04", 
-          text: '4년',
-        },
-        {
-          value: "05", 
-          text: '5년',
-        }
-      ],
+      coverageInfoFormData: null,
+      insuranceTerms: [],
+      paymentTerms: [],
     }
   },
   props : {
     planCoverageData: {
+      type: Object
+    },
+    coverageInformation: {
+      type: Object
+    },
+    goodsInformation: {
+      type: Object
+    }
+  },
+  watch: {
+    //조회된 설계번호의 담보data
+    planCoverageData: function ( obj ) {
+      for(let i=0; i<obj.length; i++){
+        obj[i].nd = "0"+ obj[i].nd;
+        obj[i].pymTrm = "0" + obj[i].pymTrm;
+      }
+      this.planCoverageFormData = { ...obj }; 
+    },
+    //상품data(담보)
+    coverageInformation: function ( obj ) {
+      console.log("상품담보 : ", obj);
+    },
+    //selectbox 선택항목으로 사용하는 상품메타데이터(보험기간, 납입기간)
+    goodsInformation: function ( obj ) {
+      for(let i=0; i<obj.insuranceTerm.length; i++){
+        const array = {
+          value: obj.insuranceTerm[i].code,
+          text: obj.insuranceTerm[i].value
+        }
+        this.insuranceTerms.push(array);
+      }
+
+      for(let i=0; i<obj.paymentTerm.length; i++){
+        const array = {
+          value: obj.paymentTerm[i].code,
+          text: obj.paymentTerm[i].value
+        }
+        this.paymentTerms.push(array);
+      }
     }
   },
   methods: {
@@ -129,7 +127,6 @@ export default {
 
     created () {
       console.log("created...");
-      console.log(this.planCoverageData);
       this.initData();
     }
   },

@@ -15,9 +15,11 @@ package com.skims.domain.repository;
 
 import com.skims.domain.entity.InsRpAdm;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
+import java.util.Optional;
 
 @RepositoryRestResource
 public interface InsRpAdmRepository extends JpaRepository<InsRpAdm, Long> {
@@ -26,6 +28,10 @@ public interface InsRpAdmRepository extends JpaRepository<InsRpAdm, Long> {
 	List<InsRpAdm> findByPlno(String plno);
 	// 영수관리번호 조회
 	InsRpAdm findByRpAdmno(String rpAdmno);
+
+	@Query(" select new java.lang.String(COALESCE(MAX(ira.rpAdmno),0) as rpAdmno) "
+			+"from InsRpAdm ira")
+	Optional<String> findMaxRpAdmno();
 
 }
 

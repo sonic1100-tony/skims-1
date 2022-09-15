@@ -24,8 +24,12 @@ import com.skims.domain.entity.CusJbPK;
 @RepositoryRestResource
 public interface CusJbRepository extends JpaRepository<CusJb, CusJbPK>,  JpaSpecificationExecutor<CusJb> {
 	
-	List<CusJb> findByPprJbChSeqnoAndPprJbcdOrderByJbnm(BigDecimal pprJbChSeqno, String pprJbcd);
+	// 시작글자 조회용
+	List<CusJb> findByJbChSeqnoAndJbnmStartingWithAndDsasRkGrdcdNotOrderByJbnm(
+			BigDecimal jbChSeqno, String jbnm, String dsasRkGrdcd);
 	
+	// 단계별 조회용
+	List<CusJb> findByPprJbChSeqnoAndPprJbcdOrderByJbnm(BigDecimal pprJbChSeqno, String pprJbcd);
 	
 }
 

@@ -25,7 +25,7 @@
                   <tbody>
                     <tr v-for="planInsuredPerson in planInsuredPersonFormData" :key="planInsuredPerson.relpcSeqno">
                       <td>
-                        <va-checkbox v-model="planInsuredPerson.check" />
+                        <input type="checkbox" v-model="check" value="1" @click="checkboxClick(planInsuredPerson.coverages)"/>
                       </td>
                       <td>
                         <va-select size="small"
@@ -92,66 +92,13 @@
 export default {
   data () {
     return {
+      coverages: [],
+      check: [],
       basicAccordionValue: [true],
       planInsuredPersonFormData: this.planInsuredPersonData,
-      relpcRelcds: [
-        {
-          value: "01",
-          text: '본인', 
-        },
-        {
-          value: "02",
-          text: '자녀', 
-        },
-        {
-          value: "03",
-          text: '배우자', 
-        },
-        {
-          value: "04",
-          text: '부모', 
-        },
-        {
-          value: "05",
-          text: '기타',
-        }
-      ],
-      injrRnkcds: [
-        {
-          value: "1",
-          text: '1급', 
-        },
-        {
-          value: "2",
-          text: '2급', 
-        },
-        {
-          value: "3",
-          text: '3급', 
-        },
-        {
-          value: "4",
-          text: '4급', 
-        }
-      ],
-      drveTycds: [
-        {
-          value: "1",
-          text: '자가용', 
-        },
-        {
-          value: "2",
-          text: '영업용', 
-        },
-        {
-          value: "3",
-          text: '출퇴근', 
-        },
-        {
-          value: "4",
-          text: '택시', 
-        }
-      ],
+      relpcRelcds: [],
+      injrRnkcds: [],
+      drveTycds: [],
       twhvcDrveYns: [
         {
           value: "1",
@@ -166,6 +113,44 @@ export default {
   },
   props : {
     planInsuredPersonData:{
+      type: Object
+    },
+    goodsInformation: {
+      type: Object
+    }
+  },
+  watch: {
+    planInsuredPersonData: function ( obj ) {
+      console.log("change data 피보험자", obj);
+      for(let i=0; i<obj.length; i++){
+        obj[i].injrRnkcd = "0" + obj[i].injrRnkcd; 
+      }
+      this.planInsuredPersonFormData = { ...obj };
+    },
+    goodsInformation: function ( obj ) {
+      for(let i=0; i<obj.relcd.length; i++){
+        const array = {
+          value: obj.relcd[i].code,
+          text: obj.relcd[i].value
+        }
+        this.relpcRelcds.push(array);
+      }
+
+      for(let i=0; i<obj.injrRnkcd.length; i++){
+        const array = {
+          value: obj.injrRnkcd[i].code,
+          text: obj.injrRnkcd[i].value
+        }
+        this.injrRnkcds.push(array);
+      }
+
+      for(let i=0; i<obj.drveTycd.length; i++){
+        const array = {
+          value: obj.drveTycd[i].code,
+          text: obj.drveTycd[i].value
+        }
+        this.drveTycds.push(array);
+      }
     }
   },
   methods: {
@@ -175,9 +160,15 @@ export default {
 
     created () {
       console.log("created...");
-      console.log(this.planBasicInfoData);
+      //console.log(this.planBasicInfoData);
       // this.planBasicInfoFormData = this.planBasicInfoData;
       this.initData();
+    },
+    checkboxClick(selectedCoverages) {
+      if(this.check==""){
+        this.coverages = selectedCoverages;
+        this.$emit("insuredPersonChange", this.coverages);
+      }
     }
   },
 

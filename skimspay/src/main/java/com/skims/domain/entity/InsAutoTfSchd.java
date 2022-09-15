@@ -31,58 +31,60 @@ import com.skims.domain.listener.InsAutoTfSchdListener;
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @Entity
 @EntityListeners(InsAutoTfSchdListener.class)
-@Table(name = "ins_auto_tf_schd") //--자동이체일정
+@Table(name = "ins_auto_tf_schd") // --자동이체일정
 @Schema(description = "자동이체일정")
 public class InsAutoTfSchd implements Serializable {
-    @Id //  Long
+    @Id // Long
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "aid", nullable = false)
-//    @Schema(description = "", nullable = true , defaultValue = "" , example = ""  , allowableValues = {"", ""})
+    // @Schema(description = "", nullable = true , defaultValue = "" , example = ""
+    // , allowableValues = {"", ""})
     @Schema(description = "aid", nullable = false)
-    private Long aid; //--aid
+    private Long aid; // --aid
 
     @Column(name = "tf_yymm", length = 6, nullable = false)
     @Schema(description = "이체년월", nullable = false)
-    private String tfYymm; //--이체년월
+    private String tfYymm; // --이체년월
 
     @Column(name = "tf_daycd", length = 10, nullable = false)
     @Schema(description = "이체일코드", nullable = false)
-    private String tfDaycd; //--이체일코드
+    private String tfDaycd; // --이체일코드
 
     @Column(name = "tf_tpcd", length = 10, nullable = false)
     @Schema(description = "이체유형코드", nullable = false)
-    private String tfTpcd; //--이체유형코드
+    private String tfTpcd; // --이체유형코드
 
     @Column(name = "dm_wrkdt", nullable = false)
     @Schema(description = "청구작업일자", nullable = false)
-    private LocalDate dmWrkdt; //--청구작업일자
+    private LocalDate dmWrkdt; // --청구작업일자
 
     @Column(name = "tfdt", nullable = false)
     @Schema(description = "이체일자", nullable = false)
-    private LocalDate tfdt; //--이체일자
+    private LocalDate tfdt; // --이체일자
 
     @Column(name = "dp_wrkdt", nullable = false)
     @Schema(description = "입금작업일자", nullable = false)
-    private LocalDate dpWrkdt; //--입금작업일자
+    private LocalDate dpWrkdt; // --입금작업일자
 
     @Column(name = "inp_usr_id", length = 50, nullable = false)
     @Schema(description = "입력사용자id", nullable = false)
-    private String inpUsrId; //--입력사용자id
+    private String inpUsrId; // --입력사용자id
 
     @Column(name = "inp_dthms", nullable = false)
     @Schema(description = "입력일시", nullable = false)
-    private LocalDateTime inpDthms; //--입력일시
+    private LocalDateTime inpDthms; // --입력일시
 
     @Column(name = "mdf_usr_id", length = 50, nullable = false)
     @Schema(description = "수정사용자id", nullable = false)
-    private String mdfUsrId; //--수정사용자id
+    private String mdfUsrId; // --수정사용자id
 
     @Column(name = "mdf_dthms", nullable = false)
     @Schema(description = "수정일시", nullable = false)
-    private LocalDateTime mdfDthms; //--수정일시
+    private LocalDateTime mdfDthms; // --수정일시
 
     @Builder
-    public InsAutoTfSchd(String tfYymm, String tfDaycd, String tfTpcd, LocalDate dmWrkdt, LocalDate tfdt, LocalDate dpWrkdt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
+    public InsAutoTfSchd(String tfYymm, String tfDaycd, String tfTpcd, LocalDate dmWrkdt, LocalDate tfdt,
+            LocalDate dpWrkdt, String inpUsrId, LocalDateTime inpDthms, String mdfUsrId, LocalDateTime mdfDthms) {
         this.tfYymm = tfYymm;
         this.tfDaycd = tfDaycd;
         this.tfTpcd = tfTpcd;

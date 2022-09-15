@@ -6,32 +6,25 @@
 **/
 package com.skims.domain.entity;
 
+import com.skims.domain.listener.InsCrRelpcRelListener;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-// import javax.persistence.Temporal;
-// import javax.persistence.TemporalType;
-import javax.persistence.Table;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import com.skims.domain.listener.InsCrRelpcRelListener;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @Entity
 @EntityListeners(InsCrRelpcRelListener.class)
+@SuperBuilder(toBuilder = true)
 @Table(name = "ins_cr_relpc_rel") //--계약관계자관계
 @Schema(description = "계약관계자관계")
 public class InsCrRelpcRel implements Serializable {

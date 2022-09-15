@@ -141,7 +141,7 @@ public class PlanInformationResponse {
          */
         private String ctmDscno; //--고객식별번호
 
-        private String hnglCtmnm; //--한글고객명
+        private String hnglRelnm; //--한글고객명
 
         private String ctmTpcd; //--고객유형코드
 

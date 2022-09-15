@@ -110,3 +110,9 @@ https://www.koderhq.com/tutorial/vue/http-axios/
 ## 4.Front-End 샘플 추가
 참고 소스 위치 
 skims/frontend/src/pages/biz/job/
+
+## 5.Docker build & run
+```
+docker build . -t skims-frontend
+docker run -it -p 8080:8080 skims-frontend
+```

@@ -6,34 +6,29 @@
 **/
 package com.skims.domain.entity;
 
+import com.skims.domain.listener.InsCrRelpcListener;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-// import javax.persistence.Temporal;
-// import javax.persistence.TemporalType;
-import javax.persistence.Table;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicInsert;
 
-import com.skims.domain.listener.InsCrRelpcListener;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // AccessLevel.PUBLIC
 @Entity
 @EntityListeners(InsCrRelpcListener.class)
+@SuperBuilder(toBuilder = true)
 @Table(name = "ins_cr_relpc") //--계약관계자
 @Schema(description = "계약관계자")
+@DynamicInsert
 public class InsCrRelpc implements Serializable {
     @Id //  Long
     @GeneratedValue(strategy = GenerationType.AUTO)

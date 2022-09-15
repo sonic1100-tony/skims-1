@@ -19,6 +19,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.skims.domain.entity.FinPrmRvSb;
 
+import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestResource
@@ -29,6 +30,8 @@ public interface FinPrmRvSbRepository extends JpaRepository<FinPrmRvSb, Long> {
 	Optional<String> findMaxRvSbno();
 
 	Optional<FinPrmRvSb> findByRvSbno(String rvSbno);
+
+	List<FinPrmRvSb> findByRpAdmno(String rpAdmno);
 }
 
 /**

@@ -45,33 +45,25 @@
 export default {
   data () {
     return {
-      plStcd: [
-        {
-          value: "01",
-          text: '설계중',
-        },
-        {
-          value: "02",
-          text: '보험료계산',
-        },
-        {
-          value: "03", 
-          text: '설계완료',
-        },
-        {
-          value: "04", 
-          text: '청약완료',
-        },
-        {
-          value: "05", 
-          text: '수납완료',
-        },
-        {
-          value: "06", 
-          text: '걔약완료',
-        },
-      ],
+      plStcd: [],
       searchFormData: null,
+    }
+  },
+  props : {
+    goodsInformation: {
+      type: Object
+    }
+  },
+  watch: {
+    goodsInformation: function ( obj ) {
+      for(let i=0; i<obj.plStcd.length; i++){
+        const array = {
+          value: obj.plStcd[i].code,
+          text: obj.plStcd[i].value
+        }
+        this.plStcd.push(array);
+      }
+      //this.goodsInfoFormData = { ...obj };
     }
   },
   methods: {
