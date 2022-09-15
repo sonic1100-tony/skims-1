@@ -140,7 +140,7 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: none # create, create-drop, validate, update, none
+      ddl-auto: create # create, create-drop, validate, update, none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         # SpringPhysicalNamingStrategy(Default)  =>  camel case를 underscore 형태로 변경
