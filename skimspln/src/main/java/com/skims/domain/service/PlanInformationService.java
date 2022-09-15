@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -303,5 +302,23 @@ public class PlanInformationService {
         sb.append(inputString);
 
         return sb.toString();
+    }
+
+    /**
+     * 설계상태변경 및 증권번호 Update
+     * @param dto
+     */
+    public void changePlanStatus(PlanInformationDto dto) {
+
+        Optional<InsInsPl> optionalInsInsPl = insInsPlRepository.findByPlnoAndCgafChSeqno(dto.getPlno(), dto.getCgafChSeqno());
+
+        if( optionalInsInsPl.isPresent() ) {
+            insInsPlRepository.saveAndFlush(optionalInsInsPl.get().toBuilder()
+                    .plStcd("61")
+                    .plyno(dto.getInsurancePlan().getPlyno())
+                    .mdfDthms(LocalDateTime.now())
+                    .mdfUsrId("TEST")
+                    .build());
+        }
     }
 }

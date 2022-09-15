@@ -93,7 +93,15 @@ public class PlanInformationController {
 
             log.debug("ContractInformationRequest: {}", request.toString());
 
-            return ResponseEntity.ok().body(cnrFeignClient.createContractDetailInformation(request).getBody().toString());
+            // 계약반영
+            String plyno = cnrFeignClient.createContractDetailInformation(request).getBody();
+            PlanInformationDto dto = data.get();
+            dto.getInsurancePlan().setPlyno(plyno);
+
+            // 설계상태변경
+            planInformationService.changePlanStatus(dto);
+
+            return ResponseEntity.ok().body(plyno);
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

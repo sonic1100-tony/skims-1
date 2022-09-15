@@ -59,27 +59,27 @@ public class GoodsInformationService {
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
                         .code("01").value("설계중").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("11").value("설계삭제").build());
-                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
                         .code("02").value("보험료계산").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
                         .code("03").value("설계완료").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("04").value("심사의뢰").build());
+                        .code("41").value("심사의뢰").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("41").value("심사중").build());
+                        .code("42").value("심사중").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("42").value("심사승인").build());
+                        .code("43").value("심사승인").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("43").value("심사반려").build());
+                        .code("44").value("심사반려").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("05").value("청약완료").build());
+                        .code("51").value("청약완료").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("51").value("수납대기").build());
+                        .code("52").value("수납대기").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
-                        .code("06").value("수납완료").build());
+                        .code("53").value("수납완료").build());
                 plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
                         .code("61").value("계약반영").build());
+                plStcdDataDtos.add(GoodsInformationDto.CodeValueDataDto.builder()
+                        .code("99").value("설계삭제").build());
                 goodsInformationDataDto.setPlStcd(plStcdDataDtos);
 
 
