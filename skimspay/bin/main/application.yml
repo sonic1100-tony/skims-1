@@ -127,7 +127,7 @@ spring:
   datasource:
     #---- MySQL
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://skimsdbms.c1ndjsbnqrij.ap-northeast-2.rds.amazonaws.com:3306/skimspay?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://skimsdbms.c1ndjsbnqrij.ap-northeast-2.rds.amazonaws.com:3306/skimspay
     username: payapp
     password: payapp1234
     #---- HDDB
