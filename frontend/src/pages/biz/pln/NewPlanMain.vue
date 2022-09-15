@@ -1,9 +1,9 @@
 <template>
   <div class="form-elements">
-    <PlanSearchForm ref="planSearchForm" @search="search"></PlanSearchForm>
-    <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData"/>
-    <PlanInsuredPersonForm ref="planInsuredPersonForm" :planInsuredPersonData="planInsuredPersonData" @insuredPersonChange="insuredPersonChange"></PlanInsuredPersonForm>
-    <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData"></PlanCoverageForm>
+    <PlanSearchForm ref="planSearchForm" @search="search" :goodsInformation="goodsInformation"></PlanSearchForm>
+    <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData" :goodsInformation="goodsInformation"/>
+    <PlanInsuredPersonForm ref="planInsuredPersonForm" :planInsuredPersonData="planInsuredPersonData" :goodsInformation="goodsInformation" @insuredPersonChange="insuredPersonChange"></PlanInsuredPersonForm>
+    <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData" :coverageInformation="coverageInformation" :goodsInformation="goodsInformation"></PlanCoverageForm>
     <PlanPremiumForm ref="planPremiumForm" :planPremiumData="planPremiumData"></PlanPremiumForm>
     <div>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.save')}}</va-button>
@@ -36,8 +36,10 @@ export default {
   },
   data () {
     return {
-      searchForm:{
-      },
+      searchForm:{},
+      goodsInformation: [],
+      coverageInformation: [],
+      plStcd: [],
       planBasicInfoData: {},
       planInsuredPersonData: [],
       planCoverageData: [],
@@ -49,9 +51,23 @@ export default {
     }
   },
   methods: {
+    getGoodsInformation( goodsCode ){      
+      axios
+        .get('http://localhost:8081/igd/goods/'+goodsCode)
+        .then(response => {
+          console.log("goodsInfo response", response);
+          this.goodsInformation = response.data.goodsInformation;
+          this.coverageInformation = response.data.coverageInformation;
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        })
+        .finally(() => this.loading = false)
+    },
     search ( searchFormData ) {
       axios
-        .get('http://localhost:8087/pln/planInformation?plno='+searchFormData.plno+'&cgafChSeqno=1') //searchFormData.plyno)
+        .get('http://localhost:8081/pln/planInformation?plno='+searchFormData.plno+'&cgafChSeqno=1') //searchFormData.plyno)
         .then(response => {
           console.log("response", response);        
           this.planBasicInfoData = response.data.insurancePlan;  
@@ -86,6 +102,11 @@ export default {
 
   created () {
     console.log("created...");
+    //일단 상품선택을 한가지로 고정
+    const goodsCode = 'LAA201';
+    //상품정보 조회 호출
+    this.getGoodsInformation(goodsCode);
+
     // this.planBasicInfoData.insuranceStartDate = new Date();
     // this.planBasicInfoData.insuranceCloseDate = new Date();
   }
