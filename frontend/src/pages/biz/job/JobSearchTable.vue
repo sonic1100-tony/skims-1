@@ -1,24 +1,45 @@
 <template>
   <div class="markup-tables flex">
     <va-card title="조회결과" class="flex mb-4">
-      <va-card-content>
+      <va-card-content style="width:100%; height:200px; overflow:auto">
         <div class="table-wrapper">
           <table class="va-table">
             <thead>
               <tr>
-                <th>유저ID</th>
-                <th>TodoID</th>
-                <th>제목</th>
-                <th>상태</th>
+                <th>직업코드</th>
+                <th>직업명</th>
+                <th>상해급수</th>
+                <th>상해등급</th>
+                <th>자동차직업코드</th>
+                <th>교통급수</th>
+                <th>할증담보여부</th>
               </tr>
             </thead>
 
             <tbody>
-              <tr v-for="item in todoList" :key="item.id">
+              <tr v-for="item in jobList" :key="item.jbcd">
                 <JobSearchTableItem :item="item" />
               </tr>
             </tbody>
           </table>                
+        </div>
+      </va-card-content>
+      <va-card-content>
+        <div class="row">
+          <va-input
+            class="mb-12"
+            v-model="value"
+            type="textarea"
+            label="설명"
+          />
+        </div>
+        <div class="row">
+          <va-input
+            class="mb-12"
+            v-model="value"
+            type="textarea"
+            label="세부직업"
+          />
         </div>
       </va-card-content>
     </va-card>
@@ -38,7 +59,7 @@ export default {
     }
   },
   props : {
-    todoList:{
+    jobList:{
       type: Array
     }
   },

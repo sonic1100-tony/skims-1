@@ -28,7 +28,7 @@ public class ContractInformationResponse {
 
     private List<Contractor> contractors;
 
-    private List<InsuredPerson> insuredPeople;
+    private List<InsuredPerson> insuredPersons;
 
     private List<Beneficiary> beneficiaries;
 

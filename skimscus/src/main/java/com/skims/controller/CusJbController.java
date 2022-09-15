@@ -12,18 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -34,9 +26,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skims.domain.dto.RetrieveJobListRequestDto;
 import com.skims.domain.entity.CusJb;
 import com.skims.domain.entity.CusJbPK;
 import com.skims.domain.repository.CusJbRepository;
+import com.skims.domain.service.CusJbService;
 
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -54,25 +48,59 @@ public class CusJbController {
     @Autowired
     CusJbRepository repository;
 
+    @Autowired
+    private CusJbService cusJbService;
 
     @Autowired
     ObjectMapper mapper;
-
-    // @Operation(summary = "직업 전체조회" , summary = "직업 조회" )
+    
+    
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the cusjbs", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = CusJb.class)) }),
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
     @GetMapping("/cusjbs")
-    public ResponseEntity<Page<CusJb>> getAll(Pageable pageable) {
+    public ResponseEntity<List<CusJb>> getJobList(RetrieveJobListRequestDto requestDto) {
         try {
-			log.info("findAll");
+			log.info("getJobList");
 			
-            return ResponseEntity.ok().body(repository.findAll(pageable));
+			List<CusJb> jobList = new ArrayList<>();
+			
+			if(!ObjectUtils.isEmpty(requestDto.getPprJbcd())) { // 주제별 검색
+				log.debug("job 조회(주제별 검색) requestDTO:{}", requestDto);
+				jobList = cusJbService.retrieveJobListParentCode(requestDto);
+				
+			} else if(!ObjectUtils.isEmpty(requestDto.getStartJbnm())) { // 초성검색
+				log.debug("job 조회(초성검색) requestDTO:{}", requestDto);
+				jobList = cusJbService.retrieveJobListStartChar(requestDto);
+				
+			} else { // 키워드 검색
+				log.debug("job 조회(키워드 검색) requestDTO:{}", requestDto);
+				jobList = cusJbService.retrieveJobList(requestDto);
+				
+			}
+			
+            return ResponseEntity.ok().body(jobList);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(null);
         }
     }
+
+    // @Operation(summary = "직업 전체조회" , summary = "직업 조회" )
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "Found the cusjbs", content = {
+//                    @Content(mediaType = "application/json", schema = @Schema(implementation = CusJb.class)) }),
+//            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
+//    @GetMapping("/cusjbs")
+//    public ResponseEntity<Page<CusJb>> getAll(Pageable pageable) {
+//        try {
+//			log.info("findAll");
+//			
+//            return ResponseEntity.ok().body(repository.findAll(pageable));
+//        } catch (Exception e) {
+//            return ResponseEntity.internalServerError().body(null);
+//        }
+//    }
 
     
     // @Operation(summary = "직업 Key조회" , description = "직업 Primary Key로 조회" )
