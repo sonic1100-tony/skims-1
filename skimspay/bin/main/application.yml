@@ -145,10 +145,9 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         # SpringPhysicalNamingStrategy(Default)  =>  camel case를 underscore 형태로 변경
         # PhysicalNamingStrategyStandardImpl     =>  변수 이름을 그대로 사용
-      use-new-id-generator-mappings
+      use-new-id-generator-mappings: false
     generate-ddl: false
     show_sql: true
-
 
 server:
   port: 8080
