@@ -12,14 +12,21 @@ package com.skims.domain.repository;
 // import org.springframework.data.domain.Pageable;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.jpa.repository.Modifying;
+
+import com.skims.domain.entity.InsRpAdm;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-
-import com.skims.domain.entity.InsRpAdm;
+import java.util.List;
 
 @RepositoryRestResource
 public interface InsRpAdmRepository extends JpaRepository<InsRpAdm, Long> {
+
+	// 설계번호 조회
+	List<InsRpAdm> findByPlno(String plno);
+	// 영수관리번호 조회
+	InsRpAdm findByRpAdmno(String rpAdmno);
+
 }
 
 /**

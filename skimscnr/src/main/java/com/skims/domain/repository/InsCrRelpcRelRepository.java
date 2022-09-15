@@ -18,8 +18,19 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.skims.domain.entity.InsCrRelpcRel;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 @RepositoryRestResource
 public interface InsCrRelpcRelRepository extends JpaRepository<InsCrRelpcRel, Long> {
+
+	Optional<InsCrRelpcRel> findByPlynoAndCnftRelpcSeqnoAndCnftRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+			String plyno,
+			BigDecimal cnftRelpcSeqno,
+			String cnftRelpcTpcd,
+			LocalDateTime ndsApStrDthms,
+			LocalDateTime ndsApNdDthms);
 }
 
 /**

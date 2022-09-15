@@ -1,23 +1,37 @@
 package com.skims.domain.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skims.domain.repository.InsCrRelpcRelRepository;
+import com.skims.domain.repository.InsCrRelpcRepository;
 import com.skims.domain.repository.InsInsCrRepository;
 import com.skims.dto.ContractInformationDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class ContractInquiryService {
 
-//    @Autowired
+    @Autowired
     InsInsCrRepository insInsCrRepository;
 
-    public Optional<ContractInformationDto> getContractDetailInformation(String policyNumber) {
+    @Autowired
+    InsCrRelpcRepository insCrRelpcRepository;
+
+    @Autowired
+    InsCrRelpcRelRepository insCrRelpcRelRepository;
+
+    @Autowired
+    ObjectMapper mapper;
+
+    public Optional<ContractInformationDto> getContractDetailInformation(String plyno) {
 
         /** 채번 Sample */
         Optional<String> optionalS = insInsCrRepository.findMaxPlyno();
@@ -34,13 +48,43 @@ public class ContractInquiryService {
 
         log.info("증권번호 채번 테스트: {}", newPolicyNumber);
 
-
-
-        return insInsCrRepository.findByPlynoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(policyNumber,
+        return insInsCrRepository.findByPlynoAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(plyno,
                 LocalDateTime.now(),
-                LocalDateTime.now()).map(insCr -> ContractInformationDto.builder()
-//                .insInsCr(insCr)
-                .build());
+                LocalDateTime.now()).map(
+                        insInsCr -> ContractInformationDto.builder()
+                                .insuranceContract(mapper.convertValue(insInsCr, ContractInformationDto.InsuranceContract.class))
+                                .contractors(insCrRelpcRepository.findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+                                        plyno,
+                                        "01",
+                                        LocalDateTime.now(),
+                                        LocalDateTime.now())
+                                        .stream().map(e->mapper.convertValue(e, ContractInformationDto.Contractor.class))
+                                        .map(
+                                                contractor -> contractor.toBuilder()
+                                                        .relpcRelcd("01")
+                                                        .build() )
+                                        .collect(Collectors.toList()))
+                                .insuredPeople(insCrRelpcRepository.findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+                                        plyno,
+                                        "02",
+                                        LocalDateTime.now(),
+                                        LocalDateTime.now()).stream().map(e->mapper.convertValue(e, ContractInformationDto.InsuredPerson.class))
+                                        .map(
+                                                insuredPerson -> insuredPerson.toBuilder()
+                                                        .relpcRelcd("01")
+                                                        .build() )
+                                        .collect(Collectors.toList()))
+                                .beneficiaries(insCrRelpcRepository.findByPlynoAndRelpcTpcdAndNdsApStrDthmsLessThanEqualAndNdsApNdDthmsGreaterThan(
+                                        plyno,
+                                        "11",
+                                        LocalDateTime.now(),
+                                        LocalDateTime.now()).stream().map(e->mapper.convertValue(e, ContractInformationDto.Beneficiary.class))
+                                        .map(
+                                                beneficiary -> beneficiary.toBuilder()
+                                                        .relpcRelcd("01")
+                                                        .build() )
+                                        .collect(Collectors.toList()))
+                                .build());
     }
 
     public String padLeftZeros(String inputString, int length) {

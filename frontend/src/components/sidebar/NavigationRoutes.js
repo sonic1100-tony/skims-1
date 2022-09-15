@@ -19,6 +19,20 @@ export default {
       },
     },
     {
+      name: 'newPlan',
+      displayName: 'menu.newPlan',
+      meta: {
+        icon: 'vuestic-iconset-forms',
+      },
+    },
+    {
+      name: 'finance',
+      displayName: 'menu.finance',
+      meta: {
+        icon: 'vuestic-iconset-forms',
+      },
+    },    
+    {
       name: 'sample',
       displayName: 'menu.sample',
       meta: {
