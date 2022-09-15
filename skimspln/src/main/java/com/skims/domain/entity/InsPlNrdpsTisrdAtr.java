@@ -440,4 +440,5 @@ public class InsPlNrdpsTisrdAtr implements Serializable {
         this.mdfUsrId = mdfUsrId;
         this.mdfDthms = mdfDthms;
     }
+
 }
