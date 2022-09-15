@@ -35,7 +35,7 @@ import com.skims.domain.listener.InsAutoTfSchdListener;
 @Schema(description = "자동이체일정")
 public class InsAutoTfSchd implements Serializable {
     @Id // Long
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "aid", nullable = false)
     // @Schema(description = "", nullable = true , defaultValue = "" , example = ""
     // , allowableValues = {"", ""})

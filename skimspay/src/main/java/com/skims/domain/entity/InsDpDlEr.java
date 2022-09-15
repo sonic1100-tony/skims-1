@@ -36,7 +36,7 @@ import com.skims.domain.listener.InsDpDlErListener;
 @Schema(description = "입금처리오류")
 public class InsDpDlEr implements Serializable {
     @Id // Long
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "aid", nullable = false)
     // @Schema(description = "", nullable = true , defaultValue = "" , example = ""
     // , allowableValues = {"", ""})

@@ -36,7 +36,7 @@ import com.skims.domain.listener.InsAutoTfSpcListener;
 @Schema(description = "자동이체내역")
 public class InsAutoTfSpc implements Serializable {
     @Id // Long
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "aid", nullable = false)
     // @Schema(description = "", nullable = true , defaultValue = "" , example = ""
     // , allowableValues = {"", ""})

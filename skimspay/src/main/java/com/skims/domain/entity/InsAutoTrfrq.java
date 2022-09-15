@@ -36,7 +36,7 @@ import com.skims.domain.listener.InsAutoTrfrqListener;
 @Schema(description = "자동이체의뢰")
 public class InsAutoTrfrq implements Serializable {
     @Id // Long
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "aid", nullable = false)
     // @Schema(description = "", nullable = true , defaultValue = "" , example = ""
     // , allowableValues = {"", ""})

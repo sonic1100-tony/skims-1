@@ -38,7 +38,7 @@ import lombok.experimental.SuperBuilder;
 @Schema(description = "수입보험료")
 public class InsIncmPrm implements Serializable {
     @Id // Long
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "aid", nullable = false)
     // @Schema(description = "", nullable = true , defaultValue = "" , example = ""
     // , allowableValues = {"", ""})
