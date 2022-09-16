@@ -3,10 +3,7 @@ package com.skims.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skims.client.CnrFeignClient;
 import com.skims.domain.service.PlanInformationService;
-import com.skims.dto.ContractInformationRequest;
-import com.skims.dto.PlanInformationDto;
-import com.skims.dto.PlanInformationRequest;
-import com.skims.dto.PlanInformationResponse;
+import com.skims.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -65,6 +62,22 @@ public class PlanInformationController {
 
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "설계상태변경 성공", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInformationResponse.class)) }),
+            @ApiResponse(responseCode = "404", description = "설계상태변경 실패", content = @Content) })
+    @PostMapping("/changePlanStatus")
+    ResponseEntity<String> changePlanStatus(@RequestBody ChangePlanStatusRequest request) {
+        PlanInformationDto dto = mapper.convertValue(request, PlanInformationDto.class);
+        dto.setCgafChSeqno(BigDecimal.ONE);
+        dto.setInsurancePlan(new PlanInformationDto.InsurancePlan());
+        dto.getInsurancePlan().setPlStcd(request.getPlStcd());
+
+        planInformationService.changePlanStatus(dto);
+
+        return ResponseEntity.ok().body(dto.getPlno());
+
+    }
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "계약반영 성공", content = {
@@ -97,6 +110,7 @@ public class PlanInformationController {
             String plyno = cnrFeignClient.createContractDetailInformation(request).getBody();
             PlanInformationDto dto = data.get();
             dto.getInsurancePlan().setPlyno(plyno);
+            dto.getInsurancePlan().setPlStcd("61");
 
             // 설계상태변경
             planInformationService.changePlanStatus(dto);

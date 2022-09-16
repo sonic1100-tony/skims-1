@@ -13,6 +13,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +29,8 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder = true)
 @Table(name = "ins_ins_pl") // --보험설계
 @Schema(description = "보험설계")
+@DynamicInsert
+@DynamicUpdate
 public class InsInsPl implements Serializable {
     @Id // Long
     @GeneratedValue(strategy = GenerationType.AUTO)
