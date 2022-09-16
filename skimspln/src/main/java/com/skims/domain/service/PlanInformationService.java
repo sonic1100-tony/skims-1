@@ -314,7 +314,7 @@ public class PlanInformationService {
 
         if( optionalInsInsPl.isPresent() ) {
             insInsPlRepository.saveAndFlush(optionalInsInsPl.get().toBuilder()
-                    .plStcd("61")
+                    .plStcd(dto.getInsurancePlan().getPlStcd())
                     .plyno(dto.getInsurancePlan().getPlyno())
                     .mdfDthms(LocalDateTime.now())
                     .mdfUsrId("TEST")
