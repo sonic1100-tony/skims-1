@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
         /*임시*/ 
         name: 'newPlan',
         path: 'newPlan',
-        component: () => import('@/pages/biz/cus/CusSearch.vue'),
+        component: () => import('@/pages/biz/pln/NewPlanMain.vue'),
       },
       {
         /*임시*/

@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RestController("/igd/v1")
+@RestController("/pln/v1")
 @Slf4j
 public class PlanInformationController {
 
