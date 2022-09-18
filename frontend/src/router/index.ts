@@ -41,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: 'job',
         path: 'job',
-        component: () => import('@/pages/biz/job/JobSearch.vue'),
+        component: () => import('@/pages/biz/job/JobSearchUseSample.vue'),
       },
     ]
   },
