@@ -114,7 +114,7 @@ skims/frontend/src/pages/biz/job/
 ## 5.Docker build & run
 ```
 docker build . -t skims-frontend
-docker run -it -p 80:80 skims-frontend
+docker run -it -p 80:8080 skims-frontend
 ```
 
 ## 6.Rest API 주소 설정방식
