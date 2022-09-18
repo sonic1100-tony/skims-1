@@ -9,10 +9,10 @@ RUN yarn
 
 COPY . /app
 
-EXPOSE 8080
+EXPOSE 80
 
 RUN npm install http-server -g
 
-RUN yarn install --no-optional && yarn run build
+RUN yarn install --no-optional && yarn run build --mode dev
 
 CMD http-server ./dist

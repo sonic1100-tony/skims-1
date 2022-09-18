@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import axios from 'axios'
 import JobSearchForm from './JobSearchForm'
 import JobSearchTable from './JobSearchTable'
@@ -41,7 +42,7 @@ export default {
       const jbnm = searchFormData.searchJobName ? searchFormData.jobName : "";
       const dtJbnm = searchFormData.searchJobDetailName ? searchFormData.jobName : "";
 
-      const queryUrl = 'http://localhost:8083/cus/cusjbs?jbChSeqno=4'
+      const queryUrl = `${process.env.VUE_APP_BASE_URL}/cus/cusjbs?jbChSeqno=4`
           +'&jbcd=' + searchFormData.jobCode 
           +'&jbnm=' + jbnm 
           +'&dtJbnm=' + dtJbnm;
