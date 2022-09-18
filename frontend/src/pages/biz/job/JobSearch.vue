@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import axios from 'axios'
 import JobSearchForm from './JobSearchForm'
 import JobSearchTable from './JobSearchTable'
