@@ -207,7 +207,8 @@ public class InsCrRelpc implements Serializable {
 
     @Column(name = "prm_pym_rt", precision = 12, scale = 6, nullable = false)
     @Schema(description = "보험료납부비율", nullable = false)
-    private BigDecimal prmPymRt; //--보험료납부비율
+    @Builder.Default
+    private BigDecimal prmPymRt = BigDecimal.ZERO; //--보험료납부비율
 
     @Column(name = "hndps_yn", length = 1, nullable = true)
     @Schema(description = "장애인여부", nullable = true)
