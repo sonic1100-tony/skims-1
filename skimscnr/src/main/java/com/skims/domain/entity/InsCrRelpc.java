@@ -256,7 +256,8 @@ public class InsCrRelpc implements Serializable {
 
     @Column(name = "ut_rt", precision = 12, scale = 6, nullable = false)
     @Schema(description = "도급비율", nullable = false)
-    private BigDecimal utRt; //--도급비율
+    @Builder.Default
+    private BigDecimal utRt = BigDecimal.ZERO; //--도급비율
 
     @Column(name = "md_cfcap_entp_yn", length = 1, nullable = true)
     @Schema(description = "조정계수적용업체여부", nullable = true)
