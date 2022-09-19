@@ -6,13 +6,13 @@
     <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData" :coverageInformation="coverageInformation" :goodsInformation="goodsInformation"></PlanCoverageForm>
     <PlanPremiumForm ref="planPremiumForm" :planPremiumData="planPremiumData"></PlanPremiumForm>
     <div>
-      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.save')}}</va-button>
-      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.premium')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="savePlan">{{$t('common.button.save')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="calculatePremium">{{$t('newPlan.button.premium')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.planComplete')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.underwriting')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.print')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.premiumIncome')}}</va-button>
-      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.contractReflection')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="reflectContract">{{$t('newPlan.button.contractReflection')}}</va-button>
     </div>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
       goodsInformation: [],
       coverageInformation: [],
       plStcd: [],
+      planSaveData: [],
       planBasicInfoData: {},
       planInsuredPersonData: [],
       planCoverageData: [],
@@ -69,7 +70,8 @@ export default {
       axios
         .get('http://localhost:8081/pln/planInformation?plno='+searchFormData.plno+'&cgafChSeqno=1') //searchFormData.plyno)
         .then(response => {
-          console.log("response", response);        
+          console.log("response", response);
+          this.planSaveData = response.data;
           this.planBasicInfoData = response.data.insurancePlan;  
           this.planInsuredPersonData = response.data.insuredPersons;
         })
@@ -98,8 +100,59 @@ export default {
 
       return new Date(year, month - 1, day)
     },
+    savePlan() {
+      console.log("저장버튼 ***");
+      axios
+        .post('http://localhost:8087/pln/savePlanInformation', this.planSaveData)
+        .then(response => {
+          console.log("response", response);
+          alert("설계정보 저장되었습니다.");
+          
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+          alert("설계저장시 에러가 발생하였습니다.\r\n" +error.response.data.message);
+          
+        })
+        .finally(() => this.loading = false)
+    },
+    reflectContract() {
+        console.log("계약반영 ***");
+      axios
+        .post('http://localhost:8087/pln/reflect-contract/'+this.planSaveData.plno)
+        .then(response => {
+          console.log("response", response);
+          alert("계약반영 되었습니다.");
+          
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+          alert("계약반영시 에러가 발생하였습니다.\r\n" +error.response.data.message);
+          
+        })
+        .finally(() => this.loading = false)
+    },
+    calculatePremium(){      
+      console.log("보험료계산 ***");
+      //일단 상품선택을 한가지로 고정
+      const goodsCode = 'LAA201';
+      axios
+        .post('http://localhost:8085/igd/premium-calculate/'+goodsCode, this.planSaveData)
+        .then(response => {
+          console.log("calculatePremium response", response);
+          this.planPremiumData.baPrm = response.data.insurancePlan.baPrm; //기본보험료
+          this.planPremiumData.apPrm = response.data.insurancePlan.apPrm; //적용보험료
+          this.planPremiumData.dcPrm = response.data.insurancePlan.baPrm - response.data.insurancePlan.apPrm; //할인보험료
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        })
+        .finally(() => this.loading = false)
+    }
   },
-
   created () {
     console.log("created...");
     //일단 상품선택을 한가지로 고정

@@ -51,6 +51,11 @@ export default {
     planPremiumData: {
     }
   },
+  watch: {
+    planPremiumData: function (obj) {
+      this.planPremiumFormData = { ...obj };
+    }
+  },
   methods: {
     initData () {
       console.log("initData");
