@@ -120,6 +120,6 @@ docker run -it -p 80:8080 skims-frontend
 ## 6.Rest API 주소 설정방식
 ```
 # local 개발 시 사용하는 yarn serve 명령어는 .env.local 참조
-# AWS 배포시 사용하는 Dockerfile은 .env.dev 내 VUE_APP_BASE_URL 참
+# AWS 배포시 사용하는 Dockerfile은 .env.dev 내 VUE_APP_BASE_URL 참조
 cosnt apiUrl = `${process.env.VUE_APP_BASE_URL}/api/detail/url`;
 ```
