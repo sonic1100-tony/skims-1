@@ -123,3 +123,12 @@ docker run -it -p 80:8080 skims-frontend
 # AWS 배포시 사용하는 Dockerfile은 .env.dev 내 VUE_APP_BASE_URL 참조
 cosnt apiUrl = `${process.env.VUE_APP_BASE_URL}/api/detail/url`;
 ```
+
+## 7.환경에 따른 변수 사용방법
+```
+# .env파일에 VUE_APP_ 로 시작하는 변수 생성
+# ex) VUE_APP_TEST_VALUE="변수에 설정하고 싶은 값"
+
+# 사용방법
+process.env.VUE_APP_TEST_VALUE
+```
