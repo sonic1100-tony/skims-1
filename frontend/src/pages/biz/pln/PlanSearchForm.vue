@@ -22,14 +22,12 @@
           <va-input
             :label="$t('common.title.policyNumber')"
             v-model="searchFormData.plyno"
-            :rules="[value => (value.length > 0 && value.length != 10) || 'Field is required']"
           />
         </div>
         <div class="flex md2">
           <va-input
             :label="$t('common.title.groupNumber')"
             v-model="searchFormData.grCtmno"
-            :rules="[value => (value && value.length > 0) || 'Field is required']"
           />
         </div>
         <div class="flex md3">
@@ -52,6 +50,9 @@ export default {
   props : {
     goodsInformation: {
       type: Object
+    },
+    planBasicInfoData:{
+      type: Object
     }
   },
   watch: {
@@ -63,7 +64,10 @@ export default {
         }
         this.plStcd.push(array);
       }
-      //this.goodsInfoFormData = { ...obj };
+    },
+    planBasicInfoData: function ( obj ) {
+      this.searchFormData.plStcd = obj.plStcd;
+      this.searchFormData.plyno = obj.plyno;
     }
   },
   methods: {

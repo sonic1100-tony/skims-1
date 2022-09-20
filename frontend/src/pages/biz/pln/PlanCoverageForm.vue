@@ -33,14 +33,14 @@
                       </td>
                       <td>
                         <va-select size="small"
-                          v-model="planCoverage.nd"
+                          v-model="planCoverage.ndcd"
                           value-by="value"
                           :options="insuranceTerms"
                         />
                       </td>
                       <td>
                         <va-select size="small"
-                          v-model="planCoverage.pymTrm"
+                          v-model="planCoverage.pymTrmcd"
                           value-by="value"
                           :options="paymentTerms"
                         />
@@ -91,10 +91,6 @@ export default {
   watch: {
     //조회된 설계번호의 담보data
     planCoverageData: function ( obj ) {
-      for(let i=0; i<obj.length; i++){
-        obj[i].nd = "0"+ obj[i].nd;
-        obj[i].pymTrm = "0" + obj[i].pymTrm;
-      }
       this.planCoverageFormData = { ...obj }; 
     },
     //상품data(담보)

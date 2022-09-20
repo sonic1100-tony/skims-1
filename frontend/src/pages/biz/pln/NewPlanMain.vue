@@ -1,6 +1,6 @@
 <template>
   <div class="form-elements">
-    <PlanSearchForm ref="planSearchForm" @search="search" :goodsInformation="goodsInformation"></PlanSearchForm>
+    <PlanSearchForm ref="planSearchForm" @search="search" :goodsInformation="goodsInformation" :planBasicInfoData="planBasicInfoData"></PlanSearchForm>
     <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData" :goodsInformation="goodsInformation"/>
     <PlanInsuredPersonForm ref="planInsuredPersonForm" :planInsuredPersonData="planInsuredPersonData" :goodsInformation="goodsInformation" @insuredPersonChange="insuredPersonChange"></PlanInsuredPersonForm>
     <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData" :coverageInformation="coverageInformation" :goodsInformation="goodsInformation"></PlanCoverageForm>
@@ -8,7 +8,7 @@
     <div>
       <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="savePlan">{{$t('common.button.save')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="calculatePremium">{{$t('newPlan.button.premium')}}</va-button>
-      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.planComplete')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="planComplete">{{$t('newPlan.button.planComplete')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.underwriting')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.print')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.premiumIncome')}}</va-button>
@@ -36,7 +36,7 @@ export default {
   },
   data () {
     return {
-      searchForm:{},
+      searchData:{},
       goodsInformation: [],
       coverageInformation: [],
       plStcd: [],
@@ -44,11 +44,7 @@ export default {
       planBasicInfoData: {},
       planInsuredPersonData: [],
       planCoverageData: [],
-      planPremiumData: {
-        baPrm: "1000000",
-        apPrm: "900000",
-        dcPrm: "100000"
-      },
+      planPremiumData: {},
     }
   },
   methods: {
@@ -67,6 +63,7 @@ export default {
         .finally(() => this.loading = false)
     },
     search ( searchFormData ) {
+      this.searchData = searchFormData;
       axios
         .get('http://localhost:8081/pln/planInformation?plno='+searchFormData.plno+'&cgafChSeqno=1') //searchFormData.plyno)
         .then(response => {
@@ -145,6 +142,21 @@ export default {
           this.planPremiumData.baPrm = response.data.insurancePlan.baPrm; //기본보험료
           this.planPremiumData.apPrm = response.data.insurancePlan.apPrm; //적용보험료
           this.planPremiumData.dcPrm = response.data.insurancePlan.baPrm - response.data.insurancePlan.apPrm; //할인보험료
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        })
+        .finally(() => this.loading = false)
+    },
+    planComplete() {
+      console.log("설계완료 ***");
+      //설계상태코드 03: 설계완료
+      axios
+        .post('http://localhost:8087/pln/changePlanStatus/', {plno:this.searchData.plno, plStcd:"03"})
+        .then(response => {
+          alert("설계완료 되었습니다.");
+          console.log("response", response);
         })
         .catch(error => {
           console.log(error)
