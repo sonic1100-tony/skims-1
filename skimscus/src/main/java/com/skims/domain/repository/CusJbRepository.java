@@ -8,6 +8,7 @@ package com.skims.domain.repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 // import java.util.Map;
 // import org.springframework.data.domain.Page;
@@ -30,6 +31,8 @@ public interface CusJbRepository extends JpaRepository<CusJb, CusJbPK>,  JpaSpec
 	
 	// 단계별 조회용
 	List<CusJb> findByPprJbChSeqnoAndPprJbcdOrderByJbnm(BigDecimal pprJbChSeqno, String pprJbcd);
+
+	Optional<CusJb> findByJbChSeqnoAndJbcd(BigDecimal jbChSeqno, String jbcd);
 	
 }
 

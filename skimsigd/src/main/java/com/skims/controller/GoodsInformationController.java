@@ -1,6 +1,7 @@
 package com.skims.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skims.domain.entity.IgdCvr;
 import com.skims.domain.service.GoodsInformationService;
 import com.skims.dto.GoodsInformationDto;
 import com.skims.dto.GoodsInformationResponse;
@@ -15,10 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -61,7 +59,7 @@ public class GoodsInformationController {
             @ApiResponse(responseCode = "200", description = "보험료계산 완료", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = PlanInformationRequest.class)) }),
             @ApiResponse(responseCode = "404", description = "보험료계산 오류", content = @Content) })
-    @GetMapping("/premium-calculate/{goodsCode}")
+    @PostMapping("/premium-calculate/{goodsCode}")
     @Operation(summary = "보험료계산", description = "보험료 계산결과를 제공")
     ResponseEntity<PlanInformationResponse> executePremiumCalculate(@RequestBody PlanInformationRequest request, @PathVariable String goodsCode) {
 
@@ -83,5 +81,22 @@ public class GoodsInformationController {
         });
 
         return ResponseEntity.ok().body(response);
+    }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the cvrnm", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = IgdCvr.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
+    @GetMapping("/coverageName/{cvrcd}")
+    public ResponseEntity<String> getCoverageName(@PathVariable("cvrcd") String cvrcd) {
+        try {
+            log.info("getCoverageName");
+
+            String coverageName = goodsInformationService.getCoverageName(cvrcd).get().getCvrPrsnm();
+
+            return ResponseEntity.ok().body(coverageName);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

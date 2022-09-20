@@ -2,7 +2,8 @@
   <div class="form-elements">
     <JobSearchForm ref="searchForm" @search="search"/>
     <br/>
-    <JobSearchTable :jobList="jobList" />
+    <JobSearchTable ref="searchTable" :jobList="jobList" @setSelectedJob="setSelectedJob" />
+    <JobSearchFooter @sendSelectedJob="sendSelectedJob"/>
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import axios from 'axios'
 import JobSearchForm from './JobSearchForm'
 import JobSearchTable from './JobSearchTable'
+import JobSearchFooter from './JobSearchFooter'
 
 export default {
   components: {
     JobSearchForm,
-    JobSearchTable
+    JobSearchTable,
+    JobSearchFooter,
   },
   data () {
     return {
@@ -25,16 +28,20 @@ export default {
         jobCode: '',
       },
       jobList: [],
+      selectedJob: null, // 선택 job
     }
   },
   methods: {
     search ( searchFormData ) {
+
+      this.clearSearchData();
+
       console.log('search', searchFormData);
 
       const jbnm = searchFormData.searchJobName ? searchFormData.jobName : "";
       const dtJbnm = searchFormData.searchJobDetailName ? searchFormData.jobName : "";
 
-      const queryUrl = 'http://localhost:8083/cus/cusjbs?jbChSeqno=4'
+      const queryUrl = `${process.env.VUE_APP_BASE_URL}/cus/cusjbs?jbChSeqno=4`
           +'&jbcd=' + searchFormData.jobCode 
           +'&jbnm=' + jbnm 
           +'&dtJbnm=' + dtJbnm;
@@ -58,6 +65,21 @@ export default {
       // 자식함수 호출 ref로 자식컴포넌트 지정
       this.$refs.searchForm.initData();
     },
+    clearSearchData(){
+      this.jobList = [];
+      this.selectedJob = null;
+      this.$refs.searchTable.initData();
+    },
+    setSelectedJob( selectedJob ){
+      console.log('selectedJob', selectedJob);
+      this.selectedJob = selectedJob;
+    },
+    sendSelectedJob(){
+      console.log('send selectedJob', this.selectedJob);
+      this.$emit("sendSelectedJob", {
+        ...this.selectedJob,
+      });
+    }
   },
 
   created () {

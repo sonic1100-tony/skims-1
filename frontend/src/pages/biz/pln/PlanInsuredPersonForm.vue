@@ -13,7 +13,6 @@
                       <th>주피관계</th>
                       <th>주민등록번호</th>
                       <th colspan="2">피보험자명</th>
-                      <th colspan="2">법정대리인</th>
                       <th>직업코드</th>
                       <th colspan="2">직업명</th>
                       <th>상해급수</th>
@@ -40,16 +39,10 @@
                       <td><va-input v-model="planInsuredPerson.hnglRelnm" /></td>
                       <td><va-button icon="search" /></td>
                       <td>
-                        <va-input v-model="planInsuredPerson.ppaYn" />
-                      </td>
-                      <td>
-                        <va-button icon="search" />
-                      </td>
-                      <td>
                         <va-input v-model="planInsuredPerson.jbcd" />
                       </td>
                       <td>
-                        <va-input v-model="planInsuredPerson.jbcnm" />
+                        <va-input v-model="planInsuredPerson.jbnm" />
                       </td>
                       <td>
                         <va-button icon="search" />
@@ -122,9 +115,6 @@ export default {
   watch: {
     planInsuredPersonData: function ( obj ) {
       console.log("change data 피보험자", obj);
-      for(let i=0; i<obj.length; i++){
-        obj[i].injrRnkcd = "0" + obj[i].injrRnkcd; 
-      }
       this.planInsuredPersonFormData = { ...obj };
     },
     goodsInformation: function ( obj ) {

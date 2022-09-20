@@ -22,20 +22,27 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/biz/sample/Sample.vue'),
       },
       {
-        name: 'job',
-        path: 'job',
-        component: () => import('@/pages/biz/job/JobSearch.vue'),
+        name: 'cus',
+        path: 'cus',
+        component: () => import('@/pages/biz/cus/CusSearch.vue'),
       },
       {
-        name: "newPlan",
-        path: "plan",
+        /*임시*/
+        name: 'newPlan',
+        path: 'newPlan',
         component: () => import('@/pages/biz/pln/NewPlanMain.vue'),
       },
       {
-        name: "finance",
-        path: "finance",
+        /*임시*/
+        name: 'finance',
+        path: 'finance',
         component: () => import('@/pages/biz/fin/ReceiveTest.vue'),
-      },      
+      },
+      {
+        name: 'job',
+        path: 'job',
+        component: () => import('@/pages/biz/job/JobSearchUseSample.vue'),
+      },
     ]
   },
   {

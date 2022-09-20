@@ -211,4 +211,21 @@ public class CusJbController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the cusjbs", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = CusJb.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
+    @GetMapping("/jobName/{jbChSeqno}/{jbcd}")
+    public ResponseEntity<String> getJobName(@PathVariable("jbChSeqno") BigDecimal jbChSeqno, @PathVariable("jbcd") String jbcd) {
+        try {
+            log.info("getJobName");
+
+            String jobName = cusJbService.getJobName(jbChSeqno, jbcd).get().getJbnm();
+
+            return ResponseEntity.ok().body(jobName);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

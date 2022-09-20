@@ -85,4 +85,8 @@ public class CusJbService {
 	public Optional<CusJb> retrieveJob(CusJbPK id){
 		return repository.findById(id);
 	}
+
+	public Optional<CusJb> getJobName(BigDecimal jbChSeqno, String jbcd){
+		return repository.findByJbChSeqnoAndJbcd(jbChSeqno, jbcd);
+	}
 }

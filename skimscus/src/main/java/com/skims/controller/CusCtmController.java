@@ -6,9 +6,10 @@
 **/
 package com.skims.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -48,6 +49,54 @@ public class CusCtmController {
     @Autowired
     ObjectMapper mapper;
 
+	// @Operation(summary = "고객이름 조회" , description = "고객명으로 조회" )
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "200", description = "Found the CusCtm", content = {
+				@Content(mediaType = "application/json", schema = @Schema(implementation = CusCtm.class)) }),
+		@ApiResponse(responseCode = "404", description = "CusCtm not found", content = @Content) })
+	@GetMapping("/cusFindNm/{hnglCtmnm}")
+	public ResponseEntity<List<CusCtm>> getByHgNm(@PathVariable("hnglCtmnm") String hnglCtmnm) {
+		List<CusCtm> data = repository.findByHhnglCtmnmLike("%"+hnglCtmnm+"%");
+
+		if (!data.isEmpty()) {
+			return ResponseEntity.ok().body(data);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	// @Operation(summary = "고객번호 조회" , description = "고객번호로 조회" )
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "200", description = "Found the CusCtm", content = {
+				@Content(mediaType = "application/json", schema = @Schema(implementation = CusCtm.class)) }),
+		@ApiResponse(responseCode = "404", description = "CusCtm not found", content = @Content) })
+	@GetMapping("/cusFindCtmno/{ctmno}")
+	public ResponseEntity<List<CusCtm>> getByCtmno(@PathVariable("ctmno") String ctmno) {
+		List<CusCtm> data = repository.findByCtmno(ctmno);
+
+		if (!data.isEmpty()) {
+			return ResponseEntity.ok().body(data);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	// @Operation(summary = "고객번호, 고객명으로 조회" , description = "고객번호, 고객한글명으로 조회" )
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "200", description = "Found the CusCtm", content = {
+				@Content(mediaType = "application/json", schema = @Schema(implementation = CusCtm.class)) }),
+		@ApiResponse(responseCode = "404", description = "CusCtm not found", content = @Content) })
+	@GetMapping("/cusFindCtmno/{ctmno}/{hnglCtmnm}")
+	public ResponseEntity<List<CusCtm>> getByCtmnoAndHgNm(@PathVariable("ctmno") String ctmno, @PathVariable("hnglCtmnm") String hnglCtmnm) {
+		List<CusCtm> data = repository.findByCtmnoAndHgNm(ctmno, "%"+hnglCtmnm+"%");
+
+		if (!data.isEmpty()) {
+			return ResponseEntity.ok().body(data);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
     // @Operation(summary = "고객 전체조회" , summary = "고객 조회" )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the cusctms", content = {

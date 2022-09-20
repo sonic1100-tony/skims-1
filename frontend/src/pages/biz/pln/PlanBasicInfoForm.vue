@@ -24,7 +24,7 @@
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.insuranceTerm')"
-                      v-model="planBasicInfoFormData.nd"
+                      v-model="planBasicInfoFormData.ndcd"
                       value-by="value"
                       :options="insuranceTerms"
                     />
@@ -32,7 +32,7 @@
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.paymentTerm')"
-                      v-model="planBasicInfoFormData.pymTrm"
+                      v-model="planBasicInfoFormData.pymTrmcd"
                       value-by="value"
                       :options="paymentTerms"
                     />
@@ -117,8 +117,6 @@ export default {
       obj.apldt = new Date(obj.apldt); //청약일자
       obj.insSt = new Date(obj.insSt); //보험시기
       obj.insClstr = new Date(obj.insClstr); //보험종기
-      obj.nd = "0"+ obj.nd;
-      obj.pymTrm = "0" + obj.pymTrm;
       this.planBasicInfoFormData = { ...obj };
     },
     goodsInformation: function ( obj ) {

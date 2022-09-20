@@ -336,9 +336,9 @@
     "404-pages": "404 Pages",
     "faq": "Faq",
     "sample":"샘플",
+    "cus":"고객조회",
     "job":"직업조회",
-    "newPlan": "가입설계",
-    "finance":"수납"
+    "finance":"수납테스트"
   },
   "messages": {
     "all": "See all messages",

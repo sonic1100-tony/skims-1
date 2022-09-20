@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.reducing;
+
 @Slf4j
 @Service
 public class ReceiveStandbyService {
@@ -149,11 +151,15 @@ public class ReceiveStandbyService {
 
     }
 
-    public ReceiveStandbyDto inquiryReceiveStandby(String receiveStandbyNumber) {
-        FinPrmRvSb entity = finPrmRvSbRepository.findByRvSbno(receiveStandbyNumber).orElseThrow(() -> new RuntimeException("수납대기가 존재하지 않습니다"));
+    public ReceiveStandbyDto inquiryReceiveStandby(String receiptAdministrationNumber) {
+
+        List<FinPrmRvSb> finPrmRvSbList = finPrmRvSbRepository.findByRpAdmno(receiptAdministrationNumber);
+        BigDecimal wonCurrencyPremium = finPrmRvSbList.stream().
+                collect(reducing(BigDecimal.ZERO, FinPrmRvSb::getWoncrPrm, BigDecimal::add));
+
         //TODO 조회항목 확인 후 추가
         ReceiveStandbyDto result = ReceiveStandbyDto.builder()
-                .wonCurrencyPremium(entity.getWoncrPrm())
+                .wonCurrencyPremium(wonCurrencyPremium)
                 .build();
         return result;
     }

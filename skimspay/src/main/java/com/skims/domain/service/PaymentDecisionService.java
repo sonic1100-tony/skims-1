@@ -1,10 +1,12 @@
 package com.skims.domain.service;
 
 import com.skims.client.FinFeignClient;
+import com.skims.client.PlnFeignClient;
 import com.skims.domain.entity.InsIncmPrm;
 import com.skims.domain.entity.InsRpAdm;
 import com.skims.domain.repository.InsIncmPrmRepository;
 import com.skims.domain.repository.InsRpAdmRepository;
+import com.skims.dto.ChangePlanStatusRequest;
 import com.skims.dto.DepositReflectionDto;
 import com.skims.dto.PaymentDecisionDto;
 import com.skims.dto.ReceiveStandbyRequest;
@@ -33,6 +35,9 @@ public class PaymentDecisionService {
 
     @Autowired
     FinFeignClient finFeignClient;
+
+    @Autowired
+    PlnFeignClient plnFeignClient;
 
     @Transactional
     public String savePaymentDecision(PaymentDecisionDto paymentDecisionDto) {
@@ -192,7 +197,7 @@ public class PaymentDecisionService {
     @Transactional
     public void reflectDepositAfterReceive(DepositReflectionDto dto){
 
-        //영수관리 update
+        //1. 영수관리 update
         InsRpAdm insRpAdm = insRpAdmRepository.findByRpAdmno(dto.getReceiptAdministrationNumber());
         insRpAdm = insRpAdm.toBuilder()
                 .rvdt(dto.getReceiveDate())
@@ -203,7 +208,7 @@ public class PaymentDecisionService {
 
         insRpAdmRepository.saveAndFlush(insRpAdm);
 
-        //수입보험료 update
+        //2. 수입보험료 update
         List<InsIncmPrm> insIncmPrmList = insIncmPrmRepository.findByRvSbno(dto.getReceiveStandbyNumber());
         for(InsIncmPrm insIncmPrm : insIncmPrmList){
             insIncmPrm = insIncmPrm.toBuilder()
@@ -214,7 +219,16 @@ public class PaymentDecisionService {
         }
 
         insIncmPrmList.stream().forEach(a -> this.updateIncomePremium(a, dto.getReceiveDate()));
-        // TODO 계약반영 호출
+
+        // TODO 3. 설계상태변경 호출 (수납완료)
+        ChangePlanStatusRequest plnRequest = ChangePlanStatusRequest.builder()
+                        .plno(insRpAdm.getPlno())
+                        .plStcd("09")   // 09:수납완료
+                        .build();        
+        plnFeignClient.changePlanStatus(plnRequest);
+        
+        // TODO 4. 계약반영 호출
+        plnFeignClient.setReflectContract(insRpAdm.getPlno());
     }
 
     private void updateIncomePremium(InsIncmPrm insIncmPrm, LocalDate receiveDate){
