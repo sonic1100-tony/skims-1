@@ -9,6 +9,7 @@
               <div class="row">
                 <va-input label="수납대기번호" v-model="receiveStandbyNumber"/>
                 <va-button class="mr-2 mb-2" @click="showReceive = !showReceive">수납팝업</va-button>
+                <va-button class="mr-2 mb-2" @click="callPaymentPremium()">보험료입금</va-button>
               </div>  
     
             </form>
@@ -33,14 +34,14 @@
     overlay-opacity="0.2"
     size="large"
   >
-    <receive v-bind:parentReceiveStandbyNumber="receiveStandbyNumber"/>
+    <receive v-bind:parentReceiptAdministrationNumber="receiptAdministrationNumber"/>
   </va-modal>
 
 </template>
 
 <script>
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8084';
+// axios.defaults.baseURL = 'http://localhost:8081';
 
 import receive from '../fin/Receive'
 
@@ -52,6 +53,7 @@ export default {
     return {      
       showReceive: false,
       receiveStandbyNumber:"000000000000001",
+      receiptAdministrationNumber:"",
       params:{
         occurrenceSystemCode: "02",
         dealingsTypeOrder1ClassificationCode: "01",
@@ -84,13 +86,22 @@ export default {
         etcAmount: 0,
         contractorName: "홍길동"
       },
+      premiumPayment:{
+        depositFlagCode:"1",
+        mntFlgcd:"01",
+        plno:"00001",
+        cgafChSeqno:"1",
+        basePremium:2500,
+        applicationPremium:2500,
+        paymentPremium:2500,
+      }
     }
   },
   methods: {
     receiveStandby(){
       console.log("수납등록>>>>>>>", this.params);
       axios
-        .post('/fin/receive-standby', this.params)
+        .post('http://localhost:8084/fin/receive-standby', this.params)
         .then(response => {
           console.log("response", response);
           alert("수납대기 등록이 완료되었습니다.\r\n수납대기번호 : " +response.data);
@@ -103,6 +114,23 @@ export default {
         })
         .finally(() => this.loading = false)
     },  
+    callPaymentPremium(){
+      console.log("보험료 입금");
+      axios
+        .post('http://localhost:8086/pay/receipt', this.premiumPayment)
+        .then(response => {
+          console.log("response", response);
+          this.receiptAdministrationNumber = response.data;
+          this.showReceive = !this.showReceive;        
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+          alert("보험료 입금 처리 시 에러가 발생하였습니다.\r\n" +error.response.data.message);
+        })
+        .finally(() => this.loading = false)
+
+    }
   },
   created () {
     console.log("created...");

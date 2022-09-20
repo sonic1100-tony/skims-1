@@ -42,9 +42,9 @@ public class ReceiveProcessController {
         receiveStandbyService.processPremiumReceive(dto);
     }
 
-    @GetMapping("/receive-info/{receiveStandbyNumber}")
-    ReceiveStandbyResponse inquiryReceiveStandby(@PathVariable String receiveStandbyNumber) {
-        ReceiveStandbyDto dto = receiveStandbyService.inquiryReceiveStandby(receiveStandbyNumber);
+    @GetMapping("/receive-info/{receiptAdministrationNumber}")
+    ReceiveStandbyResponse inquiryReceiveStandby(@PathVariable String receiptAdministrationNumber) {
+        ReceiveStandbyDto dto = receiveStandbyService.inquiryReceiveStandby(receiptAdministrationNumber);
         ReceiveStandbyResponse response = mapper.convertValue(dto, ReceiveStandbyResponse.class);
         return response;
     }

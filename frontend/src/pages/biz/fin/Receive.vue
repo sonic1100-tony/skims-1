@@ -63,7 +63,7 @@ import axios from 'axios'
 axios.defaults.baseURL = 'http://localhost:8084';
 
 export default {
-  props: ['parentReceiveStandbyNumber'] ,
+  props: ['parentReceiptAdministrationNumber'] ,
   data () {
     const bankList= [
         { text: "국민은행", value: "004" },
@@ -82,7 +82,7 @@ export default {
       depositMethod: '계좌이체',      
       bankList,      
       receiveData:{
-        receiveStandbyNumber:this.$props.parentReceiveStandbyNumber,
+        receiptAdministrationNumber:this.$props.parentReceiptAdministrationNumber,
         bankCode:bankList[0].value,
         accountNumber:"",
         depositor:"",
@@ -142,7 +142,7 @@ export default {
     getInfo () {
       console.log('조회 >>>>');
       axios
-        .get('/fin/receive-info/'+this.receiveData.receiveStandbyNumber)
+        .get('/fin/receive-info/'+this.receiveData.receiptAdministrationNumber)
         .then(response => {
           console.log("response", response);
           this.receiveData.amount = response.data.wonCurrencyPremium;
