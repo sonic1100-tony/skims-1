@@ -18,8 +18,11 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.skims.domain.entity.IgdCvr;
 
+import java.util.Optional;
+
 @RepositoryRestResource
 public interface IgdCvrRepository extends JpaRepository<IgdCvr, String> {
+	Optional<IgdCvr> findByCvrcd(String cvrcd);
 }
 
 /**

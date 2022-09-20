@@ -1,6 +1,8 @@
 package com.skims.domain.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skims.client.CusFeignClient;
+import com.skims.client.IgdFeignClient;
 import com.skims.domain.entity.*;
 import com.skims.domain.repository.*;
 import com.skims.dto.PlanInformationDto;
@@ -29,6 +31,10 @@ public class PlanInformationService {
     InsPlRelpcRelRepository insPlRelpcRelRepository;
     @Autowired
     ObjectMapper mapper;
+    @Autowired
+    CusFeignClient cusFeignClient;
+    @Autowired
+    IgdFeignClient igdFeignClient;
 
     public Optional<PlanInformationDto> getPlanInformation(String plno, BigDecimal cgafChSeqno) {
 
@@ -50,6 +56,7 @@ public class PlanInformationService {
             if(insPlNrdpsTisrdAtr.isPresent()) {
                 insuredPerson.setDrveTycd(insPlNrdpsTisrdAtr.get().getDrveTycd());
                 insuredPerson.setJbcd(insPlNrdpsTisrdAtr.get().getJbcd());
+                insuredPerson.setJbnm(cusFeignClient.getJobName(insPlNrdpsTisrdAtr.get().getJbChSeqno(), insPlNrdpsTisrdAtr.get().getJbcd()).getBody());
                 insuredPerson.setJbChSeqno(insPlNrdpsTisrdAtr.get().getJbChSeqno());
                 insuredPerson.setInjrRnkcd(insPlNrdpsTisrdAtr.get().getInjrRnkcd());
             }
@@ -60,7 +67,12 @@ public class PlanInformationService {
             //설계담보 조회
             //담보대상구분코드(cvrBjFlgcd) 01:피보험자
             List<InsPlCvr> insPlCvrs = insPlCvrRepository.findByPlnoAndCgafChSeqnoAndCvrBjFlgcdAndRelpcOjSeqno(plno, cgafChSeqno, "01",insuredPerson.getRelpcSeqno());
-            insuredPerson.setCoverages(insPlCvrs.stream().map(f-> mapper.convertValue(f, PlanInformationDto.Coverage.class)).collect(Collectors.toList()));
+            insuredPerson.setCoverages(insPlCvrs.stream().map(f-> {
+                PlanInformationDto.Coverage coverage = mapper.convertValue(f, PlanInformationDto.Coverage.class);
+                coverage.setCvrnm(igdFeignClient.getCoverageName(coverage.getCvrcd()).getBody());
+                return coverage;
+            }).collect(Collectors.toList()));
+
             return insuredPerson;
         }).collect(Collectors.toList()));
 
