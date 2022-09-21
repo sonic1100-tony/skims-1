@@ -115,9 +115,9 @@ export default {
         .finally(() => this.loading = false)
     },
     reflectContract() {
-        console.log("계약반영 ***");
+      console.log("계약반영 ***");
       axios
-        .post('http://localhost:8087/pln/reflect-contract/'+this.planSaveData.plno)
+        .post('http://localhost:8081/pln/reflect-contract/'+this.planSaveData.plno)
         .then(response => {
           console.log("response", response);
           alert("계약반영 되었습니다.");
@@ -132,11 +132,11 @@ export default {
         .finally(() => this.loading = false)
     },
     calculatePremium(){      
-      console.log("보험료계산 ***");
+      console.log("보험료계산11 ***");
       //일단 상품선택을 한가지로 고정
       const goodsCode = 'LAA201';
       axios
-        .post('http://localhost:8085/igd/premium-calculate/'+goodsCode, this.planSaveData)
+        .post('http://localhost:8081/igd/premium-calculate/'+goodsCode, this.planSaveData)
         .then(response => {
           console.log("calculatePremium response", response);
           this.planPremiumData.baPrm = response.data.insurancePlan.baPrm; //기본보험료
@@ -150,10 +150,10 @@ export default {
         .finally(() => this.loading = false)
     },
     planComplete() {
-      console.log("설계완료 ***");
+      console.log("설계완료11 ***");
       //설계상태코드 03: 설계완료
       axios
-        .post('http://localhost:8087/pln/changePlanStatus/', {plno:this.searchData.plno, plStcd:"03"})
+        .post('http://localhost:8081/pln/changePlanStatus/', {plno:this.searchData.plno, plStcd:"03"})
         .then(response => {
           alert("설계완료 되었습니다.");
           console.log("response", response);
