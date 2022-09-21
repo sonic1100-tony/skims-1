@@ -96,6 +96,8 @@ public class PlanInformationController {
 
             ContractInformationRequest request = mapper.convertValue(data.get(), ContractInformationRequest.class);
 
+            request.setPlyno(data.get().getInsurancePlan().getPlyno());
+
             request.setInsuranceContract(
                     mapper.convertValue(data.get().getInsurancePlan(),ContractInformationRequest.InsuranceContract.class));
 

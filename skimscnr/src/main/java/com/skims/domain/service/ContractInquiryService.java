@@ -137,7 +137,10 @@ public class ContractInquiryService {
      */
     public ContractInformationDto createContractDetailInformation(ContractInformationDto dto) {
 
-        dto.setPlyno(createPolicyNumber());
+        if( ObjectUtils.isEmpty(dto.getPlyno()) ||
+                "".equals(dto.getPlyno()) ) {
+            dto.setPlyno(createPolicyNumber());
+        }
 
         log.debug("Service createContractDetailInformation ContractInformationDto: {}",dto.toString());
 
