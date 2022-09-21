@@ -72,6 +72,7 @@ public class PlanInformationController {
         dto.setCgafChSeqno(BigDecimal.ONE);
         dto.setInsurancePlan(new PlanInformationDto.InsurancePlan());
         dto.getInsurancePlan().setPlStcd(request.getPlStcd());
+        dto.getInsurancePlan().setPlyno(request.getPlyno());
 
         planInformationService.changePlanStatus(dto);
 
