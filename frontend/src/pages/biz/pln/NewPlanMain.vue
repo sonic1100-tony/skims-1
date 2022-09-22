@@ -11,10 +11,14 @@
       <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="planComplete">{{$t('newPlan.button.planComplete')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.underwriting')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('common.button.print')}}</va-button>
-      <va-button :rounded="false" size="small" class="mr-4 mb-2">{{$t('newPlan.button.premiumIncome')}}</va-button>
+      <va-button :rounded="false" size="small" class="mr-4 mb-2" @click="callPaymentPremium">{{$t('newPlan.button.premiumIncome')}}</va-button>
       <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="reflectContract">{{$t('newPlan.button.contractReflection')}}</va-button>
     </div>
   </div>
+
+  <va-modal v-model="showReceive" hide-default-actions overlay-opacity="0.2" size="large">
+    <receiveForm v-bind:parentReceiptAdministrationNumber="receiptAdministrationNumber"/>
+  </va-modal>
 </template>
 
 
@@ -25,6 +29,7 @@ import PlanBasicInfoForm from './PlanBasicInfoForm.vue'
 import PlanInsuredPersonForm from './PlanInsuredPersonForm.vue'
 import PlanCoverageForm from './PlanCoverageForm.vue'
 import PlanPremiumForm from './PlanPremiumForm.vue'
+import receiveForm from '../fin/Receive'
 
 export default {
   components: {
@@ -32,7 +37,8 @@ export default {
     PlanBasicInfoForm,
     PlanInsuredPersonForm,
     PlanCoverageForm,
-    PlanPremiumForm
+    PlanPremiumForm,
+    receiveForm
   },
   data () {
     return {
@@ -45,6 +51,17 @@ export default {
       planInsuredPersonData: [],
       planCoverageData: [],
       planPremiumData: {},
+      showReceive: false,
+      receiptAdministrationNumber:"",
+      premiumPayment:{
+        depositFlagCode:"1",
+        mntFlgcd:"01",
+        plno:"",
+        cgafChSeqno:"1",
+        basePremium:0,
+        applicationPremium:0,
+        paymentPremium:0,
+      }
     }
   },
   methods: {
@@ -163,6 +180,28 @@ export default {
           this.errored = true
         })
         .finally(() => this.loading = false)
+    },
+    callPaymentPremium(){
+      console.log("보험료 입금");
+      this.premiumPayment.plno = this.searchData.plno;
+      this.premiumPayment.basePremium = this.planPremiumData.baPrm;
+      this.premiumPayment.applicationPremium = this.planPremiumData.apPrm;
+      this.premiumPayment.paymentPremium = this.planPremiumData.apPrm;
+
+      axios
+        .post('http://localhost:8081/pay/receipt', this.premiumPayment)
+        .then(response => {
+          console.log("response", response);
+          this.receiptAdministrationNumber = response.data;
+          this.showReceive = !this.showReceive;        
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+          alert("보험료 입금 처리 시 에러가 발생하였습니다.\r\n" +error.response.data.message);
+        })
+        .finally(() => this.loading = false)
+
     }
   },
   created () {
