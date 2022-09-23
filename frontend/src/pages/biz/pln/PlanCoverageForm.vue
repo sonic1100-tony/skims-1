@@ -4,7 +4,8 @@
       <va-card title="담보" class="flex mb-4">
         <va-card-content>
           <va-accordion v-model="basicAccordionValue">
-            <va-collapse class="mb-4" :header="$t('newPlan.coverage.title')">
+            <va-collapse class="mb-4" :header="$t('newPlan.coverage.title')">              
+              <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="addCoverage">{{'담보 추가'}}</va-button>
               <div class="table-wrapper">
                 <table class="va-table">
                   <thead>
@@ -61,6 +62,7 @@
             </va-collapse>
           </va-accordion>
         </va-card-content>
+        <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="modify" color="warning">{{'담보 수정'}}</va-button>
       </va-card>
     </div>
   </div>
@@ -91,7 +93,7 @@ export default {
   watch: {
     //조회된 설계번호의 담보data
     planCoverageData: function ( obj ) {
-      this.planCoverageFormData = { ...obj }; 
+      this.planCoverageFormData = obj; 
     },
     //상품data(담보)
     coverageInformation: function ( obj ) {
@@ -124,6 +126,16 @@ export default {
     created () {
       console.log("created...");
       this.initData();
+    },
+    addCoverage() {
+      const array =  {};
+      //array.relpcSeqno = 2;
+      this.planCoverageFormData.push(array);
+    },
+    modify() {
+      this.$emit("modify", {
+        ...this.planCoverageFormData
+      });
     }
   },
 

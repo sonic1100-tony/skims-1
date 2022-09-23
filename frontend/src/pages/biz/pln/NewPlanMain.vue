@@ -1,9 +1,9 @@
 <template>
   <div class="form-elements">
     <PlanSearchForm ref="planSearchForm" @search="search" :goodsInformation="goodsInformation" :planBasicInfoData="planBasicInfoData"></PlanSearchForm>
-    <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData" :goodsInformation="goodsInformation"/>
-    <PlanInsuredPersonForm ref="planInsuredPersonForm" :planInsuredPersonData="planInsuredPersonData" :goodsInformation="goodsInformation" @insuredPersonChange="insuredPersonChange"></PlanInsuredPersonForm>
-    <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData" :coverageInformation="coverageInformation" :goodsInformation="goodsInformation"></PlanCoverageForm>
+    <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData" :goodsInformation="goodsInformation" @modify="modifyBasicInfo"/>
+    <PlanInsuredPersonForm ref="planInsuredPersonForm" :planInsuredPersonData="planInsuredPersonData" :goodsInformation="goodsInformation" @insuredPersonChange="insuredPersonChange" @modify="modifyInsuredPerson"></PlanInsuredPersonForm>
+    <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData" :coverageInformation="coverageInformation" :goodsInformation="goodsInformation" @modify="modifyCoverage"></PlanCoverageForm>
     <PlanPremiumForm ref="planPremiumForm" :planPremiumData="planPremiumData"></PlanPremiumForm>
     <div>
       <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="savePlan">{{$t('common.button.save')}}</va-button>
@@ -97,6 +97,17 @@ export default {
 
         this.clearSearchForm();
     },
+    modifyBasicInfo ( data ) {
+      console.log("modify data : ", data);
+      this.planSaveData.insurancePlan = data;
+    },
+    modifyInsuredPerson ( data ) {
+      console.log("modify data : ", data);
+      this.planSaveData.insuredPerson = data;
+    },
+    modifyCoverage ( data ) {
+      console.log("modifyCoverage data : ", data);
+    },
     insuredPersonChange ( coverages ) {
       this.planCoverageData = coverages;
     },
@@ -115,9 +126,9 @@ export default {
       return new Date(year, month - 1, day)
     },
     savePlan() {
-      console.log("저장버튼 ***");
+      console.log("저장버튼 ***", this.planSaveData);
       axios
-        .post('http://localhost:8087/pln/savePlanInformation', this.planSaveData)
+        .post('http://localhost:8081/pln/savePlanInformation', this.planSaveData)
         .then(response => {
           console.log("response", response);
           alert("설계정보 저장되었습니다.");
