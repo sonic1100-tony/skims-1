@@ -1,6 +1,7 @@
 package com.skims.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skims.domain.entity.IgdCvr;
 import com.skims.domain.service.GoodsInformationService;
 import com.skims.dto.GoodsInformationDto;
 import com.skims.dto.GoodsInformationResponse;
@@ -80,5 +81,22 @@ public class GoodsInformationController {
         });
 
         return ResponseEntity.ok().body(response);
+    }
+
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the cvrnm", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = IgdCvr.class)) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content) })
+    @GetMapping("/coverageName/{cvrcd}")
+    public ResponseEntity<String> getCoverageName(@PathVariable("cvrcd") String cvrcd) {
+        try {
+            log.info("getCoverageName");
+
+            String coverageName = goodsInformationService.getCoverageName(cvrcd).get().getCvrPrsnm();
+
+            return ResponseEntity.ok().body(coverageName);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

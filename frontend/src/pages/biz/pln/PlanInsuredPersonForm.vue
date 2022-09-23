@@ -2,9 +2,10 @@
   <div class="collapse-page">
     <div class="markup-tables flex">
       <va-card title="피보험자" class="flex mb-4">
-        <va-card-content>
+        <va-card-content>          
           <va-accordion v-model="basicAccordionValue">
             <va-collapse class="mb-4" :header="$t('newPlan.insuredPersion.title')">
+              <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="addInsuredPerson">{{'피보험자 추가'}}</va-button>
               <div class="table-wrapper">
                 <table class="va-table">
                   <thead>
@@ -13,7 +14,6 @@
                       <th>주피관계</th>
                       <th>주민등록번호</th>
                       <th colspan="2">피보험자명</th>
-                      <th colspan="2">법정대리인</th>
                       <th>직업코드</th>
                       <th colspan="2">직업명</th>
                       <th>상해급수</th>
@@ -40,16 +40,10 @@
                       <td><va-input v-model="planInsuredPerson.hnglRelnm" /></td>
                       <td><va-button icon="search" /></td>
                       <td>
-                        <va-input v-model="planInsuredPerson.ppaYn" />
-                      </td>
-                      <td>
-                        <va-button icon="search" />
-                      </td>
-                      <td>
                         <va-input v-model="planInsuredPerson.jbcd" />
                       </td>
                       <td>
-                        <va-input v-model="planInsuredPerson.jbcnm" />
+                        <va-input v-model="planInsuredPerson.jbnm" />
                       </td>
                       <td>
                         <va-button icon="search" />
@@ -83,7 +77,8 @@
             </va-collapse>
           </va-accordion>
         </va-card-content>
-      </va-card>
+        <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="modify" color="warning">{{'피보험자 수정'}}</va-button>
+      </va-card>      
     </div>
   </div>
 </template>
@@ -122,10 +117,8 @@ export default {
   watch: {
     planInsuredPersonData: function ( obj ) {
       console.log("change data 피보험자", obj);
-      for(let i=0; i<obj.length; i++){
-        obj[i].injrRnkcd = "0" + obj[i].injrRnkcd; 
-      }
-      this.planInsuredPersonFormData = { ...obj };
+      this.planInsuredPersonFormData = obj;
+      //this.planInsuredPersonFormData = { ...obj };
     },
     goodsInformation: function ( obj ) {
       for(let i=0; i<obj.relcd.length; i++){
@@ -165,10 +158,21 @@ export default {
       this.initData();
     },
     checkboxClick(selectedCoverages) {
+      console.log("selectedCoverages" , selectedCoverages);
       if(this.check==""){
         this.coverages = selectedCoverages;
         this.$emit("insuredPersonChange", this.coverages);
       }
+    },
+    addInsuredPerson() {
+      const array =  {};
+      //array.relpcSeqno = 2;
+      this.planInsuredPersonFormData.push(array);
+    },
+    modify() {
+      this.$emit("modify", {
+        ...this.planInsuredPersonFormData
+      });
     }
   },
 

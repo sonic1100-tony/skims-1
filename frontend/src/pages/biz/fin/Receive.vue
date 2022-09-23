@@ -27,9 +27,9 @@
                     <tr>
                       <th width="15%">이체은행</th>
                       <th width="25%">계좌번호</th>
-                      <th width="20%">생년월일</th>
+                      <th width="15%">생년월일</th>
                       <th width="15%">예금주명</th>
-                      <th width="10%">결제금액</th>
+                      <th width="15%">결제금액</th>
                       <th width="15%"></th>
                     </tr>
                   </thead>
@@ -49,7 +49,7 @@
                 </table> 
               </va-form>
               <div class="text--right">
-                <va-button class="mr-2 mb-2" @click="receive()">수납</va-button>
+                <va-button class="mr-2 mb-2" @click="receive()" :disabled="receiveCompleted">수납</va-button>
               </div>
             </div>
           </va-card-content>
@@ -60,7 +60,7 @@
 </template>
 <script>
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8084';
+axios.defaults.baseURL = 'http://localhost:8081';
 
 export default {
   props: ['parentReceiptAdministrationNumber'] ,
@@ -72,6 +72,7 @@ export default {
     ]
     return {
       withdrawCompleted:false,
+      receiveCompleted:false,
       validation: null,
       textValidRule: [value => value != '' || '값을 입력하세요'],
       numberValidRule: [value => value > 0 || '0보다 커야 합니다'],
@@ -106,6 +107,7 @@ export default {
         .then(response => {
           console.log("response", response);
           alert("수납처리가 완료되었습니다.");
+          this.receiveCompleted = true;
           
         })
         .catch(error => {
@@ -142,7 +144,7 @@ export default {
     getInfo () {
       console.log('조회 >>>>');
       axios
-        .get('/fin/receive-info/'+this.receiveData.receiptAdministrationNumber)
+        .get('fin/receive-info/'+this.receiveData.receiptAdministrationNumber)
         .then(response => {
           console.log("response", response);
           this.receiveData.amount = response.data.wonCurrencyPremium;

@@ -18,13 +18,12 @@
                     <va-input
                       :label="$t('common.title.goodsCode')"
                       v-model="planBasicInfoFormData.gdcd"
-                      readonly
                     />
                   </div>
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.insuranceTerm')"
-                      v-model="planBasicInfoFormData.nd"
+                      v-model="planBasicInfoFormData.ndcd"
                       value-by="value"
                       :options="insuranceTerms"
                     />
@@ -32,7 +31,7 @@
                   <div class="flex md2">
                     <va-select
                       :label="$t('common.title.paymentTerm')"
-                      v-model="planBasicInfoFormData.pymTrm"
+                      v-model="planBasicInfoFormData.pymTrmcd"
                       value-by="value"
                       :options="paymentTerms"
                     />
@@ -69,6 +68,7 @@
               </va-collapse>
             </va-accordion>
           </va-card-content>
+          <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="modify" color="warning">{{'설계기본정보 수정'}}</va-button>
         </va-card>
       </div>
     </div>
@@ -114,11 +114,10 @@ export default {
    */
   watch: {
     planBasicInfoData: function ( obj ) {
+      console.log("watch BASIC DATA **");
       obj.apldt = new Date(obj.apldt); //청약일자
       obj.insSt = new Date(obj.insSt); //보험시기
       obj.insClstr = new Date(obj.insClstr); //보험종기
-      obj.nd = "0"+ obj.nd;
-      obj.pymTrm = "0" + obj.pymTrm;
       this.planBasicInfoFormData = { ...obj };
     },
     goodsInformation: function ( obj ) {
@@ -188,6 +187,12 @@ export default {
 
       return new Date(year, month - 1, day)
     },
+
+    modify() {
+      this.$emit("modify", {
+        ...this.planBasicInfoFormData
+      });
+    }
   },
 
   created () {

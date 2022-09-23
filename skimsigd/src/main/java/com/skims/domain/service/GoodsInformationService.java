@@ -1,6 +1,7 @@
 package com.skims.domain.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skims.domain.entity.IgdCvr;
 import com.skims.domain.entity.IgdGd;
 import com.skims.domain.entity.IgdGdCvr;
 import com.skims.domain.repository.IgdCvrRepository;
@@ -257,5 +258,9 @@ public class GoodsInformationService {
         }
 
         return Optional.ofNullable(dto);
+    }
+
+    public Optional<IgdCvr> getCoverageName(String cvrcd){
+        return igdCvrRepository.findByCvrcd(cvrcd);
     }
 }

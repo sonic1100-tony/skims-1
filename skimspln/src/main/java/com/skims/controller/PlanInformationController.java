@@ -72,6 +72,7 @@ public class PlanInformationController {
         dto.setCgafChSeqno(BigDecimal.ONE);
         dto.setInsurancePlan(new PlanInformationDto.InsurancePlan());
         dto.getInsurancePlan().setPlStcd(request.getPlStcd());
+        dto.getInsurancePlan().setPlyno(request.getPlyno());
 
         planInformationService.changePlanStatus(dto);
 
@@ -95,6 +96,8 @@ public class PlanInformationController {
             log.debug("Controller setReflectContract PlanInformationDto: {}", data.toString());
 
             ContractInformationRequest request = mapper.convertValue(data.get(), ContractInformationRequest.class);
+
+            request.setPlyno(data.get().getInsurancePlan().getPlyno());
 
             request.setInsuranceContract(
                     mapper.convertValue(data.get().getInsurancePlan(),ContractInformationRequest.InsuranceContract.class));

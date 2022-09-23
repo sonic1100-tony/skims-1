@@ -156,6 +156,8 @@ public class PlanInformationDto {
         private BigDecimal age; //--연령
 
         private String jbcd; //--직업코드
+        
+        private String jbnm; //--직업이름
 
         private BigDecimal jbChSeqno; //--직업변경순번
 
@@ -183,6 +185,8 @@ public class PlanInformationDto {
     public static class Coverage {
 
         private String cvrcd; //--담보코드
+        
+        private String cvrnm; //--담보이름
 
         private BigDecimal cvrSeqno; //--담보순번
 

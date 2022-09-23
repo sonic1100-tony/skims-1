@@ -58,6 +58,18 @@ public class ContractManagementController {
     }
 
     @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "증권번호채번 완료", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(responseCode = "404", description = "증권번호채번 불가", content = @Content) })
+    @GetMapping("/create-policy-number")
+    @Operation(summary = "증권번호채번", description = "신규 증권번호를 채번")
+    public ResponseEntity<String> createPolicyNumber() {
+
+        return ResponseEntity.ok().body(
+                service.createPolicyNumber());
+    }
+
+    @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "계약생성 완료", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ContractInformationRequest.class)) }),
             @ApiResponse(responseCode = "404", description = "계약생성 불가", content = @Content) })

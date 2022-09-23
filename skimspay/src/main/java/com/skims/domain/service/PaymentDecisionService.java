@@ -1,5 +1,6 @@
 package com.skims.domain.service;
 
+import com.skims.client.CnrFeignClient;
 import com.skims.client.FinFeignClient;
 import com.skims.client.PlnFeignClient;
 import com.skims.domain.entity.InsIncmPrm;
@@ -39,6 +40,9 @@ public class PaymentDecisionService {
     @Autowired
     PlnFeignClient plnFeignClient;
 
+    @Autowired
+    CnrFeignClient cnrFeignClient;
+
     @Transactional
     public String savePaymentDecision(PaymentDecisionDto paymentDecisionDto) {
 
@@ -63,7 +67,7 @@ public class PaymentDecisionService {
         insRpAdmRepository.saveAndFlush(insRpAdm);
 
         String plyno = paymentDecisionDto.getPlyno();
-        if(StringUtils.isBlank(plyno))  plyno = this.getPolicyNumber();
+        if(StringUtils.isBlank(plyno))  plyno = cnrFeignClient.createPolicyNumber();
         BigDecimal incmPrmCrSeqno = BigDecimal.ONE;
 
 
@@ -144,6 +148,14 @@ public class PaymentDecisionService {
         insIncmPrm.setRvSbno(receiveStandbyNumber);
         insIncmPrmRepository.saveAndFlush(insIncmPrm);
 
+        // 설계상태 변경
+        ChangePlanStatusRequest plnRequest = ChangePlanStatusRequest.builder()
+                .plno(insRpAdm.getPlno())
+                .plyno(plyno)
+                .plStcd("08")   // 08:청약완료
+                .build();
+        plnFeignClient.changePlanStatus(plnRequest);
+
         return rpAdmno;
     }
 
@@ -167,20 +179,20 @@ public class PaymentDecisionService {
 
         return receiptAdministrationNumber;
     }
-    private String getPolicyNumber(){
-
-        Optional<String> maxPlyno = insIncmPrmRepository.findMaxPlyno();
-        String policyNumber = null;
-
-        if(maxPlyno.isPresent()){
-            if( NumberUtils.isDigits(maxPlyno.get()) ) {
-                BigDecimal temp = new BigDecimal(maxPlyno.get()).add(BigDecimal.ONE);
-                policyNumber = padLeftZeros(temp.toString(),16);
-            }
-        }
-
-        return policyNumber;
-    }
+//    private String getPolicyNumber(){
+//
+//        Optional<String> maxPlyno = insIncmPrmRepository.findMaxPlyno();
+//        String policyNumber = null;
+//
+//        if(maxPlyno.isPresent()){
+//            if( NumberUtils.isDigits(maxPlyno.get()) ) {
+//                BigDecimal temp = new BigDecimal(maxPlyno.get()).add(BigDecimal.ONE);
+//                policyNumber = padLeftZeros(temp.toString(),16);
+//            }
+//        }
+//
+//        return cnrFeignClient.createPolicyNumber();
+//    }
     private String padLeftZeros(String inputString, int length) {
         if (inputString.length() >= length) {
             return inputString;
@@ -220,14 +232,15 @@ public class PaymentDecisionService {
 
         insIncmPrmList.stream().forEach(a -> this.updateIncomePremium(a, dto.getReceiveDate()));
 
-        // TODO 3. 설계상태변경 호출 (수납완료)
+        //3. 설계상태변경 호출 (수납완료)
         ChangePlanStatusRequest plnRequest = ChangePlanStatusRequest.builder()
                         .plno(insRpAdm.getPlno())
+                        .plyno(insIncmPrmList.get(0).getPlyno())
                         .plStcd("09")   // 09:수납완료
                         .build();        
         plnFeignClient.changePlanStatus(plnRequest);
         
-        // TODO 4. 계약반영 호출
+        //4. 계약반영 호출
         plnFeignClient.setReflectContract(insRpAdm.getPlno());
     }
 

@@ -16,14 +16,12 @@ import java.util.List;
 @NoArgsConstructor
 public class ChangePlanStatusRequest implements Serializable {
 
-    /**
-     * 설계번호
-     */
+    /** 설계번호 */
     private String plno;
-
-    /**
-     * 설계상태
-     */
+    /** 설계상태 */
     private String plStcd;
+    /** 설계상태 */
+    private String plyno;
+
 
 }

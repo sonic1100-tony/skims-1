@@ -22,5 +22,6 @@ public class ChangePlanStatusRequest implements Serializable {
      * 설계상태
      */
     private String plStcd;
-
+    /** 설계상태 */
+    private String plyno;
 }

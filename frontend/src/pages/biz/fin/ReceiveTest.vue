@@ -101,7 +101,7 @@ export default {
     receiveStandby(){
       console.log("수납등록>>>>>>>", this.params);
       axios
-        .post('http://localhost:8084/fin/receive-standby', this.params)
+        .post('http://localhost:8081/fin/receive-standby', this.params)
         .then(response => {
           console.log("response", response);
           alert("수납대기 등록이 완료되었습니다.\r\n수납대기번호 : " +response.data);

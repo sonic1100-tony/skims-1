@@ -20,7 +20,7 @@ export default {
     },
     {
       name: 'newPlan',
-      displayName: '설계조회',
+      displayName: 'menu.plan',
       meta: {
         icon: 'vuestic-iconset-forms',
       },
