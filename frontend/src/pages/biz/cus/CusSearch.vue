@@ -40,15 +40,17 @@ export default {
       const hnglCtmnm = searchFormData.hnglCtmnm;
       const ctmNo = searchFormData.ctmNo;
 
+      //${process.env.VUE_APP_CUS_URL} = http://localhost:8083
+
       if(hnglCtmnm != '' && ctmNo != ''){
         //고객번호, 고객한글명으로 조회_/cusFindCtmno/{ctmno}/{hnglCtmnm}
-        reqSearchUrl = 'http://localhost:8083/cus/findByCtmnoAndHgNm/'+searchFormData.ctmNo+'/'+searchFormData.hnglCtmnm;
+        reqSearchUrl = `${process.env.VUE_APP_CUS_URL}/cus/findByCtmnoAndHgNm/`+searchFormData.ctmNo+'/'+searchFormData.hnglCtmnm;
       }else if(hnglCtmnm == '' && ctmNo != ''){
         //고객번호 조회_/cusFindCtmno/{ctmno}
-        reqSearchUrl = 'http://localhost:8083/cus/cusFindCtmno/'+searchFormData.ctmNo;
+        reqSearchUrl = `${process.env.VUE_APP_CUS_URL}/cus/cusFindCtmno/`+searchFormData.ctmNo;
       }else if(hnglCtmnm != '' && ctmNo == ''){
         //고객명으로 조회_/cusFindNm/{hnglCtmnm}
-        reqSearchUrl = 'http://localhost:8083/cus/cusFindNm/'+searchFormData.hnglCtmnm;
+        reqSearchUrl = `${process.env.VUE_APP_CUS_URL}/cus/cusFindNm/`+searchFormData.hnglCtmnm;
       }else{
         alert("고객명 또는 고객번호를 입력하여주세요.");
         return;
