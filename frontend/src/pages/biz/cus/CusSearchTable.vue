@@ -26,6 +26,7 @@
 </template>
 
 <script>
+//import { isTSEntityName } from '@babel/types';
 import CusSearchTableItem from './CusSearchTableItem'
 
 export default {
@@ -34,7 +35,8 @@ export default {
   },
   data () {
     return {
-      
+      hnglCtmnm: '',  // 고객명
+      ctmDscno: '',   // 주민등록번호
     }
   },
   props : {
@@ -44,14 +46,15 @@ export default {
   },
   methods: {
     //더블클릭시 선택한 행 객체 리턴
-    setSelectedCus(item){
-      //this.item = item;
-      //alert("더블클릭이벤트 발동");
-      alert(item.hnglCtmnm);
-      this.$emit("sendSelectedCus", item);
+    setSelectedCus(selectedCus){
+      alert("더블클릭이벤트_" + selectedCus.hnglCtmnm);
 
-      return item;
+      this.hnglCtmnm = selectedCus.hnglCtmnm;
+      this.ctmDscno = selectedCus.ctmDscno;
 
+      this.$emit("setSelectedCus", {
+        ...selectedCus,
+      });
     }
   },
 

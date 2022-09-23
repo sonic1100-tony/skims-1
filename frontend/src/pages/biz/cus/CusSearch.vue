@@ -73,8 +73,13 @@ export default {
       this.$refs.searchForm.initData();
     },
     setSelectedCus( selectedCus ){
-      console.log('selectedCus', selectedCus);
+      console.log('CusSearch_selectedCus', selectedCus);
       this.selectedCus = selectedCus;
+
+      // 모달에 리턴..
+      this.$emit("setSelectedCus", {
+        ...selectedCus,
+      });
     },
     sendSelectedCus(){
       console.log('send selectedCus', this.selectedCus);

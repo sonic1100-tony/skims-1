@@ -5,7 +5,7 @@ export default {
   },
   routes: [
     {
-      name: 'cus',
+      name: 'cus-main',
       displayName: 'menu.cus',
       meta: {
         icon: 'vuestic-iconset-forms',
