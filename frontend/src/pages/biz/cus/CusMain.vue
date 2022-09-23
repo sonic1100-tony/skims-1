@@ -104,6 +104,8 @@ export default {
       this.ntlcd = Cus.ntlcd;
       this.rgbrdFlgcd = Cus.rgbrdFlgcd == "1" ? "내국인" : "외국인";
       
+      // 팝업 자동닫기
+      this.$refs.CusModal.hideCusModal();
     },
   },
 

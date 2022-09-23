@@ -47,7 +47,8 @@ export default {
   methods: {
     //더블클릭시 선택한 행 객체 리턴
     setSelectedCus(selectedCus){
-      alert("더블클릭이벤트_" + selectedCus.hnglCtmnm);
+
+      //alert("["+selectedCus.hnglCtmnm+"]님 선택완료");
 
       this.hnglCtmnm = selectedCus.hnglCtmnm;
       this.ctmDscno = selectedCus.ctmDscno;

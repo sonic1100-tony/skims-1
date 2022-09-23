@@ -1,6 +1,6 @@
 <template>
   <va-card>
-    <va-card-title>고객검색</va-card-title>
+    <va-card-title>고객검색 (조회결과를 더블클릭하여 선택하여 주세요.)</va-card-title>
     <va-card-content>
       <div class="row">
         <div class="flex md3">
@@ -8,6 +8,7 @@
             label="고객명"
             v-model="searchFormData.hnglCtmnm"
             :rules="[value => (value && value.length > 0) || 'Field is required']"
+            @keyup.enter="search()"
           />
         </div>
         <div class="flex md3">
@@ -15,6 +16,7 @@
             label="고객번호"
             v-model="searchFormData.ctmNo"
             :rules="[value => (value && value.length > 0) || 'Field is required']"
+            @keyup.enter="search()"
           />
         </div>
         <div class="flex md2">

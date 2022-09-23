@@ -46,6 +46,9 @@ export default {
         ...selectedCus,
       });
     },
+    hideCusModal(){
+      this.showModal = false;
+    },
   },
   created () {
     console.log("created...");
