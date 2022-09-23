@@ -14,7 +14,7 @@
             </thead>
 
             <tbody>
-              <tr v-for="item in todoList" :key="item.id">
+              <tr v-for="item in todoList" :key="item.id" @dblclick="setSelectedCus(item)">
                 <CusSearchTableItem :item="item" />
               </tr>
             </tbody>
@@ -40,9 +40,19 @@ export default {
   props : {
     todoList:{
       type: Array
-    }
+    }    
   },
   methods: {
+    //더블클릭시 선택한 행 객체 리턴
+    setSelectedCus(item){
+      //this.item = item;
+      //alert("더블클릭이벤트 발동");
+      alert(item.hnglCtmnm);
+      this.$emit("sendSelectedCus", item);
+
+      return item;
+
+    }
   },
 
   created () {

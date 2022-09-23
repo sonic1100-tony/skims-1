@@ -27,7 +27,7 @@ export default {
     //주민등록번호 마스킹처리
     getRrnoMask (ctmDscno) {
       return ctmDscno.substr(0,6)+'-'+ctmDscno.substr(7,1)+'******';
-    },
+    }
   },
 
   created () {

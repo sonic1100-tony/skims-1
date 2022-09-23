@@ -2,7 +2,7 @@
   <div class="form-elements">
     <CusSearchForm ref="searchForm" @search="search"/>
     <br/>
-    <CusSearchTable :todoList="todoList" />
+    <CusSearchTable :todoList="todoList" @setSelectedCus="setSelectedCus" />
   </div>
 </template>
 
@@ -25,6 +25,7 @@ export default {
         ctmNo: '',
       },
       todoList: [],
+      selectedCus: null,  //선택된 고객정보
     }
   },
   methods: {
@@ -35,9 +36,9 @@ export default {
         return;
       }
 
-      var reqSearchUrl = "";
-      var hnglCtmnm = searchFormData.hnglCtmnm;
-      var ctmNo = searchFormData.ctmNo;
+      let reqSearchUrl = "";
+      const hnglCtmnm = searchFormData.hnglCtmnm;
+      const ctmNo = searchFormData.ctmNo;
 
       if(hnglCtmnm != '' && ctmNo != ''){
         //고객번호, 고객한글명으로 조회_/cusFindCtmno/{ctmno}/{hnglCtmnm}
@@ -71,6 +72,16 @@ export default {
       // 자식함수 호출 ref로 자식컴포넌트 지정
       this.$refs.searchForm.initData();
     },
+    setSelectedCus( selectedCus ){
+      console.log('selectedCus', selectedCus);
+      this.selectedCus = selectedCus;
+    },
+    sendSelectedCus(){
+      console.log('send selectedCus', this.selectedCus);
+      this.$emit("sendSelectedCus", {
+        ...this.selectedCus,
+      });
+    }
   },
 
   created () {
