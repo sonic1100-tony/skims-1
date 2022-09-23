@@ -27,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/biz/cus/CusSearch.vue'),
       },
       {
+        name: 'cus-main',
+        path: 'cus',
+        component: () => import('@/pages/biz/cus/CusMain.vue'),
+      },
+      {
         /*임시*/
         name: 'newPlan',
         path: 'newPlan',
