@@ -37,7 +37,7 @@
                       <td>
                         <va-input
                           class="mb-4"
-                          v-model="ctmDscno"
+                          v-model="planInsuredPerson.ctmDscnoMask"
                           placeholder=""
                           readonly
                         />
@@ -45,13 +45,12 @@
                       <td>
                         <va-input
                           class="mb-4"
-                          v-model="hnglCtmnm"
+                          v-model="planInsuredPerson.hnglRelnm"
                           placeholder=""
                           readonly
                         />
                       </td>
-
-                      <td><va-button icon="search" @click="showCusDialog()" /></td>
+                      <td><va-button icon="search" @click="showCusDialog(this.planInsuredPersonFormData.indexOf(planInsuredPerson))" /></td>
                       <td>
                         <va-input v-model="planInsuredPerson.jbcd" />
                       </td>
@@ -204,8 +203,8 @@ export default {
       });
     },
     // 고객조회팝업 호출
-    showCusDialog() {
-      this.$refs.CusModal.showCusModal();
+    showCusDialog(editInsPrsnIndex) {
+      this.$refs.CusModal.showCusModal(editInsPrsnIndex);
     },
     // 고객조화팝업 리턴
     receiveSelectedCus(Cus){
@@ -220,9 +219,11 @@ export default {
       this.rgbrdFlgcd = Cus.rgbrdFlgcd == "1" ? "내국인" : "외국인";
 
       //리턴값 세팅
-      this.ctmDscno = this.ctmDscnoMask;   // 주민등록번호
-      this.hnglRelnm = Cus.hnglCtmnm;       // 고객명
-      
+      this.planInsuredPersonFormData[Cus.editInsPrsnIndex].ctmDscno = this.ctmDscno;          // 주민등록번호
+      this.planInsuredPersonFormData[Cus.editInsPrsnIndex].ctmDscnoMask = this.ctmDscnoMask;  // 주민등록번호 마스킹
+      this.planInsuredPersonFormData[Cus.editInsPrsnIndex].hnglRelnm = Cus.hnglCtmnm;         // 고객명
+      this.planInsuredPersonFormData[Cus.editInsPrsnIndex].ctmno = Cus.ctmno;                 // 고객번호
+           
       // 팝업 자동닫기
       this.$refs.CusModal.hideCusModal();
     },

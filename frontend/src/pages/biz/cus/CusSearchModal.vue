@@ -24,26 +24,29 @@ export default {
   data () {
     return {
       showModal: false,
+      editInsPrsnIndex: null,
     }
   },
   methods: {
-    showCusModal(){
+    showCusModal(editInsPrsnIndex){
       this.showModal = true;
+      this.editInsPrsnIndex = editInsPrsnIndex;
     },
     sendSelectedCus(Cus){
       console.log('send selectedCus', Cus);
       this.showModal = false;
       this.$emit("receiveSelectedCus", {
-        ...Cus,
+        ...Cus, 
       });
     },
     setSelectedCus( selectedCus ){
       console.log('CusSearchModal_selectedCus', selectedCus);
       this.selectedCus = selectedCus;
+      this.selectedCus.editInsPrsnIndex = this.editInsPrsnIndex;
 
       // 메인에 리턴..
       this.$emit("receiveSelectedCus", {
-        ...selectedCus,
+        ...this.selectedCus,
       });
     },
     hideCusModal(){
