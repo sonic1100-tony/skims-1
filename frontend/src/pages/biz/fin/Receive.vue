@@ -60,7 +60,7 @@
 </template>
 <script>
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8081';
+//axios.defaults.baseURL = 'http://localhost:8081';
 
 export default {
   props: ['parentReceiptAdministrationNumber'] ,
@@ -103,7 +103,7 @@ export default {
       }
       console.log(">>수납처리>>>>>>>", this.receiveData);
       axios
-        .post('fin/receive/', this.receiveData)
+        .post(process.env.VUE_APP_FIN_URL + '/fin/receive/', this.receiveData)
         .then(response => {
           console.log("response", response);
           alert("수납처리가 완료되었습니다.");
@@ -123,7 +123,7 @@ export default {
         return;
       }
       axios
-        .post('fin/immediately-withdraw/', this.receiveData)
+        .post(process.env.VUE_APP_FIN_URL + '/fin/immediately-withdraw/', this.receiveData)
         .then(response => {
           console.log("response", response);
           if(response.data.answerCode == "0000"){
@@ -144,7 +144,7 @@ export default {
     getInfo () {
       console.log('조회 >>>>');
       axios
-        .get('fin/receive-info/'+this.receiveData.receiptAdministrationNumber)
+        .get(process.env.VUE_APP_FIN_URL + '/fin/receive-info/'+this.receiveData.receiptAdministrationNumber)
         .then(response => {
           console.log("response", response);
           this.receiveData.amount = response.data.wonCurrencyPremium;

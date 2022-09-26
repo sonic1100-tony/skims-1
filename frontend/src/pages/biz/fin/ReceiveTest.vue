@@ -101,7 +101,7 @@ export default {
     receiveStandby(){
       console.log("수납등록>>>>>>>", this.params);
       axios
-        .post('http://localhost:8081/fin/receive-standby', this.params)
+        .post(process.env.VUE_APP_FIN_URL + '/fin/receive-standby', this.params)
         .then(response => {
           console.log("response", response);
           alert("수납대기 등록이 완료되었습니다.\r\n수납대기번호 : " +response.data);
@@ -117,7 +117,7 @@ export default {
     callPaymentPremium(){
       console.log("보험료 입금");
       axios
-        .post('http://localhost:8086/pay/receipt', this.premiumPayment)
+        .post(process.env.VUE_APP_PAY_URL + '/pay/receipt', this.premiumPayment)
         .then(response => {
           console.log("response", response);
           this.receiptAdministrationNumber = response.data;

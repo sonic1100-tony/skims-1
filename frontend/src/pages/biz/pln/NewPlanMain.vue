@@ -67,7 +67,7 @@ export default {
   methods: {
     getGoodsInformation( goodsCode ){      
       axios
-        .get('http://localhost:8081/igd/goods/'+goodsCode)
+        .get(process.env.VUE_APP_IGD_URL + '/igd/goods/'+goodsCode)
         .then(response => {
           console.log("goodsInfo response", response);
           this.goodsInformation = response.data.goodsInformation;
@@ -82,7 +82,7 @@ export default {
     search ( searchFormData ) {
       this.searchData = searchFormData;
       axios
-        .get('http://localhost:8081/pln/planInformation?plno='+searchFormData.plno+'&cgafChSeqno=1') //searchFormData.plyno)
+        .get(process.env.VUE_APP_PLN_URL + '/pln/planInformation?plno='+searchFormData.plno+'&cgafChSeqno=1') //searchFormData.plyno)
         .then(response => {
           console.log("response", response);
           this.planSaveData = response.data;
@@ -128,7 +128,7 @@ export default {
     savePlan() {
       console.log("저장버튼 ***", this.planSaveData);
       axios
-        .post('http://localhost:8081/pln/savePlanInformation', this.planSaveData)
+        .post(process.env.VUE_APP_PLN_URL + '/pln/savePlanInformation', this.planSaveData)
         .then(response => {
           console.log("response", response);
           alert("설계정보 저장되었습니다.");
@@ -145,7 +145,7 @@ export default {
     reflectContract() {
       console.log("계약반영 ***");
       axios
-        .post('http://localhost:8081/pln/reflect-contract/'+this.planSaveData.plno)
+        .post(process.env.VUE_APP_PLN_URL + '/pln/reflect-contract/'+this.planSaveData.plno)
         .then(response => {
           console.log("response", response);
           alert("계약반영 되었습니다.");
@@ -164,7 +164,7 @@ export default {
       //일단 상품선택을 한가지로 고정
       const goodsCode = 'LAA201';
       axios
-        .post('http://localhost:8081/igd/premium-calculate/'+goodsCode, this.planSaveData)
+        .post(process.env.VUE_APP_IGD_URL + '/igd/premium-calculate/'+goodsCode, this.planSaveData)
         .then(response => {
           console.log("calculatePremium response", response);
           this.planPremiumData.baPrm = response.data.insurancePlan.baPrm; //기본보험료
@@ -181,7 +181,7 @@ export default {
       console.log("설계완료11 ***");
       //설계상태코드 03: 설계완료
       axios
-        .post('http://localhost:8081/pln/changePlanStatus/', {plno:this.searchData.plno, plStcd:"03"})
+        .post(process.env.VUE_APP_PLN_URL + '/pln/changePlanStatus/', {plno:this.searchData.plno, plStcd:"03"})
         .then(response => {
           alert("설계완료 되었습니다.");
           console.log("response", response);
@@ -200,7 +200,7 @@ export default {
       this.premiumPayment.paymentPremium = this.planPremiumData.apPrm;
 
       axios
-        .post('http://localhost:8081/pay/receipt', this.premiumPayment)
+        .post(process.env.VUE_APP_PAY_URL + '/pay/receipt', this.premiumPayment)
         .then(response => {
           console.log("response", response);
           this.receiptAdministrationNumber = response.data;

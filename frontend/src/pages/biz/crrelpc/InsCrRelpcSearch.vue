@@ -43,7 +43,8 @@ export default {
     search ( searchFormData ) {
       console.log('plyno : ', searchFormData.plyno);
 
-      const url = 'http://localhost:8082/cnr/inscrrelpcs/'+searchFormData.plyno;
+      //const url = 'http://localhost:8082/cnr/inscrrelpcs/'+searchFormData.plyno;
+      const url = `${process.env.VUE_APP_CNR_URL}/cnr/inscrrelpcs/${searchFormData.plyno}`;
 
       console.log('url : ' , url);
 
@@ -65,7 +66,8 @@ export default {
       console.log(' SAVE plyno : ', eventFormData.plyno);
       console.log(' SAVE eventFormData : ', eventFormData);
 
-      const url = 'http://localhost:8082/cnr/inscrrelpcs/';
+      //const url = 'http://localhost:8082/cnr/inscrrelpcs/';
+      const url = `${process.env.VUE_APP_CNR_URL}/cnr/inscrrelpcs/`;
      
       console.log('url : ' , url);
 
@@ -86,7 +88,8 @@ export default {
     dataDelete ( eventFormData ) {
       console.log(' DELETE aid : ', eventFormData.aid);
 
-      const url = 'http://localhost:8082/cnr/inscrrelpcs/'+eventFormData.aid;
+      //const url = 'http://localhost:8082/cnr/inscrrelpcs/'+eventFormData.aid;
+      const url = `${process.env.VUE_APP_CNR_URL}/cnr/inscrrelpcs/${eventFormData.aid}`;
 
       console.log('url : ' , url);
 

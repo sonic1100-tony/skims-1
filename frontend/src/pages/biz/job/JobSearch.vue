@@ -41,13 +41,12 @@ export default {
       const jbnm = searchFormData.searchJobName ? searchFormData.jobName : "";
       const dtJbnm = searchFormData.searchJobDetailName ? searchFormData.jobName : "";
 
-      const queryUrl = `${process.env.VUE_APP_BASE_URL}/cus/cusjbs?jbChSeqno=4`
+      const queryUrl = `${process.env.VUE_APP_CUS_URL}/cus/cusjbs?jbChSeqno=4`
           +'&jbcd=' + searchFormData.jobCode 
           +'&jbnm=' + jbnm 
           +'&dtJbnm=' + dtJbnm;
 
       axios
-        //.get('https://jsonplaceholder.typicode.com/todos')
         .get(queryUrl)
         .then(response => {
           console.log("response", response);
