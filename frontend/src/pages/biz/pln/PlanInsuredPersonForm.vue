@@ -35,10 +35,23 @@
                         />
                       </td>
                       <td>
-                        <va-input v-model="planInsuredPerson.ctmDscno" />
+                        <va-input
+                          class="mb-4"
+                          v-model="ctmDscno"
+                          placeholder=""
+                          readonly
+                        />
                       </td>
-                      <td><va-input v-model="planInsuredPerson.hnglRelnm" /></td>
-                      <td><va-button icon="search" /></td>
+                      <td>
+                        <va-input
+                          class="mb-4"
+                          v-model="hnglCtmnm"
+                          placeholder=""
+                          readonly
+                        />
+                      </td>
+
+                      <td><va-button icon="search" @click="showCusDialog()" /></td>
                       <td>
                         <va-input v-model="planInsuredPerson.jbcd" />
                       </td>
@@ -81,10 +94,18 @@
       </va-card>      
     </div>
   </div>
+
+  <CusSearchModal ref="CusModal" @receiveSelectedCus="receiveSelectedCus"/>
 </template>
 
 <script>
+import CusSearchModal from '../cus/CusSearchModal'
+
 export default {
+  components: {
+    CusSearchModal,
+  },
+
   data () {
     return {
       coverages: [],
@@ -103,7 +124,15 @@ export default {
           value: "0",
           text: '아니오', 
         }
-      ]
+      ],
+
+      //고객조회팝업 리턴값
+      ctmno: null,          // 고객번호
+      hnglCtmnm: null,      // 고객한글명
+      ctmDscnoMask: null,   // 주민등록번호(마스킹)
+      bzmno: null,          // 사업자번호
+      ntlcd: null,          // 국적
+      rgbrdFlgcd: null      // 내외국구분코드
     }
   },
   props : {
@@ -173,7 +202,31 @@ export default {
       this.$emit("modify", {
         ...this.planInsuredPersonFormData
       });
-    }
+    },
+    // 고객조회팝업 호출
+    showCusDialog() {
+      this.$refs.CusModal.showCusModal();
+    },
+    // 고객조화팝업 리턴
+    receiveSelectedCus(Cus){
+      console.log('CusMain_receive selectedCus', Cus);
+
+      // 리턴값 저장
+      this.ctmno = Cus.ctmno;
+      this.hnglCtmnm = Cus.hnglCtmnm;
+      this.ctmDscnoMask = Cus.ctmDscno.substr(0,6)+'-'+ Cus.ctmDscno.substr(7,1)+'******';
+      this.bzmno = Cus.bzmno;
+      this.ntlcd = Cus.ntlcd;
+      this.rgbrdFlgcd = Cus.rgbrdFlgcd == "1" ? "내국인" : "외국인";
+
+      //리턴값 세팅
+      this.ctmDscno = this.ctmDscnoMask;   // 주민등록번호
+      this.hnglRelnm = Cus.hnglCtmnm;       // 고객명
+      
+      // 팝업 자동닫기
+      this.$refs.CusModal.hideCusModal();
+    },
+
   },
 
   created () {
