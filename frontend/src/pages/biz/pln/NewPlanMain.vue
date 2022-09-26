@@ -86,7 +86,8 @@ export default {
         .then(response => {
           console.log("response", response);
           this.planSaveData = response.data;
-          this.planBasicInfoData = response.data.insurancePlan;  
+          // null 참조시 Cannot read property 'parentNode' of null 에러가 발생하는 것으로 보임. Null대신 빈 객체 설정
+          this.planBasicInfoData = !response.data.insurancePlan ? {} : response.data.insurancePlan;  
           this.planInsuredPersonData = response.data.insuredPersons;
         })
         .catch(error => {
