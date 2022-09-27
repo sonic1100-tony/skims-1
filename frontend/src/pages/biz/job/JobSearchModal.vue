@@ -23,19 +23,36 @@ export default {
   data () {
     return {
       showModal: false,
+      editInsPrsnIndex: null,
     }
   },
   methods: {
-    showJobModal(){
+    showJobModal(editInsPrsnIndex){
       this.showModal = true;
+      this.editInsPrsnIndex = editInsPrsnIndex;
     },
     sendSelectedJob(job){
       console.log('send selectedJob', job);
-      this.showModal = false;
+      // this.showModal = false;
+      this.selectedJob = job;
+      this.selectedJob.editInsPrsnIndex = this.editInsPrsnIndex;
       this.$emit("receiveSelectedJob", {
         ...job,
       });
-    }
+    },
+    setSelectedJob( selectedJob ){
+      console.log('JobSearchModal_selectedJob', selectedJob);
+      this.selectedJob = selectedJob;
+      this.selectedJob.editInsPrsnIndex = this.editInsPrsnIndex;
+
+      // 메인에 리턴..
+      // this.$emit("receiveSelectedJob", {
+      //   ...this.selectedJob,
+      // });
+    },
+    hideJobModal(){
+      this.showModal = false;
+    },
   },
   created () {
     console.log("created...");

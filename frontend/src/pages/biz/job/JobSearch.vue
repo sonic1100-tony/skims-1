@@ -42,8 +42,8 @@ export default {
       const dtJbnm = searchFormData.searchJobDetailName ? searchFormData.jobName : "";
 
       const queryUrl = `${process.env.VUE_APP_CUS_URL}/cus/cusjbs?jbChSeqno=4`
-          +'&jbcd=' + searchFormData.jobCode 
-          +'&jbnm=' + jbnm 
+          +'&jbcd=' + searchFormData.jobCode
+          +'&jbnm=' + jbnm
           +'&dtJbnm=' + dtJbnm;
 
       axios
@@ -72,6 +72,11 @@ export default {
     setSelectedJob( selectedJob ){
       console.log('selectedJob', selectedJob);
       this.selectedJob = selectedJob;
+
+      // 모달에 리턴..
+      this.$emit("setSelectedJob", {
+        ...selectedJob,
+      });
     },
     sendSelectedJob(){
       console.log('send selectedJob', this.selectedJob);

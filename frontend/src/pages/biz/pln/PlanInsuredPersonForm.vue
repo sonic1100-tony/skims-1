@@ -2,7 +2,7 @@
   <div class="collapse-page">
     <div class="markup-tables flex">
       <va-card title="피보험자" class="flex mb-4">
-        <va-card-content>          
+        <va-card-content>
           <va-accordion v-model="basicAccordionValue">
             <va-collapse class="mb-4" :header="$t('newPlan.insuredPersion.title')">
               <div class="table-wrapper">
@@ -57,7 +57,7 @@
                         <va-input v-model="planInsuredPerson.jbnm" />
                       </td>
                       <td>
-                        <va-button icon="search" />
+                        <va-button icon="search" @click="showJobDialog(this.planInsuredPersonFormData.indexOf(planInsuredPerson))" />
                       </td>
                       <td>
                         <va-select size="small"
@@ -83,24 +83,27 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>                
+                </table>
               </div>
             </va-collapse>
           </va-accordion>
         </va-card-content>
         <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="modify" color="warning">{{'피보험자 수정'}}</va-button>
-      </va-card>      
+      </va-card>
     </div>
     <CusSearchModal ref="CusModal" @receiveSelectedCus="receiveSelectedCus"/>
+    <JobSearchModal ref="JobModal" @receiveSelectedJob="receiveSelectedJob"/>
   </div>
 </template>
 
 <script>
 import CusSearchModal from '../cus/CusSearchModal'
+import JobSearchModal from '../job/JobSearchModal'
 
 export default {
   components: {
     CusSearchModal,
+    JobSearchModal,
   },
 
   data () {
@@ -115,11 +118,11 @@ export default {
       twhvcDrveYns: [
         {
           value: "1",
-          text: '예', 
+          text: '예',
         },
         {
           value: "0",
-          text: '아니오', 
+          text: '아니오',
         }
       ],
 
@@ -129,7 +132,11 @@ export default {
       ctmDscnoMask: null,   // 주민등록번호(마스킹)
       bzmno: null,          // 사업자번호
       ntlcd: null,          // 국적
-      rgbrdFlgcd: null      // 내외국구분코드
+      rgbrdFlgcd: null,      // 내외국구분코드
+
+      //직업코드 리턴값
+      jbcd: null,
+      jbnm: null
     }
   },
   props : {
@@ -200,6 +207,10 @@ export default {
     showCusDialog(editInsPrsnIndex) {
       this.$refs.CusModal.showCusModal(editInsPrsnIndex);
     },
+    // 직업조회팝업 호출
+    showJobDialog(editInsPrsnIndex) {
+      this.$refs.JobModal.showJobModal(editInsPrsnIndex);
+    },
     // 고객조화팝업 리턴
     receiveSelectedCus(Cus){
       console.log('CusMain_receive selectedCus', Cus);
@@ -217,9 +228,25 @@ export default {
       this.planInsuredPersonFormData[Cus.editInsPrsnIndex].ctmDscnoMask = this.ctmDscnoMask;  // 주민등록번호 마스킹
       this.planInsuredPersonFormData[Cus.editInsPrsnIndex].hnglRelnm = Cus.hnglCtmnm;         // 고객명
       this.planInsuredPersonFormData[Cus.editInsPrsnIndex].ctmno = Cus.ctmno;                 // 고객번호
-           
+
       // 팝업 자동닫기
       this.$refs.CusModal.hideCusModal();
+    },
+
+    // 직업조화팝업 리턴
+    receiveSelectedJob(Job){
+      console.log('JobMain_receive selectedJob', Job);
+
+      // 리턴값 저장
+      this.jbcd = Job.jbcd;
+      this.jbnm = Job.jbnm;
+
+      //리턴값 세팅
+      this.planInsuredPersonFormData[Job.editInsPrsnIndex].jbcd = Job.jbcd;          // 직업코드
+      this.planInsuredPersonFormData[Job.editInsPrsnIndex].jbnm = Job.jbnm;  // 직업명
+
+      // 팝업 자동닫기
+      this.$refs.JobModal.hideJobModal();
     },
 
   },
