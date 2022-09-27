@@ -17,7 +17,7 @@
                       <th colspan="2">직업명</th>
                       <th>상해급수</th>
                       <th>운전형태</th>
-                      <th>이륜차부담보</th>
+                      <th>이륜차운전여부</th>
                     </tr>
                   </thead>
 
