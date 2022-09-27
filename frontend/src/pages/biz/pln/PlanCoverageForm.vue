@@ -5,7 +5,6 @@
         <va-card-content>
           <va-accordion v-model="basicAccordionValue">
             <va-collapse class="mb-4" :header="$t('newPlan.coverage.title')">              
-              <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="addCoverage">{{'담보 추가'}}</va-button>
               <div class="table-wrapper">
                 <table class="va-table">
                   <thead>
@@ -22,7 +21,7 @@
                   </thead>
 
                   <tbody>
-                    <tr v-for="planCoverage in planCoverageFormData" :key="planCoverage.cvrcd">
+                    <tr v-for="planCoverage in planCoverageFormData.coverages" :key="planCoverage.cvrcd">
                       <td>
                         <va-checkbox v-model="planCoverage.check" />
                       </td>
@@ -83,9 +82,6 @@ export default {
     planCoverageData: {
       type: Object
     },
-    coverageInformation: {
-      type: Object
-    },
     goodsInformation: {
       type: Object
     }
@@ -94,10 +90,6 @@ export default {
     //조회된 설계번호의 담보data
     planCoverageData: function ( obj ) {
       this.planCoverageFormData = obj; 
-    },
-    //상품data(담보)
-    coverageInformation: function ( obj ) {
-      console.log("상품담보 : ", obj);
     },
     //selectbox 선택항목으로 사용하는 상품메타데이터(보험기간, 납입기간)
     goodsInformation: function ( obj ) {
@@ -127,15 +119,8 @@ export default {
       console.log("created...");
       this.initData();
     },
-    addCoverage() {
-      const array =  {};
-      //array.relpcSeqno = 2;
-      this.planCoverageFormData.push(array);
-    },
     modify() {
-      this.$emit("modify", {
-        ...this.planCoverageFormData
-      });
+      this.$emit("modify", this.planCoverageFormData);
     }
   },
 

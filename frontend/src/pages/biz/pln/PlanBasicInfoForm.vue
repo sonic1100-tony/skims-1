@@ -118,7 +118,7 @@ export default {
       obj.apldt = new Date(obj.apldt); //청약일자
       obj.insSt = new Date(obj.insSt); //보험시기
       obj.insClstr = new Date(obj.insClstr); //보험종기
-      this.planBasicInfoFormData = { ...obj };
+      this.planBasicInfoFormData = obj;
     },
     goodsInformation: function ( obj ) {
       this.gdSlnm = obj.gdSlnm;
@@ -169,9 +169,7 @@ export default {
 
     insuranceTermChange () {
       console.log('search');
-      this.$emit("search", {
-        ...this.planBasicInfoData,
-      });
+      this.$emit("search", this.planBasicInfoData);
     },
 
     logMethod () {
@@ -189,9 +187,7 @@ export default {
     },
 
     modify() {
-      this.$emit("modify", {
-        ...this.planBasicInfoFormData
-      });
+      this.$emit("modify", this.planBasicInfoFormData);
     }
   },
 

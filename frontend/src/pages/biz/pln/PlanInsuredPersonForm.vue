@@ -5,7 +5,6 @@
         <va-card-content>          
           <va-accordion v-model="basicAccordionValue">
             <va-collapse class="mb-4" :header="$t('newPlan.insuredPersion.title')">
-              <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="addInsuredPerson">{{'피보험자 추가'}}</va-button>
               <div class="table-wrapper">
                 <table class="va-table">
                   <thead>
@@ -25,7 +24,7 @@
                   <tbody>
                     <tr v-for="planInsuredPerson in planInsuredPersonFormData" :key="planInsuredPerson.relpcSeqno">
                       <td>
-                        <input type="checkbox" v-model="check" value="1" @click="checkboxClick(planInsuredPerson.coverages)"/>
+                        <input type="checkbox" v-model="check" value="1" @click="checkboxClick(planInsuredPerson)"/>
                       </td>
                       <td>
                         <va-select size="small"
@@ -92,9 +91,8 @@
         <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="modify" color="warning">{{'피보험자 수정'}}</va-button>
       </va-card>      
     </div>
+    <CusSearchModal ref="CusModal" @receiveSelectedCus="receiveSelectedCus"/>
   </div>
-
-  <CusSearchModal ref="CusModal" @receiveSelectedCus="receiveSelectedCus"/>
 </template>
 
 <script>
@@ -144,9 +142,11 @@ export default {
   },
   watch: {
     planInsuredPersonData: function ( obj ) {
-      console.log("change data 피보험자", obj);
+      //console.log("change data 피보험자", obj);
       this.planInsuredPersonFormData = obj;
-      //this.planInsuredPersonFormData = { ...obj };
+      for(let i=0; i<obj.length; i++){
+        this.planInsuredPersonFormData[i].ctmDscnoMask = obj[i].ctmDscno;
+      }
     },
     goodsInformation: function ( obj ) {
       for(let i=0; i<obj.relcd.length; i++){
@@ -186,21 +186,15 @@ export default {
       this.initData();
     },
     checkboxClick(selectedCoverages) {
-      console.log("selectedCoverages" , selectedCoverages);
+      //console.log("selectedCoverages" , selectedCoverages);
       if(this.check==""){
         this.coverages = selectedCoverages;
         this.$emit("insuredPersonChange", this.coverages);
       }
     },
-    addInsuredPerson() {
-      const array =  {};
-      //array.relpcSeqno = 2;
-      this.planInsuredPersonFormData.push(array);
-    },
     modify() {
-      this.$emit("modify", {
-        ...this.planInsuredPersonFormData
-      });
+      //console.log("modify check " , this.planInsuredPersonFormData);
+      this.$emit("modify", this.planInsuredPersonFormData);
     },
     // 고객조회팝업 호출
     showCusDialog(editInsPrsnIndex) {

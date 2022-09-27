@@ -3,7 +3,7 @@
     <PlanSearchForm ref="planSearchForm" @search="search" :goodsInformation="goodsInformation" :planBasicInfoData="planBasicInfoData"></PlanSearchForm>
     <PlanBasicInfoForm ref="planBasicInfoForm" :planBasicInfoData="planBasicInfoData" :goodsInformation="goodsInformation" @modify="modifyBasicInfo"/>
     <PlanInsuredPersonForm ref="planInsuredPersonForm" :planInsuredPersonData="planInsuredPersonData" :goodsInformation="goodsInformation" @insuredPersonChange="insuredPersonChange" @modify="modifyInsuredPerson"></PlanInsuredPersonForm>
-    <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData" :coverageInformation="coverageInformation" :goodsInformation="goodsInformation" @modify="modifyCoverage"></PlanCoverageForm>
+    <PlanCoverageForm ref="planCoverageForm" :planCoverageData="planCoverageData" :goodsInformation="goodsInformation" @modify="modifyCoverage"></PlanCoverageForm>
     <PlanPremiumForm ref="planPremiumForm" :planPremiumData="planPremiumData"></PlanPremiumForm>
     <div>
       <va-button :rounded="false" size="small" class="mr-4 mb-2" v-on:click="savePlan">{{$t('common.button.save')}}</va-button>
@@ -44,7 +44,6 @@ export default {
     return {
       searchData:{},
       goodsInformation: [],
-      coverageInformation: [],
       plStcd: [],
       planSaveData: [],
       planBasicInfoData: {},
@@ -71,11 +70,10 @@ export default {
         .then(response => {
           console.log("goodsInfo response", response);
           this.goodsInformation = response.data.goodsInformation;
-          this.coverageInformation = response.data.coverageInformation;
         })
         .catch(error => {
-          console.log(error)
-          this.errored = true
+          console.log(error);
+          this.errored = true;
         })
         .finally(() => this.loading = false)
     },
@@ -91,23 +89,30 @@ export default {
           this.planInsuredPersonData = response.data.insuredPersons;
         })
         .catch(error => {
-          console.log(error)
-          this.errored = true
+          console.log(error);
+          this.errored = true;
         })
         .finally(() => this.loading = false)
 
         this.clearSearchForm();
     },
     modifyBasicInfo ( data ) {
-      console.log("modify data : ", data);
+      //console.log("modify data : ", data);
       this.planSaveData.insurancePlan = data;
     },
     modifyInsuredPerson ( data ) {
-      console.log("modify data : ", data);
-      this.planSaveData.insuredPerson = data;
+      //console.log("modify data : ", data);
+      this.planSaveData.insuredPersons = data;
     },
     modifyCoverage ( data ) {
-      console.log("modifyCoverage data : ", data);
+      //console.log("modifyCoverage data : ", data);
+      //수정된 담보데이터를 저장하기 위해 해당 relpcSeqno의 피보험자data를 찾아서 그안에 넣어준다.
+      for(let i=0; i<this.planSaveData.insuredPersons.length; i++){
+        if(this.planSaveData.insuredPersons[i].relpcSeqno == data.relpcSeqno)
+        {
+          this.planSaveData.insuredPersons[i].coverages = data.coverages;
+        }
+      }
     },
     insuredPersonChange ( coverages ) {
       this.planCoverageData = coverages;
@@ -136,8 +141,8 @@ export default {
           
         })
         .catch(error => {
-          console.log(error)
-          this.errored = true
+          console.log(error);
+          this.errored = true;
           alert("설계저장시 에러가 발생하였습니다.\r\n" +error.response.data.message);
           
         })
@@ -153,15 +158,15 @@ export default {
           
         })
         .catch(error => {
-          console.log(error)
-          this.errored = true
+          console.log(error);
+          this.errored = true;
           alert("계약반영시 에러가 발생하였습니다.\r\n" +error.response.data.message);
           
         })
         .finally(() => this.loading = false)
     },
     calculatePremium(){      
-      console.log("보험료계산11 ***");
+      console.log("보험료계산 ***");
       //일단 상품선택을 한가지로 고정
       const goodsCode = 'LAA201';
       axios
@@ -173,13 +178,13 @@ export default {
           this.planPremiumData.dcPrm = response.data.insurancePlan.baPrm - response.data.insurancePlan.apPrm; //할인보험료
         })
         .catch(error => {
-          console.log(error)
-          this.errored = true
+          console.log(error);
+          this.errored = true;
         })
         .finally(() => this.loading = false)
     },
     planComplete() {
-      console.log("설계완료11 ***");
+      console.log("설계완료 ***");
       //설계상태코드 03: 설계완료
       axios
         .post(process.env.VUE_APP_PLN_URL + '/pln/changePlanStatus/', {plno:this.searchData.plno, plStcd:"03"})
@@ -188,8 +193,8 @@ export default {
           console.log("response", response);
         })
         .catch(error => {
-          console.log(error)
-          this.errored = true
+          console.log(error);
+          this.errored = true;
         })
         .finally(() => this.loading = false)
     },
@@ -208,8 +213,8 @@ export default {
           this.showReceive = !this.showReceive;        
         })
         .catch(error => {
-          console.log(error)
-          this.errored = true
+          console.log(error);
+          this.errored = true;
           alert("보험료 입금 처리 시 에러가 발생하였습니다.\r\n" +error.response.data.message);
         })
         .finally(() => this.loading = false)
