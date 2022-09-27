@@ -162,6 +162,8 @@ public class PlanInformationDto {
         private BigDecimal jbChSeqno; //--직업변경순번
 
         private String injrRnkcd; //--상해급수코드
+        
+        private String twhvcDrveYn; //--이륜차운전여부
 
 
         /**

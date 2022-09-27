@@ -162,6 +162,8 @@ public class PlanInformationRequest implements Serializable {
 
         private String injrRnkcd; //--상해급수코드
 
+        private String twhvcDrveYn; //--이륜차운전여부
+
 
         /**
          * 관계자관계

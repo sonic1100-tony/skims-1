@@ -59,6 +59,7 @@ public class PlanInformationService {
                 insuredPerson.setJbnm(cusFeignClient.getJobName(insPlNrdpsTisrdAtr.get().getJbChSeqno(), insPlNrdpsTisrdAtr.get().getJbcd()).getBody());
                 insuredPerson.setJbChSeqno(insPlNrdpsTisrdAtr.get().getJbChSeqno());
                 insuredPerson.setInjrRnkcd(insPlNrdpsTisrdAtr.get().getInjrRnkcd());
+                insuredPerson.setTwhvcDrveYn(insPlNrdpsTisrdAtr.get().getTwhvcDrveYn());
             }
             //관계자관계 조회
             Optional<InsPlRelpcRel> insPlRelpcRel = insPlRelpcRelRepository.findByPlnoAndCgafChSeqnoAndCnftRelpcSeqnoAndCnftRelpcTpcd(plno, cgafChSeqno, insuredPerson.getRelpcSeqno(), insuredPerson.getRelpcTpcd());
@@ -190,6 +191,7 @@ public class PlanInformationService {
             insPlNrdpsTisrdAtr.setMnthAvgPa(new BigDecimal(0));
             insPlNrdpsTisrdAtr.setYearPaTamt(new BigDecimal(0));
             insPlNrdpsTisrdAtr.setDscrt(new BigDecimal(0));
+            insPlNrdpsTisrdAtr.setTwhvcDrveYn(dto.getInsuredPersons().get(i).getTwhvcDrveYn());
             insPlNrdpsTisrdAtr.setMdfUsrId("test");
             insPlNrdpsTisrdAtr.setMdfDthms(LocalDateTime.now());
 
