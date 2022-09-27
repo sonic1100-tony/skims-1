@@ -74,8 +74,8 @@ export default {
     initData () {
       this.searchFormData = {
         plno: '00001',
-        plStcd: '01',
-        plyno: '1000000001',
+        plStcd: '',
+        plyno: '',
         grCtmno: '',
       };
     },
